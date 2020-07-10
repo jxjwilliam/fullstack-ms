@@ -3,7 +3,7 @@
     "browser": true,
     "es2020": true
   },
-  "extends": ["airbnb", "prettier", "plugin:react/recommended"],
+  "extends": ["airbnb", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -20,6 +20,8 @@
         "extensions": [".js", ".jsx"]
       }
     ],
+    "react/jsx-indent-props": ["error", 2],
+    "indent": [2, 2],
     "no-unused-vars": "warn",
     "no-console": "off",
     "func-names": "off",
@@ -28,6 +30,10 @@
     "react/prop-types": "off",
     "react/destructuring-assignment": "off",
     "react/no-unescaped-entities": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "react/display-name": "off",
+    "react/prefer-stateless-function": "off",
+    "react/jsx-props-no-spreading": "off",
+    "camelcase": "off"
   }
 }

@@ -1,12 +1,3 @@
-import Home from './home';
-import {SignIn, SignInSide, SignOut} from './signin'
-import Signup from './signup'
-import SpecialPlan from './01-special-plan-management'
-import Asset from './02-asset-management'
-import Abs from './03-abs'
-import Admin from './04-admin-panel'
-import Organization from './05-organization'
-import {C404} from './components'
 import {
   OfflineBolt,
   Business,
@@ -19,6 +10,15 @@ import {
   AccountBox,
   ExitToApp,
 } from '@material-ui/icons'
+import Home from './home'
+import { SignIn, SignInSide, SignOut } from './signin'
+import Signup from './signup'
+import SpecialPlan from './01-special-plan-management'
+import Asset from './02-asset-management'
+import Abs from './03-abs'
+import Admin from './04-admin-panel'
+import Organization from './05-organization'
+import { C404 } from './components'
 
 export const BusinessRouters = [
   {
@@ -66,23 +66,26 @@ export const GeneralRouters = [
     title: '登录 1',
     icon: VerifiedUser,
     component: SignIn,
-  }, {
+  },
+  {
     path: '/login',
     title: '登录 2',
     icon: LockOpen,
     component: SignInSide,
-  }, {
+  },
+  {
     path: '/logout',
     title: '退出',
     icon: ExitToApp,
     component: SignOut,
-  }, {
+  },
+  {
     path: '/signup',
     title: '注册',
     icon: AccountBox,
     component: Signup,
   },
-];
+]
 
 export const BackdoorRouters = [
   {
@@ -90,8 +93,7 @@ export const BackdoorRouters = [
     component: Home,
   },
   {
-    path: "*",
+    path: '*',
     component: C404,
-  }
+  },
 ]
-

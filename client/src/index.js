@@ -1,23 +1,23 @@
-import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux'
-import './index.css';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import './index.css'
 // import './vendors/material-design-icons/iconfont/material-icons.css';
 // import './vendors/typeface-roboto/index.css';
-import App from './App';
+import App from './App'
 import configureStore from './state/configureStore'
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
 
-const store = configureStore();
-const rootElement = document.getElementById('root');
+const store = configureStore()
+const rootElement = document.getElementById('root')
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
-  <Provider store={store}>
+    <Provider store={store}>
       <App />
-      </Provider>,
-  rootElement
-);
-});
+    </Provider>,
+    rootElement
+  )
+})
 
-serviceWorker.unregister();
+serviceWorker.unregister()

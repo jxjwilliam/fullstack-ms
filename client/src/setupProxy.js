@@ -1,12 +1,12 @@
-const proxy = require('http-proxy-middleware');
+const proxy = require('http-proxy-middleware')
 
-const URLS = ['http://localhost', 'https://localhost'];
+const URLS = ['http://localhost', 'https://localhost']
 
-require('dotenv').config();
+require('dotenv').config()
 
 // same as in bff/.env:
-const MS_PORT_1 = process.env.PORT_1 || 10000;
-const MS_PORT_2 = process.env.PORT_2 || 10001;
+const MS_PORT_1 = process.env.PORT_1 || 10000
+const MS_PORT_2 = process.env.PORT_2 || 10001
 
 module.exports = function (app) {
   app.use(
@@ -14,7 +14,7 @@ module.exports = function (app) {
       target: `${URLS[0]}:${MS_PORT_1}/`,
       changeOrigin: true,
     })
-  );
+  )
 
   app.use(
     proxy('/sapi', {
@@ -26,5 +26,5 @@ module.exports = function (app) {
       secure: false,
       https: true,
     })
-  );
-};
+  )
+}

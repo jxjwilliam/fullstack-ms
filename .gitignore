@@ -9,6 +9,7 @@ node_modules
 /coverage
 
 # production
+pwd
 build
 
 # misc
@@ -26,5 +27,6 @@ nohup.out
 # new added
 .history
 .vscode
+.idea
 build
 uploads

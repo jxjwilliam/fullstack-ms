@@ -7,5 +7,5 @@ $ npx create-react-app client
 ### 后台
 
 ```shell
-$ npx express-generator
+$ npx express-generator ms-app
 ```

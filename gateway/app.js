@@ -6,11 +6,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
+const http = require('http');
 const debug = require('debug')('gateway:app');
-
-require('dotenv').config();
-
-const port = process.env.GATEWAY_PORT || 10000;
 
 const app = express();
 
@@ -20,9 +17,27 @@ app.use(helmet());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('dotenv').config();
+
+const port = process.env.GATEWAY_PORT || 10000;
+app.set('port', port);
+
 // 测试接口
 app.get('/', (req, res) => {
-  res.status(200).send('Hello from BFF proxy app!');
+  res.status(200).send('Hello from BFF proxy server!');
+});
+
+const apiProxy = httpProxy.createProxyServer();
+
+const MS1 = process.env.MS1 || 10001;
+app.all('/api/*', (req, res) => {
+  apiProxy.web(req, res, { target: MS1 });
+});
+
+app.use('/*', (req, res) => {
+  const { url, params, query, body } = req;
+  console.error('BFF-路由服务器 无效URL: ', url, params, query, body);
+  res.sendStatus(404);
 });
 
 // catch 404 and forward to error handler
@@ -41,7 +56,7 @@ app.use(function (err, req, res) {
   res.render('error');
 });
 
-const apiProxy = httpProxy.createProxyapp();
+const server = http.createServer(app);
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -63,10 +78,10 @@ function onError(error) {
   }
 }
 
-app.on('error', onError);
+server.on('error', onError);
 
-apiProxy.listen(port, () => {
-  const addr = apiProxy.address();
+server.listen(port, () => {
+  const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${bind}`);
+  console.log(`BFF 代理服务正运行于端口 ${bind}`);
 });

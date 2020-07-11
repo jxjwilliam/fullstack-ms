@@ -11,3 +11,7 @@ $ npx create-react-app client
 ### storybook
 
 ---
+
+### eslint, prettier, airbnb
+
+- Tabsize: File > Preferences > Settings > `editor: tab size` => Tab Size: 2

@@ -1,83 +1,55 @@
 # React, Node
 
-### CSS，animation库 @material-ui
+### 🍺 CSS，animation 库 @material-ui
 
-### 前端路由 react-router-dom
+### 🍺 前端路由 react-router-dom
 
-### 前端存储 redux
+### 🍺 前端存储 redux
 
-### 代理 http-proxy-middleware
+### 🍺 代理 http-proxy-middleware
 
-### 表单处理 Formik
+### 🍺 表单处理 react-hook-form, Formik/Yup
 
-### 表格处理 material-table
+### 🍺 表格处理 material-table
 
-### DBMS: MySQL
+### 🍺 DBMS: MySQL + Sequelize
 
-### cross-platform document-oriented: MongoDB 
+### 🍺 cross-platform document-oriented: MongoDB
 
-### MYSQL + Sequelize
+### 🍺 jsexcel / grapecity + read-excel-file
 
-### 文件上载 + Multer
+### 🍺 文件上载 + Multer
 
-### excel + read-excel-file
+### 🍺 TODO: docx ???
 
-### PDF + pdfkit
+### 🍺 PDF + pdfkit
 
-### REST: request.js, node-fetch 
+### 🍺 REST: request.js, node-fetch
 
-### 邮件 nodemailer
+### 🍺 邮件 nodemailer
 
-### 日期时间：moment
+### 🍺 日期时间：moment, date-fns
 
+### 🍺 Create React App, npx express-generator
 
-### Create React App
+### 🍺 其它：lerna
 
-### 其它：
-
-- Create React App
-- react-scripts/webpack
-- babel
-- ES6 (2015)
-
-
-### Flutter - 谷歌跨平台移动应用开发框架
+### 🍺 Flutter - 谷歌跨平台移动应用开发框架
 
 material-design + Dart
 
-### Ionic - 开源移动应用程序开发框架, webkit
+### 🍺 Ionic - 开源移动应用程序开发框架, webkit
 
-### responsive css
+### 🍺 eslint, prettier, airbnb, ary11
 
-### css grid, flex
+### 🍺 css in js
 
-### 
+### 🍺 storybook
 
-
-### 网络开发资源
+### 🍺 网络开发资源
 
 The most popular and rank #1 React components for UI.
 
 Facebook React + Google Material-design, the golden pair.
 
-
-
-
 Flutter - Dart + Material-Design
-
-
-docker run -v "/$(PWD)/mysql_client:/sql --link docker_mysql:mysql -it arey/mysql-client -h 192.168.99.100  -p 	
-
-
-$ docker run -v <path to sql>:/sql --link <mysql server container name>:mysql -it arey/mysql-client -h mysql -p <password> -D <database name> -e "source /sql/<your sql file>"	
-
-
-
-
-192.168.99.100
-
-
-
-
-
-

@@ -28,6 +28,7 @@ nohup.out
 .history
 .vscode
 .idea
+.storybook
 build
 uploads
 

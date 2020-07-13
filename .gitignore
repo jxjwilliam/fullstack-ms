@@ -19,8 +19,8 @@ build
 .env.test.local
 .env.production.local
 
-*-debug.log*
-*-error.log*
+*-debug.log
+*-error.log
 nohup.out
 
 # new added
@@ -29,5 +29,7 @@ nohup.out
 .idea
 .cache
 .storybook
+.eslintcache
+
 build
 uploads/

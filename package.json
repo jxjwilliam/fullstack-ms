@@ -11,16 +11,16 @@
     "run-all": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-api\" \"yarn run-rest\"",
     "run-prod": "concurrently \"yarn run-gateway\" \"yarn run-api\" \"yarn run-rest\"",
     "prestart": "node bin/update-config.js",
-    "dev": "echo \"\" cross-env NODE_ENV=dev yarn run-all",
-    "start": "cross-env NODE_ENV=development yarn run-all",
-    "test1": "echo \"\" cross-env NODE_ENV=test yarn run-all",
-    "stage": "echo \"\" cross-env NODE_ENV=stage yarn run-all",
-    "prod": "echo \"\" cross-env NODE_ENV=production yarn run-prod",
+    "dev": "echo \"启动 dev!\" cross-env NODE_ENV=dev yarn run-all",
+    "start": "cross-env NODE_ENV=development  REACT_APP_ENV=dev yarn run-all",
+    "test1": "echo \"启动 test1!\" cross-env NODE_ENV=test yarn run-all",
+    "stage": "echo \"启动 stage!\" cross-env NODE_ENV=stage yarn run-all",
+    "prod": "echo \"启动 production!\" cross-env NODE_ENV=production yarn run-prod",
     "test": "lerna run test",
     "new-version": "lerna version --conventional-commits --yes",
+    "commit": "git-cz",
     "diff": "lerna diff",
-    "clean": "rimraf dist",
-    "commit": "npx git-cz"
+    "clean": "rimraf dist"
   },
   "keywords": [
     "ABS"
@@ -28,15 +28,46 @@
   "author": "ABS Team",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
     "commitizen": "^4.1.2",
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "husky": "^4.2.5",
     "lerna": "^3.22.1",
     "nodemon": "^2.0.4",
     "pm2": "^4.4.0",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run test"
+    }
   }
 }

@@ -17,7 +17,6 @@
     "helmet": "^3.23.3",
     "http-errors": "^1.8.0",
     "http-proxy": "^1.18.1",
-    "jade": "~1.11.0",
     "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0"
   },

@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "abs_user",
+    "password": "abs~123456$",
+    "database": "abs",
+    "host": "127.0.0.1",
+    "port": 6033,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "test_user",
+    "password": "test123",
+    "database": "test",
+    "host": "127.0.0.1",
+    "port": 6033,
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "kysec_abs_user",
+    "password": "kysec_abs~123456$",
+    "database": "kysec_abs",
+    "host": "127.0.0.1",
+    "port": 6033,
+    "dialect": "mysql"
+  }
+}

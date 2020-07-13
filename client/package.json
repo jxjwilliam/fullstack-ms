@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "abs-client",
   "version": "0.1.1",
   "private": true,
   "dependencies": {
@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@williamjiang/util": "^1.0.3",
+    "@williamjiang/util": "^1.0.4",
     "dotenv": "^8.2.0",
     "http-proxy-middleware": "^1.0.5",
     "material-table": "^1.64.0",

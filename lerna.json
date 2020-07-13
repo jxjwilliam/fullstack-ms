@@ -1,9 +1,9 @@
 {
   "packages": [
-    "client",
-    "gateway",
-    "ms-api",
-    "ms-rest"
+    "client/",
+    "gateway/",
+    "ms-api/",
+    "ms-rest/"
   ],
   "npmClient": "yarn",
   "version": "0.1.1"

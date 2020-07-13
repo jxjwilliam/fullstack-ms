@@ -1,15 +1,42 @@
 {
   "name": "abs",
-  "version": "1.0.0",
-  "description": "<pre><code>",
+  "version": "0.0.1",
+  "description": "ABS",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run-client": "cd client && yarn start",
+    "run-gateway": "cd gateway && yarn start",
+    "run-api": "cd ms-api && yarn start",
+    "run-rest": "cd ms-rest && yarn start",
+    "run-all": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-api\" \"yarn run-rest\"",
+    "run-prod": "concurrently \"yarn run-gateway\" \"yarn run-api\" \"yarn run-rest\"",
+    "prestart": "node bin/update-config.js",
+    "dev": "echo \"\" cross-env NODE_ENV=dev yarn run-all",
+    "start": "cross-env NODE_ENV=development yarn run-all",
+    "test1": "echo \"\" cross-env NODE_ENV=test yarn run-all",
+    "stage": "echo \"\" cross-env NODE_ENV=stage yarn run-all",
+    "prod": "echo \"\" cross-env NODE_ENV=production yarn run-prod",
+    "test": "lerna run test",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff",
+    "clean": "rimraf dist",
+    "commit": "npx git-cz"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT"
+  "keywords": [
+    "ABS"
+  ],
+  "author": "ABS Team",
+  "license": "MIT",
+  "devDependencies": {
+    "commitizen": "^4.1.2",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "lerna": "^3.22.1",
+    "nodemon": "^2.0.4",
+    "pm2": "^4.4.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon --exec babel-node ./app",
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./app",
+    "dev": "nodemon --exec babel-node ./app",
+    "test": "echo %npm_package_version%",
     "clean": "rimraf build"
   },
   "dependencies": {

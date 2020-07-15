@@ -4,12 +4,18 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const http = require('http')
-
-const app = express()
+const connectDb = require('./mongo-connect')
 
 require('dotenv').config()
 
+connectDb({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
+})
 const port = process.env.PORT || 10001
+
+const app = express()
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -17,7 +23,13 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/', (req, res) => {
-  res.json('It works!')
+  res.status(200).send('MS-DOC works!')
+})
+
+app.use('/*', (req, res) => {
+  const { url, params, query, body } = req;
+  console.log('MS-DOC: ', url, params, query, body);
+  res.sendStatus(404)
 })
 
 // catch 404 and forward to error handler
@@ -30,7 +42,6 @@ app.use(function (err, req, res) {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
-  // render the error page
   res.status(err.status || 500)
   res.render('error')
 })

@@ -9,6 +9,8 @@ const helmet = require('helmet');
 const http = require('http');
 const debug = require('debug')('gateway:app');
 
+require('dotenv').config();
+
 const app = express();
 
 app.use(favicon(path.join(__dirname, '../client/public', 'favicon.ico')));
@@ -16,8 +18,6 @@ app.use(logger('dev'));
 app.use(helmet());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-
-require('dotenv').config();
 
 const port = process.env.GATEWAY_PORT || 10000;
 app.set('port', port);
@@ -30,8 +30,9 @@ app.get('/', (req, res) => {
 const apiProxy = httpProxy.createProxyServer();
 
 const MS1 = process.env.MS1 || 10001;
-app.all('/api/*', (req, res) => {
-  apiProxy.web(req, res, { target: MS1 });
+app.all('/doc/*', (req, res) => {
+  console.log(`${req.url} redirects to ${MS1}`);
+  apiProxy.web(req, res, { target: 'http://localhost:10001/' });
 });
 
 app.use('/*', (req, res) => {
@@ -40,18 +41,14 @@ app.use('/*', (req, res) => {
   res.sendStatus(404);
 });
 
-// catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function (err, req, res) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

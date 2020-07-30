@@ -6,7 +6,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/system": "^4.9.14",
-    "@williamjiang/util": "^1.0.4",
+    "@williamjiang/util": "^1.0.5",
     "dotenv": "^8.2.0",
     "http-proxy-middleware": "^1.0.5",
     "material-table": "^1.64.0",
@@ -20,7 +20,8 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "redux-devtools-extension": "^2.13.8",
     "rimraf": "^3.0.2"
   }
 }

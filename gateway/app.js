@@ -30,9 +30,16 @@ app.get('/', (req, res) => {
 const apiProxy = httpProxy.createProxyServer();
 
 const MS1 = process.env.MS1 || 10001;
+
 app.all('/doc/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS1}`);
   apiProxy.web(req, res, { target: 'http://localhost:10001/' });
+});
+
+app.get('/data/:resource', (req, res) => {
+  const r = req.params.resource;
+  const f = path.join(__dirname, 'resources', r + '.json');
+  res.sendFile(f);
 });
 
 app.use('/*', (req, res) => {

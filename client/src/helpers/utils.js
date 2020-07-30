@@ -8,14 +8,14 @@ export const NavItem = ({ to, exact, children }) => {
       path={to}
       exact={exact}
     >{
-        (children) = {({ match }) => (
-      <li className="nav-item">
-        <Link className={match ? 'nav-link active' : 'nav-link'} to={to}>
-          {children}
-        </Link>
-      </li>
-      )
-    }}
+        (children) = ({ match }) => (
+          <li className="nav-item">
+            <Link className={match ? 'nav-link active' : 'nav-link'} to={to}>
+              {children}
+            </Link>
+          </li>
+        )
+      }
     </Route>
   );
 };
@@ -64,12 +64,11 @@ export const fetching = (url, opts = {}) => {
   if (opts.body) body = opts.body;
 
   try {
-    throw "empty";
     return fetch(url, { method, headers, body })
       .then((res) => res.json())
       .catch((e) => alert(e));
   }
-  catch(err) {
+  catch (err) {
     return new Error(err);
   }
 };

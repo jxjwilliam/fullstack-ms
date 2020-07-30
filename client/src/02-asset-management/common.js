@@ -10,7 +10,7 @@ import {
   ArrowBack,
   Backup,
 } from '@material-ui/icons'
-import { defer, capitalize, fetching } from '@williamjiang/util'
+import { defer, capitalize, fetching } from '../helpers/utils'
 
 export const BASE = '/资产管理'
 

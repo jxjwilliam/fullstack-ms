@@ -25,7 +25,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { signupAction } from '../state/actions'
 import { DEFAULT_LOGIN_PAGE } from '../constants';
-import { fetching } from '@williamjiang/util'
+import { fetching } from '../helpers/utils'
 
 class CascadeAddress extends Component {
 
@@ -277,10 +277,10 @@ class SignUp extends Component {
     if (Object.keys(roles).length > 0 || roles.length > 0) {
       listRoles = this.getList(roles);
     }
-    if (organizations.length > 0) {
+    if (organizations && organizations.length > 0) {
       listOrgs = this.getList(organizations);
     }
-    if (departments.length > 0) {
+    if (departments && departments.length > 0) {
       listDepartments = this.getList(departments);
     }
 

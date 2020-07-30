@@ -1,0 +1,10 @@
+[{
+    "status": "已签收",
+    "mx_no": "MX12345678",
+    "issuer": "发行方",
+    "receiver": "接收方",
+    "amount": "1000",
+    "acceptance_payment_date": "",
+    "issue_type": "发行类型",
+    "issue_date": "发行日期"
+}]

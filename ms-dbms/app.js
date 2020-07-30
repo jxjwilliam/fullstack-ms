@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const http = require('http')
+const models = require('./models')
 
 const app = express()
 
@@ -62,5 +63,5 @@ server.on('error', function (error) {
 server.on('listening', () => {
   const addr = server.address()
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
-  console.log(`✈️ basic-ms-api 服务正运行在端口 ${bind}`)
+  console.log(`✈ ms-dbms 服务正运行在端口 ${bind}`)
 })

@@ -1,10 +1,10 @@
 const createError = require('http-errors')
 const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const http = require('http')
-const connectDb = require('./mongo-connect')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const connectDb = require('./helpers/mongo-connect')
 
 require('dotenv').config()
 
@@ -13,13 +13,13 @@ connectDb({
   port: process.env.DB_PORT,
   database: process.env.DB_DATABASE,
 })
-const port = process.env.PORT || 10001
+const port = process.env.PORT || 10002
 
 const app = express()
 
 app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/', (req, res) => {
@@ -72,5 +72,5 @@ server.on('error', function (error) {
 server.on('listening', () => {
   const addr = server.address()
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
-  console.log(`✈️ basic-ms-api 服务正运行在端口 ${bind}`)
+  console.log(`✈ ms-basic-api 服务正运行在端口 ${bind}`)
 })

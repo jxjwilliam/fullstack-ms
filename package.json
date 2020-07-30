@@ -1,7 +1,7 @@
 {
-  "name": "abs",
+  "name": "Basic",
   "version": "0.0.1",
-  "description": "ABS",
+  "description": "Basic Microservice framework templates",
   "main": "index.js",
   "scripts": {
     "run-client": "cd client && yarn start",
@@ -24,7 +24,7 @@
     "clean": "rimraf dist"
   },
   "keywords": [
-    "ABS"
+    "Basic Implementation", "Microservice Templates"
   ],
   "author": "William Jiang Team",
   "license": "MIT",
@@ -48,7 +48,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.11",

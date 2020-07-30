@@ -1,5 +1,8 @@
 import React from 'react'
+import Example from './hooks';
 
 export default function Home() {
-  return <div>Hello World!</div>
+  return <div>
+    <Example />
+  </div>
 }

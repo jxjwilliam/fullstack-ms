@@ -1,24 +1,35 @@
 {
   "development": {
-    "username": "abs_user",
-    "password": "abs~123456$",
-    "database": "abs",
+    "description": "windows_localhost_mysql",
+    "username": "dbms_user",
+    "password": "dbms~123456$",
+    "database": "dbms",
     "host": "127.0.0.1",
-    "port": 6033,
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
+    "description": "windows_docker_mysql",
     "username": "test_user",
     "password": "test123",
     "database": "test",
-    "host": "127.0.0.1",
+    "host": "192.168.99.100",
+    "port": 6033,
+    "dialect": "mysql"
+  },
+  "stage": {
+    "description": "macbook_docker_mysql",
+    "username": "test_user",
+    "password": "test123",
+    "database": "ms-dbms-stage",
+    "host": "192.168.0.24",
     "port": 6033,
     "dialect": "mysql"
   },
   "production": {
-    "username": "kysec_abs_user",
-    "password": "kysec_abs~123456$",
-    "database": "kysec_abs",
+    "username": "test_user",
+    "password": "test123",
+    "database": "ms-dbms-production",
     "host": "127.0.0.1",
     "port": 6033,
     "dialect": "mysql"

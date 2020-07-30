@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux';
-import {compose} from 'recompose';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { compose } from 'recompose';
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import {
   Avatar,
   Button,
@@ -22,10 +22,10 @@ import {
   Select,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
-import {signupAction} from '../state/actions'
-import {DEFAULT_LOGIN_PAGE} from '../config/constants';
-import {fetching} from '../config/utils'
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { signupAction } from '../state/actions'
+import { DEFAULT_LOGIN_PAGE } from '../constants';
+import { fetching } from '@williamjiang/util'
 
 class CascadeAddress extends Component {
 
@@ -52,78 +52,78 @@ class CascadeAddress extends Component {
     this.setState(() => {
       const data = result.data;
       const provinces = Object.keys(data);
-      return {data, provinces};
+      return { data, provinces };
     })
   }
 
   handleClickOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   handleChange = e => {
     const selected = e.target.value;
     const level = e.target.id;
-    const {data} = this.state;
+    const { data } = this.state;
 
     if (level === 'province') {
       const cities = Object.keys(data[selected]);
-      this.setState({address: {[level]: selected}, cities, districts: []});
+      this.setState({ address: { [level]: selected }, cities, districts: [] });
     }
     else if (level === 'city') {
       const districts = data[this.state.address.province][selected]
-      this.setState({address: {...this.state.address, [level]: selected}, districts});
+      this.setState({ address: { ...this.state.address, [level]: selected }, districts });
     }
     else { //district
-      this.setState({address: {...this.state.address, [level]: selected}});
+      this.setState({ address: { ...this.state.address, [level]: selected } });
     }
   };
 
   render() {
-    const {province, city, district} = this.state.address;
-    const {open, provinces, cities, districts} = this.state;
+    const { province, city, district } = this.state.address;
+    const { open, provinces, cities, districts } = this.state;
 
     return (
       <>
-      <Grid item xs={12} sm={4}>
-        <Select
-          native
-          value={province}
-          onChange={this.handleChange}
-          input={<Input id="province"/>}
-          style={{padding: 20}}
-        >
-          <option value="0">--- 请选择省份 ---</option>
-          {provinces.map(p => <option value={p} key={p}>{p}</option>)}
-        </Select>
-      </Grid>
-      <Grid item xs={12} sm={4}>
-        <Select
-          native
-          value={city}
-          onChange={this.handleChange}
-          input={<Input id="city"/>}
-          style={{padding: 20}}
-        >
-          <option value="0">--- 请选择城市 ---</option>
-          {cities.map(c => <option value={c} key={c}>{c}</option>)}
-        </Select>
-      </Grid>
-      <Grid item xs={12} sm={4}>
-        <Select
-          native
-          value={district}
-          onChange={this.handleChange}
-          input={<Input id="district"/>}
-          style={{padding: 20}}
-        >
-          <option value="0">--- 请选择区/县 ---</option>
-          {districts.map(d => <option value={d} key={d}>{d}</option>)}
-        </Select>
-      </Grid>
+        <Grid item xs={12} sm={4}>
+          <Select
+            native
+            value={province}
+            onChange={this.handleChange}
+            input={<Input id="province" />}
+            style={{ padding: 20 }}
+          >
+            <option value="0">--- 请选择省份 ---</option>
+            {provinces.map(p => <option value={p} key={p}>{p}</option>)}
+          </Select>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Select
+            native
+            value={city}
+            onChange={this.handleChange}
+            input={<Input id="city" />}
+            style={{ padding: 20 }}
+          >
+            <option value="0">--- 请选择城市 ---</option>
+            {cities.map(c => <option value={c} key={c}>{c}</option>)}
+          </Select>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Select
+            native
+            value={district}
+            onChange={this.handleChange}
+            input={<Input id="district" />}
+            style={{ padding: 20 }}
+          >
+            <option value="0">--- 请选择区/县 ---</option>
+            {districts.map(d => <option value={d} key={d}>{d}</option>)}
+          </Select>
+        </Grid>
       </>
     )
   }
@@ -219,17 +219,17 @@ class SignUp extends Component {
   }
 
   validateForm = () => {
-    const {account, password} = this.state.register;
+    const { account, password } = this.state.register;
     return account.length > 0 && password.length > 0;
   }
 
   handleChange = e => {
-    const {target: {name, value}} = e;
+    const { target: { name, value } } = e;
     if (name === 'organization_id') {
       this.loadResources('departments');
       this.loadResources('roles', `roles/${value}`)
     }
-    this.setState(preState => ({register: {...preState.register, [name]: value}}));
+    this.setState(preState => ({ register: { ...preState.register, [name]: value } }));
   };
 
   handleSubmit = ev => {
@@ -237,20 +237,20 @@ class SignUp extends Component {
     this.props.signupAction(this.state.register)
       .then(data => {
         if (this.props.register.account) {
-          this.setState({done: true});
+          this.setState({ done: true });
         }
         else {
-          this.setState({done: false});
+          this.setState({ done: false });
         }
       })
   };
 
-  loadResources = async(resource, url = resource) => {
-    fetching(`/api/${url}`).then(data => this.setState({[resource]: data}))
+  loadResources = async (resource, url = resource) => {
+    fetching(`/api/${url}`).then(data => this.setState({ [resource]: data }))
   };
 
   getList = (resources) => {
-    if(Array.isArray(resources)) {
+    if (Array.isArray(resources)) {
       return resources.map(resource =>
         <option key={resource.id} value={resource.id}>{resource.name}</option>)
     }
@@ -263,14 +263,14 @@ class SignUp extends Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     const {
       roles, departments, organizations, done,
-      register: {organization_id, department_id, role_id}
+      register: { organization_id, department_id, role_id }
     } = this.state;
 
     if (done) {
-      return <Redirect to={DEFAULT_LOGIN_PAGE}/>
+      return <Redirect to={DEFAULT_LOGIN_PAGE} />
     }
 
     let listRoles, listOrgs, listDepartments;
@@ -328,7 +328,7 @@ class SignUp extends Component {
                   <NativeSelect
                     value={organization_id}
                     onChange={this.handleChange}
-                    input={<BootstrapInput name="organization_id"/>}
+                    input={<BootstrapInput name="organization_id" />}
                   >
                     <option value=""> -请选择组织-</option>
                     {listOrgs}
@@ -341,7 +341,7 @@ class SignUp extends Component {
                   <NativeSelect
                     value={department_id}
                     onChange={this.handleChange}
-                    input={<BootstrapInput name="department_id"/>}
+                    input={<BootstrapInput name="department_id" />}
                   >
                     <option value=""> -请选择部门-</option>
                     {listDepartments}
@@ -354,7 +354,7 @@ class SignUp extends Component {
                   <NativeSelect
                     value={role_id}
                     onChange={this.handleChange}
-                    input={<BootstrapInput name="role_id"/>}
+                    input={<BootstrapInput name="role_id" />}
                   >
                     <option value=""> -请选择角色-</option>
                     {listRoles}
@@ -362,7 +362,7 @@ class SignUp extends Component {
                 </FormControl>
               </Grid>
 
-              <CascadeAddress/>
+              <CascadeAddress />
 
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -410,7 +410,7 @@ class SignUp extends Component {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="希望了解更多"
                 />
               </Grid>
@@ -441,11 +441,11 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = state => ({register: state.register});
+const mapStateToProps = state => ({ register: state.register });
 
-const mapDispatchToProps = dispatch => bindActionCreators({signupAction}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ signupAction }, dispatch);
 
 export default compose(
-  withStyles(useStyles, {name: 'SignUp'}),
+  withStyles(useStyles, { name: 'SignUp' }),
   connect(mapStateToProps, mapDispatchToProps)
 )(SignUp);

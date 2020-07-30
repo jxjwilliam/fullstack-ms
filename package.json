@@ -13,7 +13,7 @@
     "run-prod": "concurrently \"yarn run-gateway\" \"yarn run-api\" \"yarn run-rest\"",
     "prestart": "node bin/update-config.js",
     "dev": "echo \"启动 dev!\" cross-env NODE_ENV=dev yarn run-all",
-    "start": "cross-env NODE_ENV=development  REACT_APP_ENV=dev yarn run-start",
+    "start": "cross-env NODE_ENV=development REACT_APP_ENV=dev yarn run-all",
     "test1": "echo \"启动 test1!\" cross-env NODE_ENV=test yarn run-all",
     "stage": "echo \"启动 stage!\" cross-env NODE_ENV=stage yarn run-all",
     "prod": "echo \"启动 production!\" cross-env NODE_ENV=production yarn run-prod",
@@ -26,7 +26,7 @@
   "keywords": [
     "ABS"
   ],
-  "author": "ABS Team",
+  "author": "William Jiang Team",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.10.4",

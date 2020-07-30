@@ -4,12 +4,12 @@ import {
   LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, LOGOUT_FAIL,
 } from '../ActionTypes'
-import {defer} from '../../config/utils'
+import { defer } from '@williamjiang/util'
 
 // 1. signup/register
-const sigupSucc = payload => ({type: SIGNUP_SUCCESS, payload});
+const sigupSucc = payload => ({ type: SIGNUP_SUCCESS, payload });
 
-const signupFail = payload => ({type: SIGNUP_FAIL, payload})
+const signupFail = payload => ({ type: SIGNUP_FAIL, payload })
 
 export const signupAction = (body) => dispatch => {
   const options = {
@@ -33,9 +33,9 @@ export const signupAction = (body) => dispatch => {
 
 
 // 2. login
-export const loginSucc = (payload, loginInfo) => ({type: LOGIN_SUCCESS, payload, loginInfo});
+export const loginSucc = (payload, loginInfo) => ({ type: LOGIN_SUCCESS, payload, loginInfo });
 
-const loginFail = payload => ({type: LOGIN_FAIL, payload});
+const loginFail = payload => ({ type: LOGIN_FAIL, payload });
 
 export const loginAction = (body) => dispatch => {
   const options = {
@@ -59,9 +59,9 @@ export const loginAction = (body) => dispatch => {
 
 
 // 3. logout
-const logoutSucc = () => ({type: LOGOUT_SUCCESS});
+const logoutSucc = () => ({ type: LOGOUT_SUCCESS });
 
-const logoutFail = payload => ({type: LOGOUT_FAIL, payload});
+const logoutFail = payload => ({ type: LOGOUT_FAIL, payload });
 
 export const logoutAction = dispatch => {
   defer(1)

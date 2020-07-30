@@ -55,14 +55,23 @@ export const Loading = (loadingProp) => (Comp) => {
 };
 
 export const fetching = (url, opts = {}) => {
+  if (isEmpty(url)) {
+    return new Error('URL is empty');
+  }
   let body;
   const headers = { ...HEADERS, ...opts.headers };
   const method = opts.method || 'GET';
   if (opts.body) body = opts.body;
 
-  return fetch(url, { method, headers, body })
-    .then((res) => res.json())
-    .catch((e) => alert(e));
+  try {
+    throw "empty";
+    return fetch(url, { method, headers, body })
+      .then((res) => res.json())
+      .catch((e) => alert(e));
+  }
+  catch(err) {
+    return new Error(err);
+  }
 };
 
 export const capitalize = (str) =>

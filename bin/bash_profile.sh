@@ -1,0 +1,1 @@
+export NODE_PROJECT=__this_project__

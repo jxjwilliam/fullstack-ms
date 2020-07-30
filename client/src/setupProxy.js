@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const URLS = ['http://localhost', 'https://localhost']
 
@@ -10,21 +10,20 @@ const MS_PORT_2 = process.env.PORT_2 || 10001
 
 module.exports = function (app) {
   app.use(
-    proxy(['/api', '/data', '/table', '/sms', '/rest'], {
+    createProxyMiddleware(['/api', '/data', '/table', '/sms', '/rest'], {
       target: `${URLS[0]}:${MS_PORT_1}/`,
       changeOrigin: true,
     })
   )
 
   app.use(
-    proxy('/sapi', {
+    createProxyMiddleware('/sapi', {
       target: `${URLS[1]}:${MS_PORT_2}/`,
-      headers: {
-        Connection: 'keep-alive',
-      },
       changeOrigin: true,
       secure: false,
       https: true,
     })
   )
 }
+
+// TODO: graphql 如何代理？

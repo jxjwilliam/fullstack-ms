@@ -1,4 +1,4 @@
-import C404 from './misc'
+import C404 from './404'
 
 export {
     C404

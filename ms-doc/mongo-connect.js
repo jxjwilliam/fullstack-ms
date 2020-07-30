@@ -6,7 +6,7 @@ module.exports = async (dbOptions = {}) => {
   const {
     host = '192.168.99.100',
     port = '27017',
-    database = 'abs-doc',
+    database = 'basic-doc',
   } = dbOptions
 
   const options = {

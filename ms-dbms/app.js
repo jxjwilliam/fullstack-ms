@@ -62,5 +62,5 @@ server.on('error', function (error) {
 server.on('listening', () => {
   const addr = server.address()
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
-  console.log(`✈️ abs-ms-api 服务正运行在端口 ${bind}`)
+  console.log(`✈️ basic-ms-api 服务正运行在端口 ${bind}`)
 })

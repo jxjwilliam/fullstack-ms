@@ -27,8 +27,8 @@ app.use('/', (req, res) => {
 })
 
 app.use('/*', (req, res) => {
-  const { url, params, query, body } = req;
-  console.log('MS-DOC: ', url, params, query, body);
+  const { url, params, query, body } = req
+  console.log('MS-DOC: ', url, params, query, body)
   res.sendStatus(404)
 })
 

@@ -22,7 +22,7 @@ export default function () {
         <div>
           <RouteList
             routes={Routers}
-            redirect={{ from: BASE, to: `${BASE}/盟信额度/额度查询` }}
+            redirect={{ from: BASE, to: `${BASE}/微服务模板额度/额度查询` }}
           />
         </div>
       </Container>

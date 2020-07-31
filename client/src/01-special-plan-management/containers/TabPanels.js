@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Tabs,
   Tab,
@@ -32,7 +32,7 @@ export default function (props) {
   const ary = props.ary || [];
 
   const TabList = ary.map((tab, inx) => (
-    <Tab label={tab} {...a11yProps({inx})} key={`${tab}_${inx}`}/>
+    <Tab label={tab} {...a11yProps({ inx })} key={`${tab}_${inx}`} />
   ))
 
   const TabPanelList = value => ary.map((tab, inx) => (
@@ -43,12 +43,12 @@ export default function (props) {
 
   return (
     <>
-    <Paper className={classes.root}>
-      <Tabs value={value} onChange={handleChange} aria-label="可用盟信">
-        {TabList}
-      </Tabs>
-    </Paper>
-    {TabPanelList(value)}
+      <Paper className={classes.root}>
+        <Tabs value={value} onChange={handleChange} aria-label="可用微服务模板">
+          {TabList}
+        </Tabs>
+      </Paper>
+      {TabPanelList(value)}
     </>
   );
 }

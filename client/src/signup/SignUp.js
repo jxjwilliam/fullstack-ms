@@ -292,7 +292,7 @@ class SignUp extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            盟信系统注册
+            微服务模板系统注册
           </Typography>
 
           <form className={`${classes.form}`} noValidate>

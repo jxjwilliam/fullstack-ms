@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, NavLink, Redirect } from 'react-router-dom'
-import {isEmpty} from '@williamjiang/util'
+import { isEmpty } from '@williamjiang/util'
 
 // reusable for 01 - 06 folders.
 //  <Icon>{router.icon}</Icon>
@@ -12,7 +12,7 @@ export const NavList = ({ navs }) => {
         <NavLink
           activeStyle={{ color: 'red' }}
           className="flex-container-link"
-          to={router.path}
+          to={router.path || '/home'}
         >
           <CompIcon />
           {router.title}

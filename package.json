@@ -24,7 +24,8 @@
     "clean": "rimraf dist"
   },
   "keywords": [
-    "Basic Implementation", "Microservice Templates"
+    "Basic Implementation",
+    "Microservice Templates"
   ],
   "author": "William Jiang Team",
   "license": "MIT",

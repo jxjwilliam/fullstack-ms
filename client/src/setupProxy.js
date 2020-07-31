@@ -5,20 +5,24 @@ const URLS = ['http://localhost', 'https://localhost']
 require('dotenv').config()
 
 // same as in bff/.env:
-const MS_PORT_1 = process.env.PORT_1 || 10000
-const MS_PORT_2 = process.env.PORT_2 || 10001
+const MS_BFF_PORT = process.env.PORT
+const MS_SSL_PORT = 8888
+
+const local_ms = ['/api', '/doc']
+const static_ms = ['/data', '/table']
+const other_ms = ['/sms', '/rest']
 
 module.exports = function (app) {
   app.use(
-    createProxyMiddleware(['/api', '/data', '/table', '/sms', '/rest'], {
-      target: `${URLS[0]}:${MS_PORT_1}/`,
+    createProxyMiddleware([...local_ms, ...static_ms, ...other_ms], {
+      target: `${URLS[0]}:${MS_BFF_PORT}/`,
       changeOrigin: true,
     })
   )
 
   app.use(
     createProxyMiddleware('/sapi', {
-      target: `${URLS[1]}:${MS_PORT_2}/`,
+      target: `${URLS[1]}:${MS_SSL_PORT}/`,
       changeOrigin: true,
       secure: false,
       https: true,

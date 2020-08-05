@@ -1,20 +1,18 @@
 {
   "development": {
-    "description": "windows_localhost_mysql",
+    "database": "dbms",
     "username": "dbms_user",
     "password": "dbms~123456$",
-    "database": "dbms",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "port": 3306,
     "dialect": "mysql"
   },
   "test": {
-    "description": "windows_docker_mysql",
-    "username": "test_user",
-    "password": "test123",
-    "database": "test",
-    "host": "192.168.99.100",
-    "port": 6033,
+    "database": "mengxin",
+    "username": "dev_user_general",
+    "password": "dzfactoringMengxin123$",
+    "host": "localhost",
+    "port": 3306,
     "dialect": "mysql"
   },
   "stage": {

@@ -1,0 +1,13 @@
+{
+  "inquiry": "查询",
+  "comprehensive_inquiry": "额度综合查询",
+  "credit_application_no": "授信申请书号",
+  "customer_name": "客户名称",
+  "credit_amount": "授信金额",
+  "available_amount": "可用额度",
+  "credit_approval_date": "授信终审日期",
+  "start_date": "起始日期",
+  "end_datw": "到期日期",
+  "credit_statue": "授信状态",
+  "occupy_3_quota": "是否占用第三方额度"
+}

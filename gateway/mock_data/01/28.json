@@ -1,0 +1,9 @@
+{
+  "mengxin_no": "盟信编号",
+  "payer": "支付方",
+  "mengxin_amount": "盟信金额（元）",
+  "issuer": "开立方",
+  "committed_payment_date": "承诺付款日",
+  "actual_payment_date": "实际付款日",
+  "payment_status": "还款状态"
+}

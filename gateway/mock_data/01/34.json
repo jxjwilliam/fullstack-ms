@@ -1,0 +1,12 @@
+{
+  "customer_name": "客户名称",
+  "customer_no": "客户号",
+  "credit_application_no": "授信申请书号",
+  "borrow_no": "借据号",
+  "issue_amount": "发放金额",
+  "guarantee_method": "担保方式",
+  "issue_date": "发放日",
+  "expiry_date": "到期日",
+  "current_interest": "当前欠息",
+  "current_risk_level": "当前风险分类级别"
+}

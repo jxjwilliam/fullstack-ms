@@ -1,0 +1,10 @@
+{
+  "operate": "操作",
+  "mengxin_no": "盟信编号",
+  "receiver": "接收方",
+  "mengxin_amount": "盟信金额（元）",
+  "payment_date": "支付日期",
+  "reviewer": "审核人",
+  "issuer": "开立方",
+  "committed_payment_date": "承诺付款日"
+}

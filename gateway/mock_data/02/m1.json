@@ -1,0 +1,10 @@
+{
+  "seq_no": "序号",
+  "operating": "操作",
+  "total_amount": "总额度（元）",
+  "used_amount_rmb": "已用额度（元）",
+  "available_amount_rmb": "可用额度（元）",
+  "start_at": "开始时间",
+  "deadline": "截止时间",
+  "estimated_rate": "预计综合融资息费率（%）"
+}

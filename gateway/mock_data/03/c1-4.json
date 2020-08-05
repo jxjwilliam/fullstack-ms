@@ -1,0 +1,11 @@
+{
+  "actual_control_no": "实际控制人客户号",
+  "actual_control_name": "实际控制人名称",
+  "net_assets": "净资产",
+  "paid_in_capital": "实收资本",
+  "associated_info": "关联信息",
+  "judicial_investigation_info": "司法查控信息",
+  "risk_warning_info": "风险预警信息",
+  "overdue_info": "逾期信息",
+  "credit_attention_bad": "征信关注及不良"
+}

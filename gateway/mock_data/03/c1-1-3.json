@@ -1,0 +1,12 @@
+{
+  "shareholder_no": "股东编号",
+  "investor_name": "投资者名称",
+  "commitment_funding": "承诺出资",
+  "actual_funding": "实际出资",
+  "actual_investment_ratio": "实际投资比例（%）",
+  "investment_type": "出资方式",
+  "relevance": "关联方式",
+  "main_business": "主营业务",
+  "risk_warning_info": "风险预警信息",
+  "overdue_info": "逾期信息"
+}

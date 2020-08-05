@@ -1,0 +1,10 @@
+{
+  "customer_no": "客户编号",
+  "customer_name": "客户名称",
+  "customer_type": "客户类型",
+  "organization_code_no": "组织机构代码证号",
+  "associated_organization": "所属机构",
+  "manager": "管户员",
+  "filing_date": "建档日期",
+  "customer_status": "客户状态"
+}

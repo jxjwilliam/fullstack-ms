@@ -1,0 +1,15 @@
+{
+  "client_no": "客户号",
+  "name": "客户名称",
+  "business_license_no": "营业执照注册号",
+  "established_date": "成立日期",
+  "license_start_date": "执照有效期起始日",
+  "license_end_date": "执照有效期到期日",
+  "annual_inspection": "是否年检",
+  "isValid": "是否有效",
+  "annual_inspection_date": "年检日期",
+  "business_scope": "经营范围",
+  "registered_capital": "注册资本",
+  "registered_capital_currency": "注册资本币种",
+  "license_scan": "营业执照扫描件"
+}

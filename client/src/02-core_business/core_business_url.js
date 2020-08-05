@@ -1,0 +1,55 @@
+
+//表格公共接口列表
+export const core_business_url=[
+    {
+        name:"m1",
+        title:'额度查询',
+        url:{query:''}        
+    },
+    {
+        name:"m2-1",
+        url:{query:''},
+        title:'我的盟信'
+    },
+    {
+        name:"m2-2",
+        url:{query:''},
+        title:'申请列表'
+    },
+    {
+        name:"m2-3",
+        url:{query:'/api/issue/'},
+        title:'盟信开具制单'
+    },
+    {
+        name:"m2-4",
+        url:{query:'/api/issue/'},
+        title:'盟信开具复核'
+    },
+    {
+        name:"m3-1-8",
+        url:{query:'/api/financing/'},
+        title:'盟信支付'
+    },
+    {
+        name:"m3-2-1",
+        url:{query:'/api/circulation/'},
+        title:'融资申请'
+    },
+    {
+        name:"m4-1",
+        url:{query:''},
+        title:'代还款'
+    },
+    {
+        name:"m4-2",
+        url:{query:''},
+        title:'还款审批'
+    },
+    {
+        name:"m4-3",
+        url:{query:''},
+        title:'已还款'
+    }
+   
+  ]

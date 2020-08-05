@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { createStyles, Theme, withStyles} from '@material-ui/core/styles';
+import { concat } from 'rxjs';
 
 const styles = (theme) =>
   createStyles({
@@ -45,9 +46,9 @@ class Upload extends Component {
             if(type2 === 'image/png' || type2 === 'image/jpeg' || type2 === 'image/jpg') {
                 if(files[0]){
                     imgUrl = URL.createObjectURL(files[0]);
-                }
+                }    
                 this.props.uploadChange({fileList,uploadName})
-                 formData.append('image', files[0]);
+                 formData.append('image', files[0]);                         
                 // fetch('/api/upload', {
                 //   method: 'POST',
                 //   body: formData,

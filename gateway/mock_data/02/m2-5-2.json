@@ -1,0 +1,13 @@
+{
+  "operate": "操作",
+  "mengxin_no": "盟信编号",
+  "mengxin_issuer": "盟信开立方",
+  "mengxin_receiver": "盟信接收方",
+  "mengxin_amount": "盟信金额（元）",
+  "committed_payment_date": "承诺付款日",
+  "issuer_date": "开立日期",
+  "estimated_rate": "预计综合融资息费率（%）",
+  "operator": "经办人",
+  "reviewer": "审核人",
+  "remark": "附言"
+}

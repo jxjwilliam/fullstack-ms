@@ -1,0 +1,11 @@
+{
+  "mx_amount": "盟信金额",
+  "financing_amount": "融资金额",
+  "interest": "利息",
+  "net_financing_amount": "净融资额",
+  "financing_time":"融资申请时间",
+  "payment_day":"承诺付款日",
+  "interest_pay":"利息支护方式",
+  "synthesis_rate": "预计综合融资息费率（%)",
+  "remarks": "备注"  
+}

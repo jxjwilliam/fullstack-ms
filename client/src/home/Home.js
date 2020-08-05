@@ -7,7 +7,7 @@ import {
   Box,
 } from '@material-ui/core';
 import ProTip from './ProTip';
-import { Menu, Drawer, bars } from '../components'
+import {Menu, Drawer, bars, footers} from '../components'
 
 const Emoji = props => (
   <span
@@ -16,8 +16,8 @@ const Emoji = props => (
     aria-label={props.label ? props.label : ""}
     aria-hidden={props.label ? "false" : "true"}
   >
-    {props.symbol}
-  </span>
+        {props.symbol}
+    </span>
 );
 
 /**
@@ -26,26 +26,26 @@ const Emoji = props => (
 export default function () {
   return (
     <>
-      <CssBaseline />
-      <Container fixed>
-        <bars.Bar1>
+    <CssBaseline/>
+    <Container fixed>
+      <bars.Bar1>
 
-          <Drawer />
+        <Drawer/>
 
-          <Typography>
-            <Link href="/home" color="inherit" variant="h6">主页面</Link>
-          </Typography>
+        <Typography>
+          <Link href="/home" color="inherit" variant="h6">主页面</Link>
+        </Typography>
 
-        </bars.Bar1>
-        <Box my={4}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            <Menu />
-          </Typography>
-          <ProTip />
-          <Emoji symbol="💪🎋 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻 🌞 🌝" />
-        </Box>
-        {/* <Footer/> */}
-      </Container>
+      </bars.Bar1>
+      <Box my={4}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          <Menu/>
+        </Typography>
+        <ProTip />
+        <Emoji symbol="💪🎋 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻 🌞 🌝"/>
+      </Box>
+      <footers.Footer1/>
+    </Container>
     </>
   );
 }

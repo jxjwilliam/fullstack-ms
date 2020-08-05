@@ -28,11 +28,22 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello from BFF proxy server!')
 })
 
+// `gateway` folder: cache all static resources.
+app.get('/mock/:resource', (req, res) => {
+  const r = req.params.resource;
+  let dir = '01';
+  if (/^m\d/.test(r)) dir = '02';
+  else if (/^c\d/.test(r)) dir = '03';
+  const f = path.join(__dirname, 'mock_data', dir, r + '.json');
+  res.sendFile(f);
+});
+
+
 app.get('/data/:resource', (req, res) => {
-  const r = req.params.resource
-  const f = path.join(__dirname, 'resources', `${r}.json`)
-  res.sendFile(f)
-})
+  const r = req.params.resource;
+  const f = path.join(__dirname, 'resources', r + '.json');
+  res.sendFile(f);
+});
 
 const apiProxy = httpProxy.createProxyServer()
 

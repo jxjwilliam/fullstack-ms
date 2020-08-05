@@ -1,0 +1,10 @@
+{
+  "name": "客户名称",
+  "organization_code": "组织机构代码证",
+  "issue_data": "发证日期",
+  "valid_date": "有效期",
+  "annual_inspection": "是否年检",
+  "organization_type": "机构类型",
+  "register_place": "注册地",
+  "register_address": "详细注册地"
+}

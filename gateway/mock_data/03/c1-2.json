@@ -1,0 +1,8 @@
+{
+  "name": "管理层姓名",
+  "position": "职位",
+  "relative_info": "关联信息",
+  "legal_person_other_info": "法人其他任职信息",
+  "judicial_info": "司法查控信息",
+  "bad_credit_info": "征信不良信息"
+}

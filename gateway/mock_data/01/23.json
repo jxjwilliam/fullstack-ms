@@ -1,0 +1,13 @@
+{
+  "operate": "操作",
+  "status": "状态",
+  "mengxin_no": "盟信编号",
+  "process_name": "流程名称",
+  "current_process": "当前处理",
+  "mengxin_issuer": "盟信开立方",
+  "mengxin_receiver": "盟信接收方",
+  "mengxin_amount": "盟信金额（元）",
+  "committed_payment_date": "承诺付款日",
+  "issue_date": "开立日期",
+  "remark": "备注"
+}

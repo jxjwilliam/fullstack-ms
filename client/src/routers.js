@@ -1,56 +1,51 @@
+import Home from './home';
+import {SignIn, SignInSide, SignOut} from './signin'
+import Signup from './signup'
+import Admin from './01-risk-management'
+import Company from './02-core_business'
+import Supplier from './03-supplier'
+import Certificate from './04-certificate'
+import General from './05-customer-information'
+import Financing from './Financing'
+import {C404} from './components'
 import {
   OfflineBolt,
   Business,
   AttachMoney,
   SettingsApplications,
   SupervisorAccount,
+  Store,
   Home as AppHome,
   VerifiedUser,
   LockOpen,
   AccountBox,
   ExitToApp,
 } from '@material-ui/icons'
-import Home from './home'
-import { SignIn, SignInSide, SignOut } from './signin'
-import Signup from './signup'
-import SpecialPlan from './01-special-plan-management'
-import Asset from './02-asset-management'
-import Abs from './03-abs'
-import Admin from './04-admin-panel'
-import Organization from './05-organization'
-import Certificate from './06-certificate'
-import { C404 } from './components'
 
 export const BusinessRouters = [
   {
-    path: '/专项计划管理',
-    title: '专项计划管理',
+    path: '/核心企业及供应商',
+    title: '核心企业及供应商',
     icon: Business,
-    component: SpecialPlan,
+    component: Company,
   },
   {
-    path: '/资产管理',
-    title: '资产管理',
+    path: '/风险管理',
+    title: '风险管理',
     icon: OfflineBolt,
-    component: Asset,
-  },
-  {
-    path: '/存续期管理',
-    title: '存续期管理',
-    icon: SupervisorAccount,
-    component: Abs,
-  },
-  {
-    path: '/后台管理',
-    title: '后台管理',
-    icon: AttachMoney,
     component: Admin,
   },
   {
-    path: '/组织架构',
-    title: '组织架构',
-    icon: SettingsApplications,
-    component: Organization,
+    path: '/客户信息',
+    title: '客户信息',
+    icon: SupervisorAccount,
+    component: General,
+  },
+  {
+    path: '/供应商',
+    title: '供应商',
+    icon: AttachMoney,
+    component: Supplier,
   },
   {
     path: '/certificate',
@@ -58,6 +53,12 @@ export const BusinessRouters = [
     icon: SettingsApplications,
     component: Certificate,
   },
+  {
+    path: '/financing',
+    title: '融资管理',
+    icon: Store,
+    component: Financing,
+  }
 ]
 
 export const GeneralRouters = [
@@ -73,26 +74,23 @@ export const GeneralRouters = [
     title: '登录 1',
     icon: VerifiedUser,
     component: SignIn,
-  },
-  {
+  }, {
     path: '/login',
     title: '登录 2',
     icon: LockOpen,
     component: SignInSide,
-  },
-  {
+  }, {
     path: '/logout',
     title: '退出',
     icon: ExitToApp,
     component: SignOut,
-  },
-  {
+  }, {
     path: '/signup',
     title: '注册',
     icon: AccountBox,
     component: Signup,
   },
-]
+];
 
 export const BackdoorRouters = [
   {
@@ -100,7 +98,8 @@ export const BackdoorRouters = [
     component: Home,
   },
   {
-    path: '*',
+    path: "*",
     component: C404,
-  },
+  }
 ]
+

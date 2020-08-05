@@ -1,0 +1,11 @@
+{
+  "operate": "操作",
+  "status": "状态",
+  "customer_name": "客户名称",
+  "flow_name": "流程名称",
+  "current_process": "当前处理",
+  "business_type": "业务品种",
+  "duty_time": "到岗时间",
+  "Initial_agency": "发起机构",
+  "process_no": "流程编号"
+};

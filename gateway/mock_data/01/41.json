@@ -1,0 +1,11 @@
+{
+  "operate": "操作",
+  "customer_name": "客户名称",
+  "process_name": "流程名称",
+  "current_process_position": "当前处理岗位",
+  "current_position_status": "当前岗位状态",
+  "sponsor": "发起人",
+  "completion_person": "完成人",
+  "initiating_agency": "发起机构",
+  "process_no": "流程编号"
+}

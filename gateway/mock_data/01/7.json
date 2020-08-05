@@ -1,0 +1,13 @@
+{
+  "customer_no": "客户号",
+  "customer_name": "客户名称",
+  "latest_rating": "最新评级等级",
+  "rating_start_date": "评级发起日期",
+  "rating_end_date": "评级终审日期",
+  "latest_approved_limit": "最新核定限额",
+  "rating_period": "评级期次",
+  "valid_status": "有效状态",
+  "final_reviewer": "终审人",
+  "final_review_type": "终审类型",
+  "rating_process_inquiry": "评级流程查询"
+}

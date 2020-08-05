@@ -1,0 +1,11 @@
+{
+  "mengxin_no": "盟信编号",
+  "mengxin_amount": "盟信金额（元）",
+  "payment_amount": "还款金额（元）",
+  "receiver": "接收方",
+  "committed_payment_date": "承诺付款日",
+  "payment_date": "还款日期",
+  "credit_name": "额度名称",
+  "operator": "经办人",
+  "reviewer": "审核人"
+}

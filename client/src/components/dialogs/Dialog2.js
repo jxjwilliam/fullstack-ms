@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios'
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles';
+import {withStyles} from '@material-ui/styles';
 
 const styles = theme => ({
   select: {
@@ -37,16 +37,16 @@ class Dialog2 extends Component {
     this.setState(() => {
       const data = result.data;
       const provinces = Object.keys(data);
-      return { data, provinces };
+      return {data, provinces};
     })
   }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({open: true});
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   };
 
   handleChange = e => {
@@ -55,14 +55,14 @@ class Dialog2 extends Component {
 
     if (level === 'province') {
       const cities = Object.keys(this.state.data[selected]);
-      this.setState({ address: { [level]: selected }, cities, districts: [] });
+      this.setState({address: {[level]: selected}, cities, districts: []});
     }
     else if (level === 'city') {
       const districts = this.state.data[this.state.address.province][selected]
-      this.setState({ address: { ...this.state.address, [level]: selected }, districts });
+      this.setState({address: {...this.state.address, [level]: selected}, districts});
     }
     else { //district
-      this.setState({ address: { ...this.state.address, [level]: selected } });
+      this.setState({address: {...this.state.address, [level]: selected}});
     }
   }
 
@@ -72,9 +72,9 @@ class Dialog2 extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { province, city, district } = this.state.address;
-    const { open, provinces, cities, districts } = this.state;
+    const {classes} = this.props;
+    const {province, city, district} = this.state.address;
+    const {open, provinces, cities, districts} = this.state;
     return (
       <div>
         <Button onClick={this.handleClickOpen}>地址级联表单处理</Button>
@@ -86,7 +86,7 @@ class Dialog2 extends Component {
                 native
                 value={province}
                 onChange={this.handleChange}
-                input={<Input id="province" />}
+                input={<Input id="province"/>}
                 className={classes.select}
               >
                 <option value="0">--- 请选择省份 ---</option>
@@ -97,18 +97,18 @@ class Dialog2 extends Component {
                 native
                 value={city}
                 onChange={this.handleChange}
-                input={<Input id="city" />}
+                input={<Input id="city"/>}
                 className={classes.select}
               >
                 <option value="0">--- 请选择城市 ---</option>
                 {cities.map(c => <option value={c} key={c}>{c}</option>)}
               </Select>
-              <br />
+              <br/>
               <Select
                 native
                 value={district}
                 onChange={this.handleChange}
-                input={<Input id="district" />}
+                input={<Input id="district"/>}
                 className={classes.select}
               >
                 <option value="0">--- 请选择区/县 ---</option>
@@ -130,4 +130,4 @@ class Dialog2 extends Component {
   }
 }
 
-export default withStyles(styles, { name: 'form2' })(Dialog2);
+export default withStyles(styles, {name: 'form2'})(Dialog2);

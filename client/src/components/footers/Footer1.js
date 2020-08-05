@@ -32,17 +32,17 @@ export default function () {
 
   return (
     <>
-      <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-        <BottomNavigationAction label="关于我们" value="关于我们" icon={<RestoreIcon />}/>
-        <BottomNavigationAction label="联系我们" value="联系我们" icon={<FavoriteIcon />}/>
-        <BottomNavigationAction label="服务选项" value="服务选项" icon={<LocationOnIcon />}/>
-        <BottomNavigationAction label="市场" value="市场" icon={<FolderIcon />}/>
-      </BottomNavigation>
-      <Box color="primary.main">
-        <Typography component="p">
-          &copy;William Jiang 2019, version: {version}, all rights reserved.
-        </Typography>
-      </Box>
+    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+      <BottomNavigationAction label="关于我们" value="关于我们" icon={<RestoreIcon />}/>
+      <BottomNavigationAction label="联系我们" value="联系我们" icon={<FavoriteIcon />}/>
+      <BottomNavigationAction label="服务选项" value="服务选项" icon={<LocationOnIcon />}/>
+      <BottomNavigationAction label="市场" value="市场" icon={<FolderIcon />}/>
+    </BottomNavigation>
+    <Box color="primary.main">
+      <Typography component="p">
+        &copy;William Jiang 2019, version: {version}, all rights reserved.
+      </Typography>
+    </Box>
     </>
   );
 }

@@ -1,0 +1,14 @@
+{
+  "operate": "操作",
+  "mengxin_no": "盟信编号",
+  "payer": "支付方",
+  "available_amount": "可用金额（元）",
+  "payment_financing": "支付/融资中（元）",
+  "net_available_amount": "可用净额（元）",
+  "issuer": "开立方",
+  "committed_payment_date": "承诺付款日",
+  "estimated_rating": "预计综合融资息费率（%）",
+  "receive_date": "接收日期",
+  "remark": "附言",
+  "mengxin_financing_review": "盟信融资审核"
+}

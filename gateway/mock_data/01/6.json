@@ -1,0 +1,9 @@
+{
+  "operate": "操作",
+  "customer_name": "客户名称",
+  "financial_report_type": "财报类型",
+  "financial_period": "财报期次",
+  "rating_limit": "评级限额",
+  "inquiry": "查询",
+  "customer_rating_inquiry": "客户评级查询"
+}

@@ -1,4 +1,3 @@
-import Layout from '../components/Layout'
 import {
   Payment,
   Contacts,
@@ -13,7 +12,7 @@ import {
   FilterVintage,
   Layers
 } from '@material-ui/icons'
-
+import Layout from '../components/Layout'
 import C1 from './C1'
 import C2 from './C2'
 import C3 from './C3'

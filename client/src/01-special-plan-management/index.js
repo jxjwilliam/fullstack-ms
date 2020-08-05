@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Container, CssBaseline, Typography, Link } from '@material-ui/core'
 import Routers from './sub-routers'
 import { BASE } from './common'
 import { Drawer, bars } from '../components'
 import { NavList, RouteList } from '../helpers/reusable'
 
-export default function (props) {
-  const { title, path } = props
+export default function ({ title, path }) {
+  console.log(Routers, BASE, title, path)
   return (
-    <>
+    <Fragment>
       <CssBaseline />
       <Container fixed>
         <bars.Bar2>
@@ -23,10 +23,10 @@ export default function (props) {
         <div>
           <RouteList
             routes={Routers}
-            redirect={{ from: BASE, to: `${BASE}/${path}` }}
+            redirect={{ from: BASE, to: `${BASE}/系统管理/口令更改` }}
           />
         </div>
       </Container>
-    </>
+    </Fragment>
   )
 }

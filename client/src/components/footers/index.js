@@ -1,8 +1,9 @@
-import React from 'react'
-import { version } from '../../../package.json'
+import Footer1 from './Footer1'
+import Footer2 from './Footer2'
 
-export default function Footer() {
-  return (
-    <h1>Footer</h1>
-  )
+const footers = {
+  Footer1,
+  Footer2
 }
+
+export default footers;

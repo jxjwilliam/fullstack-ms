@@ -18,6 +18,7 @@ import Asset from './02-asset-management'
 import Abs from './03-abs'
 import Admin from './04-admin-panel'
 import Organization from './05-organization'
+import Certificate from './06-certificate'
 import { C404 } from './components'
 
 export const BusinessRouters = [
@@ -50,6 +51,12 @@ export const BusinessRouters = [
     title: '组织架构',
     icon: SettingsApplications,
     component: Organization,
+  },
+  {
+    path: '/certificate',
+    title: '凭证',
+    icon: SettingsApplications,
+    component: Certificate,
   },
 ]
 

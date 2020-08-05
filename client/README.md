@@ -15,3 +15,13 @@ $ npx create-react-app client
 ### eslint, prettier, airbnb
 
 - Tabsize: File > Preferences > Settings > `editor: tab size` => Tab Size: 2
+
+```shell
+$ yarn add -D eslint-config-airbnb eslint-config-prettier eslint-plugin-jsx-a11y eslint-plugin-prettier prettier
+```
+
+
+```shell
+$ npx install-peerdeps --dev eslint-config-react-app
+
+```

@@ -13,11 +13,12 @@ require('dotenv').config()
 
 const app = express()
 
-app.use(favicon(path.join(__dirname, '../client/public', 'favicon.ico')))
+// app.use(favicon(path.join(__dirname, '../client/public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(helmet())
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'build')))
 
 const port = process.env.PORT
 app.set('port', port)

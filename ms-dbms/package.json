@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npx nodemon ./app",
+    "prod": "node ./app",
     "test": "echo %npm_package_version%"
   },
   "dependencies": {

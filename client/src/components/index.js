@@ -4,7 +4,7 @@ import Layout from './Layout'
 import Menu from './Menu'
 import bars from './appBars'
 import dialogs from './dialogs'
-import Footer from './footers'
+import footers from './footers'
 import { C404 } from './misc'
 import modals from './modals'
 
@@ -17,5 +17,5 @@ export {
     bars,
     dialogs,
     modals,
-    Footer,
+  footers,
 }

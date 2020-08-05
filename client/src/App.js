@@ -26,7 +26,6 @@ const RouteList = ({ routes1, routes2, routes3 }) => {
   return <Switch>{list}</Switch>
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
   render() {
     return (

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {ThemeProvider} from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Home from './Home';
 import theme from './theme';
-import {DEFAULT_LOGIN_PAGE} from '../config/constants'
+import { DEFAULT_LOGIN_PAGE } from '../config/constants'
 
 class HomeContainer extends Component {
 
@@ -14,12 +14,13 @@ class HomeContainer extends Component {
   }
 
   render() {
-    // if (!this.state.hasToken) {
-    //   const {loggedIn} = this.props.auth;
-    //   if (!loggedIn) {
-    //     return <Redirect to={DEFAULT_LOGIN_PAGE}/>
-    //   }
-    // }
+    if (!this.state.hasToken) {
+      const { loggedIn } = this.props.auth;
+      if (!loggedIn) {
+        console.log(`TODO: should redirect to ${DEFAULT_LOGIN_PAGE}`)
+        // return <Redirect to={DEFAULT_LOGIN_PAGE}/>
+      }
+    }
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -30,5 +31,5 @@ class HomeContainer extends Component {
 }
 
 export default connect(
-  state => ({auth: state.auth})
+  state => ({ auth: state.auth })
 )(HomeContainer);

@@ -1,24 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux';
-import {makeStyles} from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
   Typography,
   List,
-  ListItem,
   ListItemIcon,
-  ListItemText,
 } from '@material-ui/core';
 import {
   ExpandMore as ExpandMoreIcon,
-  Business as BusinessIcon,
-  FormatListBulleted,
-  AssignmentTurnedIn,
+  SupervisorAccount as SupervisorAccountIcon,
+  // history as HistoryIcon,
 } from '@material-ui/icons';
+import { loginInfos } from '../config/reusable';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,43 +24,61 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
+  wrap: {
+    wordWrap: 'break-word', /*允许长单词换行到下一行*/
+    wordBreak: 'break-all', /*这个参数根据需要来决定要不要*/
+    overflow: 'hidden',
+    whiteSpace: ' normal'
+  },
 }));
 
 /**
  * props: auth: {loggedIn: true, loginInfo, token}
  */
-function A1(props) {
+function AuthMessage(props) {
   const classes = useStyles();
-  if(!props.auth || !props.auth.loginInfo) return null;
-  const {account, id, name, oid, oname, rid} = props.auth.loginInfo;
-  const roleNames = rid.map(r => r.name).join(',');
+
+  if (!props.auth || !props.auth.loginInfo) return null;
+
+  let loginInfo = loginInfos();
+
+  const { account, name, organization = { name: '' }, roles } = loginInfo;
+
+  let rolesNames = '';
+  try {
+    rolesNames = roles.map(r => r.name).join(',');
+  } catch (e) {
+    rolesNames = '';
+  }
+
   return (
     <div className={classes.root}>
-      <ExpansionPanel>
+      <ExpansionPanel defaultExpanded={true}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           <ListItemIcon>
-            <BusinessIcon />
+            <SupervisorAccountIcon />
+            {/* <HistoryIcon/> */}
           </ListItemIcon>
           <Typography className={classes.heading}>操作员信息</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <List>
-            <ListItem button component={Link} to={`/layout/profile`} key={0}>
-              <ListItemText primary={`组织：${oname}`}/>
-            </ListItem>
-            <ListItem button component={Link} to={`/layout/profile`} key={1}>
-              <ListItemText primary={`账号：${account}`}/>
-            </ListItem>
-            <ListItem button component={Link} to={`/layout/profile`} key={2}>
-              <ListItemText primary={`名称：${name}`}/>
-            </ListItem>
-            <ListItem button component={Link} to={`/layout/profile`} key={3}>
-              <ListItemText primary={`角色：${roleNames}`}/>
-            </ListItem>
+        <ExpansionPanelDetails >
+          <List style={{ width: '100%' }}>
+            <Typography variant="body1" gutterBottom className={classes.wrap} style={{ whiteSpace: 'normal' }}>
+              {`企业：${organization.name}`}
+            </Typography>
+            <Typography variant="body1" gutterBottom className={classes.wrap} style={{ whiteSpace: 'normal' }}>
+              {`账号：${account}`}
+            </Typography>
+            <Typography variant="body1" gutterBottom className={classes.wrap} style={{ whiteSpace: 'normal' }}>
+              {`名称：${name}`}
+            </Typography>
+            <Typography variant="body1" gutterBottom className={classes.wrap} style={{ whiteSpace: 'normal' }}>
+              {`角色：${rolesNames}`}
+            </Typography>
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -76,6 +90,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(A1)
+export default connect(mapStateToProps)(AuthMessage)

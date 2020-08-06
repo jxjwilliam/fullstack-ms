@@ -2,22 +2,6 @@
   text-align: center;
 }
 
-.navigator {
-  ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-
-    li {
-      background: #f1f1f1;
-      border: 1px solid mediumblue;
-      text-align: center;
-      margin-right: auto;
-      padding: 2px 10px;
-    }
-  }
-}
-
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -28,17 +12,24 @@
   margin: 2px 6px;
   padding: 2px 6px;
 }
-.dovbox{
+
+.dovbox {
   width: 100%;
-  min-height: 60px;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
+  position: absolute;
+  padding: 0 32px;
+  top: 20px;
+  right: 20px;
+  left: 0;
 }
-.uploadBox{
-  min-width:200px;
+
+.uploadBox {
+  min-width: 200px;
   width: 100%;
-  .fileName{
+  padding-right: 10px;
+  .fileName {
     display: inline-block;
     min-width: 115px;
     width: 100%;
@@ -47,27 +38,69 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #3f51b5;
-  
+    color: #ffb74d;
   }
-  .view{
+
+  .view {
     cursor: pointer;
-    color: #3f51b5;
+    color: #ffb74d;
     width: 110px;
   }
-    .uploadFile{
-      position:absolute;
-      width: 100%;
-      overflow: hidden;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      opacity:0;   
+
+  .uploadFile {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    opacity: 0;
   }
+
   .MuiDialog-paperWidthSm {
     max-width: 1000px !important;
   }
 }
+#customized-dialog-title .MuiTypography-h6 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.errorMsg {
+  color: #f00;
+  text-align: left;
+  height: 20px;
+}
 
+//单位
+.TextFieldUnits {
+  position: relative;
+  &:before {
+    position: absolute;
+    bottom: 0;
+    right: -20px;
+    content: '元';
+  }
+}
+
+.TextFieldUnits2 {
+  position: relative;
+  &:before {
+    position: absolute;
+    bottom: 0;
+    right: -20px;
+    content: '%';
+  }
+}
+
+.TextFieldUnits3 {
+  position: relative;
+  &:before {
+    position: absolute;
+    bottom: 0;
+    right: -20px;
+    content: '天';
+  }
+}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
   AppBar,
   Toolbar,
@@ -22,12 +22,15 @@ import {
 import {
   AccountCircle,
 } from '@material-ui/icons';
-import {makeStyles} from '@material-ui/core/styles';
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import Login from '../../signin/SigninSide';
 
 const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
   grow: {
     flexGrow: 1,
   },
@@ -53,14 +56,22 @@ const useStyles = makeStyles(theme => ({
   },
   field: {
     width: 260,
+  },
+  fields: {
     marginLeft: 20,
+  },
+  right: {
+    textAlign: 'right'
+  },
+  top: {
+    marginTop: 16,
   }
 }));
 
-function Bar2 (props) {
-  const {children, auth} = props;
+function Bar2(props) {
+  const { children, auth } = props;
   let account = '';
-  if(auth.loginInfo && auth.loginInfo.account) {
+  if (auth.loginInfo && auth.loginInfo.account) {
     account = auth.loginInfo.account
   }
   const classes = useStyles();
@@ -107,104 +118,104 @@ function Bar2 (props) {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <>
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-      id={menuId}
-      keepMounted
-      transformOrigin={{vertical: 'top', horizontal: 'right'}}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleOpen2}>切换账户</MenuItem>
-      <MenuItem onClick={handleOpen1}>我的账户</MenuItem>
-      <MenuItem onClick={handleOpen}>退出</MenuItem>
-      {account && (<MenuItem>账号：{account}</MenuItem>)}
-    </Menu>
-    <Dialog open={open2} onClose={handleClose2}>
-      <Login/>
-    </Dialog>
-    <Dialog open={open1} onClose={handleClose1}>
-      <DialogTitle id="form-dialog-title">创建用户表单</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          添加，修改用户账号
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleOpen2}>切换账户</MenuItem>
+        <MenuItem onClick={handleOpen1}>我的账户</MenuItem>
+        <MenuItem onClick={handleOpen}>退出</MenuItem>
+        {account && (<MenuItem>账号：{account}</MenuItem>)}
+      </Menu>
+      <Dialog open={open2} onClose={handleClose2}>
+        <Login />
+      </Dialog>
+      <Dialog open={open1} onClose={handleClose1}>
+        <DialogTitle id="form-dialog-title">创建用户表单</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            添加，修改用户账号
         </DialogContentText>
-      </DialogContent>
-      <form className={classes.form}>
-        <TextField
-          autoFocus
-          id="account"
-          label="账号"
-          fullWidth
-          margin="dense"
-          className={classes.field}
-        />
-        <br/>
-        <TextField
-          id="name"
-          label="姓名"
-          margin="normal"
-          className={classes.field}
-        />
-        <br/>
-        <FormControl className={classes.field}>
-          <InputLabel htmlFor="role">角色</InputLabel>
-          <Select>
-            <MenuItem value=""><em>请选择</em></MenuItem>
-          </Select>
-        </FormControl>
-        <br/>
-        <TextField
-          multiline
-          rows={4}
-          id="description"
-          label="描述"
-          margin="normal"
-          className={classes.field}
-        />
-      </form>
-      <DialogActions>
-        <Button onClick={handleClose1} color="secondary">
-          取消
+        </DialogContent>
+        <form className={classes.form}>
+          <TextField
+            autoFocus
+            id="account"
+            label="账号"
+            fullWidth
+            margin="dense"
+            className={classes.field}
+          />
+          <br />
+          <TextField
+            id="name"
+            label="姓名"
+            margin="normal"
+            className={classes.field}
+          />
+          <br />
+          <FormControl className={classes.field}>
+            <InputLabel htmlFor="role">角色</InputLabel>
+            <Select>
+              <MenuItem value=""><em>请选择</em></MenuItem>
+            </Select>
+          </FormControl>
+          <br />
+          <TextField
+            multiline
+            rows={4}
+            id="description"
+            label="描述"
+            margin="normal"
+            className={classes.field}
+          />
+        </form>
+        <DialogActions>
+          <Button onClick={handleClose1} color="secondary">
+            取消
         </Button>
-        <Button onClick={handleClose1} color="primary">
-          创建
+          <Button onClick={handleClose1} color="primary">
+            创建
         </Button>
-      </DialogActions>
-    </Dialog>
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className={classes.modal}
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <Fade in={open}>
-        <div className={classes.paper}>
-          <h2 id="transition-modal-title">退出登录确认</h2>
-          <p id="transition-modal-description">确定退出吗？</p>
-          <Button onClick={handleClose} color="primary">
-            否
+        </DialogActions>
+      </Dialog>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">退出登录确认</h2>
+            <p id="transition-modal-description">确定退出吗？</p>
+            <Button onClick={handleClose} color="primary">
+              否
           </Button>
-          <Button onClick={handleOk} color="primary">
-            是
+            <Button onClick={handleOk} color="primary">
+              是
           </Button>
-        </div>
-      </Fade>
-    </Modal>
+          </div>
+        </Fade>
+      </Modal>
     </>
   );
 
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: '#1d4583' }}>
           {children}
           <div className={classes.sectionDesktop}>
             <IconButton

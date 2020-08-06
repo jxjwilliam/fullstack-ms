@@ -18,7 +18,7 @@ const Emoji = props => (
   >
     {props.symbol}
   </span>
-);
+)
 
 /**
  * Header, Main, Footer
@@ -34,8 +34,6 @@ export default function () {
 
           <Typography>
             <Link href="/home" color="inherit" variant="h6">主页面</Link>
-            {" "}
-            <Link href="_book" color="inherit" variant="h6">Gitbook</Link>
           </Typography>
 
         </bars.Bar1>
@@ -49,6 +47,6 @@ export default function () {
         <footers.Footer1 />
       </Container>
     </>
-  );
+  )
 }
 

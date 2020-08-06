@@ -1,36 +1,38 @@
 import React from 'react';
-import {Route, Switch, NavLink, Redirect} from 'react-router-dom'
+import { Route, Switch, NavLink, Redirect, Link } from 'react-router-dom'
+import {
+  ListItem, ListItemText, Typography, Link as ALink,
+  Grid, Card, CardMedia,
+} from '@material-ui/core';
+import jwt_decode from 'jwt-decode'
 import isEmpty from 'lodash/isEmpty';
 
-// reusable for 01 - 06 folders.
-//  <Icon>{router.icon}</Icon>
-export const NavList = ({navs}) => {
+export const NavList = ({ navs }) => {
   const navList = navs.map(router => {
-      const CompIcon = router.icon;
-      return (
-        <li key={router.path}>
-          <NavLink
-            activeStyle={{color: 'red'}}
-            className="flex-container-link"
-            to={router.path}
-          >
-            <CompIcon />
-            {router.title}
-          </NavLink>
-        </li>
-      )
-    }
-  );
+    const CompIcon = router.icon;
+    return (
+      <ListItem
+        style={{ width: 'auto', paddingTop: '4px', paddingBottom: '4px' }}
+        button
+        component={Link}
+        to={router.path}
+        key={router.path}
+      >
+        <CompIcon fontSize="small" />
+        <ListItemText style={{ paddingLeft: '8px' }} primary={router.title} />
+      </ListItem>
+    )
+  });
   return (
-    <div className="navigator">
-      <ul>
+    <div className="listNavigator">
+      <ul style={{ display: 'flex', displayDirection: 'row', flexFlow: 'row wrap' }}>
         {navList}
       </ul>
     </div>
   )
-}
+};
 
-export const RouteList = ({routes, redirect = {}}) => {
+export const RouteList = ({ routes, redirect = {} }) => {
   return (
     <Switch>
       {!isEmpty(redirect) ?
@@ -46,4 +48,13 @@ export const RouteList = ({routes, redirect = {}}) => {
       />)}
     </Switch>
   )
+}
+
+export const loginInfos = () => {
+  let loginInfo = {};
+  const token = sessionStorage.getItem('authToken');
+  if (token) {
+    loginInfo = jwt_decode(token);
+  }
+  return loginInfo;
 }

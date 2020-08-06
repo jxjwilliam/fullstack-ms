@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   CssBaseline,
   Drawer,
@@ -123,8 +123,8 @@ const Layout = (Menu, Content) => {
             <Menu />
           </List>
         </Drawer>
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer}/>
+        <main className={classes.content} style={{ position: 'relative' }}>
+          <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <Content />
           </Container>

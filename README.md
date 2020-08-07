@@ -1,4 +1,6 @@
-### client
+# 微服务项目说明
+
+## client
 
 ---
 
@@ -6,7 +8,7 @@
 $ npx create-react-app client
 ```
 
-### 后台
+## 后台
 
 ---
 
@@ -14,7 +16,7 @@ $ npx create-react-app client
 $ npx express-generator ms-app
 ```
 
-### ms-dbms
+## ms-dbms
 
 ---
 

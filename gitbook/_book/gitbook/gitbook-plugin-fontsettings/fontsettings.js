@@ -118,7 +118,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
         saveFontSettings();
     }
 
-    // Return the correct id for a font-family config key
+    // Return the correct id for a font-family helpers key
     // Default to first font-family
     function getFontFamilyId(configName) {
         // Search for plugin configured font family
@@ -129,7 +129,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
         return (!!configFamily)? configFamily.id : 0;
     }
 
-    // Return the correct id for a theme config key
+    // Return the correct id for a theme helpers key
     // Default to first theme
     function getThemeId(configName) {
         // Search for plugin configured theme

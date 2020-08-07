@@ -6,7 +6,7 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import {defer, capitalize, fetching} from '../config/utils'
+import {defer, capitalize, fetching} from '../helpers/utils'
 import {
   Group,
   CheckCircleOutline,

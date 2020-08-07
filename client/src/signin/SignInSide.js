@@ -18,7 +18,7 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {makeStyles} from '@material-ui/core/styles';
 import {withStyles} from '@material-ui/styles';
-import {DEFAULT_HOME_PAGE} from '../config/constants'
+import {DEFAULT_HOME_PAGE} from '../helpers/constants'
 import {loginAction} from '../state/actions'
 
 const useStyles = makeStyles(theme => ({

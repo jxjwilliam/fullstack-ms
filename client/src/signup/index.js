@@ -4,19 +4,11 @@ import {
   Container,
   CssBaseline
 } from '@material-ui/core';
-import Checkout from './Checkout'
 import {Drawer, bars} from '../components'
 import Signup1 from './Signup1'
 import Signup2 from './signup2'
-import Signup3 from './signup3'
-import Signup4 from '../multi-steps/UserForm'
 
 const Routers = [
-  {
-    path: '/signup',
-    exact: true,
-    component: Checkout,
-  },
   {
     path: '/signup/供应商',
     component: Signup1,
@@ -24,10 +16,6 @@ const Routers = [
   {
     path: '/signup/盟信系统',
     component: Signup2,
-  },
-  {
-    path: '/signup/核心企业',
-    component: Signup3,
   }
 ];
 

@@ -10,7 +10,7 @@ import {
   BarChart as BarChartIcon,
   Layers as LayersIcon
 } from '@material-ui/icons';
-import Accordion from '../components/Accordion'
+import {Accordion} from '../components'
 import subRouters from './common'
 import {C2_1} from './containers'
 

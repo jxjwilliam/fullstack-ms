@@ -12,7 +12,7 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import MaterialTable from 'material-table';
 import * as userAction from '../state/actions/accountAction';
-import {defer} from '../config/utils'
+import {defer} from '../helpers/utils'
 import subRouters from './common';
 
 const PARENT_PATH = subRouters['列表'];

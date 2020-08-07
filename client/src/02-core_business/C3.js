@@ -10,7 +10,7 @@ import {
   Payment as PaymentIcon,
   MergeType as MergeTypeIcon
 } from '@material-ui/icons';
-import Accordion from '../components/Accordion'
+import {Accordion} from '../components'
 import subRouters, {SetView} from './common'
 import C3_1, {subRootAry1} from './containers/C3_1';
 import C3_2, {subRootAry2} from './containers/C3_2';

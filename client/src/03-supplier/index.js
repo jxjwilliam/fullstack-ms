@@ -8,7 +8,7 @@ import {
 import Routers from './sub-routers'
 import {BASE} from './common'
 import {Drawer, bars} from '../components'
-import {NavList, RouteList} from '../config/reusable'
+import {NavList, RouteList} from '../helpers/reusable'
 
 export default function () {
   return (

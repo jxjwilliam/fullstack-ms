@@ -1,8 +1,7 @@
 import React from 'react'
 import {Typography, Link} from '@material-ui/core'
 import {Dialog} from '../exercises'
-import {Drawer, bars} from '../../components'
-
+import {bars, Drawer} from '../../components'
 const BASE = '/certificate';
 
 const Header = () => {

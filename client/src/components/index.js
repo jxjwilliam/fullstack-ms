@@ -1,27 +1,41 @@
-import About from './misc/About'
-import Accordion from './Accordion'
-import Contact from './misc/Contact'
-import Layout from './Layout'
-import Drawer from './Drawer'
-import Menu from './Menu'
-import Title from './misc/Title'
-import C404 from './404'
-import bars from './appBars'
+import bars from './bars'
 import dialogs from './dialogs'
-import modals from './modals'
 import footers from './footers'
-
-export {
+import forms from './forms'
+import { Drawer, Layout, Menu } from './layout'
+import {
+  C404,
   About,
   Accordion,
   Contact,
-  Layout,
-  Drawer,
-  Menu,
+  ProTip,
+  Search,
+  TabPanel,
   Title,
-  C404,
+} from './misc'
+import modals from './modals'
+import {
+  Upload,
+  Uploads,
+  Dropzone
+} from './uploads'
+
+export {
   bars,
   dialogs,
-  modals,
   footers,
+  forms,
+  Drawer, Layout, Menu,
+  C404,
+  About,
+  Accordion,
+  Contact,
+  ProTip,
+  Search,
+  TabPanel,
+  Title,
+  modals,
+  Upload,
+  Uploads,
+  Dropzone,
 }

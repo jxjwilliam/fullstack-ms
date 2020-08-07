@@ -10,7 +10,7 @@ import {
   BarChart as BarChartIcon,
   Layers as LayersIcon
 } from '@material-ui/icons';
-import Accordion from '../components/Accordion'
+import {Accordion} from '../components'
 import subRouters, {SetView} from './common';
 
 const PARENT_PATH = subRouters['盟信额度'];

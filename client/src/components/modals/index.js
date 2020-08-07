@@ -1,7 +1,5 @@
 import Modal1 from './Modal1'
 
-const modals = {
+export default {
   Modal1
 }
-
-export default modals;

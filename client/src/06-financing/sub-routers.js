@@ -19,12 +19,12 @@ import {
   Description,
   PersonPin,
 } from '@material-ui/icons';
-import Accordion from '../components/Accordion'
-import Layout from '../components/Layout'
+import { Accordion } from '../components'
+import { Layout } from '../components'
 
 export const BASE = '/financing';
 
-const tmpRender = ({match: {path, url}}) => {
+const tmpRender = ({ match: { path, url } }) => {
   const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
   console.log(JSON.stringify(url, null, 4));
   return <h2>{`${breadcrumbs} : `}</h2>
@@ -56,7 +56,7 @@ function getSubRouters(inx, value) {
   }]), [])
 }
 
-function getMenu (key, items) {
+function getMenu(key, items) {
   function menu() {
     const list = items.map(item => {
       const CompIcon = item.icon
@@ -86,18 +86,18 @@ function getMenu (key, items) {
   return menu;
 }
 
-function getContent (key, items) {
-  return function() {
+function getContent(key, items) {
+  return function () {
     return (
       <Switch>
         {items.map(item => {
-          const {path} = item;
+          const { path } = item;
           const url = `${BASE}/${key}/${path}`
           return (
             <Route
               path={url}
               // component={item.component}
-              render={ tmpRender }
+              render={tmpRender}
               key={item.path}
             />
           )

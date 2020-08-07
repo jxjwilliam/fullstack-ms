@@ -24,8 +24,8 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import {signupAction} from '../state/actions'
-import {DEFAULT_LOGIN_PAGE} from '../config/constants';
-import {fetching} from '../config/utils'
+import {DEFAULT_LOGIN_PAGE} from '../helpers/constants';
+import {fetching} from '../helpers/utils'
 
 
 

@@ -1,5 +1,5 @@
-import Layout from '../components/Layout'
-import { 
+import {Layout} from '../components'
+import {
   Group,
   Help,
   MonetizationOn,

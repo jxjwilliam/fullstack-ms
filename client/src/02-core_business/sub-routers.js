@@ -1,4 +1,4 @@
-import Layout from '../components/Layout'
+import {Layout} from '../components'
 import {Menu1, Content1} from './C1'
 import {Menu2, Content2} from './C2'
 import {Menu3, Content3} from './C3'

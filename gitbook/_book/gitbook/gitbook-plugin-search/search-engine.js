@@ -14,7 +14,7 @@ require([
         init(config);
     }
 
-    // Initialize search engine with config
+    // Initialize search engine with helpers
     function init(config) {
         if (!engine) throw new Error('No engine set for research. Set an engine using gitbook.research.setEngine(Engine).');
 

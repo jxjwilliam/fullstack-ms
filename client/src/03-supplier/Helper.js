@@ -1,6 +1,6 @@
 import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
-import {Accordion, modals, dialogs} from '../components'
+import {modals, dialogs} from '../components'
 import {
   ListItem,
   ListItemIcon,
@@ -53,9 +53,6 @@ export const HelpMenu = () => {
   return (
     <div>
       {list}
-      <ListItem>
-        <Accordion/>
-      </ListItem>
     </div>
   );
 }

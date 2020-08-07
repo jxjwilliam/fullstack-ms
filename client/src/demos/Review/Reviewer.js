@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MaterialTable from 'material-table';
-import {fetching} from '../../config/utils'
+import {fetching} from '../../helpers/utils'
 
 // 复核人Reviewer
 // 签收已处理

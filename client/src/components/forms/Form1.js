@@ -23,10 +23,10 @@ export default function () {
   const classes = useStyles();
   const [form, setForm] = useState({})
 
-  handleChange = ({target: {id, value}}) => {
+  const handleChange = ({target: {id, value}}) => {
     setForm({
       form: {
-        ...this.state.form,
+        ...state.form,
         [id]: value
       }
     });
@@ -39,7 +39,7 @@ export default function () {
         id="account"
         label="账号"
         value={account}
-        onChange={this.handleChange}
+        onChange={handleChange}
         fullWidth
         margin="dense"
         className={classes.field}
@@ -49,7 +49,7 @@ export default function () {
         id="name"
         label="姓名"
         value={name}
-        onChange={this.handleChange}
+        onChange={handleChange}
         margin="normal"
         className={classes.field}
       />
@@ -58,7 +58,7 @@ export default function () {
         <InputLabel htmlFor="role">角色</InputLabel>
         <Select
           value={role}
-          onChange={this.handleChange}
+          onChange={handleChange}
           inputProps={{
             name: 'role',
             id: 'role',
@@ -75,7 +75,7 @@ export default function () {
         id="description"
         label="描述"
         value={description}
-        onChange={this.handleChange}
+        onChange={handleChange}
         margin="normal"
         className={classes.field}
       />

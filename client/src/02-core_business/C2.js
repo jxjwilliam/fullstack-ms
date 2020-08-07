@@ -12,7 +12,7 @@ import {
   AssignmentTurnedIn,
   OpenInBrowser,
 } from '@material-ui/icons';
-import Accordion from '../components/Accordion'
+import {Accordion} from '../components'
 import subRouters, {SetView} from './common'
 import C2_1, {subRootAry} from './containers/C2_1'
 import SimpleFileUpload from '../demos/SimpleFileUpload';

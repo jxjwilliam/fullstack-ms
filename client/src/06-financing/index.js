@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import Routers from './sub-routers'
 import {Drawer, bars} from '../components'
-import {NavList, RouteList} from '../config/reusable'
+import {NavList, RouteList} from '../helpers/reusable'
 
 const BASE = '/financing';
 

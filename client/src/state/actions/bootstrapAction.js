@@ -1,4 +1,4 @@
-import {fetching} from '../../config/utils'
+import {fetching} from '../../helpers/utils'
 
 // currently there are 12 api services, no need to keep into redux store.
 /**

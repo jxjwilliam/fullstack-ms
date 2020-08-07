@@ -10,7 +10,6 @@ import {
   LocationCity
 } from '@material-ui/icons';
 import {subRouters} from './common';
-import {SetView} from '../02-core_business/common'
 
 const PARENT_PATH = subRouters['关联信息'];
 

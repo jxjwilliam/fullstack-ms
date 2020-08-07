@@ -4,7 +4,7 @@ import {
   LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, LOGOUT_FAIL,
 } from '../ActionTypes'
-import {defer} from '../../config/utils'
+import {defer} from '../../helpers/utils'
 
 // 1. signup/register
 const sigupSucc = payload => ({type: SIGNUP_SUCCESS, payload});

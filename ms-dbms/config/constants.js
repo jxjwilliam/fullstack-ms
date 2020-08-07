@@ -26,4 +26,4 @@ module.exports = {
   ERRORS,
 }
 
-//TODO: integrate with client/src/config/constants.js
+//TODO: integrate with client/src/helpers/constants.js

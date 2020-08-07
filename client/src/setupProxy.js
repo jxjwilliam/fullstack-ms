@@ -8,8 +8,8 @@ require('dotenv').config()
 const MS_BFF_PORT = process.env.BFF_PORT
 const MS_SSL_PORT = process.env.BFF_SSL_PORT
 
-const local_ms = ['/api', '/doc']
-const static_ms = ['/data', '/mock', '/table']
+const local_ms = ['/api', '/doc', '/table']
+const static_ms = ['/data', '/mock']
 const other_ms = ['/sms', '/rest']
 
 module.exports = function (app) {

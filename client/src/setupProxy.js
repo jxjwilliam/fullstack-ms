@@ -5,11 +5,11 @@ const URLS = ['http://localhost', 'https://localhost']
 require('dotenv').config()
 
 // same as in bff/.env:
-const MS_BFF_PORT = process.env.PORT
-const MS_SSL_PORT = 8888
+const MS_BFF_PORT = process.env.BFF_PORT
+const MS_SSL_PORT = process.env.BFF_SSL_PORT
 
 const local_ms = ['/api', '/doc']
-const static_ms = ['/data', '/table']
+const static_ms = ['/data', '/mock', '/table']
 const other_ms = ['/sms', '/rest']
 
 module.exports = function (app) {

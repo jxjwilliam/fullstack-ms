@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import {
   Container,
-  CssBaseline,
   Typography,
   Link,
 } from '@material-ui/core';
@@ -15,7 +14,6 @@ const BASE = '/financing';
 export default function (props) {
   return (
     <Fragment>
-      <CssBaseline />
       <Container fixed>
         <bars.Bar2>
           <Drawer />

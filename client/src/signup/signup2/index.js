@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  CssBaseline,
   Paper,
   Stepper,
   Step,
@@ -93,7 +92,6 @@ export default function Signup2() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">

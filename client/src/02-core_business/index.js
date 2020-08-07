@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {
   Container,
-  CssBaseline,
   Typography,
   Link,
 } from '@material-ui/core';
@@ -24,8 +23,7 @@ class CoreBusinessSupplier extends Component {
 
   render() {
     return (
-      <>
-      <CssBaseline/>
+      <Fragment>
       <Container fixed>
         <bars.Bar2>
           <Drawer/>
@@ -41,7 +39,7 @@ class CoreBusinessSupplier extends Component {
           />
         </div>
       </Container>
-      </>
+      </Fragment>
     )
   }
 }

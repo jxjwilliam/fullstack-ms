@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "start": "npx nodemon ./app",
+    "start": "npx nodemon  --exec babel-node ./app",
     "prod": "node ./app",
     "test": "echo %npm_package_version%"
   },
@@ -22,5 +22,12 @@
     "pdfkit": "^0.11.0",
     "read-excel-file": "^4.0.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.4",
+    "@babel/preset-env": "^7.10.4"
+  }
 }

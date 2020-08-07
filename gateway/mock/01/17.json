@@ -1,7 +1,7 @@
 {
   "operate": "操作",
   "batch_review_order_no": "批量审核单号",
-  "mengxin_items": "盟信笔数",
+  "mengxin_items": "POC笔数",
   "total_amount": "总金额（元）",
   "reviewer": "审核人",
   "review_date": "审核日期",

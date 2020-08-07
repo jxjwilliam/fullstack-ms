@@ -4,8 +4,8 @@ import {
   QueryBuilder as QueryBuilderIcon,
   LocalFlorist as LocalFloristIcon
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
-import {C5_2} from './containers'
+import { subRouters, getMenu, getContent } from './common';
+import { C5_2 } from './containers'
 
 const PARENT_PATH = subRouters['额度管理'];
 
@@ -24,7 +24,7 @@ const Info = [
     icon: FunctionsIcon
   },
   // {
-  //   path: "盟信流转（加查询）",
+  //   path: "POC流转（加查询）",
   //   icon: Description
   // },
 ];

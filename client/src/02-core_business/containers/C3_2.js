@@ -11,8 +11,8 @@ export const subRootAry2 = [
 ];
 
 
-const PARENT_PATH = '/核心企业及供应商/盟信流转';
-const PATH = '盟信融资';
+const PARENT_PATH = '/核心企业及供应商/POC流转';
+const PATH = 'POC融资';
 
 export default getSubRouters(PARENT_PATH, PATH, subRootAry2);
 

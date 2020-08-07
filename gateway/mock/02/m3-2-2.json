@@ -1,9 +1,9 @@
 {
   "operate": "操作",
   "inquiry_no": "询价单编号",
-  "mengxin_no": "盟信编号",
+  "mengxin_no": "POC编号",
   "payer": "支付方",
-  "mengxin_no": "盟信金额（元）",
+  "mengxin_no": "POC金额（元）",
   "financing_amount": "融资金额",
   "issuer": "开立方",
   "committed_payment_date": "承诺付款日",

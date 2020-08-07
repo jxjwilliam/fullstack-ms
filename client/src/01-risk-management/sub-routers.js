@@ -1,4 +1,4 @@
-import {Layout} from '../components'
+import { Layout } from '../components'
 import {
   Payment,
   Contacts,
@@ -25,7 +25,7 @@ import C8 from './C8'
 import C9 from './C9'
 import C10 from './C10'
 import C11 from './C11'
-import {subRouters, getMenu, getContent} from './common';
+import { subRouters, getMenu, getContent } from './common';
 
 const Routers = [
   {
@@ -41,12 +41,12 @@ const Routers = [
   }, {
     path: subRouters['评级限额'],
     title: '评级限额',
-    icon:  RateReview,
+    icon: RateReview,
     component: Layout(C3[0], C3[1]),
-  },{
+  }, {
     path: subRouters['授信审批'],
     title: '授信审批',
-    icon:  AssignmentTurnedIn,
+    icon: AssignmentTurnedIn,
     component: Layout(C4[0], C4[1]),
   },
   {
@@ -55,14 +55,14 @@ const Routers = [
     icon: FormatQuote,
     component: Layout(C5[0], C5[1]),
   }, {
-    path: subRouters['盟信'],
-    title: '盟信',
+    path: subRouters['文档管理'],
+    title: '文档管理',
     icon: Business,
     component: Layout(C6[0], C6[1]),
   }, {
     path: subRouters['贷后管理'],
     title: '贷后管理',
-    icon:  LocalAtm,
+    icon: LocalAtm,
     component: Layout(C7[0], C7[1]),
   },
   {
@@ -83,7 +83,7 @@ const Routers = [
   }, {
     path: subRouters['参数配置'],
     title: '参数配置',
-    icon:  Layers,
+    icon: Layers,
     component: Layout(C11[0], C11[1])
   }
 ];

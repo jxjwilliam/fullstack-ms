@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {compose} from 'recompose';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { compose } from 'recompose';
 import axios from 'axios'
 import {
   Avatar,
@@ -16,10 +16,10 @@ import {
   Typography,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import {makeStyles} from '@material-ui/core/styles';
-import {withStyles} from '@material-ui/styles';
-import {DEFAULT_HOME_PAGE} from '../helpers/constants'
-import {loginAction} from '../state/actions'
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { DEFAULT_HOME_PAGE } from '../helpers/constants'
+import { loginAction } from '../state/actions'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,7 +66,7 @@ class Login extends Component {
 
   // this.setState({[e.target.id]: e.target.value});
   handleChange = e => {
-    this.setState({login: {...this.state.login, [e.target.id]: e.target.value}})
+    this.setState({ login: { ...this.state.login, [e.target.id]: e.target.value } })
   }
 
   handleSubmit = ev => {
@@ -74,36 +74,36 @@ class Login extends Component {
     // TODO validates, post a form-body
     this.props.loginAction(this.state.login)
       .then(data => {
-        const {loggedIn} = this.props.auth;
+        const { loggedIn } = this.props.auth;
         if (loggedIn) {
-          this.setState({done: true});
+          this.setState({ done: true });
           sessionStorage.setItem("authToken", this.props.auth.token)
         }
         else {
-          this.setState({done: false, title: this.props.auth.msg});
+          this.setState({ done: false, title: this.props.auth.msg });
           sessionStorage.removeItem("authToken")
         }
       })
   }
 
   render() {
-    const {classes} = this.props;
-    const {login: {user, password}, done} = this.state;
+    const { classes } = this.props;
+    const { login: { user, password }, done } = this.state;
     //if (this.props.auth.isAuthenticated())
     if (done) {
-      return <Redirect to={DEFAULT_HOME_PAGE}/>
+      return <Redirect to={DEFAULT_HOME_PAGE} />
     }
     return (
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image}/>
+        <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              盟信
+            微服务 POC
             </Typography>
             <form className={classes.form} noValidate>
               <TextField
@@ -131,7 +131,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary"/>}
+                control={<Checkbox value="remember" color="primary" />}
                 label="记住我"
               />
               <Button
@@ -166,9 +166,9 @@ class Login extends Component {
 }
 
 export default compose(
-  withStyles(useStyles, {name: 'login2'}),
+  withStyles(useStyles, { name: 'login2' }),
   connect(
-    state => ({auth: state.auth}),
-    {loginAction}
+    state => ({ auth: state.auth }),
+    { loginAction }
   )
 )(Login);

@@ -1,22 +1,22 @@
 {
   "operate": "操作",
-  "mengxin_no": "盟信编号",
-  "mengxin_amount": "盟信金额（元）",
+  "mengxin_no": "POC编号",
+  "mengxin_amount": "POC金额（元）",
   "payment_amount": "还款金额（元）",
   "receiver": "接收方",
   "committed_payment_date": "承诺付款日",
   "remark": "附言",
   //// 还款审批
   "operate": "操作",
-  "mengxin_no": "盟信编号",
-  "mengxin_amount": "盟信金额（元）",
+  "mengxin_no": "POC编号",
+  "mengxin_amount": "POC金额（元）",
   "payment_amount": "还款金额（元）",
   "receiver": "接收方",
   "committed_payment_date": "承诺付款日",
   "remark": "附言",
   //// 已还款
-  "mengxin_no": "盟信编号",
-  "mengxin_amount": "盟信金额（元）",
+  "mengxin_no": "POC编号",
+  "mengxin_amount": "POC金额（元）",
   "payment_amount": "还款金额（元）",
   "receiver": "接收方",
   "committed_payment_date": "承诺付款日",
@@ -27,5 +27,5 @@
   //// 罚息管理
   //// 运营管理
   "clear": "清算",
-  "mengxin_tobe_clear": "盟信待清算"
+  "mengxin_tobe_clear": "POC待清算"
 }

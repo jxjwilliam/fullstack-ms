@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
@@ -10,27 +10,27 @@ import {
   BarChart as BarChartIcon,
   Layers as LayersIcon
 } from '@material-ui/icons';
-import {Accordion} from '../components'
+import { Accordion } from '../components'
 import subRouters from './common'
-import {C2_1} from './containers'
+import { C2_1 } from './containers'
 
-const PARENT_PATH = subRouters['盟信管理'];
+const PARENT_PATH = subRouters['POC管理'];
 
 const Info = [
   {
-    path: "我的盟信",
+    path: "我的POC",
     icon: BarChartIcon
   },
   {
-    path: '盟信开具制单',
+    path: 'POC开具制单',
     icon: LayersIcon
   },
   {
-    path: '盟信开具复核',
+    path: 'POC开具复核',
     icon: PeopleIcon
   },
   {
-    path: '已开盟信',
+    path: '已开POC',
     icon: PeopleIcon,
     component: C2_1,
   }
@@ -48,7 +48,7 @@ export const Menu2 = () => {
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
-        <ListItemText primary={item.path}/>
+        <ListItemText primary={item.path} />
       </ListItem>
     )
   });
@@ -57,7 +57,7 @@ export const Menu2 = () => {
     <div>
       {list}
       <ListItem>
-        <Accordion/>
+        <Accordion />
       </ListItem>
     </div>
   );
@@ -69,12 +69,12 @@ export const Content2 = () => {
       {Info.map(item => {
         if (item.component) {
           return (
-            <Route path={`${PARENT_PATH}/${item.path}`} component={item.component} key={item.path}/>
+            <Route path={`${PARENT_PATH}/${item.path}`} component={item.component} key={item.path} />
           )
         }
         else {
           return (
-            <Route path={`${PARENT_PATH}/${item.path}`} render={() => <h2>{item.path}</h2>} key={item.path}/>
+            <Route path={`${PARENT_PATH}/${item.path}`} render={() => <h2>{item.path}</h2>} key={item.path} />
           )
         }
       })

@@ -1,4 +1,4 @@
-import {Layout} from '../components'
+import { Layout } from '../components'
 import {
   FormatListNumberedRtl,
   InsertChart,
@@ -8,12 +8,12 @@ import {
   Description
 } from '@material-ui/icons'
 
-import {Menu1, Content1} from './C1'
-import {Menu2, Content2} from './C2'
-import {Menu3, Content3} from './C3'
-import {Menu4, Content4} from './C4'
-import {ListMenu, ListContent} from './List'
-import {HelpMenu, HelpContent} from './Helper'
+import { Menu1, Content1 } from './C1'
+import { Menu2, Content2 } from './C2'
+import { Menu3, Content3 } from './C3'
+import { Menu4, Content4 } from './C4'
+import { ListMenu, ListContent } from './List'
+import { HelpMenu, HelpContent } from './Helper'
 import subRouters from './common'
 
 const C1 = Layout(Menu1, Content1)
@@ -25,20 +25,20 @@ const Helper = Layout(HelpMenu, HelpContent)
 
 const Routers = [
   {
-    path: subRouters['盟信额度'],
-    title: '盟信额度',
+    path: subRouters['POC额度'],
+    title: 'POC额度',
     icon: FormatListNumberedRtl,
     component: C1,
   },
   {
-    path: subRouters['盟信管理'],
-    title: '盟信管理',
+    path: subRouters['POC管理'],
+    title: 'POC管理',
     icon: InsertChart,
     component: C2,
   },
   {
-    path: subRouters['盟信流转'],
-    title: '盟信流转',
+    path: subRouters['POC流转'],
+    title: 'POC流转',
     icon: ContactSupport,
     component: C3
   },

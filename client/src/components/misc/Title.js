@@ -20,7 +20,7 @@ export default function Title() {
           fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
           p={{ xs: 2, sm: 3, md: 4 }}
         >
-          盟信系统
+          POC系统
         </Box>
       </ThemeProvider>
     </NoSsr>

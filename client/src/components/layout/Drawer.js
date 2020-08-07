@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import {makeStyles} from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Drawer,
   List,
@@ -10,9 +10,9 @@ import {
   ListItemText,
   IconButton,
 } from '@material-ui/core';
-import {Menu as MenuIcon} from '@material-ui/icons';
+import { Menu as MenuIcon } from '@material-ui/icons';
 
-import {BusinessRouters, GeneralRouters} from '../../routers';
+import { BusinessRouters, GeneralRouters } from '../../routers';
 
 const useStyles = makeStyles({
   list: {
@@ -34,7 +34,7 @@ export default function () {
       return;
     }
 
-    setState({...state, [side]: open});
+    setState({ ...state, [side]: open });
   };
 
   const sideList = side => (
@@ -54,8 +54,8 @@ export default function () {
               to={router.path}
               key={router.path}
             >
-              <ListItemIcon><CompIcon/></ListItemIcon>
-              <ListItemText primary={router.title}/>
+              <ListItemIcon><CompIcon /></ListItemIcon>
+              <ListItemText primary={router.title} />
             </ListItem>
           )
         })}
@@ -72,7 +72,7 @@ export default function () {
               key={router.path}
             >
               <ListItemIcon><CompIcon /></ListItemIcon>
-              <ListItemText primary={router.title}/>
+              <ListItemText primary={router.title} />
             </ListItem>
           )
         })}
@@ -82,18 +82,22 @@ export default function () {
 
   return (
     <>
-    <IconButton
-      edge="start"
-      className={classes.menuButton}
-      color="inherit"
-      aria-label="open drawer"
-      onClick={toggleDrawer('right', true)}
-    >
-      <MenuIcon />
-    </IconButton>
-    <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-      {sideList('right')}
-    </Drawer>
+      <IconButton
+        edge="start"
+        className={classes.menuButton}
+        color="inherit"
+        aria-label="open drawer"
+        onClick={toggleDrawer('right', true)}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Drawer
+        anchor="right"
+        open={state.right}
+        onClose={toggleDrawer('right', false)}
+      >
+        {sideList('right')}
+      </Drawer>
     </>
   );
 }

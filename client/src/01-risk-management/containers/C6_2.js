@@ -3,12 +3,12 @@ import TabPanels from './TabPanels'
 
 export default function () {
   const ary = [
-    '盟信开立审核',
-    '开立中盟信',
-    '已开盟信',
-    '已退回盟信',
+    'POC开立审核',
+    '开立中POC',
+    '已开POC',
+    '已退回POC',
     '批量审核结果',
   ];
 
-  return <TabPanels ary={ary}/>;
+  return <TabPanels ary={ary} />;
 }

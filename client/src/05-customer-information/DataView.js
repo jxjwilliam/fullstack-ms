@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import {defer, capitalize, fetching} from '../helpers/utils'
+import { defer, capitalize, fetching } from '../helpers/utils'
 import {
   Group,
   CheckCircleOutline,
@@ -22,7 +22,7 @@ import {
   DirectionsRun,
   Person
 } from '@material-ui/icons';
-import {subRouters} from './common';
+import { subRouters } from './common';
 
 const PARENT_PATH = subRouters['现有数据'];
 // const PARENT_PATH = '/general/dataview';
@@ -38,13 +38,13 @@ class View extends Component {
   }
 
   componentDidMount() {
-    fetching('/api/' + this.props.table, {token: this.state.hasToken})
+    fetching('/api/' + this.props.table, { token: this.state.hasToken })
       .then(data => {
         // fix Warning: `value` prop on `input` should not be null.
         // TODO: a better implementation in server-side?
         data.forEach(d => Object.keys(d).forEach(o => (d[o] === undefined || d[o] === null) ? d[o] = '' : ''));
-        const columns = Object.keys(data[0]).map(c => ({path: c, field: c}))
-        this.setState({columns, data})
+        const columns = Object.keys(data[0]).map(c => ({ path: c, field: c }))
+        this.setState({ columns, data })
       })
   }
 
@@ -61,7 +61,7 @@ class View extends Component {
   }
 
   render() {
-    const {columns, data} = this.state;
+    const { columns, data } = this.state;
     const path = capitalize(this.props.table);
     return (
       <MaterialTable
@@ -118,7 +118,7 @@ const ListInfo = [
     component: setView('profile')
   },
   {
-    path: '盟信管理',
+    path: 'POC管理',
     icon: SupervisorAccount,
     component: setView('admin')
   },
@@ -166,7 +166,7 @@ export const DataViewMenu = () => {
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
-        <ListItemText primary={item.path}/>
+        <ListItemText primary={item.path} />
       </ListItem>
     )
   });

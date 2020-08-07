@@ -6,7 +6,7 @@ export const subRootAry3 = [
   "已处理"
 ];
 
-const PARENT_PATH = '/核心企业及供应商/盟信流转';
+const PARENT_PATH = '/核心企业及供应商/POC流转';
 const PATH = '转让回执';
 
 export default getSubRouters(PARENT_PATH, PATH, subRootAry3);

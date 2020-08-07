@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
@@ -14,7 +14,7 @@ export const subRouters = [
   '评级限额',
   '授信审批',
   '额度管理',
-  '盟信',
+  '文档管理',
   '贷后管理',
   '还款',
   '运营管理',
@@ -33,7 +33,7 @@ export const getMenu = (parent_path, info) => () => {
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
-        <ListItemText primary={item.path}/>
+        <ListItemText primary={item.path} />
       </ListItem>
     )
   })

@@ -215,7 +215,7 @@ function Bar2(props) {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar style={{ backgroundColor: '#1d4583' }}>
+        <Toolbar>
           {children}
           <div className={classes.sectionDesktop}>
             <IconButton

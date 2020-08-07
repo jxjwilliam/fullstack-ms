@@ -1,7 +1,7 @@
 {
-  "mengxin_no": "盟信编号",
+  "mengxin_no": "POC编号",
   "receiver": "支付方",
-  "mengxin_amount": "盟信金额（元）",
+  "mengxin_amount": "POC金额（元）",
   "issuer": "开立方",
   "committed_payment_date": "承诺付款日",
   "actual_payment_date": "实际付款日",

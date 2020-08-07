@@ -5,28 +5,28 @@ import {
   MergeType,
   MoveToInbox
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
-import {C6_2, C6_3, C6_4} from './containers'
+import { subRouters, getMenu, getContent } from './common';
+import { C6_2, C6_3, C6_4 } from './containers'
 
-const PARENT_PATH = subRouters['盟信'];
+const PARENT_PATH = subRouters['POC'];
 
 const Info = [
   {
-    path: "全部盟信",
+    path: "全部POC",
     icon: CallToAction
   },
   {
-    path: "盟信开立",
+    path: "POC开立",
     icon: OpenInBrowser,
     component: C6_2
   },
   {
-    path: "盟信融资",
+    path: "POC融资",
     icon: MergeType,
     component: C6_3
   },
   {
-    path: "盟信流转",
+    path: "POC流转",
     icon: MoveToInbox,
     component: C6_4
   },

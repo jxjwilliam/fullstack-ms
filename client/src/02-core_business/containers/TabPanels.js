@@ -1,11 +1,11 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Tabs,
   Tab,
   Paper,
 } from '@material-ui/core';
-import {TabPanel} from '../../components'
+import { TabPanel } from '../../components'
 
 
 function a11yProps(index) {
@@ -32,7 +32,7 @@ export default function (props) {
   const ary = props.ary || [];
 
   const TabList = ary.map((tab, inx) => (
-    <Tab label={tab} {...a11yProps({inx})} key={`${tab}_${inx}`}/>
+    <Tab label={tab} {...a11yProps({ inx })} key={`${tab}_${inx}`} />
   ));
 
   const TabPanelList = value => ary.map((tab, inx) => (
@@ -43,12 +43,12 @@ export default function (props) {
 
   return (
     <>
-    <Paper className={classes.root}>
-      <Tabs value={value} onChange={handleChange} aria-label="可用盟信">
-        {TabList}
-      </Tabs>
-    </Paper>
-    {TabPanelList(value)}
+      <Paper className={classes.root}>
+        <Tabs value={value} onChange={handleChange} aria-label="可用POC">
+          {TabList}
+        </Tabs>
+      </Paper>
+      {TabPanelList(value)}
     </>
   );
 }

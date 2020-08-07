@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
@@ -11,18 +11,18 @@ import {
   Layers as LayersIcon
 } from '@material-ui/icons';
 import subRouters from './common'
-import {C3_1, C3_2, C3_3} from './containers'
+import { C3_1, C3_2, C3_3 } from './containers'
 
-const PARENT_PATH = subRouters['盟信流转'];
+const PARENT_PATH = subRouters['POC流转'];
 
 const Info = [
   {
-    path: "盟信收支",
+    path: "POC收支",
     icon: BarChartIcon,
     component: C3_1,
   },
   {
-    path: "盟信融资",
+    path: "POC融资",
     icon: LayersIcon,
     component: C3_2
   },
@@ -41,7 +41,7 @@ export const Menu3 = () => {
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
-        <ListItemText primary={item.path}/>
+        <ListItemText primary={item.path} />
       </ListItem>
     )
   });

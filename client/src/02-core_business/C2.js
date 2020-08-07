@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
@@ -12,16 +12,16 @@ import {
   AssignmentTurnedIn,
   OpenInBrowser,
 } from '@material-ui/icons';
-import {Accordion} from '../components'
-import subRouters, {SetView} from './common'
-import C2_1, {subRootAry} from './containers/C2_1'
+import { Accordion } from '../components'
+import subRouters, { SetView } from './common'
+import C2_1, { subRootAry } from './containers/C2_1'
 import SimpleFileUpload from '../components/uploads/SimpleFileUpload';
 
-const PARENT_PATH = subRouters['盟信管理'];
+const PARENT_PATH = subRouters['POC管理'];
 
 const Info = [
   {
-    path: "我的盟信",
+    path: "我的POC",
     icon: Person,
     component: SetView('m2-1'),
   },
@@ -31,17 +31,17 @@ const Info = [
   //   component: SetView('m2-2'),
   // },
   {
-    path: '盟信开具制单',
+    path: 'POC开具制单',
     icon: Description,
     component: SetView('m2-3'),
   },
   {
-    path: '盟信开具复核',
+    path: 'POC开具复核',
     icon: AssignmentTurnedIn,
     component: SetView('m2-4'),
   },
   {
-    path: '已开盟信',
+    path: '已开POC',
     icon: OpenInBrowser,
   }
 ];
@@ -49,24 +49,24 @@ const Info = [
 export const Menu2 = () => {
   const list = Info.map((item, index) => {
     const CompIcon = item.icon;
-    return index === 3 ? <C2_1 key="C2_1"/> : (
-        <ListItem
-          button
-          component={Link}
-          to={`${PARENT_PATH}/${item.path}`}
-          key={item.path}>
-          <ListItemIcon>
-            <CompIcon />
-          </ListItemIcon>
-          <ListItemText primary={item.path}/>
-        </ListItem>
-      )
+    return index === 3 ? <C2_1 key="C2_1" /> : (
+      <ListItem
+        button
+        component={Link}
+        to={`${PARENT_PATH}/${item.path}`}
+        key={item.path}>
+        <ListItemIcon>
+          <CompIcon />
+        </ListItemIcon>
+        <ListItemText primary={item.path} />
+      </ListItem>
+    )
   });
 
   return (
     <div>
       {list}
-      <ListItem><Accordion/></ListItem>
+      <ListItem><Accordion /></ListItem>
     </div>
   );
 };

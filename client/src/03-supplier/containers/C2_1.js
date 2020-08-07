@@ -1,11 +1,11 @@
 import React from 'react';
 import TabPanels from './TabPanels'
 
-export default function() {
+export default function () {
   const ary = [
-    "开立中盟信",
-    "已开盟信",
-    "已退回盟信",
+    "开立中POC",
+    "已开POC",
+    "已退回POC",
     "批量审核结果"
   ];
 

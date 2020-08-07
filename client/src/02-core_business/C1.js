@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemIcon,
@@ -10,10 +10,10 @@ import {
   BarChart as BarChartIcon,
   Layers as LayersIcon
 } from '@material-ui/icons';
-import {Accordion} from '../components'
-import subRouters, {SetView} from './common';
+import { Accordion } from '../components'
+import subRouters, { SetView } from './common';
 
-const PARENT_PATH = subRouters['盟信额度'];
+const PARENT_PATH = subRouters['POC额度'];
 
 const Info = [
   {
@@ -31,14 +31,14 @@ export const Menu1 = () => {
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
-        <ListItemText primary={item.path}/>
+        <ListItemText primary={item.path} />
       </ListItem>
     )
   })
   return (
     <div>
       {list}
-      <ListItem><Accordion/></ListItem>
+      <ListItem><Accordion /></ListItem>
     </div>
   );
 };
@@ -51,7 +51,7 @@ export const Content1 = () => {
         <Route
           path={`${PARENT_PATH}/${item.path}`}
           component={item.component}
-          key={item.path}/>
+          key={item.path} />
       ))}
     </Switch>
   )

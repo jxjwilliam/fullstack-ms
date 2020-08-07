@@ -1,7 +1,7 @@
 {
   "operate": "操作",
-  "mengxin_no": "盟信编号",
-  "mengxin_amount": "盟信金额（元）",
+  "mengxin_no": "POC编号",
+  "mengxin_amount": "POC金额（元）",
   "financing_amount": "融资金额（元）",
   "estimated_rate": "预计融资利率",
   "estimated_net_amount": "预计融资净额",

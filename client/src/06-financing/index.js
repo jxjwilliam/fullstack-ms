@@ -5,8 +5,8 @@ import {
   Link,
 } from '@material-ui/core';
 import Routers from './sub-routers'
-import {Drawer, bars} from '../components'
-import {NavList, RouteList} from '../helpers/reusable'
+import { Drawer, bars } from '../components'
+import { NavList, RouteList } from '../helpers/reusable'
 
 const BASE = '/financing';
 
@@ -18,7 +18,7 @@ export default function (props) {
         <bars.Bar2>
           <Drawer />
           <Typography>
-            <Link href={BASE} color="inherit" variant="h6">盟信融资</Link>
+            <Link href={BASE} color="inherit" variant="h6">POC融资</Link>
           </Typography>
           <NavList navs={Routers} />
         </bars.Bar2>

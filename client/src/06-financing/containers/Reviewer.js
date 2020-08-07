@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import MaterialTable from 'material-table';
-import {fetching} from '../../helpers/utils'
+import { fetching } from '../../helpers/utils'
 
 // 复核人Reviewer
 // 签收已处理
 export class ReviewSigned extends Component {
   state = {
     columns: [
-      {title: '状态', field: 'status'},
-      {title: '盟信编号', field: 'mx_no'},
-      {title: '开具方', field: 'issuer'},
-      {title: '接收方', field: 'receiver'},
-      {title: '盟信金额', field: 'amount'},
-      {title: '承兑付款日', field: 'acceptance_payment_date'},
-      {title: '开具类型', field: 'issue_type'},
-      {title: '开具日期', field: 'issue_date'},
-      {title: '操作', field: ''},
+      { title: '状态', field: 'status' },
+      { title: 'POC编号', field: 'mx_no' },
+      { title: '开具方', field: 'issuer' },
+      { title: '接收方', field: 'receiver' },
+      { title: 'POC金额', field: 'amount' },
+      { title: '承兑付款日', field: 'acceptance_payment_date' },
+      { title: '开具类型', field: 'issue_type' },
+      { title: '开具日期', field: 'issue_date' },
+      { title: '操作', field: '' },
     ],
     data: [{
       status: '',
@@ -27,16 +27,16 @@ export class ReviewSigned extends Component {
       issue_type: '',
       issue_date: ''
     }],
-    title: '签收盟信1'
+    title: '签收POC1'
   }
 
   componentDidMount() {
     fetching('/data/reviewer1')
-      .then(data => this.setState({data}))
+      .then(data => this.setState({ data }))
   }
 
   render() {
-    const {columns, data, title} = this.state;
+    const { columns, data, title } = this.state;
     return (
       <MaterialTable
         title={title}
@@ -47,18 +47,18 @@ export class ReviewSigned extends Component {
   }
 }
 
-// 可用盟信
+// 可用POC
 export class ReviewAvailable extends Component {
   state = {
     columns: [
-      {title: '盟信编号', field: 'mx_no'},
-      {title: '开具方', field: 'issuer'},
-      {title: '接收方', field: 'receiver'},
-      {title: '盟信金额', field: 'amount'},
-      {title: '可用金额', field: 'available_amount'},
-      {title: '承兑付款日', field: 'acceptance_payment_date'},
-      {title: '开具日期', field: 'issue_date'},
-      {title: '操作', field: ''},
+      { title: 'POC编号', field: 'mx_no' },
+      { title: '开具方', field: 'issuer' },
+      { title: '接收方', field: 'receiver' },
+      { title: 'POC金额', field: 'amount' },
+      { title: '可用金额', field: 'available_amount' },
+      { title: '承兑付款日', field: 'acceptance_payment_date' },
+      { title: '开具日期', field: 'issue_date' },
+      { title: '操作', field: '' },
     ],
     data: [{
       mx_no: '',
@@ -69,16 +69,16 @@ export class ReviewAvailable extends Component {
       acceptance_payment_date: '',
       issue_date: '',
     }],
-    title: '可用盟信'
+    title: '可用POC'
   }
 
   componentDidMount() {
     fetching('/data/reviewer1')
-      .then(data => this.setState({data}))
+      .then(data => this.setState({ data }))
   }
 
   render() {
-    const {columns, data, title} = this.state;
+    const { columns, data, title } = this.state;
     return (
       <MaterialTable
         title={title}
@@ -93,14 +93,14 @@ export class ReviewAvailable extends Component {
 export class ReviewFinancing extends Component {
   state = {
     columns: [
-      {title: '盟信编号', field: 'mx_no'},
-      {title: '开具方', field: 'issuer'},
-      {title: '接收方', field: 'receiver'},
-      {title: '盟信金额', field: 'amount'},
-      {title: '可用金额', field: 'available_amount'},
-      {title: '承兑付款日', field: 'acceptance_payment_date'},
-      {title: '开具日期', field: 'issue_date'},
-      {title: '操作', field: ''},
+      { title: 'POC编号', field: 'mx_no' },
+      { title: '开具方', field: 'issuer' },
+      { title: '接收方', field: 'receiver' },
+      { title: 'POC金额', field: 'amount' },
+      { title: '可用金额', field: 'available_amount' },
+      { title: '承兑付款日', field: 'acceptance_payment_date' },
+      { title: '开具日期', field: 'issue_date' },
+      { title: '操作', field: '' },
     ],
     data: [],
     title: '已融资',
@@ -108,11 +108,11 @@ export class ReviewFinancing extends Component {
 
   componentDidMount() {
     fetching('/data/reviewer1')
-      .then(data => this.setState({data}))
+      .then(data => this.setState({ data }))
   }
 
   render() {
-    const {columns, data, title} = this.state;
+    const { columns, data, title } = this.state;
     return (
       <MaterialTable
         title={title}
@@ -127,14 +127,14 @@ export class ReviewFinancing extends Component {
 export class ReviewAcceptance extends Component {
   state = {
     columns: [
-      {title: '盟信编号', field: 'mx_no'},
-      {title: '开具方', field: 'issuer'},
-      {title: '接收方', field: 'receiver'},
-      {title: '盟信金额', field: 'amount'},
-      {title: '可用金额', field: 'available_amount'},
-      {title: '承兑付款日', field: 'acceptance_payment_date'},
-      {title: '开具日期', field: 'issue_date'},
-      {title: '操作', field: ''},
+      { title: 'POC编号', field: 'mx_no' },
+      { title: '开具方', field: 'issuer' },
+      { title: '接收方', field: 'receiver' },
+      { title: 'POC金额', field: 'amount' },
+      { title: '可用金额', field: 'available_amount' },
+      { title: '承兑付款日', field: 'acceptance_payment_date' },
+      { title: '开具日期', field: 'issue_date' },
+      { title: '操作', field: '' },
     ],
     data: [],
     title: '已承兑',
@@ -142,11 +142,11 @@ export class ReviewAcceptance extends Component {
 
   componentDidMount() {
     fetching('/data/reviewer1')
-      .then(data => this.setState({data}))
+      .then(data => this.setState({ data }))
   }
 
   render() {
-    const {columns, data, title} = this.state;
+    const { columns, data, title } = this.state;
     return (
       <MaterialTable
         title={title}

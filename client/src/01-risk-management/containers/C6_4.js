@@ -3,14 +3,14 @@ import TabPanels from './TabPanels'
 
 export default function () {
   const ary = [
-    '盟信流转审核',
-    '可用盟信',
-    '支付中盟信',
-    '已融资盟信',
-    '已支付盟信',
-    '已到期盟信',
-    '原始盟信',
+    'POC流转审核',
+    '可用POC',
+    '支付中POC',
+    '已融资POC',
+    '已支付POC',
+    '已到期POC',
+    '原始POC',
   ];
 
-  return <TabPanels ary={ary}/>;
+  return <TabPanels ary={ary} />;
 }

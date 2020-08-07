@@ -5,11 +5,14 @@ import {
   Typography,
   Link,
 } from '@material-ui/core';
-import { BASE } from './config'
+import Routers from './sub-routers'
+import {Drawer, bars} from '../components'
+import {NavList, RouteList} from '../config/reusable'
 
+const BASE = '/financing';
 
+// TODO: props: {history, location, match}
 export default function (props) {
-  console.log('TODO: ', props)
   return (
     <Fragment>
       <CssBaseline />

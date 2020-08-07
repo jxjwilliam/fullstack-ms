@@ -38,11 +38,11 @@ const useStyles = makeStyles(theme => ({
 function AuthMessage(props) {
   const classes = useStyles();
 
-  if (!props.auth || !props.auth.loginInfo) return null;
+  // if (!props.auth || !props.auth.loginInfo) return null;
 
   let loginInfo = loginInfos();
 
-  const { account, name, organization = { name: '' }, roles } = loginInfo;
+  const { account='测试用户', name='微服务', organization = { name: '微服务企业' }, roles=[{name:'操作员'}] } = loginInfo;
 
   let rolesNames = '';
   try {

@@ -6,7 +6,8 @@ import Company from './02-core_business'
 import Supplier from './03-supplier'
 import Certificate from './04-certificate'
 import General from './05-customer-information'
-import Financing from './Financing'
+import Financing from './06-financing'
+// import Financing from './Financing'
 import {C404} from './components'
 import {
   OfflineBolt,

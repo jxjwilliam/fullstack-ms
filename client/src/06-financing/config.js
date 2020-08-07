@@ -1,35 +1,23 @@
-import React, { Fragment } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
 import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@material-ui/core';
-import {
-  ContactSupport, Shop, Apps, People,
-  SupervisedUserCircle,
-  ContactMail,
-  WrapText,
-  Textsms,
-  FilterVintage,
-  TrackChanges,
+  Apps,
+  ContactMail, ContactSupport,
   Description,
-  PersonPin,
+  FilterVintage, People, PersonPin, Shop,
   SupervisedUserCircle,
-  ContactMail,
-  WrapText,
   Textsms,
-  FilterVintage,
   TrackChanges,
-  Description,
-  FilterVintage,
-  TrackChanges,
-  SupervisedUserCircle,
-  ContactMail,
-  WrapText,
-} from '@material-ui/icons';
-import { Route } from 'react-router-dom';
-import Accordion from '../components/Accordion'
+  WrapText
+} from "@material-ui/icons";
+
+const MenuTree = [
+  ['用户中心', ["账户信息", "交易信息", "人员管理",  "企业信息", "个人信息", "邀请企业"]],
+  ['盟信管理', ["签收盟信", "可用盟信"]],
+  ['盟信融资', ["资产买入", "已经买入资产", "资产管理", "未承兑资产", "已承兑资产", "利率设置"]],
+  ['人员管理', ["人员管理1", "人员管理2", "人员管理3"]],
+  ['企业设置', ["签收盟信2", "可用盟信"]],
+];
+
+export default new Map(MenuTree);
 
 /**
  * TODO: Object.entries, reduce/map, Map/Set, Array.from/Array.fromEntries, recursive
@@ -43,6 +31,13 @@ import Accordion from '../components/Accordion'
  *     <Resource component=SubMenu3 ...props />
  * </Resource>
  */
+
+/**
+ * TODO: recursive
+ */
+
+
+
 const Routers = [
   {
     path: subRouters['用户中心'],
@@ -73,13 +68,6 @@ const Routers = [
   }
 ];
 
-const subRouters = [
-  '用户中心',
-  '盟信管理',
-  '盟信融资',
-  '人员管理',
-  '企业设置'
-]
 
 const AccountCenter = {
   base: '用户中心',
@@ -199,46 +187,3 @@ const Corporation = {
     },
   ]
 };
-
-
-function getMenu(items) {
-  const list = items.map(item => {
-    const CompIcon = item.icon
-    return (
-      <ListItem
-        button
-        component={Link}
-        to={`${item.path}`}
-        key={item.path}
-      >
-        <ListItemIcon>
-          <CompIcon />
-        </ListItemIcon>
-        <ListItemText primary={item.path} />
-      </ListItem >
-    )
-  })
-  return (
-    <Fragment>
-      {list}
-      <ListItem>
-        <Accordion />
-      </ListItem>
-    </Fragment>
-  )
-}
-
-function getContent(items) {
-  return (
-    <Switch>
-      {items.map(item => (
-        <Route
-          path={`${item.path}`}
-          component={item.component}
-          key={item.path}
-        />
-      ))
-      }
-    </Switch>
-  )
-}

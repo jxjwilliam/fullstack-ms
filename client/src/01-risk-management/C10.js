@@ -4,7 +4,7 @@ import {
   ListAlt,
   CallToAction
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
+import {subRouters, getMenu, getContent} from './config';
 
 const PARENT_PATH = subRouters['流程管理'];
 

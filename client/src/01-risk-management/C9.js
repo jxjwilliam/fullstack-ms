@@ -4,7 +4,7 @@ import {
   AlarmOn,
   ChromeReaderMode,
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
+import {subRouters, getMenu, getContent} from './config';
 import {C9_1} from './containers'
 const PARENT_PATH = subRouters['运营管理'];
 

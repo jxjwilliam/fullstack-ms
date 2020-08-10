@@ -1,17 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch, Redirect, Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import {
-  Container,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Typography,
-  Link as MuiLink,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { isEmpty } from './utils'
-import { bars, Drawer } from '../components'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +39,7 @@ const NavList = ({ navs }) => {
         to={router.path}
         key={router.path}
       >
+        <ListItemIcon />
         <CompIcon fontSize="small" />
         <ListItemText className={classes.item} primary={router.title} />
       </ListItem>
@@ -51,7 +47,7 @@ const NavList = ({ navs }) => {
   })
   return (
     <>
-      <ul className={classes.root}>{navList}</ul>
+      <List className={classes.root}>{navList}</List>
     </>
   )
 }

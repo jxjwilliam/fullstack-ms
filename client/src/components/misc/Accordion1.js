@@ -11,11 +11,13 @@ import {
 } from '@material-ui/core';
 import {
   ExpandMore as ExpandMoreIcon,
-  History as HistoryIcon,
   SupervisorAccount as SupervisorAccountIcon,
+  History as HistoryIcon,
+  Help as HelpIcon,
 } from '@material-ui/icons';
 import { loginInfos } from '../../helpers/utils';
 import { Emails, Contacts} from "../../constants";
+import { version } from '../../../package'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,7 +70,7 @@ function getOperatorInfo () {
   const { account='测试用户', name='微服务', organization={name:'微服务企业'}, roles=[{name:'操作员'}] } = loginInfos();
   const rolesNames = roles.map(r => r.name).join(',') || ''
   const title = '操作员信息'
-  const icon = HistoryIcon
+  const icon = SupervisorAccountIcon
 
   const aryInfo = [
     `企业：${organization.name}`,
@@ -86,7 +88,7 @@ function getOperatorInfo () {
 
 function getHelperInfo () {
   const title = '获取帮助';
-  const icon = SupervisorAccountIcon;
+  const icon = HelpIcon
   const aryInfo = [
     `技术支持部: `,
     ` ☎ ${Contacts.office}`,
@@ -99,22 +101,26 @@ function getHelperInfo () {
   return <MenuMessage title={title} icon={icon} info={aryInfo}/>
 }
 
+function getVersionInfo () {
+  const title = '发行版本'
+  const icon = HistoryIcon
+  const aryInfo = [
+    `当前版本: `,
+    `‍🚀 ${version}`,
+  ]
+
+  return <MenuMessage title={title} icon={icon} info={aryInfo} />
+}
+
 function HideInfo () {
-  return (
-    <Fragment>
-      <Divider />
-      <Accordion defaultExpanded={true}>
+  const list = [SupervisorAccountIcon, HelpIcon, HelpIcon].map((Icon, index) => (
+    <Accordion defaultExpanded={true} key={index}>
       <ListItemIcon>
-        <HistoryIcon />
+        <Icon />
       </ListItemIcon>
-      </Accordion>
-    <Accordion defaultExpanded={true}>
-      <ListItemIcon>
-        <SupervisorAccountIcon/>
-      </ListItemIcon>
-      </Accordion>
-    </Fragment>
-  )
+    </Accordion>
+  ))
+  return <Fragment><Divider />{list}</Fragment>
 }
 
 export {

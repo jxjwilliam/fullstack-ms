@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {getMenu1Action, getMenu2Action} from "../state/actions";
 import { getPageLayout } from '../components/layout/jsx'
 import Routers from './sub-routers'
-import { BASE } from './common'
+import { BASE } from './config'
 
 class RiskManagement extends Component {
   state = {

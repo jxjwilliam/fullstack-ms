@@ -1,5 +1,5 @@
 import React from 'react';
-import TabPanels from './TabPanels'
+import {TabPanels} from '../../components'
 import getSubRouters from './helper';
 
 const PARENT_PATH = '/核心企业及供应商/POC管理';

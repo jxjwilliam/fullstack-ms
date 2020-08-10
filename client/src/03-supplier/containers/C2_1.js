@@ -1,5 +1,5 @@
 import React from 'react';
-import TabPanels from './TabPanels'
+import {TabPanels} from '../../components'
 
 export default function () {
   const ary = [

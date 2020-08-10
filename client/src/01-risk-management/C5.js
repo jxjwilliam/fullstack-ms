@@ -4,7 +4,7 @@ import {
   QueryBuilder as QueryBuilderIcon,
   LocalFlorist as LocalFloristIcon
 } from '@material-ui/icons';
-import { subRouters, getMenu, getContent } from './common';
+import { subRouters, getMenu, getContent } from './config';
 import { C5_2 } from './containers'
 
 const PARENT_PATH = subRouters['额度管理'];

@@ -7,7 +7,7 @@ import Supplier from './03-supplier'
 import Certificate from './04-certificate'
 import General from './05-customer-information'
 import Financing from './06-financing'
-import {C404} from './components/misc'
+import {C404} from './containers'
 import {
   OfflineBolt,
   Business,

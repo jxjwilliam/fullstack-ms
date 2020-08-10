@@ -3,7 +3,7 @@ import {
   QueryBuilder as QueryBuilderIcon,
   LocalFlorist as LocalFloristIcon
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
+import {subRouters, getMenu, getContent} from './config';
 
 const PARENT_PATH = subRouters['授信审批'];
 

@@ -23,5 +23,4 @@ $ yarn add -D eslint-config-airbnb eslint-config-prettier eslint-plugin-jsx-a11y
 
 ```shell
 $ npx install-peerdeps --dev eslint-config-react-app
-
 ```

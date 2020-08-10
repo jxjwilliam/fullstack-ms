@@ -23,7 +23,7 @@ import {
   ExpandLess,
   ExpandMore,
 } from '@material-ui/icons';
-import TabPanels from '../../components/tabs/TabPanels'
+import TabPanels from '../../components/misc/TabPanels'
 
 export default function() {
   const ary = [

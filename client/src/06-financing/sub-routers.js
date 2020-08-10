@@ -16,7 +16,7 @@ import {
   PersonPin,
 } from '@material-ui/icons';
 import { Layout } from '../components'
-import { tmpRender } from '../components/layout/jsx'
+import { renderTemplate } from '../components/layout/jsx'
 
 export const BASE = '/financing';
 
@@ -211,7 +211,7 @@ function getContent(key, items) {
             <Route
               path={url}
               // component={item.component}
-              render={tmpRender}
+              render={renderTemplate}
               key={item.path}
             />
           )

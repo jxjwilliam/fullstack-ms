@@ -9,7 +9,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { isEmpty } from "../../helpers/utils";
 import { bars, Drawer } from "../index";
-
+import { NavList } from '../headers'
 
 const RouteList = ({ routes, redirect = {} }) => {
   return (
@@ -56,7 +56,7 @@ function getMenu(parent_path, items) {
   }
 }
 
-const renderTemplate = ({ match: { path, url } }) => {
+export const renderTemplate = ({ match: { path, url } }) => {
   const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
   console.log(JSON.stringify(url, null, 4));
   return <h2>{`${breadcrumbs} : `}</h2>

@@ -3,7 +3,7 @@ import {
   LocalFlorist,
   QueryBuilder,
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
+import {subRouters, getMenu, getContent} from './config';
 import {C3_1} from './containers';
 
 const PARENT_PATH = subRouters['评级限额'];

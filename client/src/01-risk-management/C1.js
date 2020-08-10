@@ -4,7 +4,7 @@ import {
   Visibility as VisibilityIcon,
   Update as UpdateIcon
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
+import {subRouters, getMenu, getContent} from './config';
 
 const PARENT_PATH = subRouters['系统管理'];
 

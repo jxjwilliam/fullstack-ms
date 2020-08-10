@@ -8,7 +8,7 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
-import { CopyRight } from '../../components/misc'
+import { Copyright } from '../../components'
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';

@@ -10,7 +10,7 @@ import {
   PersonPin,
   Message,
 } from '@material-ui/icons';
-import {subRouters, getMenu, getContent} from './common';
+import {subRouters, getMenu, getContent} from './config';
 import {C7_1, C7_2, C7_3, C7_4} from './containers'
 
 const PARENT_PATH = subRouters['贷后管理'];

@@ -1,9 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  SvgIcon,
-  Typography,
-} from '@material-ui/core';
+import { SvgIcon, Typography } from '@material-ui/core';
 
 function LightBulbIcon(props) {
   return (
@@ -24,12 +21,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ProTip() {
+export default function ProTip(tip='微服务模板应用') {
   const classes = useStyles();
   return (
     <Typography className={classes.root} color="textSecondary">
       <LightBulbIcon className={classes.lightBulb} />
-      微服务模板应用
+      {tip}
     </Typography>
   );
 }

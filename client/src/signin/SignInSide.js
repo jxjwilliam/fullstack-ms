@@ -18,7 +18,7 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/styles';
-import { DEFAULT_HOME_PAGE } from '../helpers/constants'
+import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
 import { loginAction } from '../state/actions'
 
 const useStyles = makeStyles(theme => ({
@@ -77,11 +77,11 @@ class Login extends Component {
         const { loggedIn } = this.props.auth;
         if (loggedIn) {
           this.setState({ done: true });
-          sessionStorage.setItem("authToken", this.props.auth.token)
+          sessionStorage.setItem(TOKEN, this.props.auth.token)
         }
         else {
           this.setState({ done: false, title: this.props.auth.msg });
-          sessionStorage.removeItem("authToken")
+          sessionStorage.removeItem(TOKEN)
         }
       })
   }

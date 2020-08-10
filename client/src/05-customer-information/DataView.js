@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { defer, capitalize, fetching } from '../helpers/utils'
+import { setHOCView} from "../components/layout/jsx";
 import {
   Group,
   CheckCircleOutline,
@@ -25,7 +26,6 @@ import {
 import { subRouters } from './common';
 
 const PARENT_PATH = subRouters['现有数据'];
-// const PARENT_PATH = '/general/dataview';
 
 class View extends Component {
   constructor(props) {
@@ -78,18 +78,7 @@ class View extends Component {
   }
 }
 
-
-// return React.cloneElement(View, {table: collection});
-// return <View table={collection} />
-let setView = Comp => collection => {
-  return class extends Component {
-    render() {
-      return <Comp table={collection} {...this.props} />
-    }
-  }
-}
-
-setView = setView(View);
+const setView = setHOCView(View);
 
 const ListInfo = [
   {

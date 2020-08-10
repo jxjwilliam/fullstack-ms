@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -8,8 +8,13 @@ import {
   Divider,
   IconButton,
   Container,
+  ListItem
 } from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import {
+  ChevronLeft,
+  ChevronRight,
+} from '@material-ui/icons';
+import {getOperatorInfo, getHelperInfo, HideInfo } from "../misc";
 
 const drawerWidth = 240;
 
@@ -93,6 +98,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Layout = (Menu, Content) => {
+  const operatorInfo = getOperatorInfo()
+  const helperInfo = getHelperInfo()
+
   function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -115,12 +123,18 @@ const Layout = (Menu, Content) => {
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-              <ChevronLeftIcon />
+              {open ? <ChevronLeft /> : <ChevronRight />}
             </IconButton>
           </div>
           <Divider />
           <List>
             <Menu />
+            {open ? (
+              <Fragment>
+                <ListItem>{operatorInfo}</ListItem>
+                <ListItem> {helperInfo}</ListItem>
+              </Fragment>
+            ) : <HideInfo /> }
           </List>
         </Drawer>
         <main className={classes.content} style={{ position: 'relative' }}>

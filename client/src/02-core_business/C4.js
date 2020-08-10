@@ -10,7 +10,6 @@ import {
   MoneyOff as MoneyOffIcon,
   Money as MoneyIcon
 } from '@material-ui/icons';
-import {Accordion} from '../components'
 import subRouters, {SetView} from './common'
 
 const PARENT_PATH = subRouters['还款管理'];
@@ -53,9 +52,6 @@ export const Menu4 = () => {
   return (
     <div>
       {list}
-      <ListItem>
-        <Accordion/>
-      </ListItem>
     </div>
   );
 }

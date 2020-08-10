@@ -1,34 +1,33 @@
-import React from 'react';
-import {
-  Container,
-  CssBaseline,
-  Typography,
-  Link,
-} from '@material-ui/core';
+import React, {Component, Fragment}  from 'react';
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import {getMenu1Action, getMenu2Action} from "../state/actions";
+import { getPageLayout } from '../components/layout/jsx'
 import Routers from './sub-routers'
 import { BASE } from './common'
-import { Drawer, bars } from '../components'
-import { NavList, RouteList } from '../helpers/reusable'
 
-export default function () {
-  return (
-    <>
-      <CssBaseline />
-      <Container fixed>
-        <bars.Bar2>
-          <Drawer />
-          <Typography>
-            <Link href={BASE} color="inherit" variant="h6">供应商</Link>
-          </Typography>
-          <NavList navs={Routers} />
-        </bars.Bar2>
-        <div>
-          <RouteList
-            routes={Routers}
-            redirect={{ from: BASE, to: `${BASE}/POC额度/额度查询` }}
-          />
-        </div>
-      </Container>
-    </>
-  )
+class Supplier extends Component {
+  state = {
+    title: '供应商',
+    url: BASE,
+    redirect: `${BASE}/POC额度/额度查询`
+  }
+
+  render() {
+    const { title, url, redirect} = this.state;
+    const pageLayout = getPageLayout(title, url, redirect, Routers)
+    return <Fragment>{pageLayout}</Fragment>
+  }
 }
+
+const mapStateToProps = state => ({
+  menu1: state.menu1,
+  menu2: state.menu2,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({ getMenu1Action, getMenu2Action }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Supplier);

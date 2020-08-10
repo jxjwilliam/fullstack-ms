@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment}  from 'react';
 import {Button, Menu, MenuItem, Fade, Link} from '@material-ui/core';
 import {GeneralRouters} from '../../routers'
 import {Menu as MenuIcon} from '@material-ui/icons'
@@ -16,7 +16,7 @@ export default function () {
   }
 
   return (
-    <>
+    <Fragment>
     <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
       <MenuIcon />
     </Button>
@@ -37,6 +37,6 @@ export default function () {
         )
       })}
     </Menu>
-    </>
+    </Fragment>
   );
 }

@@ -1,7 +1,5 @@
-import {
-  HEADERS,
-  ADD_USER, GET_USER, GET_USERS, UPDATE_USER, DELETE_USER,
-} from '../ActionTypes'
+import { HEADERS } from '../../constants'
+import {ADD_USER, GET_USER, GET_USERS, UPDATE_USER, DELETE_USER,} from '../ActionTypes'
 
 const getHeader = token => ({
   headers: {

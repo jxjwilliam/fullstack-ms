@@ -4,12 +4,12 @@ import NoSsr from '@material-ui/core/NoSsr';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { palette, spacing, typography } from '@material-ui/system';
 
-const Box = styled.div`${palette}${spacing}${typography}`;
-// or import Box from '@material-ui/core/Box';
-
 const theme = createMuiTheme();
 
-export default function Title() {
+// import Box from '@material-ui/core/Box';
+const Box = styled.div`${palette}${spacing}${typography}`;
+
+export default function Title(title='POC系统') {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
@@ -20,7 +20,7 @@ export default function Title() {
           fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
           p={{ xs: 2, sm: 3, md: 4 }}
         >
-          POC系统
+          {title}
         </Box>
       </ThemeProvider>
     </NoSsr>

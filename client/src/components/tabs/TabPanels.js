@@ -5,7 +5,7 @@ import {
   Tab,
   Paper,
 } from '@material-ui/core';
-import { TabPanel } from '../../components'
+import { TabPanel } from '../index'
 
 
 function a11yProps(index) {

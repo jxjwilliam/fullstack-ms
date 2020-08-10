@@ -18,8 +18,3 @@ export const GET_CORE_BUSINESS_SUPPLIER_LAYOUT = '获取核心企业/供应商�
 
 // alias: menu2
 export const GET_RISK_MANAGEMENT_LAYOUT = '获取风险控制布局数据';
-
-export const HEADERS = {
-  "Content-type": "application/json",
-  "Accept": "application/json",
-};

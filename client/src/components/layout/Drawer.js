@@ -1,13 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Drawer,
-  List,
+  List, ListItem, ListItemIcon, ListItemText,
   Divider,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   IconButton,
 } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
@@ -81,7 +78,7 @@ export default function () {
   );
 
   return (
-    <>
+    <Fragment>
       <IconButton
         edge="start"
         className={classes.menuButton}
@@ -98,6 +95,6 @@ export default function () {
       >
         {sideList('right')}
       </Drawer>
-    </>
+    </Fragment>
   );
 }

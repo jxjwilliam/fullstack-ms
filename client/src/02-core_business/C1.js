@@ -10,7 +10,6 @@ import {
   BarChart as BarChartIcon,
   Layers as LayersIcon
 } from '@material-ui/icons';
-import { Accordion } from '../components'
 import subRouters, { SetView } from './common';
 
 const PARENT_PATH = subRouters['POC额度'];
@@ -38,7 +37,6 @@ export const Menu1 = () => {
   return (
     <div>
       {list}
-      <ListItem><Accordion /></ListItem>
     </div>
   );
 };

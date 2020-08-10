@@ -1,19 +1,13 @@
-import C404 from './404'
-import About from './About'
-import Accordion from './Accordion'
-import Contact from './Contact'
+import {getOperatorInfo, getHelperInfo, HideInfo} from './Accordion1'
 import ProTip from './ProTip'
-import Search from './Search'
-import TabPanel from './TabPanel'
 import Title from './Title'
+import Copyright from './CopyRight'
 
 export {
-  C404,
-  About,
-  Accordion,
-  Contact,
+  Copyright,
+  getOperatorInfo,
+  getHelperInfo,
+  HideInfo,
   ProTip,
-  Search,
-  TabPanel,
   Title,
 }

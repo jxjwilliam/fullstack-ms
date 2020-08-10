@@ -24,10 +24,8 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { signupAction } from '../state/actions'
-import { DEFAULT_LOGIN_PAGE } from '../helpers/constants';
+import { DEFAULT_LOGIN_PAGE } from '../constants';
 import { fetching } from '../helpers/utils'
-
-
 
 ////////////////////////////////
 
@@ -132,8 +130,6 @@ class CascadeAddress extends Component {
     )
   }
 }
-
-////////////////////////////////
 
 const useStyles = makeStyles(theme => ({
   '@global': {

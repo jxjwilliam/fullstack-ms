@@ -1,6 +1,6 @@
 import Drawer from './Drawer'
 import Layout from './Layout'
-import Menu from './Menu'
+import Menu from '../headers/Menu'
 
 export {
   Drawer,

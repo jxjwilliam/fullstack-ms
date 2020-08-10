@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {setHOCView} from "../components/layout/jsx";
+
 export const BASE = '/核心企业及供应商';
 
 const subRouters = [
@@ -13,14 +15,6 @@ const subRouters = [
 
 export default subRouters;
 
-const setView = Comp => collection => {
-  return class extends Component {
-    render() {
-      return <Comp table={collection} {...this.props} />
-    }
-  }
-}
-
 class View extends Component {
   render() {
     return (
@@ -29,4 +23,4 @@ class View extends Component {
   }
 }
 
-export const SetView = setView(View);
+export const SetView = setHOCView(View);

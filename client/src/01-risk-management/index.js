@@ -1,42 +1,33 @@
-import React from 'react';
-import {
-  Container,
-  CssBaseline,
-  Typography,
-  Link,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {Component, Fragment} from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {getMenu1Action, getMenu2Action} from "../state/actions";
+import { getPageLayout } from '../components/layout/jsx'
 import Routers from './sub-routers'
 import { BASE } from './common'
-import { Drawer, bars } from '../components'
-import { NavList, RouteList } from '../helpers/reusable'
 
-const useStyles = makeStyles(theme => ({
-  wrap: {
-    flexFlow: 'row wrap',
-  },
-}));
+class RiskManagement extends Component {
+  state = {
+    title: '风险管理',
+    url: BASE,
+    redirect: `${BASE}/系统管理/口令更改`
+  }
 
-export default function () {
-  const classes = useStyles();
-  return (
-    <>
-      <CssBaseline />
-      <Container fixed>
-        <bars.Bar2>
-          <Drawer />
-          <Typography>
-            <Link href={BASE} color="inherit" variant="h6">风险管理</Link>
-          </Typography>
-          <NavList className={classes.wrap} navs={Routers} />
-        </bars.Bar2>
-        <div>
-          <RouteList
-            routes={Routers}
-            redirect={{ from: BASE, to: `${BASE}/系统管理/口令更改` }}
-          />
-        </div>
-      </Container>
-    </>
-  )
+  render() {
+    const {title, url, redirect} = this.state
+    const pageLayout = getPageLayout(title, url, redirect, Routers);
+    return <Fragment>{pageLayout}</Fragment>
+  }
 }
+
+const mapStateToProps = state => ({
+  menu1: state.menu1,
+  menu2: state.menu2,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({ getMenu1Action, getMenu2Action }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RiskManagement);

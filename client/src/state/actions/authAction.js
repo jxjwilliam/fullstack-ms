@@ -1,5 +1,5 @@
+import { HEADERS } from '../../constants'
 import {
-  HEADERS,
   SIGNUP_SUCCESS, SIGNUP_FAIL,
   LOGIN_SUCCESS, LOGIN_FAIL,
   LOGOUT_SUCCESS, LOGOUT_FAIL,

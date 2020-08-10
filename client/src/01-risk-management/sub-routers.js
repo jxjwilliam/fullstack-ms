@@ -25,7 +25,7 @@ import C8 from './C8'
 import C9 from './C9'
 import C10 from './C10'
 import C11 from './C11'
-import { subRouters, getMenu, getContent } from './common';
+import { subRouters} from './common';
 
 const Routers = [
   {

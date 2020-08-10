@@ -1,10 +1,6 @@
 import React, { Fragment } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemText, } from '@material-ui/core';
 import {
   ContactSupport,
   Shop,
@@ -19,16 +15,137 @@ import {
   Description,
   PersonPin,
 } from '@material-ui/icons';
-import { Accordion } from '../components'
 import { Layout } from '../components'
+import { tmpRender } from '../components/layout/jsx'
 
 export const BASE = '/financing';
 
-const tmpRender = ({ match: { path, url } }) => {
-  const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
-  console.log(JSON.stringify(url, null, 4));
-  return <h2>{`${breadcrumbs} : `}</h2>
-}
+const NavList = [
+  {
+    path: '用户中心',
+    icon: People,
+  },
+  {
+    path: 'POC管理',
+    icon: Apps,
+  },
+  {
+    path: 'POC融资',
+    icon: Shop
+  },
+  {
+    path: '人员管理',
+    icon: ContactSupport
+  },
+  {
+    path: '企业设置',
+    icon: SupervisedUserCircle
+  },
+]
+
+const MenuList = [
+  {
+    nav: '用户中心',
+    main: [
+      {
+        path: "账户信息",
+        icon: SupervisedUserCircle,
+      },
+      {
+        path: "交易信息",
+        icon: ContactMail,
+      },
+      {
+        path: "人员管理",
+        icon: WrapText,
+      },
+      {
+        path: "企业信息",
+        icon: Textsms,
+      },
+      {
+        path: "个人信息",
+        icon: FilterVintage,
+      },
+      {
+        path: "邀请企业",
+        icon: TrackChanges,
+      },
+    ]
+  },
+  {
+    nav: 'POC管理',
+    main: [
+      {
+        path: "签收POC",
+        icon: TrackChanges,
+      },
+      {
+        path: "可用POC",
+        icon: FilterVintage,
+      },
+    ]
+  },
+  {
+    nav: 'POC融资',
+    main: [
+      {
+        path: "资产买入",
+        icon: SupervisedUserCircle,
+      },
+      {
+        path: "已经买入资产",
+        icon: ContactMail,
+      },
+      {
+        path: "资产管理",
+        icon: WrapText,
+      },
+      {
+        path: "未承兑资产",
+        icon: Textsms,
+      },
+      {
+        path: "已承兑资产",
+        icon: FilterVintage,
+      },
+      {
+        path: "利率设置",
+        icon: TrackChanges,
+      },
+    ]
+  },
+  {
+    nav: '人员管理',
+    main: [
+      {
+        path: "人员管理1",
+        icon: SupervisedUserCircle,
+      },
+      {
+        path: "人员管理2",
+        icon: ContactMail,
+      },
+      {
+        path: "人员管理3",
+        icon: WrapText,
+      },
+    ]
+  },
+  {
+    nav: '企业设置',
+    main: [
+      {
+        path: "签收POC",
+        icon: Description,
+      },
+      {
+        path: "可用POC",
+        icon: PersonPin,
+      },
+    ]
+  },
+]
 
 const Config = [
   ['用户中心', ["账户信息", "交易信息", "人员管理", "企业信息", "个人信息", "邀请企业"]],
@@ -77,9 +194,6 @@ function getMenu(key, items) {
     return (
       <Fragment>
         {list}
-        <ListItem>
-          <Accordion />
-        </ListItem>
       </Fragment>
     )
   }

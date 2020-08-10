@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { AppBar, Toolbar, Button, Typography, Link } from '@material-ui/core';
 import FormDialog from '../dialogs/Dialog1'
-import { DEFAULT_LOGIN_PAGE } from '../../helpers/constants'
+import { DEFAULT_LOGIN_PAGE } from '../../constants'
 
 export default function ({ children }) {
   const [to, setTo] = useState();

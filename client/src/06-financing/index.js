@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { getPageLayout } from '../components/layout/jsx'
+import { getPageLayout } from '../components'
 import Routers, { BASE } from './sub-routers'
 
 // TODO: props: {history, location, match}

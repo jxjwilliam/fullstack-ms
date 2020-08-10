@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import { ListItem, ListItemIcon, ListItemText, } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText, } from '@material-ui/core';
 import {
   ContactSupport,
   Shop,
@@ -16,7 +16,7 @@ import {
   PersonPin,
 } from '@material-ui/icons';
 import { Layout } from '../components'
-import { renderTemplate } from '../components/layout/jsx'
+import { FTemplate, CTemplate } from '../containers'
 
 export const BASE = '/financing';
 
@@ -211,7 +211,7 @@ function getContent(key, items) {
             <Route
               path={url}
               // component={item.component}
-              render={renderTemplate}
+              render={FTemplate}
               key={item.path}
             />
           )

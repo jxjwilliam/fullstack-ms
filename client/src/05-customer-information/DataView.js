@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { defer, capitalize, fetching } from '../helpers/utils'
-import { setHOCView} from "../components/layout/jsx";
+import { setHOCView} from "../components";
 import {
   Group,
   CheckCircleOutline,
@@ -23,9 +23,8 @@ import {
   DirectionsRun,
   Person
 } from '@material-ui/icons';
-import { subRouters } from './common';
 
-const PARENT_PATH = subRouters['现有数据'];
+const PARENT_PATH = '现有数据'];
 
 class View extends Component {
   constructor(props) {

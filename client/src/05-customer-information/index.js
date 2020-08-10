@@ -1,20 +1,20 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {getMenu1Action, getMenu2Action} from "../state/actions";
-import { getPageLayout } from '../components/layout/jsx'
+import { getMenu1Action, getMenu2Action } from "../state/actions";
+import { getPageLayout } from '../components'
 import Routers from './sub-routers'
-import { BASE } from './common'
 
 class Customer extends Component {
+  Base = '客戶信息'
   state = {
-    title: '客戶信息',
-    url: BASE,
-    redirect: `${BASE}/客户基本信息`
+    title: this.Base,
+    url: `/${this.Base}`,
+    redirect: `/${this.Base}/客户基本信息`
   }
 
   render() {
-    const {title, url, redirect} = this.state
+    const { title, url, redirect } = this.state
     const pageLayout = getPageLayout(title, url, redirect, Routers);
     return <Fragment>{pageLayout}</Fragment>
   }

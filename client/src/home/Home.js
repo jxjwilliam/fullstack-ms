@@ -6,8 +6,7 @@ import {
   Link,
   Box,
 } from '@material-ui/core';
-import ProTip from '../components/misc/ProTip';
-import { Drawer, Menu, bars, footers } from '../components'
+import { Drawer, Menu, bars, footers, ProTip } from '../components'
 
 const Emoji = props => (
   <span

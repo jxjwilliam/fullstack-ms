@@ -14,48 +14,34 @@ import {
 import {C1_1, C4_1} from "./containers";
 import {SetView} from "../02-core_business/common";
 
-const Routers = [
+const menuList = [
   {
-    path: subRouters['客户基本信息'],
-    title: '客户基本信息',
+    path: '客户基本信息',
     icon: Group,
-    component: C1,
   },
   {
-    path: subRouters['财务信息'],
-    title: '财务信息',
+    path: '财务信息',
     icon: MonetizationOn,
-    component: C2,
   },
   {
-    path: subRouters['评级限额信息'],
-    title: '评级限额信息',
+    path: '评级限额信息',
     icon: RateReview,
-    component: C3,
   },
   {
-    path: subRouters['风险信息'],
-    title: '风险信息',
+    path: '风险信息',
     icon: OfflineBolt,
-    component: C4,
   },
   {
-    path: subRouters['关联信息'],
-    title: '关联信息',
+    path: '关联信息',
     icon: SettingsInputSvideo,
-    component: C5,
   },
   {
-    path: subRouters['现有数据'],
-    title: '现有数据',
+    path: '现有数据',
     icon: DataUsage,
-    component: DataView,
   },
   {
-    path: subRouters['帮助'],
-    title: '帮助',
+    path: '帮助',
     icon: Help,
-    component: Helper,
   },
 ];
 

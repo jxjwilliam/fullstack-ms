@@ -1,7 +1,5 @@
-import Menu from './Menu'
-
-export default {
+import Menu from './Menu1'
+export {
   Menu
 }
-
-export * from "./Nav"
+export * from "./Nav1"

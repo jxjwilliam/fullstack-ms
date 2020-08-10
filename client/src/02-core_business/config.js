@@ -17,15 +17,9 @@ import {
   VerifiedUser as VerifiedUserIcon,
   Money as MoneyIcon
 } from '@material-ui/icons'
-import { Layout } from '../components'
-import { getMenu, getContent, setHOCView, } from "../components/layout/jsx";
-import C3_1 from "./containers/C3_1";
-import C3_2 from "./containers/C3_2";
-import C3_3 from "./containers/C3_3";
+import {C3_1, C3_2, C3_3} from "./containers";
 
-export const BASE = '/核心企业及供应商';
-
-const HeaderList = [
+const menuList = [
   {
     path: 'POC额度',
     icon: FormatQuote,
@@ -44,7 +38,7 @@ const HeaderList = [
   },
 ]
 
-const LeftList = [
+const navList = [
   {
     nav: 'POC额度',
     main: [{
@@ -134,22 +128,4 @@ const LeftList = [
   }
 ]
 
-// 原来的导航列表是数组，转换生成导航{}
-function getRouters(menuAry) {
-  return menuAry.reduce((obj, url) => ({ ...obj, [url]: `${BASE}/${url}` }), {});
-}
-
-function getSubRouters(navs, menus) {
-  return navs.map((nav, idx) => {
-    const nnn = getMenu(menus)
-    const mmm = getContent(menus)
-    return {
-      path: `${BASE}/${nav[0]}`,
-      title: nav[0],
-      icon: nav[1],
-      component: Layout(nnn, mmm)
-    }
-  })
-}
-
-export default getSubRouters(NavList, MenuList);
+export { menuList, navList };

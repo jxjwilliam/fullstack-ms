@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {debounce} from 'lodash';
 
 // https://reactjs.org/docs/faq-functions.html#debounce
-class Searchbox extends React.Component {
+class Searchbox extends Component {
   constructor(props) {
     super(props);
     this.emitChangeDebounced = debounce(this.emitChange, 250);

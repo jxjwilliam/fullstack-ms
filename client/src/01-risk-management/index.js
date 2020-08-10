@@ -1,16 +1,16 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {getMenu1Action, getMenu2Action} from "../state/actions";
-import { getPageLayout } from '../components/layout/jsx'
+import { getMenu1Action, getMenu2Action } from "../state/actions";
+import { getPageLayout } from '../components'
 import Routers from './sub-routers'
-import { BASE } from './config'
 
 class RiskManagement extends Component {
+  Base = '风险管理'
   state = {
-    title: '风险管理',
-    url: BASE,
-    redirect: `${BASE}/系统管理/口令更改`
+    title: this.Base,
+    url: `/${this.Base}`,
+    redirect: `/${this.Base}/系统管理/口令更改`
   }
 
   render() {

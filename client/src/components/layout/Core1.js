@@ -6,10 +6,10 @@ import {
   Typography,
   Link as MuiLink,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { isEmpty } from "../../helpers/utils";
 import { bars, Drawer } from "../index";
 import { NavList } from '../headers'
+import { FTemplate, CTemplate} from '../../containers'
 
 const RouteList = ({ routes, redirect = {} }) => {
   return (
@@ -28,7 +28,6 @@ const RouteList = ({ routes, redirect = {} }) => {
     </Switch>
   )
 }
-
 
 
 // React.cloneElement(View, {table: collection});
@@ -56,11 +55,6 @@ function getMenu(parent_path, items) {
   }
 }
 
-export const renderTemplate = ({ match: { path, url } }) => {
-  const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
-  console.log(JSON.stringify(url, null, 4));
-  return <h2>{`${breadcrumbs} : `}</h2>
-}
 
 // path, component/render
 function getContent(parent_path, items) {
@@ -69,7 +63,7 @@ function getContent(parent_path, items) {
       <Switch>
         {items.map(({ path, component }) => {
           if (component) return <Route path={`${parent_path}/${path}`} component={component} key={path} />
-          return <Route path={`${parent_path}/${path}`} render={renderTemplate} key={path} />
+          return <Route path={`${parent_path}/${path}`} render={FTemplate} key={path} />
         })}
       </Switch>
     )
@@ -95,16 +89,6 @@ const getPageLayout = (title, url, redirect, routers) => {
     </Container>
   )
 }
-
-class View extends Component {
-  render() {
-    return (
-      <h1>02-core-business-setView</h1>
-    )
-  }
-}
-
-export const SetView = setHOCView(View);
 
 export {
   RouteList,

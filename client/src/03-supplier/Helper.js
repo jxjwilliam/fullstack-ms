@@ -13,7 +13,7 @@ import {
 } from '@material-ui/icons';
 import subRouters from './common';
 
-const PARENT_PATH = subRouters['帮助'];
+const PARENT_PATH = '帮助'];
 
 const HelperInfo = [
   {

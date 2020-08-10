@@ -1,9 +1,7 @@
-import Drawer from './Drawer'
+import Drawer from './Drawer1'
 import Layout from './Layout'
-import Menu from '../headers/Menu'
-
 export {
   Drawer,
   Layout,
-  Menu,
 }
+export * from './Core1'

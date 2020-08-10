@@ -35,7 +35,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function MenuMessage({ title='', icon=HistoryIcon, info=[] }) {
+// Accordion1
+function Accordion1({ title='', icon=HistoryIcon, info=[] }) {
   const classes = useStyles();
   const Icon = icon
   return (
@@ -81,7 +82,7 @@ function getOperatorInfo () {
 
   return (
     <Fragment>
-      <MenuMessage title={title} icon={icon} info={aryInfo}/>
+      <Accordion1 title={title} icon={icon} info={aryInfo}/>
     </Fragment>
   )
 }
@@ -98,7 +99,7 @@ function getHelperInfo () {
     ` 📧 ${Emails.admin}`
   ].map(item => <Typography1 key={item}>{item}</Typography1>)
 
-  return <MenuMessage title={title} icon={icon} info={aryInfo}/>
+  return <Accordion1 title={title} icon={icon} info={aryInfo}/>
 }
 
 function getVersionInfo () {
@@ -109,7 +110,7 @@ function getVersionInfo () {
     `‍🚀 ${version}`,
   ]
 
-  return <MenuMessage title={title} icon={icon} info={aryInfo} />
+  return <Accordion1 title={title} icon={icon} info={aryInfo} />
 }
 
 function HideInfo () {

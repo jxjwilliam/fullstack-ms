@@ -32,4 +32,4 @@ nohup.out
 .eslintcache
 
 build
-./uploads/
+./uploads

@@ -34,9 +34,11 @@ import {
   PersonPin,
   Description,
 } from '@material-ui/icons'
-import { C2_1, C2_2, C2_3, C3_1, C5_2, C6_2, C6_3, C6_4, C7_1, C7_2, C9_1 } from "./containers";
+import { C2_1, C2_2, C2_3, C3_1, C5_2, C6_2, C6_3, C6_4, C7_1, C7_2, C7_3, C7_4, C9_1 } from "./containers";
 
-const menuList = [
+const base = '风险管理';
+
+const navList = [
   {
     path: '系统管理',
     icon: LaptopWindows,
@@ -75,21 +77,23 @@ const menuList = [
   }
 ];
 
-const navList = [
+const mainList = [
   {
     nav: '系统管理',
     main: [
       {
+        path: "角色查询",
+        title: "用户角色查询",
+        icon: Person
+      },
+      {
         path: "口令更改",
+        title: "用户口令更改",
         icon: Visibility
       },
       {
         path: "用户信息权限变更",
         icon: Update
-      },
-      {
-        path: "角色查询",
-        icon: Person
       },
     ]
   },
@@ -269,4 +273,13 @@ const navList = [
   },
 ];
 
-export { menuList, navList }
+const defaultUrl = (function () {
+  const p1 = navList[0].path;
+  const p2 = mainList.find(item => item.nav === p1).main[0].path;
+  return {
+    from: `/${base}`,
+    to: `/${base}/${p1}/${p2}`
+  }
+})();
+
+export { base, navList, mainList, defaultUrl }

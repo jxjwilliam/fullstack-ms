@@ -1,20 +1,18 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CssBaseline,
   Drawer,
-  List,
   Divider,
   IconButton,
   Container,
-  ListItem
 } from '@material-ui/core';
 import {
   ChevronLeft,
   ChevronRight,
 } from '@material-ui/icons';
-import {getOperatorInfo, getHelperInfo, HideInfo } from "../misc";
+import { ShowInfo, HideInfo } from "../misc";
 
 const drawerWidth = 240;
 
@@ -97,10 +95,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Layout = (Menu, Content) => {
-  const operatorInfo = getOperatorInfo()
-  const helperInfo = getHelperInfo()
-
+export default function(Menu, Content) {
   function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -113,41 +108,31 @@ const Layout = (Menu, Content) => {
 
     return (
       <div className={classes.root}>
-        <CssBaseline />
+        <CssBaseline/>
         <Drawer
           variant="permanent"
-          classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-          }}
+          classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}}
           open={open}
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-              {open ? <ChevronLeft /> : <ChevronRight />}
+              {open ? <ChevronLeft/> : <ChevronRight/>}
             </IconButton>
           </div>
-          <Divider />
-          <List>
-            <Menu />
-            {open ? (
-              <Fragment>
-                <ListItem>{operatorInfo}</ListItem>
-                <ListItem> {helperInfo}</ListItem>
-              </Fragment>
-            ) : <HideInfo /> }
-          </List>
+          <Divider/>
+          <Fragment>
+            <Menu/>
+            {open ? <ShowInfo/> : <HideInfo/>}
+          </Fragment>
         </Drawer>
-        <main className={classes.content} style={{ position: 'relative' }}>
-          <div className={classes.appBarSpacer} />
+        <main className={classes.content} style={{position: 'relative'}}>
+          <div className={classes.appBarSpacer}/>
           <Container maxWidth="lg" className={classes.container}>
-            <Content />
+            <Content/>
           </Container>
         </main>
       </div>
     );
   }
-
   return Dashboard;
 }
-
-export default Layout;

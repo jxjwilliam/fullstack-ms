@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   ContactSupport,
   Payment,
   MoveToInbox,
   People,
   FormatQuote,
-  BarChart as BarChartIcon,
+  BarChart,
   Person,
   Description,
   AssignmentTurnedIn,
   OpenInBrowser,
-  Payment as PaymentIcon,
-  MergeType as MergeTypeIcon,
-  AssignmentReturned as AssignmentReturnedIcon,
-  MoneyOff as MoneyOffIcon,
-  VerifiedUser as VerifiedUserIcon,
-  Money as MoneyIcon
+  MergeType,
+  FormatListBulleted,
+  AssignmentReturned,
+  MoneyOff,
+  VerifiedUser,
+  Money
 } from '@material-ui/icons'
 import {C3_1, C3_2, C3_3} from "./containers";
 
@@ -43,8 +43,7 @@ const navList = [
     nav: 'POC额度',
     main: [{
       path: "额度查询",
-      icon: BarChartIcon,
-      component: SetView('m1'),
+      icon: BarChart,
     }]
   },
   {
@@ -53,22 +52,18 @@ const navList = [
       {
         path: "我的POC",
         icon: Person,
-        component: SetView('m2-1'),
       },
       {
         path: "申请单列表",
         icon: FormatListBulleted,
-        component: SetView('m2-2'),
       },
       {
         path: 'POC开具制单',
         icon: Description,
-        component: SetView('m2-3'),
       },
       {
         path: 'POC开具复核',
         icon: AssignmentTurnedIn,
-        component: SetView('m2-4'),
       },
       {
         path: '已开POC',
@@ -81,17 +76,17 @@ const navList = [
     main: [
       {
         path: "POC收支",
-        icon: PaymentIcon,
+        icon: Payment,
         component: C3_1,
       },
       {
         path: "POC融资",
-        icon: MergeTypeIcon,
+        icon: MergeType,
         component: C3_2
       },
       {
         path: "转让回执",
-        icon: AssignmentReturnedIcon,
+        icon: AssignmentReturned,
         component: C3_3
       },
     ]
@@ -101,18 +96,15 @@ const navList = [
     main: [
       {
         path: "待还款",
-        icon: MoneyOffIcon,
-        component: SetView('m4-1'),
+        icon: MoneyOff,
       },
       {
         path: '还款审批',
-        icon: VerifiedUserIcon,
-        component: SetView('m4-2'),
+        icon: VerifiedUser,
       },
       {
         path: '已还款',
-        icon: MoneyIcon,
-        component: SetView('m4-3'),
+        icon: Money,
       },
     ]
   },
@@ -122,7 +114,6 @@ const navList = [
       {
         path: "帮助",
         icon: ContactSupport,
-        component: SetView('m4-1'),
       },
     ]
   }

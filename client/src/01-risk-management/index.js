@@ -2,20 +2,21 @@ import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from "../state/actions";
+import { base, mainList, navList, defaultUrl } from './routers';
 import { getPageLayout } from '../components'
-import Routers from './sub-routers'
 
 class RiskManagement extends Component {
-  Base = '风险管理'
-  state = {
-    title: this.Base,
-    url: `/${this.Base}`,
-    redirect: `/${this.Base}/系统管理/口令更改`
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: base,
+      base: `${base}`,
+      redirect: defaultUrl
+    }
   }
 
   render() {
-    const {title, url, redirect} = this.state
-    const pageLayout = getPageLayout(title, url, redirect, Routers);
+    const pageLayout = getPageLayout(navList, mainList, this.state);
     return <Fragment>{pageLayout}</Fragment>
   }
 }

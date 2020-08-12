@@ -1,7 +1,7 @@
 import React, {Fragment}  from 'react';
 import {Button, Menu, MenuItem, Fade, Link} from '@material-ui/core';
-import {GeneralRouters} from '../../routers'
 import {Menu as MenuIcon} from '@material-ui/icons'
+import {GeneralRouters} from '../../routers'
 
 export default function () {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,7 +32,10 @@ export default function () {
         const CompIcon = router.icon;
         return (
           <Link href={router.path} key={router.path}>
-            <MenuItem onClick={handleClose}><CompIcon/>{router.title}</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <CompIcon/>
+              {router.title}
+            </MenuItem>
           </Link>
         )
       })}

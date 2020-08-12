@@ -4,7 +4,6 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
-  Typography,
 } from '@material-ui/core';
 import {
   Restore as RestoreIcon,
@@ -12,8 +11,7 @@ import {
   LocationOn as LocationOnIcon,
   Folder as FolderIcon,
 } from '@material-ui/icons';
-
-import {version} from '../../../package.json';
+import {Copyright} from '../misc'
 
 const useStyles = makeStyles({
   root: {
@@ -22,26 +20,45 @@ const useStyles = makeStyles({
   },
 });
 
-export default function () {
+export default function ({services}) {
   const classes = useStyles();
   const [value, setValue] = React.useState('recents');
 
   function handleChange(event, newValue) {
     setValue(newValue);
   }
+  services = services || [
+    {
+      label: '关于我们',
+      value: '关于我们',
+      icon: RestoreIcon,
+    },
+    {
+      label: '联系我们',
+      value: '联系我们',
+      icon: FavoriteIcon,
+    },
+    {
+      label: '服务选项',
+      value: '服务选项',
+      icon: LocationOnIcon,
+    },
+    {
+      label: '市场',
+      value: '市场',
+      icon: FolderIcon,
+    },
+  ].map(({label, value, icon: Icon}) => (
+    <BottomNavigationAction label={label} value={value} icon={<Icon />} key={label}/>
+  ))
 
   return (
     <>
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction label="关于我们" value="关于我们" icon={<RestoreIcon />}/>
-      <BottomNavigationAction label="联系我们" value="联系我们" icon={<FavoriteIcon />}/>
-      <BottomNavigationAction label="服务选项" value="服务选项" icon={<LocationOnIcon />}/>
-      <BottomNavigationAction label="市场" value="市场" icon={<FolderIcon />}/>
+      {services}
     </BottomNavigation>
     <Box color="primary.main">
-      <Typography component="p">
-        &copy;William Jiang 2019, version: {version}, all rights reserved.
-      </Typography>
+      <Copyright opt={'body1'} />
     </Box>
     </>
   );

@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getMenu1Action, getMenu2Action } from "../state/actions";
 import { getPageLayout } from '../components'
-import Routers from './sub-routers'
+import Routers from './routers'
 
 class Supplier extends Component {
   Base = '供应商'

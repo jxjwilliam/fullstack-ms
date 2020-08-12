@@ -11,7 +11,7 @@ import {
   ExitToApp as ExitToAppIcon,
 } from '@material-ui/icons';
 
-const PARENT_PATH = '帮助'];
+const PARENT_PATH = '帮助';
 
 const HelperInfo = [
   {

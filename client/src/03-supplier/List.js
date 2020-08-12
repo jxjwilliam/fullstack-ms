@@ -13,9 +13,8 @@ import LayersIcon from '@material-ui/icons/Layers';
 import MaterialTable from 'material-table';
 import * as userAction from '../state/actions/accountAction';
 import {defer} from '../helpers/utils'
-import subRouters from './common';
 
-const PARENT_PATH = '列表'];
+const PARENT_PATH = '列表';
 
 class List extends Component {
 

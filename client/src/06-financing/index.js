@@ -1,13 +1,14 @@
 import React, { useState, Fragment } from 'react';
 import { getPageLayout } from '../components'
-import Routers, { BASE } from './sub-routers'
+import Routers from './routers'
 
 // TODO: props: {history, location, match}
 export default function (props) {
-  const title = 'POC融资'
-  const url = BASE
-  const redirect = `${BASE}/用户中心/account-info`
-  const pageLayout = getPageLayout(title, url, redirect, Routers)
+  const Base = '/financing';
+  const title = '融资'
+  const url = `${Base}`
+  const redirect = `${Base}/用户中心/account-info`
+  const pageLayout = getPageLayout(url, title, redirect, Routers)
 
   return <Fragment>{pageLayout}</Fragment>
 }

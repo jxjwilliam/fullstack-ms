@@ -1,10 +1,11 @@
-import subRouters from "./common";
 import {
-  BarChart as BarChartIcon,
+  BarChart,
   ContactSupport,
   Description,
   FormatListNumberedRtl,
-  InsertChart, Layers as LayersIcon, People as PeopleIcon,
+  InsertChart,
+  Layers,
+  People,
   SupervisedUserCircle,
   Textsms
 } from "@material-ui/icons";
@@ -43,15 +44,15 @@ const navList = [
     main: [
       {
         path: "额度查询",
-        icon: BarChartIcon
+        icon: BarChart
       },
       {
         path: "额度分配（发起额度分配流程）",
-        icon: LayersIcon
+        icon: Layers
       },
       {
         path: "额度变更（发起额度变更流程）",
-        icon: PeopleIcon
+        icon: People
       },
     ]
   },
@@ -60,19 +61,19 @@ const navList = [
     main: [
       {
         path: "我的POC",
-        icon: BarChartIcon
+        icon: BarChart
       },
       {
         path: 'POC开具制单',
-        icon: LayersIcon
+        icon: Layers
       },
       {
         path: 'POC开具复核',
-        icon: PeopleIcon
+        icon: People
       },
       {
         path: '已开POC',
-        icon: PeopleIcon,
+        icon: People,
         component: C2_1,
       }
     ]
@@ -82,17 +83,17 @@ const navList = [
     main: [
       {
         path: "POC收支",
-        icon: BarChartIcon,
+        icon: BarChart,
         component: C3_1,
       },
       {
         path: "POC融资",
-        icon: LayersIcon,
+        icon: Layers,
         component: C3_2
       },
       {
         path: "转让回执",
-        icon: PeopleIcon,
+        icon: People,
         component: C3_3
       },
     ]
@@ -102,15 +103,15 @@ const navList = [
     main: [
       {
         path: "代还款",
-        icon: BarChartIcon,
+        icon: BarChart,
       },
       {
         path: '还款审批',
-        icon: LayersIcon,
+        icon: Layers,
       },
       {
         path: '已还款',
-        icon: LayersIcon,
+        icon: Layers,
       },
     ]
   },
@@ -119,18 +120,15 @@ const navList = [
     main: [
       {
         path: '账户管理',
-        icon: BarChartIcon,
-        component: List,
+        icon: BarChart,
       },
       {
         path: '信息1',
-        icon: LayersIcon,
-        component: List,
+        icon: Layers,
       },
       {
         path: '信息2',
-        icon: PeopleIcon,
-        component: List,
+        icon: People,
       }
     ]
   },
@@ -139,17 +137,17 @@ const navList = [
     main: [
       {
         path: '帮助中心',
-        icon: BarChartIcon,
+        icon: BarChart,
         component: dialogs.Dialog2,
       },
       {
         path: '公司简介',
-        icon: PeopleIcon,
+        icon: People,
         component: dialogs.Dialog1,
       },
       {
         path: '注册指导',
-        icon: LayersIcon,
+        icon: Layers,
         component: modals.Modal1,
       },
     ]

@@ -1,7 +1,7 @@
 import Drawer from './Drawer1'
-import Layout from './Layout'
+import Layout1 from './Layout1'
 export {
   Drawer,
-  Layout,
+  Layout1,
 }
 export * from './Core1'

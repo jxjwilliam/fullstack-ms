@@ -1,13 +1,4 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/styles';
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-} from '@material-ui/core';
 import {
   ChromeReaderMode,
   Warning,
@@ -18,10 +9,6 @@ import {
   Description,
   PersonPin,
   Message,
-} from '@material-ui/icons';
-import {
-  ExpandLess,
-  ExpandMore,
 } from '@material-ui/icons';
 import {TabPanels} from '../../components'
 
@@ -111,66 +98,3 @@ export default function() {
 
   return <TabPanels ary={ary}/>;
 }
-
-// const Collapse1 = (ary) => {
-//   const list = ary.map(item => {
-//     const CompIcon = item.icon;
-//     return (
-//       <ListItem
-//         button
-//         className={classes.nested}
-//         component={Link}
-//         to={`${PARENT_PATH}/${item.path}`}
-//         key={item.path}
-//       >
-//         <ListItemIcon>
-//           <CompIcon />
-//         </ListItemIcon>
-//         <ListItemText primary={item.path}/>
-//       </ListItem>
-//     )
-//   });
-//
-//   return (
-//     <Collapse in={open} timeout="auto" unmountOnExit>
-//       <List component="div" disablePadding>
-//         {list}
-//       </List>
-//     </Collapse>
-//   );
-// }
-
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     width: '100%',
-//     maxWidth: 360,
-//     backgroundColor: theme.palette.background.paper,
-//   },
-//   nested: {
-//     paddingLeft: theme.spacing(4),
-//   },
-// }));
-
-// export default function NestedList() {
-//   const classes = useStyles();
-//   const [open, setOpen] = React.useState(true);
-//
-//   const handleClick = () => {
-//     setOpen(!open);
-//   };
-//
-//   return (
-//     <List component="nav">
-//       <ListItem button onClick={handleClick}>
-//         <ListItemIcon>
-//           <InboxIcon />
-//         </ListItemIcon>
-//         <ListItemText primary="Inbox"/>
-//         {open ? <ExpandLess /> : <ExpandMore />}
-//       </ListItem>
-//
-//     </List>
-//   )
-// }
-

@@ -1,13 +1,13 @@
 import Home from './home';
-import {SignIn, SignInSide, SignOut} from './signin'
+import { SignIn, SignInSide, SignOut } from './signin'
 import Signup from './signup'
 import Admin from './01-risk-management'
-import Company from './02-core_business'
-import Supplier from './03-supplier'
-import Certificate from './04-certificate'
-import General from './05-customer-information'
-import Financing from './06-financing'
-import {C404} from './containers'
+// import Company from './02-core_business'
+// import Supplier from './03-supplier'
+// import Certificate from './04-certificate'
+// import General from './05-customer-information'
+// import Financing from './06-financing'
+import { C404 } from './containers'
 import {
   OfflineBolt,
   Business,
@@ -23,42 +23,42 @@ import {
 } from '@material-ui/icons'
 
 export const BusinessRouters = [
-  {
-    path: '/核心企业及供应商',
-    title: '核心企业及供应商',
-    icon: Business,
-    component: Company,
-  },
+  // {
+  //   path: '/核心企业及供应商',
+  //   title: '核心企业及供应商',
+  //   icon: Business,
+  //   component: Company,
+  // },
   {
     path: '/风险管理',
     title: '风险管理',
     icon: OfflineBolt,
     component: Admin,
   },
-  {
-    path: '/客户信息',
-    title: '客户信息',
-    icon: SupervisorAccount,
-    component: General,
-  },
-  {
-    path: '/供应商',
-    title: '供应商',
-    icon: AttachMoney,
-    component: Supplier,
-  },
-  {
-    path: '/certificate',
-    title: '凭证',
-    icon: SettingsApplications,
-    component: Certificate,
-  },
-  {
-    path: '/financing',
-    title: '融资管理',
-    icon: Store,
-    component: Financing,
-  }
+  // {
+  //   path: '/客户信息',
+  //   title: '客户信息',
+  //   icon: SupervisorAccount,
+  //   component: General,
+  // },
+  // {
+  //   path: '/供应商',
+  //   title: '供应商',
+  //   icon: AttachMoney,
+  //   component: Supplier,
+  // },
+  // {
+  //   path: '/certificate',
+  //   title: '凭证',
+  //   icon: SettingsApplications,
+  //   component: Certificate,
+  // },
+  // {
+  //   path: '/financing',
+  //   title: '融资管理',
+  //   icon: Store,
+  //   component: Financing,
+  // }
 ]
 
 export const GeneralRouters = [

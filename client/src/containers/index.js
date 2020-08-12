@@ -8,4 +8,3 @@ export {
   Contact,
   Search
 }
-export * from './Template'

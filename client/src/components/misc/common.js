@@ -13,6 +13,16 @@ const Loading = loadingProp => Comp => {
   }
 }
 
+
+// React.cloneElement(View, {table: collection});
+// <View table={collection} />
+const setHOCView = (Comp) => (collection) => class extends Component {
+  render() {
+    return <Comp table={collection} {...this.props} />
+  }
+}
+
 export {
   Loading,
+  setHOCView,
 }

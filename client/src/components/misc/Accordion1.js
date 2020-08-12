@@ -1,4 +1,4 @@
-import React, {createElement, Fragment} from 'react';
+import React, { createElement, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Accordion,
@@ -6,18 +6,19 @@ import {
   AccordionDetails,
   Typography,
   List,
+  ListItem,
   ListItemIcon,
-  Divider
+  Divider,
 } from '@material-ui/core';
 import {
-  ExpandMore as ExpandMoreIcon,
-  SupervisorAccount as SupervisorAccountIcon,
-  History as HistoryIcon,
-  Help as HelpIcon,
+  ExpandMore,
+  SupervisorAccount,
+  History,
+  Help,
 } from '@material-ui/icons';
 import { loginInfos } from '../../helpers/utils';
-import { Emails, Contacts} from "../../constants";
-import { version } from '../../../package'
+import { Emails, Contacts } from "../../constants";
+import { version } from '../../../package.json'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,20 +36,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// Accordion1
-function Accordion1({ title='', icon=HistoryIcon, info=[] }) {
+function Accordion1({ title = '', icon: Icon=History, expaneded=true, info = [] }) {
   const classes = useStyles();
-  const Icon = icon
   return (
     <div className={classes.root}>
-      <Accordion defaultExpanded={true}>
+      <Accordion defaultExpanded={expaneded}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-controls="accordion1-content"
           id={title}
         >
           <ListItemIcon>
-            <Icon/>
+            <Icon />
           </ListItemIcon>
           <Typography className={classes.heading}>{title}</Typography>
         </AccordionSummary>
@@ -62,16 +61,16 @@ function Accordion1({ title='', icon=HistoryIcon, info=[] }) {
   );
 }
 
-function Typography1 (props) {
+const Typography1 = props => {
   const classes = useStyles()
   return <Typography variant="body1" gutterBottom className={classes.wrap} {...props} />
-}
+};
 
-function getOperatorInfo () {
-  const { account='测试用户', name='微服务', organization={name:'微服务企业'}, roles=[{name:'操作员'}] } = loginInfos();
-  const rolesNames = roles.map(r => r.name).join(',') || ''
+const getOperatorInfo = () => {
+  const { account = '测试用户', name = '微服务', organization = { name: '微服务企业' }, roles = [{ name: '操作员' }] } = loginInfos();
+  const rolesNames = roles.map(r => r.name).join(',')
   const title = '操作员信息'
-  const icon = SupervisorAccountIcon
+  const icon = SupervisorAccount
 
   const aryInfo = [
     `企业：${organization.name}`,
@@ -82,14 +81,14 @@ function getOperatorInfo () {
 
   return (
     <Fragment>
-      <Accordion1 title={title} icon={icon} info={aryInfo}/>
+      <Accordion1 title={title} icon={icon} info={aryInfo} />
     </Fragment>
   )
-}
+};
 
-function getHelperInfo () {
+function getHelperInfo() {
   const title = '获取帮助';
-  const icon = HelpIcon
+  const icon = Help
   const aryInfo = [
     `技术支持部: `,
     ` ☎ ${Contacts.office}`,
@@ -98,24 +97,35 @@ function getHelperInfo () {
     ` ☎ ${Contacts.business}`,
     ` 📧 ${Emails.admin}`
   ].map(item => <Typography1 key={item}>{item}</Typography1>)
-
-  return <Accordion1 title={title} icon={icon} info={aryInfo}/>
+  return <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
 }
 
-function getVersionInfo () {
+function getVersionInfo() {
   const title = '发行版本'
-  const icon = HistoryIcon
+  const icon = History
   const aryInfo = [
     `当前版本: `,
     `‍🚀 ${version}`,
   ]
-
-  return <Accordion1 title={title} icon={icon} info={aryInfo} />
+  return <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
 }
 
-function HideInfo () {
-  const list = [SupervisorAccountIcon, HelpIcon, HelpIcon].map((Icon, index) => (
-    <Accordion defaultExpanded={true} key={index}>
+const ShowInfo = () => {
+  const operatorInfo = getOperatorInfo()
+  const helperInfo = getHelperInfo()
+  const versionInfo = getVersionInfo()
+  return (
+    <>
+      <ListItem>{operatorInfo}</ListItem>
+      <ListItem>{helperInfo}</ListItem>
+      <ListItem>{versionInfo}</ListItem>
+    </>
+  )
+};
+
+function HideInfo() {
+  const list = [SupervisorAccount, Help, History].map((Icon, index) => (
+    <Accordion defaultExpanded={false} key={index}>
       <ListItemIcon>
         <Icon />
       </ListItemIcon>
@@ -125,7 +135,6 @@ function HideInfo () {
 }
 
 export {
-  getOperatorInfo,
-  getHelperInfo,
-  HideInfo
+  ShowInfo,
+  HideInfo,
 }

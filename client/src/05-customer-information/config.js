@@ -1,18 +1,34 @@
-import {subRouters} from "./common";
 import {
-  AccountCircle as AccountCircleIcon, BorderBottom, Brush, Business, BusinessCenter, CheckCircleOutline,
+  AccountCircle,
+  BorderBottom,
+  Brush,
+  Business,
+  BusinessCenter,
+  CheckCircleOutline,
   CreditCard,
-  DataUsage, Details, DirectionsRun, ExitToApp as ExitToAppIcon,
+  DataUsage,
+  Details,
+  DirectionsRun,
+  ExitToApp,
   Group,
-  Help, ListAlt as ListAltIcon, LiveHelp as LiveHelpIcon, LocationCity as LocationCityIcon, LocationCity, MailOutline,
+  Help,
+  ListAlt,
+  LiveHelp,
+  LocationCity,
+  MailOutline,
   Message,
   MonetizationOn,
-  OfflineBolt, PermIdentity, Person,
+  OfflineBolt,
+  PermIdentity,
+  Person,
   RateReview,
-  SettingsInputSvideo, SupervisorAccount, Toc, TransferWithinAStation, Warning
+  SettingsInputSvideo,
+  SupervisorAccount,
+  Toc,
+  TransferWithinAStation,
+  Warning
 } from "@material-ui/icons";
 import {C1_1, C4_1} from "./containers";
-import {SetView} from "../02-core_business/common";
 
 const menuList = [
   {
@@ -45,55 +61,49 @@ const menuList = [
   },
 ];
 
-const MenuList = [
+const navList = [
   {
     nav: '客户基本信息',
     main: [
       {
         path: "基础信息",
         icon: Message,
-        component: C1_1, // SetView('c1-1-1'),
+        component: C1_1,
       },
       {
         path: "管理层信息",
         icon: MailOutline,
-        component: SetView('c1-2'),
+        component: C1_1,
       }, {
         path: "自然人实际控制人",
         icon: Person,
-        component: SetView('c1-3'),
+        component: C1_1,
       },
       {
         path: "非自然人实际控制人",
         icon: PermIdentity,
-        component: SetView('c1-4'),
+        component: C1_1,
       },
       // {
       //   path: "主要财务资料",
-      //   icon: BarChartIcon,
-      //   component: SetView('m1'),
+      //   icon: BarChart,
       // },
       // {
       //   path: "客户评级与限额",
-      //   icon: BarChartIcon,
-      //   component: SetView('m1'),
+      //   icon: BarChart,
       // },
       // {
       //   path: "预警信息",
-      //   icon: BarChartIcon,
-      //   component: SetView('m1'),
+      //   icon: BarChart,
       // }, {
       //   path: "征信关注及不良",
-      //   icon: BarChartIcon,
-      //   component: SetView('m1'),
+      //   icon: BarChart,
       // }, {
       //   path: "关联关系信息",
-      //   icon: BarChartIcon,
-      //   component: SetView('m1'),
+      //   icon: BarChart,
       // }, {
       //   path: "上下游企业",
-      //   icon: BarChartIcon,
-      //   component: SetView('m1'),
+      //   icon: BarChart,
       // },
     ],
   },
@@ -102,8 +112,8 @@ const MenuList = [
     main: [
       {
         path: "主要财务资料",
-        icon: ListAltIcon,
-        component: SetView('c2-1'),
+        icon: ListAlt,
+        component: C1_1,
       },
     ]
   },
@@ -112,8 +122,8 @@ const MenuList = [
     main: [
       {
         path: "客户评级与限额",
-        icon: AccountCircleIcon,
-        component: SetView('c3-1'),
+        icon: AccountCircle,
+        component: C1_1,
       },
     ]
   },
@@ -123,12 +133,12 @@ const MenuList = [
       {
         path: "预警信息",
         icon: Warning,
-        component: C4_1,
+        component: C1_1,
       },
       {
         path: "征信关注及不良",
         icon: CreditCard,
-        // component: SetView('c4-2'),
+        // component: C1_1,
       },
     ]
   },
@@ -138,12 +148,12 @@ const MenuList = [
       {
         path: "关联关系信息",
         icon: Toc,
-        // component: SetView('c5-1'),
+        // component: C1_1,
       },
       {
         path: "上下游企业",
         icon: LocationCity,
-        // component: SetView('c5-2'),
+        // component: C1_1,
       },
     ]
   },
@@ -153,62 +163,62 @@ const MenuList = [
       {
         path: '用户账户',
         icon: Person,
-        component: setView('user')
+        // component: setView('user')
       },
       {
         path: '角色',
         icon: CheckCircleOutline,
-        component: setView('role')
+        // component: setView('role')
       },
       {
         path: '组织',
         icon: Business,
-        component: setView('organization')
+        // component: setView('organization')
       },
       {
         path: '部门列表',
         icon: ListAlt,
-        component: setView('department')
+        // component: setView('department')
       },
       {
         path: '账号细节',
         icon: AccountCircle,
-        component: setView('profile')
+        // component: setView('profile')
       },
       {
         path: 'POC管理',
         icon: SupervisorAccount,
-        component: setView('admin')
+        // component: setView('admin')
       },
       {
         path: '供应商',
         icon: BusinessCenter,
-        component: setView('supplier')
+        // component: setView('supplier')
       },
       {
         path: '核心企业',
         icon: BorderBottom,
-        component: setView('core-business')
+        // component: setView('core-business')
       },
       {
         path: '凭证',
         icon: Brush,
-        component: setView('certificate')
+        // component: setView('certificate')
       },
       {
         path: '凭证状态查询',
         icon: TransferWithinAStation,
-        component: setView('status')
+        // component: setView('status')
       },
       {
         path: '细节',
         icon: Details,
-        component: setView('detail')
+        // component: setView('detail')
       },
       {
         path: '测试',
         icon: DirectionsRun,
-        component: setView('test')
+        // component: setView('test')
       },
     ]
   },
@@ -217,16 +227,18 @@ const MenuList = [
     main: [
       {
         path: '帮助中心',
-        icon: LiveHelpIcon
+        icon: LiveHelp
       },
       {
         path: '注册指导',
-        icon: ExitToAppIcon
+        icon: ExitToApp
       },
       {
         path: '公司简介',
-        icon: LocationCityIcon
+        icon: LocationCity
       }
     ]
   },
 ]
+
+export {menuList, navList}

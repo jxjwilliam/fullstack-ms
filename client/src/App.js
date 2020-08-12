@@ -37,7 +37,11 @@ class App extends Component {
           <CssBaseline/>
           <Container fixed>
             <Typography component="div" style={{height: '100vh'}}>
-              <RouteList routes1={BusinessRouters} routes2={GeneralRouters} routes3={BackdoorRouters}/>
+              <RouteList
+                routes1={BusinessRouters}
+                routes2={GeneralRouters}
+                routes3={BackdoorRouters}
+              />
             </Typography>
           </Container>
         </div>

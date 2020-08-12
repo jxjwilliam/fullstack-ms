@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ProTip(tip='微服务模板应用') {
+export default function ProTip({tip='微服务模板应用'}) {
   const classes = useStyles();
   return (
     <Typography className={classes.root} color="textSecondary">

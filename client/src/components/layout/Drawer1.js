@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Drawer,
@@ -15,9 +15,12 @@ const useStyles = makeStyles({
   list: {
     width: 250,
   },
+  active: {
+    backgroundColor: '#dce775',
+  }
 });
 
-export default function () {
+export default function ({location}) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -30,7 +33,6 @@ export default function () {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [side]: open });
   };
 
@@ -42,34 +44,37 @@ export default function () {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {BusinessRouters.map(router => {
-          const CompIcon = router.icon;
+        {BusinessRouters.map(({icon: CompIcon, path, title}) => {
           return (
             <ListItem
               button
-              component={Link}
-              to={router.path}
-              key={router.path}
+              // selected={path === location.pathname}
+              component={NavLink}
+              exact
+              to={path}
+              activeClassName={classes.active}
+              key={path}
             >
               <ListItemIcon><CompIcon /></ListItemIcon>
-              <ListItemText primary={router.title} />
+              <ListItemText primary={title} />
             </ListItem>
           )
         })}
       </List>
       <Divider />
       <List>
-        {GeneralRouters.map(router => {
-          const CompIcon = router.icon;
+        {GeneralRouters.map(({icon: CompIcon, path, title}) => {
           return (
             <ListItem
               button
-              component={Link}
-              to={router.path}
-              key={router.path}
+              component={NavLink}
+              exact
+              to={path}
+              activeClassName={classes.active}
+              key={path}
             >
               <ListItemIcon><CompIcon /></ListItemIcon>
-              <ListItemText primary={router.title} />
+              <ListItemText primary={title} />
             </ListItem>
           )
         })}

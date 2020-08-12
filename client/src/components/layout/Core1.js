@@ -6,7 +6,7 @@ import {
   Typography,
   Link as MuiLink,
 } from '@material-ui/core';
-import { bars, Drawer } from "../index";
+import { bars, Drawer1 } from "../index";
 import { NavList } from '../headers'
 import Layout1 from './Layout1'
 import {isEmpty} from '../../helpers/utils'
@@ -88,11 +88,11 @@ const RouteList = ({routes, redirect = {}}) => {
           from={redirect.from}
           to={redirect.to}
         /> : null};
-      {routes.map(route => (
+      {routes.map(({path, component}) => (
         <Route
-          key={route.path}
-          path={route.path}
-          component={route.component}
+          key={path}
+          path={path}
+          component={component}
       />))}
     </Switch>
   )
@@ -110,7 +110,7 @@ const getPageLayout = (navList, mainList, options) => {
   return (
     <Container fixed>
       <bars.Bar2>
-        <Drawer />
+        <Drawer1 />
         <Typography>
           <MuiLink href={base} color="inherit" variant="h6">{base}</MuiLink>
         </Typography>

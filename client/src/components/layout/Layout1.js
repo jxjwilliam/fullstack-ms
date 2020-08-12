@@ -126,7 +126,7 @@ export default function(Menu, Content) {
           </Fragment>
         </Drawer>
         <main className={classes.content} style={{position: 'relative'}}>
-          <div className={classes.appBarSpacer}/>
+          {/*<div className={classes.appBarSpacer}/>*/}
           <Container maxWidth="lg" className={classes.container}>
             <Content/>
           </Container>

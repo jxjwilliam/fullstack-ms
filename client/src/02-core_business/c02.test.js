@@ -1,20 +1,39 @@
-
-// 原来的导航列表是数组，转换生成导航{}
-import {getContent, getMenu, Layout1} from "../components/layout";
-import {menuList, navList} from "./config";
-import {getAllRouters} from './routers'
+import React from 'react'
+import {FormatQuote, MoveToInbox, Payment, People} from "@material-ui/icons";
+import { base, navList, mainList, defaultUrl } from "./routers";
+import { getPageLayout } from '../components'
 
 beforeEach(() => {
-  const BASE = 'whatever'
+  const Routers = [
+    {
+      path: 'POC额度',
+      title: 'POC额度',
+      icon: FormatQuote,
+      // component: C1,
+    },
+    {
+      path: 'POC管理',
+      title: 'POC管理',
+      icon: People,
+      // component: C2,
+    },
+    {
+      path: 'POC流转',
+      title: 'POC流转',
+      icon: MoveToInbox,
+      // component: C3
+    },
+    {
+      path: '还款管理',
+      title: '还款管理',
+      icon: Payment,
+      // component: C4,
+    }
+  ];
 })
 
-describe('sub-routers', () => {
+describe('routers', () => {
   it('test menu and nav list', () => {
-    const test1 = menuList.reduce((obj, url) => ({ ...obj, [url]: `${BASE}/${url}` }), {});
-    console.log(menuList)
-    console.log(navList)
-    const Routers = getAllRouters(navList, menuList)
-    console.log(Routers)
     expect('hello the world').toBeTruthy()
   })
 })
@@ -22,15 +41,3 @@ describe('sub-routers', () => {
 afterEach(() => {
 })
 
-function getSubRouters(navs, menus) {
-  return navs.map((nav, idx) => {
-    const nnn = getMenu(menus)
-    const mmm = getContent(menus)
-    return {
-      path: `${BASE}/${nav[0]}`,
-      title: nav[0],
-      icon: nav[1],
-      component: Layout1(nnn, mmm)
-    }
-  })
-}

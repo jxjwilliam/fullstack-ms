@@ -1,53 +1,71 @@
-import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import {Link, Route, Switch} from "react-router-dom";
-import React, {Fragment} from "react";
-import {FTemplate} from "../containers";
-import {BASE} from "../06-financing/routers";
+import React from 'react'
+import {
+  DataUsage,
+  FormatQuote,
+  Group, Help,
+  MonetizationOn,
+  MoveToInbox,
+  OfflineBolt,
+  Payment,
+  People,
+  RateReview, SettingsInputSvideo
+} from "@material-ui/icons";
+import { base, navList, mainList, defaultUrl } from "./routers";
+import { getPageLayout } from '../components'
 
-function getMenu(key, items) {
-  function menu() {
-    const list = items.map(item => {
-      const CompIcon = item.icon
-      return (
-        <ListItem
-          button
-          component={Link}
-          to={`${BASE}/${key}/${item.path}`}
-          key={item.path}
-        >
-          <ListItemIcon>
-            <CompIcon />
-          </ListItemIcon>
-          <ListItemText primary={item.path} />
-        </ListItem >
-      )
-    })
-    return (
-      <Fragment>
-        {list}
-      </Fragment>
-    )
-  }
-  return menu;
-}
+beforeEach(() => {
+  const Routers = [
+    {
+      path: '客户基本信息',
+      title: '客户基本信息',
+      icon: Group,
+      // component: C1,
+    },
+    {
+      path: '财务信息',
+      title: '财务信息',
+      icon: MonetizationOn,
+      // component: C2,
+    },
+    {
+      path: '评级限额信息',
+      title: '评级限额信息',
+      icon: RateReview,
+      // component: C3,
+    },
+    {
+      path: '风险信息',
+      title: '风险信息',
+      icon: OfflineBolt,
+      // component: C4,
+    },
+    {
+      path: '关联信息',
+      title: '关联信息',
+      icon: SettingsInputSvideo,
+      // component: C5,
+    },
+    {
+      path: '现有数据',
+      title: '现有数据',
+      icon: DataUsage,
+      // component: DataView,
+    },
+    {
+      path: '帮助',
+      title: '帮助',
+      icon: Help,
+      // component: Helper,
+    },
+  ];
+})
 
-function getContent(key, items) {
-  return function () {
-    return (
-      <Switch>
-        {items.map(item => {
-          const { path } = item;
-          const url = `${BASE}/${key}/${path}`
-          return (
-            <Route
-              path={url}
-              // component={item.component}
-              render={FTemplate}
-              key={item.path}
-            />
-          )
-        })}
-      </Switch>
-    )
-  }
-}
+describe('routers', () => {
+  it('test menu and nav list', () => {
+    expect('hello the world').toBeTruthy()
+  })
+})
+
+afterEach(() => {
+})
+

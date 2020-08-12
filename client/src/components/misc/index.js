@@ -1,6 +1,6 @@
 import Copyright from './Copyright'
 import ProTip from './ProTip'
-import { TabPanels } from '../../components'
+import TabPanels  from './TabPanels'
 import Title from './Title'
 
 export {

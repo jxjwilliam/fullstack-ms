@@ -6,7 +6,7 @@ import {
   Link,
   Box,
 } from '@material-ui/core';
-import { Drawer, Menu, bars, footers, ProTip } from '../components'
+import { Drawer1, Menu, bars, footers, ProTip } from '../components'
 
 const Emoji = props => (
   <span
@@ -28,7 +28,7 @@ export default function () {
       <CssBaseline />
       <Container fixed>
         <bars.Bar1>
-          <Drawer />
+          <Drawer1 />
           <Typography>
             <Link href="/home" color="inherit" variant="h6">主页面</Link>
           </Typography>

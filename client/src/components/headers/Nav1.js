@@ -39,21 +39,4 @@ const NavList = ({ navs }) => {
   )
 }
 
-const NavItem = ({ to, exact, children }) => {
-  const classes = useStyles()
-  return (
-    <Route
-      path={to}
-      exact={exact}
-      children={({ match }) => (
-        <li className="nav-item">
-          <Link className={match ? 'nav-link active' : 'nav-link'} to={to}>
-            {children}
-          </Link>
-        </li>
-      )}
-    />
-  )
-}
-
-export { NavList, NavItem }
+export { NavList }

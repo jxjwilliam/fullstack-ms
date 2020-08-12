@@ -4,7 +4,7 @@ import {
   Container,
   CssBaseline
 } from '@material-ui/core';
-import { Drawer, bars } from '../components'
+import { Drawer1, bars } from '../components'
 import Signup1 from './Signup1'
 import Signup2 from './signup2'
 
@@ -36,7 +36,7 @@ export default class extends Component {
         <CssBaseline />
         <Container fixed>
           <bars.Bar1>
-            <Drawer />
+            <Drawer1 />
           </bars.Bar1>
           <RouteList signups={Routers} />
         </Container>

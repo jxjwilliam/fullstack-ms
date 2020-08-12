@@ -16,6 +16,7 @@ class RiskManagement extends Component {
   }
 
   render() {
+    console.log('get match/location here...', this.props);
     const pageLayout = getPageLayout(navList, mainList, this.state);
     return <Fragment>{pageLayout}</Fragment>
   }

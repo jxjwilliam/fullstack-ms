@@ -18,8 +18,9 @@ import {
   Money
 } from '@material-ui/icons'
 import {C3_1, C3_2, C3_3} from "./containers";
+import {getDefautlUrl} from '../components'
 
-const base = ''
+const base = '核心企业'
 
 const navList = [
   {
@@ -121,6 +122,6 @@ const mainList = [
   }
 ]
 
-const defaultUrl = ''
+const defaultUrl = getDefautlUrl(base, navList, mainList)
 
 export { base, navList, mainList, defaultUrl };

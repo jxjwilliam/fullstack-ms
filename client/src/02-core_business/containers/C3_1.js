@@ -12,7 +12,7 @@ export const subRootAry1 = [
   "POC支付"
 ];
 
-const PARENT_PATH = '/核心企业及供应商/POC流转';
+const PARENT_PATH = '/核心企业/POC流转';
 const PATH = 'POC收支';
 
 export default getSubRouters(PARENT_PATH, PATH, subRootAry1);

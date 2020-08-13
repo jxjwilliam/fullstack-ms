@@ -11,6 +11,16 @@ import { NavList } from '../headers'
 import Layout1 from './Layout1'
 import {isEmpty} from '../../helpers/utils'
 
+function getDefautlUrl(base, navs=[], menus=[]) {
+  const url = base.startsWith('/') ? base : `/${base}`;
+  const p1 = navs[0].path;
+  const p2 = menus.find(item => item.nav === p1).main[0].path;
+  return {
+    from: url,
+    to: `${url}/${p1}/${p2}`
+  }
+}
+
 function FTemplate({ match: { path, url } }) {
   const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
   console.log(JSON.stringify(url, null, 4));
@@ -57,9 +67,9 @@ function getContent(parent_path, items) {
 }
 
 function getNavs(baseUrl, navList) {
-  return navList.map(({path, icon}) => ({
+  return navList.map(({path, icon, title=path}) => ({
     path: `/${baseUrl}/${path}`,
-    title: path,
+    title: title,
     icon: icon
   }))
 }
@@ -98,9 +108,6 @@ const RouteList = ({routes, redirect = {}}) => {
   )
 };
 
-/**
- * title：'融资'，url：'/financing'
- */
 const getPageLayout = (navList, mainList, options) => {
   const { base, redirect } = options;
   const navs = getNavs(base, navList);
@@ -127,5 +134,6 @@ const getPageLayout = (navList, mainList, options) => {
 }
 
 export {
+  getDefautlUrl,
   getPageLayout
 }

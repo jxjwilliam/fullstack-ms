@@ -35,6 +35,7 @@ import {
   Description,
 } from '@material-ui/icons'
 import { C2_1, C2_2, C2_3, C3_1, C5_2, C6_2, C6_3, C6_4, C7_1, C7_2, C7_3, C7_4, C9_1 } from "./containers";
+import {getDefautlUrl} from '../components'
 
 const base = '风险管理';
 
@@ -43,7 +44,7 @@ const navList = [
     path: '系统管理',
     icon: LaptopWindows,
   }, {
-    path: '客户信息',
+    path: '客户信息1',
     icon: Message,
   }, {
     path: '评级限额',
@@ -98,7 +99,7 @@ const mainList = [
     ]
   },
   {
-    nav: '客户信息',
+    nav: '客户信息1',
     main: [
       {
         path: "查询",
@@ -273,13 +274,6 @@ const mainList = [
   },
 ];
 
-const defaultUrl = (function () {
-  const p1 = navList[0].path;
-  const p2 = mainList.find(item => item.nav === p1).main[0].path;
-  return {
-    from: `/${base}`,
-    to: `/${base}/${p1}/${p2}`
-  }
-})();
+const defaultUrl = getDefautlUrl(base, navList, mainList);
 
 export { base, navList, mainList, defaultUrl }

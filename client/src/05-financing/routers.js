@@ -12,8 +12,9 @@ import {
   TrackChanges,
   WrapText
 } from "@material-ui/icons";
+import {getDefautlUrl} from "../components/layout";
 
-const base = ''
+const base = '融资管理'
 
 const navList = [
   {
@@ -142,6 +143,6 @@ const mainList = [
   },
 ]
 
-const defaultUrl = ''
+const defaultUrl = getDefautlUrl(base, navList, mainList);
 
 export { base, navList, mainList, defaultUrl }

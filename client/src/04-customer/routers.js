@@ -26,11 +26,13 @@ import {
   SupervisorAccount,
   Toc,
   TransferWithinAStation,
-  Warning
+  Warning,
+  BarChart,
 } from "@material-ui/icons";
 import {C1_1, C4_1} from "./containers";
+import {getDefautlUrl} from "../components";
 
-const base = '';
+const base = '客户信息';
 
 const navList = [
   {
@@ -86,27 +88,27 @@ const mainList = [
         icon: PermIdentity,
         component: C1_1,
       },
-      // {
-      //   path: "主要财务资料",
-      //   icon: BarChart,
-      // },
-      // {
-      //   path: "客户评级与限额",
-      //   icon: BarChart,
-      // },
-      // {
-      //   path: "预警信息",
-      //   icon: BarChart,
-      // }, {
-      //   path: "征信关注及不良",
-      //   icon: BarChart,
-      // }, {
-      //   path: "关联关系信息",
-      //   icon: BarChart,
-      // }, {
-      //   path: "上下游企业",
-      //   icon: BarChart,
-      // },
+      {
+        path: "主要财务资料",
+        icon: BarChart,
+      },
+      {
+        path: "客户评级与限额",
+        icon: BarChart,
+      },
+      {
+        path: "预警信息",
+        icon: BarChart,
+      }, {
+        path: "征信关注及不良",
+        icon: BarChart,
+      }, {
+        path: "关联关系信息",
+        icon: BarChart,
+      }, {
+        path: "上下游企业",
+        icon: BarChart,
+      },
     ],
   },
   {
@@ -243,6 +245,6 @@ const mainList = [
   },
 ]
 
-const defaultUrl = ''
+const defaultUrl = getDefautlUrl(base, navList, mainList);
 
 export {base, navList, mainList, defaultUrl}

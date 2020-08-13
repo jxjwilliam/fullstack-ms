@@ -2,7 +2,7 @@ import React from 'react';
 import {TabPanels} from '../../components'
 import getSubRouters from './helper';
 
-const PARENT_PATH = '/核心企业及供应商/POC管理';
+const PARENT_PATH = '/核心企业/POC管理';
 const PATH = '已开POC';
 
 export const subRootAry = [

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, NavLink } from 'react-router-dom'
 import {List, ListItem, ListItemText,} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -20,12 +20,23 @@ const useStyles = makeStyles((theme) => ({
   wrap: {
     flexFlow: 'row wrap',
   },
+  active: {
+    backgroundColor: '#dce775',
+  },
 }))
 
 const NavList = ({ navs }) => {
   const classes = useStyles()
   const navList = navs.map(({path, title, icon: CompIcon}) => (
-      <ListItem button className={classes.list} component={Link} to={path} key={path}>
+      <ListItem
+        button
+        className={classes.list}
+        component={NavLink}
+        // exact
+        to={path}
+        activeClassName={classes.active}
+        key={path}
+      >
         {/*<ListItemIcon>*/}
           <CompIcon fontSize="small" />
         {/*</ListItemIcon>*/}
@@ -39,4 +50,4 @@ const NavList = ({ navs }) => {
   )
 }
 
-export { NavList }
+export default NavList;

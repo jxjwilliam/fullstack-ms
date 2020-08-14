@@ -12,8 +12,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from '@material-ui/icons';
-import { ShowInfo, HideInfo } from "../misc";
-
+import accordion from "./Accordion1";
+import Title from './Title'
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -81,8 +81,8 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   paper: {
     padding: theme.spacing(2),
@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function(Menu, Content) {
-  function Dashboard() {
+  function Dashboard({location:{pathname}, match:{url, path}}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -122,12 +122,13 @@ export default function(Menu, Content) {
           <Divider/>
           <Fragment>
             <Menu/>
-            {open ? <ShowInfo/> : <HideInfo/>}
+            {open ? <accordion.ShowInfo/> : <accordion.HideInfo/>}
           </Fragment>
         </Drawer>
         <main className={classes.content} style={{position: 'relative'}}>
           {/*<div className={classes.appBarSpacer}/>*/}
           <Container maxWidth="lg" className={classes.container}>
+            <Title path={pathname}/>
             <Content/>
           </Container>
         </main>

@@ -6,16 +6,11 @@ import {
   Link,
   Box,
 } from '@material-ui/core';
-import { Drawer1, Menu, bars, footers, ProTip } from '../components'
+import { Drawer1, Menu1, bars, footers, ProTip } from '../components'
 
-const Emoji = props => (
-  <span
-    className="emoji"
-    role="img"
-    aria-label={props.label ? props.label : ""}
-    aria-hidden={props.label ? "false" : "true"}
-  >
-    {props.symbol}
+const Emoji = ({label='', symbol}) => (
+  <span className="emoji" role="img" aria-label={label} aria-hidden={label ? "false" : "true"}>
+    {symbol}
   </span>
 )
 
@@ -35,7 +30,7 @@ export default function () {
         </bars.Bar1>
         <Box my={4}>
           <Typography variant="h4" component="h1" gutterBottom>
-            <Menu />
+            <Menu1 />
           </Typography>
           <ProTip />
           <Emoji symbol="💪🎋 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻 🌞 🌝" />

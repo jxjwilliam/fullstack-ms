@@ -44,7 +44,7 @@ const navList = [
     path: '系统管理',
     icon: LaptopWindows,
   }, {
-    path: '客户信息1',
+    path: '客户信息',
     icon: Message,
   }, {
     path: '评级限额',
@@ -99,7 +99,7 @@ const mainList = [
     ]
   },
   {
-    nav: '客户信息1',
+    nav: '客户信息',
     main: [
       {
         path: "查询",

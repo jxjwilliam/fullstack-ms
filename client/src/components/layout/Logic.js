@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Switch, Route, Redirect, Link } from 'react-router-dom'
+import { Switch, Route, Redirect, Link, NavLink } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
   List, ListItem, ListItemIcon, ListItemText,
@@ -7,9 +8,15 @@ import {
   Link as MuiLink,
 } from '@material-ui/core';
 import { bars, Drawer1 } from "../index";
-import { NavList } from '../headers'
+import NavList from './Nav1'
 import Layout1 from './Layout1'
 import {isEmpty} from '../../helpers/utils'
+
+const useStyles = makeStyles((theme) => ({
+  active: {
+    backgroundColor: '#dce775',
+  }
+}));
 
 function getDefautlUrl(base, navs=[], menus=[]) {
   const url = base.startsWith('/') ? base : `/${base}`;
@@ -21,25 +28,32 @@ function getDefautlUrl(base, navs=[], menus=[]) {
   }
 }
 
-function FTemplate({ match: { path, url } }) {
+function FTemplate({ match: { path, url }, location: { pathname } }) {
   const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
-  console.log(JSON.stringify(url, null, 4));
-  return <h2>{`${breadcrumbs} : `}</h2>
+  return <h6>[{`${breadcrumbs} : `}], [{url}], [{pathname}]</h6>
 }
 
 class CTemplate extends Component {
   render() {
-    const { match: { path, url } } = this.props;
+    const { match: { path, url }, location: { pathname } } = this.props;
     const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
-    return <h2>{`${breadcrumbs} : `}</h2>
+    return <h6>{`${breadcrumbs} : `}</h6>
   }
 }
 
 // title (optional), path, icon
 function getMenu(parent_path, items) {
   return function () {
+    const classes = useStyles();
     const list = items.map(({ path, title = '', icon: CompIcon }) => (
-      <ListItem button component={Link} to={`${parent_path}/${path}`} key={path}>
+      <ListItem
+        button
+        component={NavLink}
+        exact
+        to={`${parent_path}/${path}`}
+        activeClassName={classes.active}
+        key={path}
+      >
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>

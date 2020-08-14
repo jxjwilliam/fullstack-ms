@@ -58,13 +58,13 @@ const useStyles = makeStyles(theme => ({
     width: 260,
   },
   fields: {
-    marginLeft: 20,
+    marginLeft: theme.spacing(2),
   },
   right: {
     textAlign: 'right'
   },
   top: {
-    marginTop: 16,
+    marginTop: theme.spacing(2),
   }
 }));
 

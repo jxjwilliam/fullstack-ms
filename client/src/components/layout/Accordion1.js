@@ -134,7 +134,7 @@ function HideInfo() {
   return <Fragment><Divider />{list}</Fragment>
 }
 
-export {
+export default {
   ShowInfo,
   HideInfo,
 }

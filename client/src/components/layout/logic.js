@@ -53,6 +53,7 @@ function getMenu(parent_path, items) {
         to={`${parent_path}/${path}`}
         activeClassName={classes.active}
         key={path}
+        // selected={}
       >
         <ListItemIcon>
           <CompIcon />

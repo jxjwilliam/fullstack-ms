@@ -3,13 +3,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import {Button, Menu, MenuItem, Fade, Link} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import {Menu as MenuIcon} from '@material-ui/icons'
-import {GeneralRouters} from '../../routers'
 
 const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function () {
+export default function ({routers=[]}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -35,7 +34,7 @@ export default function () {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        {GeneralRouters.map(({icon:CompIcon, path, title}) => {
+        {routers.map(({icon:CompIcon, path, title}) => {
           return (
             <Link href={path} key={path}>
               <MenuItem onClick={handleClose}>

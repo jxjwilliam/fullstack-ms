@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
   Toolbar,
@@ -19,10 +20,7 @@ import {
   FormControl,
   InputLabel,
 } from '@material-ui/core';
-import {
-  AccountCircle,
-} from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
+import { AccountCircle,} from '@material-ui/icons';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import Login from '../../signin/SigninSide';

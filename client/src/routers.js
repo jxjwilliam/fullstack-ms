@@ -22,7 +22,7 @@ import {
   ExitToApp,
 } from '@material-ui/icons'
 
-export const BusinessRouters = [
+const BusinessRouters = [
   {
     path: '/风险管理',
     title: '风险管理',
@@ -61,7 +61,7 @@ export const BusinessRouters = [
   },
 ]
 
-export const GeneralRouters = [
+const GeneralRouters = [
   {
     path: '/',
     title: '首页',
@@ -92,7 +92,7 @@ export const GeneralRouters = [
   },
 ];
 
-export const BackdoorRouters = [
+const BackdoorRouters = [
   {
     path: '/home',
     title: '首页',
@@ -103,4 +103,10 @@ export const BackdoorRouters = [
     component: C404,
   }
 ]
+
+export {
+  BusinessRouters,
+  GeneralRouters,
+  BackdoorRouters
+}
 

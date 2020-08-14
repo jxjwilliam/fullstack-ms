@@ -1,4 +1,4 @@
-import React, { createElement, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Accordion,
@@ -123,11 +123,11 @@ const ShowInfo = () => {
   )
 };
 
-function HideInfo() {
+const HideInfo = () => {
   const list = [SupervisorAccount, Help, History].map((Icon, index) => (
     <Accordion defaultExpanded={false} key={index}>
       <ListItemIcon>
-        <Icon />
+        <Icon  style={{margin: 'auto'}} />
       </ListItemIcon>
     </Accordion>
   ))

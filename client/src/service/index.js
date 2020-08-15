@@ -1,0 +1,70 @@
+import React, {Fragment} from 'react'
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  AppBar, Container, CssBaseline, Toolbar,
+  ButtonGroup, Link,
+} from "@material-ui/core";
+import { Drawer1, footers } from "../components";
+import theme from './theme';
+import ServiceDemo from "./demo";
+import { ThemeProvider } from "@material-ui/styles";
+import { BusinessRouters } from '../routers';
+import { navList as navs1 } from '../01-risk-management/routers'
+import { navList as navs2 } from '../02-core_business/routers'
+import { navList as navs3 } from '../03-supplier/routers'
+import { navList as navs4 } from '../04-customer/routers'
+import { navList as navs5 } from '../05-financing/routers'
+import { menus } from '../components'
+import {Home as HomeIcon} from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+const getMap = () => {
+  const Routers = [navs1, navs2, navs3, navs4, navs5];
+  return BusinessRouters.reduce((map, br, idx) => {
+    if (!Routers[idx]) return map;
+    const { component, ...others } = br;
+    map.set(others, Routers[idx])
+    return map;
+  }, new Map);
+}
+
+export default function () {
+  const classes = useStyles();
+
+  const all5 = getMap();
+  console.log('-----', all5, null, 4);
+
+  let routers = [];
+  for (let [key, value] of all5) {
+    const { path, title, icon: CompIcon } = key;
+    routers.push(
+      <ButtonGroup key={path}>
+        <menus.Menu2 routers={value} base={path} title={title} Icon={CompIcon} />
+      </ButtonGroup>
+    )
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container fixed className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <Link href="/" color="inherit" variant="h6"><HomeIcon/></Link>
+            <Drawer1 />
+            {routers}
+          </Toolbar>
+        </AppBar>
+        <ServiceDemo />
+        <footers.Footer2 />
+      </Container>
+    </ThemeProvider>
+  )
+}

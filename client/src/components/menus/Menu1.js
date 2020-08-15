@@ -1,14 +1,22 @@
 import React, {Fragment}  from 'react';
-import { makeStyles } from '@material-ui/core/styles'
-import {Button, Menu, MenuItem, Fade, Link} from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+import {fade, makeStyles} from '@material-ui/core/styles'
+import {Menu, MenuItem, Fade, Link, Button, IconButton} from '@material-ui/core';
 import {Menu as MenuIcon} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
-
+  link: {
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+      textDecoration: 'none',
+    },
+  },
+  icon: {
+    paddingLeft: theme.spacing(0.5),
+    paddingRight: theme.spacing(5)
+  },
 }));
 
-export default function ({routers=[]}) {
+export default function ({routers=[], Icon=MenuIcon, title=''}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,32 +29,43 @@ export default function ({routers=[]}) {
     setAnchorEl(null);
   }
 
-  return (
-    <Fragment>
-      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleOpen}>
-        <MenuIcon />
-      </Button>
-      <Menu
-        id="fade-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
-        {routers.map(({icon:CompIcon, path, title}) => {
-          return (
-            <Link href={path} key={path}>
-              <MenuItem onClick={handleClose}>
+  const renderMenu = (
+    <Menu
+      id="profile-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={open}
+      onClose={handleClose}
+      TransitionComponent={Fade}
+    >
+      {routers.map(({icon:CompIcon, path, title: subTitle}) => {
+        return (
+          <Link href={path} key={path} className={classes.link}>
+            <MenuItem onClick={handleClose} className={classes.icon}>
+              { CompIcon ? (
                 <IconButton color="inherit">
                   <CompIcon fontSize="small" />
                 </IconButton>
-                {title}
-              </MenuItem>
-            </Link>
-          )
-        })}
-      </Menu>
+              ) : null }
+              {subTitle}
+            </MenuItem>
+          </Link>
+        )
+      })}
+    </Menu>
+  )
+
+  return (
+    <Fragment>
+      <Button
+        variant='contained'
+        onClick={handleOpen}
+        color="primary"
+        startIcon={<Icon />}
+      >
+        {title}
+      </Button>
+      {renderMenu}
     </Fragment>
   );
 }

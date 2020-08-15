@@ -1,15 +1,69 @@
-import React, {Fragment} from "react";
-import { makeStyles } from '@material-ui/core/styles'
-import {Link, Typography} from "@material-ui/core";
+import React, {Fragment}  from 'react';
+import {fade, makeStyles} from '@material-ui/core/styles'
+import {Menu, MenuItem, Fade, Link, Button} from '@material-ui/core';
+import {Menu as MenuIcon} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
-
+  link: {
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+      textDecoration: 'none',
+    },
+  },
+  button: {
+    margin: theme.spacing(2),
+  },
+  icon: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(5)
+  },
 }));
 
-export default function() {
-  return (
-    <Typography variant="h6" style={{ flexGrow: 1 }}>
-      <Link href="_book" color="inherit" variant="h6">Gitbook</Link>
-    </Typography>
+export default function ({routers=[], base, title, Icon=MenuIcon }) {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  function handleOpen(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      keepMounted
+      open={open}
+      onClose={handleClose}
+      TransitionComponent={Fade}
+    >
+      {routers.map(({icon:CompIcon=MenuIcon, path}) => {
+        return (
+          <Link href={`${base}/${path}`} key={path} className={classes.link}>
+            <MenuItem onClick={handleClose} className={classes.icon}>
+              { CompIcon ? <CompIcon fontSize="small" /> : null }
+              {path}
+            </MenuItem>
+          </Link>
+        )
+      })}
+    </Menu>
   )
+
+  return (
+    <Fragment>
+      <Button
+        color="inherit"
+        className={classes.button}
+        startIcon={<Icon />}
+        onClick={handleOpen}
+      >
+        {title}
+      </Button>
+      {renderMenu}
+    </Fragment>
+  );
 }

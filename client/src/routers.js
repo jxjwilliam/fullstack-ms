@@ -1,4 +1,5 @@
 import Home from './home';
+import Service from './service';
 import { SignIn, SignInSide, SignOut } from './signin'
 import Signup from './signup'
 import Admin from './01-risk-management'
@@ -11,6 +12,7 @@ import { C404 } from './containers'
 import {
   OfflineBolt,
   Business,
+  BusinessCenter,
   AttachMoney,
   SettingsApplications,
   SupervisorAccount,
@@ -70,13 +72,19 @@ const GeneralRouters = [
     component: Home,
   },
   {
+    path: '/service',
+    title: 'Service',
+    icon: BusinessCenter,
+    component: Service,
+  },
+  {
     path: '/signin',
     title: '登录',
     icon: VerifiedUser,
     component: SignIn,
   }, {
     path: '/login',
-    title: '切换用户登录',
+    title: '切换用户',
     icon: LockOpen,
     component: SignInSide,
   }, {

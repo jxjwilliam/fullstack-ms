@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { ThemeProvider } from '@material-ui/styles';
-import theme from './theme';
+import {Container, CssBaseline} from "@material-ui/core";
 import { DEFAULT_LOGIN_PAGE } from '../constants'
-import Home from './Home';
+import {bars, footers} from "../components";
+import theme from './theme';
+import HomeDemo from "./demo";
+
+function Home () {
+  return (
+    <>
+      <CssBaseline />
+      <Container fixed>
+        <bars.Bar1>
+          {/*TODO: children*/}
+        </bars.Bar1>
+        <HomeDemo />
+        <footers.Footer1 />
+      </Container>
+    </>
+  )
+}
 
 class HomeContainer extends Component {
   state = {

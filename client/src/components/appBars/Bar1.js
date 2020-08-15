@@ -3,14 +3,15 @@ import { Redirect } from 'react-router-dom'
 import {makeStyles} from "@material-ui/core/styles";
 import { AppBar, Toolbar, Button, Typography, Link } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
-import FormDialog from '../dialogs/Dialog1'
+import Gitbook from './Gitbook'
 import Search from './Search'
 import Notification from "./Notification";
 import Profile from './Profile'
 import I18n from './Localization'
+import FormDialog from '../dialogs/Dialog1'
 import { DEFAULT_LOGIN_PAGE } from '../../constants'
 import {Drawer1, menus} from "../../components";
-import {Home as HomeIcon} from "@material-ui/icons";
+import {Home as HomeIcon, Business as BusinessIcon} from "@material-ui/icons";
 import {BusinessRouters} from '../../routers'
 
 const useStyles = makeStyles((theme) => ({
@@ -19,11 +20,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Group1 = () => (
   <Fragment>
+    <Link href="/" color="inherit" variant="h6"><HomeIcon/></Link>
     <Drawer1 />
-    <Typography>
-      <Link href="/home" color="inherit" variant="h6"><HomeIcon/></Link>
-    </Typography>
-    <menus.Menu1 routers={BusinessRouters} />
+    <menus.Menu1 routers={BusinessRouters} Icon={BusinessIcon} title='Business' />
+    <Gitbook/>
   </Fragment>
 )
 

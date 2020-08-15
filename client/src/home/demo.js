@@ -10,7 +10,7 @@ export default function () {
   return (
     <Box my={4}>
       <Typography variant="h4" component="h1" gutterBottom>
-        <menus.Menu1 routers={GeneralRouters} />
+        <menus.Menu1 routers={GeneralRouters} title='Menu' />
       </Typography>
       <ProTip />
       <Emoji symbol="💪🎋 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻 🌞 🌝" />

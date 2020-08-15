@@ -1,6 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import {
+  MenuBook,
+  Storage,
+  PostAdd,
+  TextFields
+} from '@material-ui/icons';
 import {menus} from '../../components'
 
 const useStyles = makeStyles((theme) => ({
@@ -11,12 +16,19 @@ const useStyles = makeStyles((theme) => ({
 
 const routers = [
   {
-    title: 'Profile',
-    path: '/profile'
+    title: 'Gitbook',
+    path: '/gitbook',
+    icon: MenuBook
   },
   {
-    title: 'My account',
-    path: '/myAccount',
+    title: 'DBMS API',
+    path: '/ms-dbms',
+    icon: Storage
+  },
+  {
+    title: 'DOC API',
+    path: '/ms-doc',
+    icon: PostAdd
   },
 ];
 
@@ -25,7 +37,7 @@ export default function () {
 
   return (
     <div className={classes.grow}>
-      <menus.Menu1 routers={routers} Icon={AccountCircle} title='Account' />
+      <menus.Menu1 routers={routers} Icon={TextFields} title='Gitbook' />
     </div>
   );
 }

@@ -8,10 +8,7 @@ import {
   IconButton,
   Container,
 } from '@material-ui/core';
-import {
-  ChevronLeft,
-  ChevronRight,
-} from '@material-ui/icons';
+import { ChevronLeft, ChevronRight, } from '@material-ui/icons';
 import accordion from "./Accordion1";
 import Title from './Title'
 const drawerWidth = 240;

@@ -66,7 +66,7 @@ const Typography1 = props => {
   return <Typography variant="body1" gutterBottom className={classes.wrap} {...props} />
 };
 
-const getOperatorInfo = () => {
+const OperatorInfo = () => {
   const { account = '测试用户', name = '微服务', organization = { name: '微服务企业' }, roles = [{ name: '操作员' }] } = loginInfos();
   const rolesNames = roles.map(r => r.name).join(',')
   const title = '操作员信息'
@@ -86,7 +86,7 @@ const getOperatorInfo = () => {
   )
 };
 
-function getHelperInfo() {
+function HelperInfo() {
   const title = '获取帮助';
   const icon = Help
   const aryInfo = [
@@ -100,7 +100,7 @@ function getHelperInfo() {
   return <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
 }
 
-function getVersionInfo() {
+function VersionInfo() {
   const title = '发行版本'
   const icon = History
   const aryInfo = [
@@ -111,21 +111,16 @@ function getVersionInfo() {
 }
 
 const ShowInfo = () => {
-  const operatorInfo = getOperatorInfo()
-  const helperInfo = getHelperInfo()
-  const versionInfo = getVersionInfo()
-  return (
-    <>
-      <ListItem>{operatorInfo}</ListItem>
-      <ListItem>{helperInfo}</ListItem>
-      <ListItem>{versionInfo}</ListItem>
-    </>
-  )
+  const info = [ OperatorInfo, HelperInfo, VersionInfo ].map((Item, idx) => (
+    <ListItem key={idx}><Item /></ListItem>
+  ))
+  return <Fragment> {info} </Fragment>
 };
 
+// 当收缩时仅显示图标
 const HideInfo = () => {
-  const list = [SupervisorAccount, Help, History].map((Icon, index) => (
-    <Accordion defaultExpanded={false} key={index}>
+  const list = [SupervisorAccount, Help, History].map((Icon, idx) => (
+    <Accordion defaultExpanded={false} key={idx}>
       <ListItemIcon>
         <Icon  style={{margin: 'auto'}} />
       </ListItemIcon>

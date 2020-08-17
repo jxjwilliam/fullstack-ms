@@ -3,13 +3,14 @@ import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { palette, spacing, typography } from '@material-ui/system';
+import Typography from '@material-ui/core/Typography';
 import Breadcrumb1 from './Breadcrumbs'
 const theme = createMuiTheme();
 
 // import Box from '@material-ui/core/Box';
 const Box = styled.div`${palette}${spacing}${typography}`;
 
-//  Material-UI uses both Themeproviders. So  you can access the theme in your styled components.
+//  Material-UI uses both ThemeProvider. So you can access the theme in your styled components.
 export default function({path}) {
   return (
     <NoSsr>
@@ -20,8 +21,8 @@ export default function({path}) {
           fontFamily="h6.fontFamily"
           fontSize= 'h6.fontSize'
         >
-          {path}
-          <Breadcrumb1/>
+          {(path) => <Typography>{path}</Typography>}
+          <Breadcrumb1 path={path}/>
         </Box>
       </ThemeProvider>
     </NoSsr>

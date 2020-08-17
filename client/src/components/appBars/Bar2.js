@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {Fragment, useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
@@ -18,9 +18,9 @@ import {
   DialogTitle,
   Select,
   FormControl,
-  InputLabel,
+  InputLabel, Link,
 } from '@material-ui/core';
-import { AccountCircle,} from '@material-ui/icons';
+import {AccountCircle, Home as HomeIcon,} from '@material-ui/icons';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import Login from '../../signin/SigninSide';
@@ -214,6 +214,7 @@ function Bar2(props) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
+          <Link href="/" color="inherit" variant="h6"><HomeIcon/></Link>
           {children}
           <div className={classes.sectionDesktop}>
             <IconButton

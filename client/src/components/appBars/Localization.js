@@ -12,7 +12,7 @@ import {
 
 import {Translate, ArrowDropDown} from '@material-ui/icons'
 
-const options = ['English', 'Chinese', 'Japanese'];
+const options = ['English', '中文'];
 
 export default function () {
   const [open, setOpen] = React.useState(false);
@@ -43,8 +43,11 @@ export default function () {
   return (
       <>
         <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
-          <Button onClick={handleToggle}>
-            <Translate/>{options[selectedIndex]}<ArrowDropDown />
+          <Button
+            startIcon={<Translate />}
+            onClick={handleToggle}
+          >
+            {options[selectedIndex]}<ArrowDropDown />
           </Button>
         </ButtonGroup>
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>

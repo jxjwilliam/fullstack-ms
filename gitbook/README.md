@@ -15,7 +15,7 @@ $ open localhost:4000
 
 ```shell
 $ gitbook build
-$ mv _book ../client/public/ (or ln -s)
+$ mv _book ../client/public/gitbook (or ln -s)
 ```
 
 创建一个组件，内容：

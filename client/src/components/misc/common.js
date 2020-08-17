@@ -1,13 +1,12 @@
 import React, {Component, Fragment} from "react";
 import {isEmpty} from "../../helpers/utils";
 
-const Loading = loadingProp => Comp => {
+// https://www.youtube.com/watch?v=LTunyI2Oyzw
+const LoaderHOC = propName => Comp => {
   return class extends Component {
     render() {
-      return isEmpty(this.props[loadingProp])
-        ? <Fragment>
-          <div className="loader" />
-        </Fragment>
+      return isEmpty(this.props[propName])
+        ? <div className="loader" />
         : <Comp {...this.props} />;
     }
   }
@@ -23,6 +22,6 @@ const setHOCView = (Comp) => (collection) => class extends Component {
 }
 
 export {
-  Loading,
+  LoaderHOC,
   setHOCView,
 }

@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     marginRight: theme.spacing(0.5),
-    width: 20,
-    height: 20,
+    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
 }));
 
@@ -24,27 +24,23 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-export default function () {
+export default function ({path}) {
   const classes = useStyles();
+  const [base, sub, current] = path.split('/').filter(s => !!s);
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
+      <Link color="inherit" href={`/${base}`} className={classes.link}>
         <HomeIcon className={classes.icon} />
-        Material-UI
+        {base}
       </Link>
-      <Link
-        color="inherit"
-        href="/getting-started/installation/"
-        onClick={handleClick}
-        className={classes.link}
-      >
+      <Link color="inherit" href={`/${base}/${sub}`} className={classes.link}>
         <WhatshotIcon className={classes.icon} />
-        Core
+        {sub}
       </Link>
       <Typography color="textPrimary" className={classes.link}>
         <GrainIcon className={classes.icon} />
-        Breadcrumb
+        {current}
       </Typography>
     </Breadcrumbs>
   );

@@ -33,3 +33,5 @@ nohup.out
 
 build
 ./uploads
+client/public/_book/
+client/public/gitbook/

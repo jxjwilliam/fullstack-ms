@@ -21,7 +21,7 @@ export default function({path}) {
           fontFamily="h6.fontFamily"
           fontSize= 'h6.fontSize'
         >
-          {(path) => <Typography>{path}</Typography>}
+          {/*{(path) => <Typography>{path}</Typography>}*/}
           <Breadcrumb1 path={path}/>
         </Box>
       </ThemeProvider>

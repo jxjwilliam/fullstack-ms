@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   Button,
   ButtonGroup,
@@ -11,24 +11,14 @@ import {
 } from '@material-ui/core';
 
 import {Translate, ArrowDropDown} from '@material-ui/icons'
+import {LocaleContext, Languages} from '../../locales'
 
-const options = ['English', '中文'];
-
+// https://material-ui.com/components/button-group/, split button
 export default function () {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
-  };
-
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    setOpen(false);
-  };
-
-  const handleToggle = () => {
+  const handleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
@@ -36,46 +26,49 @@ export default function () {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
+  const handleMenuItemClick = (idx, cb) => {
+    setOpen(false);
+    cb(idx)
+  }
+
   return (
-      <>
-        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
-          <Button
-            startIcon={<Translate />}
-            onClick={handleToggle}
-          >
-            {options[selectedIndex]}<ArrowDropDown />
-          </Button>
-        </ButtonGroup>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList id="split-button-menu">
-                    {options.map((option, index) => (
-                      <MenuItem
-                        key={option}
-                        selected={index === selectedIndex}
-                        onClick={(event) => handleMenuItemClick(event, index)}
-                      >
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </>
+    <LocaleContext.Consumer>
+      {({locale, changeLocale}) => (
+        <Fragment>
+          <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
+            <Button startIcon={<Translate />} onClick={handleOpen}>
+              {locale}<ArrowDropDown />
+            </Button>
+          </ButtonGroup>
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',}}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList id="split-button-menu">
+                      {Languages.map((option, index) => (
+                        <MenuItem
+                          key={option}
+                          selected={index === locale}
+                          onClick={() => handleMenuItemClick(index, changeLocale)}
+                        >
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </Fragment>
+      )}
+    </LocaleContext.Consumer>
   );
 }

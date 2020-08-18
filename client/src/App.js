@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {Container, CssBaseline, Typography} from '@material-ui/core';
 import './App.scss';
-import { Provider as LocaleProvider } from './locales'
+import { LocaleContext, Languages } from './locales'
 import {BusinessRouters, GeneralRouters, BackdoorRouters} from './routers'
 
 /**
@@ -31,9 +31,16 @@ const RouteList = ({routes1, routes2, routes3}) => {
 }
 
 class App extends Component {
+  state = {
+    locale: Languages[0],
+    changeLocale: (idx) => {
+      this.setState({locale: Languages[idx]});
+    }
+  }
+
   render() {
     return (
-      <LocaleProvider value={{}}>
+      <LocaleContext.Provider value={this.state}>
         <Router>
           <div className="App">
             <CssBaseline/>
@@ -48,7 +55,7 @@ class App extends Component {
             </Container>
           </div>
         </Router>
-      </LocaleProvider>
+      </LocaleContext.Provider>
     );
   }
 }

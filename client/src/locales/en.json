@@ -1,5 +1,5 @@
 {
-  "header": "EN-Header",
-  "text": "EN-Text",
-  "buttonLabel": "EN-Button"
+  "header": "Material-UI, the world's most popular React UI framework",
+  "text": "React components for faster and easier web development. Build your own design system, or start with Material Design.",
+  "tip": "Micro-Services Application"
 }

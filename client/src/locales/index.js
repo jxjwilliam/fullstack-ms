@@ -1,17 +1,8 @@
-import EN from './en'
-import CN from './cn'
-
 import React, { createContext } from 'react'
+const Languages = ['English :us:', '中文 :cn:'];
+const LocaleContext = createContext()
 
-export const LocaleContext = createContext({
-  locale: EN,
-  changeLocale: () => {},
-})
-
-export const { Provider, Consumer } = LocaleContext
-
-export const withContext = Component => props => (
-  <Consumer>
-    {value => <Component {...value} {...props} />}
-  </Consumer>
-)
+export {
+  Languages,
+  LocaleContext,
+}

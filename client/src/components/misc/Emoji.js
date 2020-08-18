@@ -5,14 +5,12 @@ const useStyles = makeStyles((theme) => ({
   emoji: {}
 }))
 
-export default function({label='', symbol}) {
+export default function({symbol}) {
   const classes = useStyles();
   return (
     <span
       className={classes.emoji}
       role="img"
-      aria-label={label}
-      aria-hidden={label ? "false" : "true"}
     >
     {symbol}
   </span>

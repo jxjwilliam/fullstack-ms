@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route, Redirect, Link, NavLink } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
+import {fade, makeStyles} from '@material-ui/core/styles';
 import {
   Container,
   List, ListItem, ListItemIcon, ListItemText,
@@ -14,7 +14,7 @@ import {isEmpty} from '../../helpers/utils'
 
 const useStyles = makeStyles((theme) => ({
   active: {
-    backgroundColor: '#dce775',
+    backgroundColor: '#f5f5f5',
   }
 }));
 
@@ -127,7 +127,6 @@ const getPageLayout = (navList, mainList, options) => {
   const { base, redirect } = options;
   const navs = getNavs(base, navList);
   const routers = getAllRouters(navList, mainList, base)
-  console.log('------', routers)
 
   return (
     <Container fixed>

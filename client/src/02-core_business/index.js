@@ -3,21 +3,18 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from '../state/actions'
 import { getPageLayout } from '../components'
-import { base, navList, mainList } from './routers';
+import { navList, mainList } from './routers';
 
 class CoreBusiness extends Component {
   constructor(props) {
     super(props)
     props.getMenu1Action()
-    this.state = {
-      base: `${base}`, //: /核心企业及供应商/POC额度/额度查询
-    }
+    this.state = {}
   }
 
   render() {
     const {location:{pathname}, match:{url, path}} = this.props;
     const options = {
-      base: `${base}`,
       pathname,
       url,
       path,

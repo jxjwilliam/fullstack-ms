@@ -3,11 +3,27 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Tabs,
   Tab,
-  Paper,
+  Paper, Typography, Box,
 } from '@material-ui/core';
-import { Reviewer } from '../../demos/Review'
-import { TabPanel } from '../../components'
+import * as Reviewer from './Reviewer'
+// import { TabPanels } from '../../components'
 
+function TabPanel(props) {
+  const {children, value, index, ...other} = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`available-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      <Box p={6}>{children}</Box>
+    </Typography>
+  );
+}
 
 function a11yProps(index) {
   return {

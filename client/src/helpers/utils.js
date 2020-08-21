@@ -13,7 +13,7 @@ const isEmpty = prop => {
  * 3. 上传文件，加token，但没有content-type
  *  in case encType="multipart/form-data", remove "Content-Type": "application/json; charset=UTF-8",
  */
-const fetching = (url, opts = {}, isFileOrProxy) => {
+const fetching1 = (url, opts = {}, isFileOrProxy) => {
   let body;
   let headers = {};
 
@@ -54,7 +54,7 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
     .catch(e => console.error('操作失败: ', e.message));
 };
 
-const fetching_old = (url, opts = {}) => {
+const fetching = (url, opts = {}) => {
   let body;
   const headers = { ...HEADERS, ...opts.headers }
   const method = opts.method || 'GET';

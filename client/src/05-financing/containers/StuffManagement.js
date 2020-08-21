@@ -29,7 +29,6 @@ export  default class extends Component {
   }
 
   render() {
-    console.log('--- william test [state] ---:', this.state);
     const {columns, data, title} = this.state;
     return (
       <MaterialTable

@@ -12,6 +12,10 @@ import {
   TrackChanges,
   WrapText
 } from "@material-ui/icons";
+import Available from "./containers/Available";
+import {InChargeSigned, InChargeAvailable, InChargeFinancing, InChargeAcceptance} from './containers/Operator'
+import {ReviewSigned, ReviewAvailable, ReviewFinancing, ReviewAcceptance } from "./containers/Reviewer";
+import StuffManagement from './containers/StuffManagement'
 
 const base = '融资管理'
 
@@ -45,22 +49,27 @@ const mainList = [
       {
         path: "账户信息",
         icon: SupervisedUserCircle,
+        component: Available
       },
       {
         path: "交易信息",
         icon: ContactMail,
+        component: InChargeSigned,
       },
       {
         path: "人员管理",
         icon: WrapText,
+        component: InChargeAvailable
       },
       {
         path: "企业信息",
         icon: Textsms,
+        component: InChargeFinancing
       },
       {
         path: "个人信息",
         icon: FilterVintage,
+        component: InChargeAcceptance,
       },
       {
         path: "邀请企业",
@@ -87,22 +96,27 @@ const mainList = [
       {
         path: "资产买入",
         icon: SupervisedUserCircle,
+        component: ReviewSigned,
       },
       {
         path: "已经买入资产",
         icon: ContactMail,
+        component: ReviewAvailable,
       },
       {
         path: "资产管理",
         icon: WrapText,
+        component: ReviewFinancing,
       },
       {
         path: "未承兑资产",
         icon: Textsms,
+        component: ReviewAcceptance,
       },
       {
         path: "已承兑资产",
         icon: FilterVintage,
+        component: StuffManagement,
       },
       {
         path: "利率设置",

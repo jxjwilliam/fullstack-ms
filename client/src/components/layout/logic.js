@@ -27,9 +27,9 @@ class CTemplate extends Component {
   }
 }
 
-function getRouters(baseUrl, currentNav, mainList) {
+function getRouters(url, currentNav, mainList) {
   const subAry = mainList.find(item => item.nav === currentNav).main
-  const parent_path = `/${baseUrl}/${currentNav}`
+  const parent_path = `${url}/${currentNav}`
   console.log('333', parent_path, subAry);
   return [parent_path, subAry];
 }
@@ -84,21 +84,20 @@ const renderContent = (parent_path, items=[], redirect={}) => {
 };
 
 /**
- * location.pathname represents the root-relative url.
- * match.url represents the matched portion of the URL,so maybe a portion of location.pathname
+ * location.pathname represents the root-relative url: "/风险管理/系统管理/角色查询"
+ * match.url represents the matched portion of the URL,so maybe a portion of location.pathname: "/风险管理"
  * /风险管理, /风险管理/系统管理, /风险管理/系统管理/角色查询
  */
 const getPageLayout = (navList, mainList, options) => {
-  const { base, pathname, url, path } = options;
-  console.log('111: ', pathname, url, path, base);
-
+  const { pathname, url} = options;
+  const base = url.substr(1)
   const list = renderNav(base, navList)
 
   const ary = pathname.substr(1).split('/');
   const aryLen = ary.length;
-  let redirect = {}
   let url2 = ''
   let url3 = ''
+  let redirect = {}
 
   switch (aryLen) {
     case 1:
@@ -123,7 +122,7 @@ const getPageLayout = (navList, mainList, options) => {
 
   console.log('!!!', redirect, url2, url3);
 
-  const [parent_path, subAry] = getRouters(base, url2, mainList)
+  const [parent_path, subAry] = getRouters(url, url2, mainList)
 
   const list2 = renderMenu(parent_path, subAry);
   const list3 = renderContent(parent_path, subAry, redirect);

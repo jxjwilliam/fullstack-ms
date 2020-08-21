@@ -17,7 +17,7 @@ import {
   VerifiedUser,
   Money
 } from '@material-ui/icons'
-import {C3_1, C3_2, C3_3} from "./containers";
+import {C1_1, C2_1, C3_1, C3_2, C3_3} from "./containers";
 
 const base = '核心企业'
 
@@ -46,6 +46,8 @@ const mainList = [
     main: [{
       path: "额度查询",
       icon: BarChart,
+      title: "额度查询",
+      component: C1_1,
     }]
   },
   {
@@ -54,6 +56,7 @@ const mainList = [
       {
         path: "我的POC",
         icon: Person,
+        component: C2_1,
       },
       {
         path: "申请单列表",
@@ -121,4 +124,4 @@ const mainList = [
   }
 ]
 
-export { base, navList, mainList };
+export { navList, mainList };

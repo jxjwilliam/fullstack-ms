@@ -92,6 +92,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// TODO: base=match.url
 export default (menu, content) => ({base, pathname, url, path}) => {
   // const { location: { pathname }, match: { url, path } } = props
   const classes = useStyles();

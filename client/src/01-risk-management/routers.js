@@ -208,11 +208,13 @@ const mainList = [
     main: [
       {
         path: '待还款',
-        icon: MoneyOff
+        icon: MoneyOff,
+        component: C7_3
       },
       {
         path: '还款审批',
-        icon: VerifiedUser
+        icon: VerifiedUser,
+        component: C7_4
       },
       {
         path: '已还款',
@@ -273,4 +275,4 @@ const mainList = [
   },
 ];
 
-export { base, navList, mainList }
+export { navList, mainList }

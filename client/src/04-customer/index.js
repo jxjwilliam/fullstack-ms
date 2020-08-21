@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from "../state/actions";
 import { getPageLayout } from '../components'
-import { base, navList, mainList } from './routers';
+import { navList, mainList } from './routers';
 
 class Customer extends Component {
   state = { }
@@ -11,7 +11,6 @@ class Customer extends Component {
   render() {
     const {location:{pathname}, match:{url, path}} = this.props;
     const options = {
-      base: `${base}`,
       pathname,
       url,
       path,

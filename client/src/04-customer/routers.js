@@ -30,7 +30,6 @@ import {
   BarChart,
 } from "@material-ui/icons";
 import {C1_1, C4_1} from "./containers";
-import {getDefautlUrl} from "../components";
 
 const base = '客户信息';
 
@@ -245,6 +244,4 @@ const mainList = [
   },
 ]
 
-const defaultUrl = getDefautlUrl(base, navList, mainList);
-
-export {base, navList, mainList, defaultUrl}
+export {base, navList, mainList}

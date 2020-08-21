@@ -8,7 +8,7 @@ import {
   Payment,
   People, SupervisedUserCircle, Textsms
 } from "@material-ui/icons";
-import { base, navList, mainList, defaultUrl } from "./routers";
+import { base, navList, mainList } from "./routers";
 import { getPageLayout } from '../components'
 
 beforeEach(() => {

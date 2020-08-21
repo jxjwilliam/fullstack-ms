@@ -1,6 +1,6 @@
 import React from 'react'
 import {FormatQuote, MoveToInbox, Payment, People} from "@material-ui/icons";
-import { base, navList, mainList, defaultUrl } from "./routers";
+import { base, navList, mainList } from "./routers";
 import { getPageLayout } from '../components'
 
 import React, { Fragment } from 'react';

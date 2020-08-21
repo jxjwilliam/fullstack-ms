@@ -10,7 +10,7 @@ import {
   Textsms
 } from "@material-ui/icons";
 import {C2_1, C3_1, C3_2, C3_3} from "./containers";
-import {getDefautlUrl, dialogs, modals} from "../components";
+import {dialogs, modals} from "../components";
 
 const base = '供应商'
 
@@ -156,6 +156,4 @@ const mainList = [
   },
 ]
 
-const defaultUrl = getDefautlUrl(base, navList, mainList)
-
-export {base, navList, mainList, defaultUrl}
+export {base, navList, mainList}

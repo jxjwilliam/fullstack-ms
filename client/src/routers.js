@@ -1,14 +1,3 @@
-import Home from './home';
-import Service from './service';
-import { SignIn, SignInSide, SignOut } from './signin'
-import Signup from './signup'
-import Admin from './01-risk-management'
-import Company from './02-core_business'
-import Supplier from './03-supplier'
-import Customer from './04-customer'
-import Financing from './05-financing'
-import Certificate from './06-certificate'
-import { C404 } from './containers'
 import {
   OfflineBolt,
   Business,
@@ -23,6 +12,31 @@ import {
   AccountBox,
   ExitToApp,
 } from '@material-ui/icons'
+import {Menus} from './constants'
+import Home from './home';
+import Service from './service';
+import { SignIn, SignInSide, SignOut } from './signin'
+import Signup from './signup'
+import Admin from './01-risk-management'
+import Company from './02-core_business'
+import Supplier from './03-supplier'
+import Customer from './04-customer'
+import Financing from './05-financing'
+import Certificate from './06-certificate'
+import { C404 } from './containers'
+
+// TODO:
+const getRouters = () => {
+  const ary = Menus.find(menu => menu.type === 'Business').list
+  ary.map((nav, idx) => {
+    return {
+      path: `/$nav`,
+      title: nav,
+      icon: OfflineBolt,
+      component: Admin,
+    }
+  })
+}
 
 const BusinessRouters = [
   {

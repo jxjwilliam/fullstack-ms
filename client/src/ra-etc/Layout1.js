@@ -92,43 +92,45 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default (menu, content) => ({base, pathname, url, path}) => {
-  // const { location: { pathname }, match: { url, path } } = props
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+export default function(Menu, Content) {
+  function Dashboard({location:{pathname}, match:{url, path}}) {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
+    const handleDrawerClose = () => {
+      setOpen(false);
+    };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose) }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-            {open ? <ChevronLeft /> : <ChevronRight />}
-          </IconButton>
-        </div>
-        <Divider />
-        <Fragment>
-          {menu}
-          {open ? <accordion.ShowInfo /> : <accordion.HideInfo />}
-        </Fragment>
-      </Drawer>
-      <main className={classes.content} style={{ position: 'relative' }}>
-        {/*<div className={classes.appBarSpacer}/>*/}
-        <Container maxWidth="lg" className={classes.container}>
-          <Title path={pathname} />
-          {content}
-        </Container>
-      </main>
-    </div>
-  );
+    return (
+      <div className={classes.root}>
+        <CssBaseline/>
+        <Drawer
+          variant="permanent"
+          classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+              {open ? <ChevronLeft/> : <ChevronRight/>}
+            </IconButton>
+          </div>
+          <Divider/>
+          <Fragment>
+            <Menu/>
+            {open ? <accordion.ShowInfo/> : <accordion.HideInfo/>}
+          </Fragment>
+        </Drawer>
+        <main className={classes.content} style={{position: 'relative'}}>
+          {/*<div className={classes.appBarSpacer}/>*/}
+          <Container maxWidth="lg" className={classes.container}>
+            <Title path={pathname}/>
+            <Content/>
+          </Container>
+        </main>
+      </div>
+    );
+  }
+  return Dashboard;
 }

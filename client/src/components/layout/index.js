@@ -1,2 +1,2 @@
 export {default as Layout1} from './Layout1'
-export * from './logic'
+export {default as getPageLayout} from './logic'

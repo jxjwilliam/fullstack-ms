@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, useState, useContext, useEffect, } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -10,8 +10,8 @@ import {
   ClickAwayListener
 } from '@material-ui/core';
 
-import {Translate, ArrowDropDown} from '@material-ui/icons'
-import {LocaleContext, Languages} from '../../locales'
+import { Translate, ArrowDropDown } from '@material-ui/icons'
+import { LocaleContext, Languages } from '../../locales'
 
 // https://material-ui.com/components/button-group/, split button
 export default function () {
@@ -34,9 +34,10 @@ export default function () {
     cb(idx)
   }
 
+  // useContext(LocaleContext)
   return (
     <LocaleContext.Consumer>
-      {({locale, changeLocale}) => (
+      {({ locale, changeLocale }) => (
         <Fragment>
           <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
             <Button startIcon={<Translate />} onClick={handleOpen}>
@@ -47,7 +48,7 @@ export default function () {
             {({ TransitionProps, placement }) => (
               <Grow
                 {...TransitionProps}
-                style={{transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',}}
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom', }}
               >
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
@@ -58,7 +59,8 @@ export default function () {
                           selected={index === locale}
                           onClick={() => handleMenuItemClick(index, changeLocale)}
                         >
-                          {option}
+                          {option} 🇨🇳
+                          🇺🇸
                         </MenuItem>
                       ))}
                     </MenuList>

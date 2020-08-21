@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route, Redirect, Link, NavLink } from 'react-router-dom'
-import {fade, makeStyles} from '@material-ui/core/styles';
 import {
   Container,
   List, ListItem, ListItemIcon, ListItemText,
@@ -10,25 +9,12 @@ import {
 import { bars, Drawer1 } from "../index";
 import NavList from './Nav1'
 import Layout1 from './Layout1'
-import {isEmpty} from '../../helpers/utils'
+import { isEmpty } from '../../helpers/utils'
 
-const useStyles = makeStyles((theme) => ({
-  active: {
-    backgroundColor: '#f5f5f5',
-  }
-}));
-
-function getDefautlUrl(base, navs=[], menus=[]) {
-  const url = base.startsWith('/') ? base : `/${base}`;
-  const p1 = navs[0].path;
-  const p2 = menus.find(item => item.nav === p1).main[0].path;
-  return {
-    from: url,
-    to: `${url}/${p1}/${p2}`
-  }
-}
-
-function FTemplate({ match: { path, url }, location: { pathname } }) {
+// TODO: React.Children: only/toArray, props.children
+// path, component/render
+function FTemplate(props) {
+  const { match: { path, url }, location: { pathname } } = props;
   const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ');
   return <h6>[{`${breadcrumbs} : `}], [{url}], [{pathname}]</h6>
 }
@@ -41,70 +27,45 @@ class CTemplate extends Component {
   }
 }
 
-// title (optional), path, icon
-function getMenu(parent_path, items) {
-  return function () {
-    const classes = useStyles();
-    const list = items.map(({ path, title = '', icon: CompIcon }) => (
-      <ListItem
-        button
-        component={NavLink}
-        exact
-        to={`${parent_path}/${path}`}
-        activeClassName={classes.active}
-        key={path}
-        // selected={}
-      >
-        <ListItemIcon>
-          <CompIcon />
-        </ListItemIcon>
-        <ListItemText primary={title || path} />
-      </ListItem >
-    ))
-    return <List>{list}</List>
-  }
+function getRouters(baseUrl, currentNav, mainList) {
+  const subAry = mainList.find(item => item.nav === currentNav).main
+  const parent_path = `/${baseUrl}/${currentNav}`
+  console.log('333', parent_path, subAry);
+  return [parent_path, subAry];
 }
 
 
-// path, component/render
-function getContent(parent_path, items) {
-  return function () {
-    return (
-      <Switch>
-        {items.map(({ path, component }) => {
-          const url = `${parent_path}/${path}`;
-          if (component) return <Route path={url} component={component} key={path} />
-          return <Route path={url} render={FTemplate} key={path} />
-        })}
-      </Switch>
-    )
-  }
-}
+const renderNav = (base, navList) => (
+  <bars.Bar2>
+    <Drawer1 />
+    <Typography>
+      <MuiLink href={base} color="inherit" variant="h6">{base}</MuiLink>
+    </Typography>
+    <NavList base={base} navs={navList} />
+  </bars.Bar2>
+)
 
-function getNavs(baseUrl, navList) {
-  return navList.map(({path, icon, title=path}) => ({
-    path: `/${baseUrl}/${path}`,
-    title: title,
-    icon: icon
-  }))
-}
+const renderMenu = (parent_path, items=[]) => {
+  const list = items.map(({ path, title, icon: CompIcon }) => (
+    <ListItem
+      button
+      component={NavLink}
+      exact
+      to={`${parent_path}/${path}`}
+      activeStyle={{ backgroundColor: '#f5f5f5',}}
+      key={path}
+    // selected={}
+    >
+      <ListItemIcon>
+        <CompIcon />
+      </ListItemIcon>
+      <ListItemText primary={title || path} />
+    </ListItem >
+  ))
+  return <List>{list}</List>
+};
 
-function getAllRouters(navList, mainList, baseUrl) {
-  return navList.map(({ path, icon }, idx) => {
-    const subAry = mainList.find(item => item.nav === path).main
-    const parent_url = `/${baseUrl}/${path}`
-    const Menu = getMenu(parent_url, subAry)
-    const Content = getContent(parent_url, subAry)
-    return {
-      title: path,
-      icon: icon,
-      path: parent_url,
-      component: Layout1(Menu, Content)
-    }
-  })
-}
-
-const RouteList = ({routes, redirect = {}}) => {
+const renderContent = (parent_path, items=[], redirect={}) => {
   return (
     <Switch>
       {!isEmpty(redirect) ?
@@ -113,41 +74,67 @@ const RouteList = ({routes, redirect = {}}) => {
           from={redirect.from}
           to={redirect.to}
         /> : null};
-      {routes.map(({path, component}) => (
-        <Route
-          key={path}
-          path={path}
-          component={component}
-      />))}
+      {items.map(({ path, component }) => {
+        const url = `${parent_path}/${path}`;
+        if (component) return <Route path={url} component={component} key={path} />
+        return <Route path={url} render={FTemplate} key={path} />
+      })}
     </Switch>
   )
 };
 
+/**
+ * location.pathname represents the root-relative url.
+ * match.url represents the matched portion of the URL,so maybe a portion of location.pathname
+ * /风险管理, /风险管理/系统管理, /风险管理/系统管理/角色查询
+ */
 const getPageLayout = (navList, mainList, options) => {
-  const { base, redirect } = options;
-  const navs = getNavs(base, navList);
-  const routers = getAllRouters(navList, mainList, base)
+  const { base, pathname, url, path } = options;
+  console.log('111: ', pathname, url, path, base);
+
+  const list = renderNav(base, navList)
+
+  const ary = pathname.substr(1).split('/');
+  const aryLen = ary.length;
+  let redirect = {}
+  let url2 = ''
+  let url3 = ''
+
+  switch (aryLen) {
+    case 1:
+      redirect.from = pathname;
+      url2 = navList[0].path;
+      url3 = mainList.find(item => item.nav === url2).main[0].path
+      redirect.to = `${pathname}/${url2}/${url3}`;
+      break;
+    case 2:
+      redirect.from = pathname;
+      url2 = ary[1]
+      url3 = mainList.find(item => item.nav === url2).main[0].path
+      redirect.to = `${pathname}/${url3}`;
+      break;
+    case 3:
+      url2 = ary[1]
+      url3 = ary[2]
+      break;
+    default:
+      throw new Error('TODO: ')
+  }
+
+  console.log('!!!', redirect, url2, url3);
+
+  const [parent_path, subAry] = getRouters(base, url2, mainList)
+
+  const list2 = renderMenu(parent_path, subAry);
+  const list3 = renderContent(parent_path, subAry, redirect);
+  const Layout = Layout1(list2, list3)
 
   return (
     <Container fixed>
-      <bars.Bar2>
-        <Drawer1 />
-        <Typography>
-          <MuiLink href={base} color="inherit" variant="h6">{base}</MuiLink>
-        </Typography>
-        <NavList navs={navs} />
-      </bars.Bar2>
-      <Fragment>
-        <RouteList
-          routes={routers}
-          redirect={{ from: base, to: redirect }}
-        />
-      </Fragment>
+      {list}
+      <Layout {...options} />
     </Container>
   )
 }
 
-export {
-  getDefautlUrl,
-  getPageLayout
-}
+export default getPageLayout

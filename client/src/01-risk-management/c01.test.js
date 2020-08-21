@@ -12,7 +12,7 @@ import {
   FilterVintage,
   Layers
 } from '@material-ui/icons'
-import { base, navList, mainList, defaultUrl } from "./routers";
+import { base, navList, mainList } from "./routers";
 import { getAllRouters, getPageLayout } from '../components'
 
 describe('routers', () => {

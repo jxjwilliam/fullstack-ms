@@ -27,21 +27,21 @@ function handleClick(event) {
 
 export default function ({path}) {
   const classes = useStyles();
-  const [base, sub, current] = path.split('/').filter(s => !!s);
+  const [n1, n2, n3] = path.split('/').filter(s => !!s);
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href={`/${base}`} className={classes.link}>
+      <Link color="inherit" href={`/${n1}`} className={classes.link}>
         <HomeIcon className={classes.icon} />
-        {base}
+        {n1}
       </Link>
-      <Link color="inherit" href={`/${base}/${sub}`} className={classes.link}>
+      <Link color="inherit" href={`/${n1}/${n2}`} className={classes.link}>
         <WhatshotIcon className={classes.icon} />
-        {sub}
+        {n2}
       </Link>
       <Typography color="textPrimary" className={classes.link}>
         <GrainIcon className={classes.icon} />
-        {current}
+        {n3}
       </Typography>
     </Breadcrumbs>
   );

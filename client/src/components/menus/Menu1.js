@@ -1,6 +1,7 @@
 import React, {Fragment}  from 'react';
+import {Link} from 'react-router-dom'
 import {fade, makeStyles} from '@material-ui/core/styles'
-import {Menu, MenuItem, Fade, Link, Button, IconButton} from '@material-ui/core';
+import {Menu, MenuItem, Fade, Link as MuiLink, Button, IconButton} from '@material-ui/core';
 import {Menu as MenuIcon} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +41,7 @@ export default function ({routers=[], Icon=MenuIcon, title=''}) {
     >
       {routers.map(({icon:CompIcon, path, title: subTitle}) => {
         return (
-          <Link href={path} key={path} className={classes.link}>
+          <MuiLink component={Link} to={path} key={path} className={classes.link}>
             <MenuItem onClick={handleClose} className={classes.icon}>
               { CompIcon ? (
                 <IconButton color="inherit">
@@ -49,7 +50,7 @@ export default function ({routers=[], Icon=MenuIcon, title=''}) {
               ) : null }
               {subTitle}
             </MenuItem>
-          </Link>
+          </MuiLink>
         )
       })}
     </Menu>

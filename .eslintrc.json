@@ -1,17 +1,10 @@
 {
 	"env": {
 		"commonjs": true,
-		"browser": true,
 		"es2020": true,
 		"node": true
 	},
-	"extends": [
-		"plugin:node/recommended",
-		"plugin:react/recommended",
-		"plugin:markdown/recommended",
-		"airbnb",
-		"prettier"
-	],
+	"extends": ["plugin:node/recommended", "airbnb", "prettier"],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -19,7 +12,7 @@
 		"ecmaVersion": 11,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "prettier"],
+	"plugins": ["prettier"],
 	"rules": {
 		"prettier/prettier": "error",
 		"no-unused-vars": "warn",

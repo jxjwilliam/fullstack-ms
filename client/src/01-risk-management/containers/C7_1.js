@@ -66,7 +66,7 @@ export default function() {
   const subAry3 = [
     {
       path: "风险分类",
-      icon: WrapText
+      icon: Warning
     },
     {
       path: "风险提示及反馈",

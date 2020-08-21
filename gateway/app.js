@@ -59,7 +59,7 @@ app.all('/doc/*', (req, res) => {
   apiProxy.web(req, res, { target: MS_DOC_URL })
 })
 
-app.use('/*', (req, res) => {
+app.use('*', (req, res) => {
   const { url, params, query, body } = req
   console.error('BFF-路由服务器 无效URL: ', url, params, query, body)
   res.sendStatus(404)

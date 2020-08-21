@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {debounce} from 'lodash';
+import React, { Component } from 'react';
+import { debounce } from 'lodash';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -67,7 +67,7 @@ export default function () {
 }
 
 // https://reactjs.org/docs/faq-functions.html#debounce
-class Searchbox extends Component {
+export class Searchbox extends Component {
   constructor(props) {
     super(props);
     this.emitChangeDebounced = debounce(this.emitChange, 250);

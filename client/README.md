@@ -30,9 +30,11 @@ $ exec 3<&1;bash <&3 <(curl https://raw.githubusercontent.com/karlhadwen/eslint-
 
 ### emoji
 
-🇨🇳
+👋 👏 ✋ ✌️
 
-### react-router: 
+## react-router: 
+
+### (1) url, path, pathname
 
 (1) url vs path
 - `path` - (string) The path pattern used to match. Useful for building nested `<Route>`s
@@ -45,3 +47,32 @@ Consider the route `"/users/:userId"`:
 (2) match.url vs location.pathname
 - `location.pathname` represents the root-relative url.
 - `match.url` represents the matched portion of the URL, so maybe a `portion` of `location.pathname`.
+
+### (2) Link, NavLink
+
+- React-Router-`Link`:
+    * to
+    * component
+    * others
+```text
+const FancyLink = React.forwardRef((props, ref) => <a ref={ref}>💅 {props.children}</a>)
+<Link to="/" component={FancyLink} />
+```
+
+- React-Router-`NavLink`:
+    * activeClassName: string
+    * activeStyle: {}
+    * exact: bool
+    * isActive: func ({match, location)=>{...})
+
+- Material-ui-`Link`:
+    * classes
+    * color
+    * component
+    * variant
+    * underline: none/hover, always
+
+- solve `yarn build` -> `nginx/gateway host` issue
+```jsx
+<MuiLink component={Link} to="/">...</MuiLink>
+```

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose';
 import axios from 'axios'
@@ -10,7 +10,7 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
+  Link as MuiLink,
   Grid,
   Typography,
   Container,
@@ -141,14 +141,14 @@ class SignIn extends Component {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <MuiLink component={Link} to="/home" variant="body2">
                   忘记密码?
-                </Link>
+                </MuiLink>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <MuiLink component={Link} to="/signup" variant="body2">
                   还没有账号？注册～🤠
-                </Link>
+                </MuiLink>
               </Grid>
             </Grid>
           </form>

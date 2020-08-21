@@ -4,7 +4,12 @@
 		"es2020": true,
 		"node": true
 	},
-	"extends": ["plugin:node/recommended", "airbnb", "prettier"],
+	"extends": [
+		"plugin:node/recommended",
+		"plugin:markdown/recommended",
+		"airbnb",
+		"prettier"
+	],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true

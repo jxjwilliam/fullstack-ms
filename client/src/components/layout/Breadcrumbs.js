@@ -1,11 +1,11 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
-import HomeIcon from '@material-ui/icons/Home';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import GrainIcon from '@material-ui/icons/Grain';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Breadcrumbs from '@material-ui/core/Breadcrumbs'
+import Link from '@material-ui/core/Link'
+import HomeIcon from '@material-ui/icons/Home'
+import WhatshotIcon from '@material-ui/icons/Whatshot'
+import GrainIcon from '@material-ui/icons/Grain'
 
 // TODO: integrate with <Title/>
 const useStyles = makeStyles((theme) => ({
@@ -18,16 +18,11 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(3),
     height: theme.spacing(3),
   },
-}));
+}))
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-
-export default function ({path}) {
-  const classes = useStyles();
-  const [n1, n2, n3] = path.split('/').filter(s => !!s);
+export default function ({ path }) {
+  const classes = useStyles()
+  const [n1, n2, n3] = path.split('/').filter((s) => !!s)
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
@@ -44,5 +39,5 @@ export default function ({path}) {
         {n3}
       </Typography>
     </Breadcrumbs>
-  );
+  )
 }

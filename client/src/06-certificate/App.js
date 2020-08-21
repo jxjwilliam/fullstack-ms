@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { PureComponent } from 'react'
 import { CssBaseline } from '@material-ui/core'
 import { Header, Footer } from './layouts'
@@ -6,24 +7,28 @@ import { muscles, exercises } from './store'
 import { Provider } from './context'
 
 class App extends PureComponent {
-  state = {
-    exercises,
-    exercise: {},
-    editMode: false,
-    category: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      exercises,
+      exercise: {},
+      editMode: false,
+      category: '',
+    }
   }
 
-  getExercisesByMuscles () {
+  getExercisesByMuscles() {
     const initExercises = muscles.reduce(
       (exercises, category) => ({
         ...exercises,
-        [category]: []
+        [category]: [],
       }),
       {}
     )
 
+    const { exercises } = this.state
     return Object.entries(
-      this.state.exercises.reduce((exercises, exercise) => {
+      exercises.reduce((exercises, exercise) => {
         const { muscles } = exercise
 
         exercises[muscles] = [...exercises[muscles], exercise]
@@ -33,42 +38,39 @@ class App extends PureComponent {
     )
   }
 
-  handleCategorySelect = category =>
+  handleCategorySelect = (category) =>
     this.setState({
-      category
+      category,
     })
 
-  handleExerciseSelect = id =>
+  handleExerciseSelect = (id) =>
     this.setState(({ exercises }) => ({
-      exercise: exercises.find(ex => ex.id === id),
-      editMode: false
+      exercise: exercises.find((ex) => ex.id === id),
+      editMode: false,
     }))
 
-  handleExerciseCreate = exercise =>
+  handleExerciseCreate = (exercise) =>
     this.setState(({ exercises }) => ({
-      exercises: [...exercises, exercise]
+      exercises: [...exercises, exercise],
     }))
 
-  handleExerciseDelete = id =>
+  handleExerciseDelete = (id) =>
     this.setState(({ exercises, exercise, editMode }) => ({
-      exercises: exercises.filter(ex => ex.id !== id),
+      exercises: exercises.filter((ex) => ex.id !== id),
       editMode: exercise.id === id ? false : editMode,
-      exercise: exercise.id === id ? {} : exercise
+      exercise: exercise.id === id ? {} : exercise,
     }))
 
-  handleExerciseSelectEdit = id =>
+  handleExerciseSelectEdit = (id) =>
     this.setState(({ exercises }) => ({
-      exercise: exercises.find(ex => ex.id === id),
-      editMode: true
+      exercise: exercises.find((ex) => ex.id === id),
+      editMode: true,
     }))
 
-  handleExerciseEdit = exercise =>
+  handleExerciseEdit = (exercise) =>
     this.setState(({ exercises }) => ({
-      exercises: [
-        ...exercises.filter(ex => ex.id !== exercise.id),
-        exercise
-      ],
-      exercise
+      exercises: [...exercises.filter((ex) => ex.id !== exercise.id), exercise],
+      exercise,
     }))
 
   getContext = () => ({
@@ -80,10 +82,10 @@ class App extends PureComponent {
     onEdit: this.handleExerciseEdit,
     onSelectEdit: this.handleExerciseSelectEdit,
     onDelete: this.handleExerciseDelete,
-    onSelect: this.handleExerciseSelect
+    onSelect: this.handleExerciseSelect,
   })
 
-  render () {
+  render() {
     return (
       <Provider value={this.getContext()}>
         <CssBaseline />

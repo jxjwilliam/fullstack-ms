@@ -1,5 +1,5 @@
 import Modal1 from './Modal1'
 
 export default {
-  Modal1
+  Modal1,
 }

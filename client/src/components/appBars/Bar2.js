@@ -1,5 +1,5 @@
-import React, {Fragment, useState} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   AppBar,
   Toolbar,
@@ -18,14 +18,15 @@ import {
   DialogTitle,
   Select,
   FormControl,
-  InputLabel, Link,
-} from '@material-ui/core';
-import {AccountCircle, Home as HomeIcon,} from '@material-ui/icons';
+  InputLabel,
+  Link,
+} from '@material-ui/core'
+import { AccountCircle, Home as HomeIcon } from '@material-ui/icons'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
-import Login from '../../signin/SigninSide';
+import { connect } from 'react-redux'
+import Login from '../../signin/SigninSide'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
@@ -50,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3),
   },
   form: {
-    width: 300
+    width: 300,
   },
   field: {
     width: 260,
@@ -59,61 +60,61 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
   },
   right: {
-    textAlign: 'right'
+    textAlign: 'right',
   },
   top: {
     marginTop: theme.spacing(2),
-  }
-}));
+  },
+}))
 
 function Bar2(props) {
-  const { children, auth } = props;
-  let account = '';
+  const { children, auth } = props
+  let account = ''
   if (auth.loginInfo && auth.loginInfo.account) {
     account = auth.loginInfo.account
   }
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [open1, setOpen1] = useState(false);
-  const [open2, setOpen2] = useState(false);
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [open, setOpen] = useState(false)
+  const [open1, setOpen1] = useState(false)
+  const [open2, setOpen2] = useState(false)
 
-  const isMenuOpen = Boolean(anchorEl);
+  const isMenuOpen = Boolean(anchorEl)
 
-  const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleOpen1 = () => {
-    setOpen1(true);
-  };
+    setOpen1(true)
+  }
 
   const handleClose1 = () => {
-    setOpen1(false);
-  };
+    setOpen1(false)
+  }
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
-  const handleOpen2 = () => (setOpen2(true));
+  const handleOpen2 = () => setOpen2(true)
 
-  const handleClose2 = () => setOpen1(false);
+  const handleClose2 = () => setOpen1(false)
 
   const handleOk = () => {
     // TODO: logout flow.
-    handleClose();
-  };
+    handleClose()
+  }
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <>
       <Menu
@@ -128,7 +129,7 @@ function Bar2(props) {
         <MenuItem onClick={handleOpen2}>切换账户</MenuItem>
         <MenuItem onClick={handleOpen1}>我的账户</MenuItem>
         <MenuItem onClick={handleOpen}>退出</MenuItem>
-        {account && (<MenuItem>账号：{account}</MenuItem>)}
+        {account && <MenuItem>账号：{account}</MenuItem>}
       </Menu>
       <Dialog open={open2} onClose={handleClose2}>
         <Login />
@@ -136,9 +137,7 @@ function Bar2(props) {
       <Dialog open={open1} onClose={handleClose1}>
         <DialogTitle id="form-dialog-title">创建用户表单</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            添加，修改用户账号
-        </DialogContentText>
+          <DialogContentText>添加，修改用户账号</DialogContentText>
         </DialogContent>
         <form className={classes.form}>
           <TextField
@@ -160,7 +159,9 @@ function Bar2(props) {
           <FormControl className={classes.field}>
             <InputLabel htmlFor="role">角色</InputLabel>
             <Select>
-              <MenuItem value=""><em>请选择</em></MenuItem>
+              <MenuItem value="">
+                <em>请选择</em>
+              </MenuItem>
             </Select>
           </FormControl>
           <br />
@@ -176,10 +177,10 @@ function Bar2(props) {
         <DialogActions>
           <Button onClick={handleClose1} color="secondary">
             取消
-        </Button>
+          </Button>
           <Button onClick={handleClose1} color="primary">
             创建
-        </Button>
+          </Button>
         </DialogActions>
       </Dialog>
       <Modal
@@ -200,21 +201,23 @@ function Bar2(props) {
             <p id="transition-modal-description">确定退出吗？</p>
             <Button onClick={handleClose} color="primary">
               否
-          </Button>
+            </Button>
             <Button onClick={handleOk} color="primary">
               是
-          </Button>
+            </Button>
           </div>
         </Fade>
       </Modal>
     </>
-  );
+  )
 
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Link href="/" color="inherit" variant="h6"><HomeIcon/></Link>
+          <Link href="/" color="inherit" variant="h6">
+            <HomeIcon />
+          </Link>
           {children}
           <div className={classes.sectionDesktop}>
             <IconButton
@@ -232,13 +235,13 @@ function Bar2(props) {
       </AppBar>
       {renderMenu}
     </div>
-  );
+  )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-});
+})
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bar2)

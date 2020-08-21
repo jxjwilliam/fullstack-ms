@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext, useEffect, } from 'react';
+import React from 'react'
 import {
   Button,
   ButtonGroup,
@@ -7,30 +7,30 @@ import {
   Popper,
   MenuItem,
   MenuList,
-  ClickAwayListener
-} from '@material-ui/core';
+  ClickAwayListener,
+} from '@material-ui/core'
 
 import { Translate, ArrowDropDown } from '@material-ui/icons'
 import { LocaleContext, Languages } from '../../locales'
 
 // https://material-ui.com/components/button-group/, split button
 export default function () {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false)
+  const anchorRef = React.useRef(null)
 
   const handleOpen = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+    setOpen((prevOpen) => !prevOpen)
+  }
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
+      return
     }
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleMenuItemClick = (idx, cb) => {
-    setOpen(false);
+    setOpen(false)
     cb(idx)
   }
 
@@ -38,17 +38,32 @@ export default function () {
   return (
     <LocaleContext.Consumer>
       {({ locale, changeLocale }) => (
-        <Fragment>
-          <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
+        <>
+          <ButtonGroup
+            variant="contained"
+            color="primary"
+            ref={anchorRef}
+            aria-label="split button"
+          >
             <Button startIcon={<Translate />} onClick={handleOpen}>
-              {locale}<ArrowDropDown />
+              {locale}
+              <ArrowDropDown />
             </Button>
           </ButtonGroup>
-          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+          <Popper
+            open={open}
+            anchorEl={anchorRef.current}
+            role={undefined}
+            transition
+            disablePortal
+          >
             {({ TransitionProps, placement }) => (
               <Grow
                 {...TransitionProps}
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom', }}
+                style={{
+                  transformOrigin:
+                    placement === 'bottom' ? 'center top' : 'center bottom',
+                }}
               >
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
@@ -57,10 +72,11 @@ export default function () {
                         <MenuItem
                           key={option}
                           selected={index === locale}
-                          onClick={() => handleMenuItemClick(index, changeLocale)}
+                          onClick={() =>
+                            handleMenuItemClick(index, changeLocale)
+                          }
                         >
-                          {option} 🇨🇳
-                          🇺🇸
+                          {option} 🇨🇳 🇺🇸
                         </MenuItem>
                       ))}
                     </MenuList>
@@ -69,8 +85,8 @@ export default function () {
               </Grow>
             )}
           </Popper>
-        </Fragment>
+        </>
       )}
     </LocaleContext.Consumer>
-  );
+  )
 }

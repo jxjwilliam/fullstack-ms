@@ -1,11 +1,13 @@
+// eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
 import { HEADERS, TOKEN } from '../constants'
 
-const isEmpty = prop => {
-  return prop === null || prop === undefined ||
-    (prop.hasOwnProperty("length") && prop.length === 0) ||
-    (prop.constructor === Object && Object.keys(prop).length === 0)
-}
+const isEmpty = (prop) =>
+  prop === null ||
+  prop === undefined ||
+  // eslint-disable-next-line no-prototype-builtins
+  (prop.hasOwnProperty('length') && prop.length === 0) ||
+  (prop.constructor === Object && Object.keys(prop).length === 0)
 
 /**
  * 1. local 加token，有content-type和accept
@@ -14,58 +16,61 @@ const isEmpty = prop => {
  *  in case encType="multipart/form-data", remove "Content-Type": "application/json; charset=UTF-8",
  */
 const fetching1 = (url, opts = {}, isFileOrProxy) => {
-  let body;
-  let headers = {};
+  let body
+  let headers = {}
 
   // 电子签章
   if (isFileOrProxy === 2) {
     headers = {
       ...HEADERS,
-      ...opts.headers
-    };
+      ...opts.headers,
+    }
   } else {
-    const token = sessionStorage.getItem('authToken');
+    const token = sessionStorage.getItem('authToken')
     if (!token) {
-      console.error('权限认证失败，请先注册');
-      return null; //TODO: Redirect
+      console.error('权限认证失败，请先注册')
+      return null // TODO: Redirect
     }
 
     // 文件上传, 不要content-type
     if (isFileOrProxy === 1) {
       headers = {
-        'Accept': HEADERS.Accept,
+        Accept: HEADERS.Accept,
         'x-access-token': token,
-        ...opts.headers
+        ...opts.headers,
       }
     } else {
       headers = {
         ...HEADERS,
         'x-access-token': token,
-        ...opts.headers
+        ...opts.headers,
       }
     }
   }
 
-  const method = opts.method || 'GET';
-  if (opts.body) body = opts.body;
+  const method = opts.method || 'GET'
+  if (opts.body) body = opts.body
 
-  return fetch(url, {method, headers, body})
-    .then(res => res.json())
-    .catch(e => console.error('操作失败: ', e.message));
-};
-
-const fetching = (url, opts = {}) => {
-  let body;
-  const headers = { ...HEADERS, ...opts.headers }
-  const method = opts.method || 'GET';
-  if (opts.body) body = opts.body;
-
-  return fetch(url, { method, headers, body }).then(res => res.json()).catch(e => alert(e));
+  return fetch(url, { method, headers, body })
+    .then((res) => res.json())
+    .catch((e) => console.error('操作失败: ', e.message))
 }
 
-const defer = (ms = 2000) => new Promise(resolve => setTimeout(resolve, ms));
+const fetching = (url, opts = {}) => {
+  let body
+  const headers = { ...HEADERS, ...opts.headers }
+  const method = opts.method || 'GET'
+  if (opts.body) body = opts.body
 
-const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  return fetch(url, { method, headers, body })
+    .then((res) => res.json())
+    .catch((e) => alert(e))
+}
+
+const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
+
+const capitalize = (str) =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
 const loginInfos = () => {
   const token = sessionStorage.getItem(TOKEN)
@@ -73,10 +78,4 @@ const loginInfos = () => {
   return {}
 }
 
-export {
-  isEmpty,
-  fetching,
-  defer,
-  capitalize,
-  loginInfos
-}
+export { isEmpty, fetching, defer, capitalize, loginInfos }

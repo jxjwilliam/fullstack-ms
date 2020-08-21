@@ -1,13 +1,13 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import InboxIcon from '@material-ui/icons/MoveToInbox'
+import DraftsIcon from '@material-ui/icons/Drafts'
+import SendIcon from '@material-ui/icons/Send'
 
 const StyledMenu = withStyles({
   paper: {
@@ -27,7 +27,7 @@ const StyledMenu = withStyles({
     }}
     {...props}
   />
-));
+))
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
@@ -38,51 +38,47 @@ const StyledMenuItem = withStyles((theme) => ({
       },
     },
   },
-}))(MenuItem);
+}))(MenuItem)
 
 const context = [
   {
-    path: "/emails",
-    title: "Sent mail",
-    icon: SendIcon
+    path: '/emails',
+    title: 'Sent mail',
+    icon: SendIcon,
   },
   {
-    path: "/draft",
-    title: "Drafts",
-    icon: DraftsIcon
+    path: '/draft',
+    title: 'Drafts',
+    icon: DraftsIcon,
   },
   {
-    path: "/inbox",
-    title: "Inbox",
-    icon: InboxIcon
+    path: '/inbox',
+    title: 'Inbox',
+    icon: InboxIcon,
   },
-].map(({icon: CompIcon, title, path}) => (
+].map(({ icon: CompIcon, title, path }) => (
   <StyledMenuItem key={path}>
     <ListItemIcon>
       <CompIcon fontSize="small" />
     </ListItemIcon>
     <ListItemText primary={title} />
   </StyledMenuItem>
-));
+))
 
 export default function () {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
-      >
+      <Button variant="contained" color="primary" onClick={handleClick}>
         Open Menu
       </Button>
       <StyledMenu
@@ -95,5 +91,5 @@ export default function () {
         {context}
       </StyledMenu>
     </div>
-  );
+  )
 }

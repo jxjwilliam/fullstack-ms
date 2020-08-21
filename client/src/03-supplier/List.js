@@ -1,59 +1,54 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux'
-import {Switch, Route, Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@material-ui/core';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import MaterialTable from 'material-table';
-import * as userAction from '../state/actions/accountAction';
-import {defer} from '../helpers/utils'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { Switch, Route, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import PeopleIcon from '@material-ui/icons/People'
+import BarChartIcon from '@material-ui/icons/BarChart'
+import LayersIcon from '@material-ui/icons/Layers'
+import MaterialTable from 'material-table'
+import * as userAction from '../state/actions/accountAction'
+import { defer } from '../helpers/utils'
 
-const PARENT_PATH = '列表';
+const PARENT_PATH = '列表'
 
 class List extends Component {
-
-  state = {
-    columns: [
-      {path: '角色', field: 'Role'},
-      {path: '账户名', field: 'account'},
-      {path: '用户名', field: 'name'},
-      {path: '公司', field: 'company'},
-      {path: '部门', field: 'department'},
-      {path: '邮件', field: 'email'},
-      {path: '电话', field: 'phone'},
-      {path: '职位', field: 'position'},
-    ],
-    data: [{}],
-    hasToken: sessionStorage.getItem("authToken")
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      columns: [
+        { path: '角色', field: 'Role' },
+        { path: '账户名', field: 'account' },
+        { path: '用户名', field: 'name' },
+        { path: '公司', field: 'company' },
+        { path: '部门', field: 'department' },
+        { path: '邮件', field: 'email' },
+        { path: '电话', field: 'phone' },
+        { path: '职位', field: 'position' },
+      ],
+      data: [{}],
+      hasToken: sessionStorage.getItem('authToken'),
+    }
+  }
 
   componentDidMount() {
-    this.props.getUsersAction(this.state.hasToken)
-      .then(() => {
-      this.setState({data: this.props.users})
-      })
+    const { getUsersAction, users } = this.props
+    const { hasToken } = this.state
+    getUsersAction(hasToken).then(() => {
+      this.setState({ data: users })
+    })
   }
 
-  onAdd = newData => {
-    return defer(0).then(console.log('--- newData ---: ', newData));
-  }
+  onAdd = (newData) => defer(0).then(console.log('--- newData ---: ', newData))
 
-  onUpdate = (newData, oldData) => {
-    return defer(60).then(console.log('--- newData, oldData ---: ', newData, oldData));
-  }
+  onUpdate = (newData, oldData) =>
+    defer(60).then(console.log('--- newData, oldData ---: ', newData, oldData))
 
-  onDelete = oldData => {
-    return defer(60).then(console.log('--- oldData ---: ', oldData));
-  }
+  onDelete = (oldData) =>
+    defer(60).then(console.log('--- oldData ---: ', oldData))
 
   render() {
-    const {columns, data} = this.state;
+    const { columns, data } = this.state
     return (
       <MaterialTable
         path="供应商用户管理"
@@ -69,14 +64,17 @@ class List extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators(
-  userAction, dispatch
-);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(userAction, dispatch)
 
-List = connect(state => ({
-  auth: state.auth,
-  users: state.users,
-}), mapDispatchToProps)(List);
+// eslint-disable-next-line no-class-assign
+List = connect(
+  (state) => ({
+    auth: state.auth,
+    users: state.users,
+  }),
+  mapDispatchToProps
+)(List)
 
 const ListInfo = [
   {
@@ -93,44 +91,38 @@ const ListInfo = [
     path: '信息2',
     icon: PeopleIcon,
     component: List,
-  }
-];
+  },
+]
 
 export const ListMenu = () => {
-  const list = ListInfo.map(item => {
-    const CompIcon = item.icon;
+  const list = ListInfo.map((item) => {
+    const CompIcon = item.icon
     return (
       <ListItem
         button
         component={Link}
         to={`${PARENT_PATH}/${item.path}`}
-        key={item.path}>
+        key={item.path}
+      >
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
-        <ListItemText primary={item.path}/>
+        <ListItemText primary={item.path} />
       </ListItem>
     )
-  });
+  })
 
-  return (
-    <div>
-      {list}
-    </div>
-  );
+  return <div>{list}</div>
 }
 
-export const ListContent = () => {
-  return (
-    <Switch>
-      {ListInfo.map(item => (
-        <Route
-          path={`${PARENT_PATH}/${item.path}`}
-          component={item.component}
-          key={item.path}
-        />
-      ))
-      }
-    </Switch>
-  )
-}
+export const ListContent = () => (
+  <Switch>
+    {ListInfo.map((item) => (
+      <Route
+        path={`${PARENT_PATH}/${item.path}`}
+        component={item.component}
+        key={item.path}
+      />
+    ))}
+  </Switch>
+)

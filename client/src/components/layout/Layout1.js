@@ -1,19 +1,20 @@
-import React, { Fragment } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   CssBaseline,
   Drawer,
   Divider,
   IconButton,
   Container,
-} from '@material-ui/core';
-import { ChevronLeft, ChevronRight, } from '@material-ui/icons';
-import accordion from "./Accordion1";
+} from '@material-ui/core'
+import { ChevronLeft, ChevronRight } from '@material-ui/icons'
+import accordion from './Accordion1'
 import Title from './Title'
-const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const drawerWidth = 240
+
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
@@ -90,26 +91,28 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240,
   },
-}));
+}))
 
 // TODO: base=match.url
-export default (menu, content) => ({base, pathname, url, path}) => {
+export default (menu, content) => ({ pathname, url }) => {
   // const { location: { pathname }, match: { url, path } } = props
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const classes = useStyles()
+  const [open, setOpen] = React.useState(true)
   const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
   const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Drawer
         variant="permanent"
-        classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose) }}
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
         open={open}
       >
         <div className={classes.toolbarIcon}>
@@ -118,18 +121,18 @@ export default (menu, content) => ({base, pathname, url, path}) => {
           </IconButton>
         </div>
         <Divider />
-        <Fragment>
+        <>
           {menu}
           {open ? <accordion.ShowInfo /> : <accordion.HideInfo />}
-        </Fragment>
+        </>
       </Drawer>
       <main className={classes.content} style={{ position: 'relative' }}>
-        {/*<div className={classes.appBarSpacer}/>*/}
+        {/* <div className={classes.appBarSpacer}/> */}
         <Container maxWidth="lg" className={classes.container}>
           <Title path={pathname} />
           {content}
         </Container>
       </main>
     </div>
-  );
+  )
 }

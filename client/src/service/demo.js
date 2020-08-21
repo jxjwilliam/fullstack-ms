@@ -1,7 +1,5 @@
-import React, { Fragment } from 'react';
-import {
-  Box,
-} from '@material-ui/core';
+import React, { Fragment } from 'react'
+import { Box } from '@material-ui/core'
 import { Emoji, ProTip } from '../components'
 
 export default function () {

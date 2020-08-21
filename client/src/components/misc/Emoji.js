@@ -1,21 +1,20 @@
 import React from 'react'
-import {makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme) => ({
-  emoji: {}
-}))
+const useStyles = makeStyles({
+  emoji: {},
+})
 
-export default function({symbol, label}) {
-  const classes = useStyles();
+export default function ({ symbol, label }) {
+  const classes = useStyles()
   return (
     <span
       className={classes.emoji}
       role="img"
-      aria-label={label ? label : ""}
-      aria-hidden={label ? "false" : "true"}
+      aria-label={label}
+      aria-hidden={label ? 'false' : 'true'}
     >
-    {symbol}
-  </span>
+      {symbol}
+    </span>
   )
 }
-

@@ -1,15 +1,18 @@
-import React, {Fragment} from 'react';
-import { Link, NavLink } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Drawer,
-  List, ListItem, ListItemIcon, ListItemText,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Divider,
   IconButton,
-} from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
+} from '@material-ui/core'
+import { Menu as MenuIcon } from '@material-ui/icons'
 
-import { BusinessRouters, GeneralRouters } from '../../routers';
+import { BusinessRouters, GeneralRouters } from '../../routers'
 
 const useStyles = makeStyles({
   list: {
@@ -17,26 +20,29 @@ const useStyles = makeStyles({
   },
   active: {
     backgroundColor: '#dce775',
-  }
-});
+  },
+})
 
-export default function ({location}) {
-  const classes = useStyles();
+export default function () {
+  const classes = useStyles()
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
-  });
+  })
 
-  const toggleDrawer = (side, open) => event => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
+  const toggleDrawer = (side, open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return
     }
-    setState({ ...state, [side]: open });
-  };
+    setState({ ...state, [side]: open })
+  }
 
-  const sideList = side => (
+  const sideList = (side) => (
     <div
       className={classes.list}
       role="presentation"
@@ -44,46 +50,46 @@ export default function ({location}) {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {BusinessRouters.map(({icon: CompIcon, path, title}) => {
-          return (
-            <ListItem
-              button
-              // selected={path === location.pathname}
-              component={NavLink}
-              exact
-              to={path}
-              activeClassName={classes.active}
-              key={path}
-            >
-              <ListItemIcon><CompIcon /></ListItemIcon>
-              <ListItemText primary={title} />
-            </ListItem>
-          )
-        })}
+        {BusinessRouters.map(({ icon: CompIcon, path, title }) => (
+          <ListItem
+            button
+            // selected={path === location.pathname}
+            component={NavLink}
+            exact
+            to={path}
+            activeClassName={classes.active}
+            key={path}
+          >
+            <ListItemIcon>
+              <CompIcon />
+            </ListItemIcon>
+            <ListItemText primary={title} />
+          </ListItem>
+        ))}
       </List>
       <Divider />
       <List>
-        {GeneralRouters.map(({icon: CompIcon, path, title}) => {
-          return (
-            <ListItem
-              button
-              component={NavLink}
-              exact
-              to={path}
-              activeClassName={classes.active}
-              key={path}
-            >
-              <ListItemIcon><CompIcon /></ListItemIcon>
-              <ListItemText primary={title} />
-            </ListItem>
-          )
-        })}
+        {GeneralRouters.map(({ icon: CompIcon, path, title }) => (
+          <ListItem
+            button
+            component={NavLink}
+            exact
+            to={path}
+            activeClassName={classes.active}
+            key={path}
+          >
+            <ListItemIcon>
+              <CompIcon />
+            </ListItemIcon>
+            <ListItemText primary={title} />
+          </ListItem>
+        ))}
       </List>
     </div>
-  );
+  )
 
   return (
-    <Fragment>
+    <>
       <IconButton
         edge="start"
         className={classes.menuButton}
@@ -100,6 +106,6 @@ export default function ({location}) {
       >
         {sideList('right')}
       </Drawer>
-    </Fragment>
-  );
+    </>
+  )
 }

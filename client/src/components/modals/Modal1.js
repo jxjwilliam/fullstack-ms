@@ -1,13 +1,8 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import {
-  Modal,
-  Backdrop,
-  Fade,
-  Button,
-} from '@material-ui/core';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { Modal, Backdrop, Fade, Button } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -19,23 +14,23 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-}));
+}))
 
 export default function () {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const classes = useStyles()
+  const [open, setOpen] = React.useState(false)
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleOk = () => {
     // TODO: logout flow.
-    handleClose();
+    handleClose()
   }
 
   return (
@@ -69,5 +64,5 @@ export default function () {
         </Fade>
       </Modal>
     </div>
-  );
+  )
 }

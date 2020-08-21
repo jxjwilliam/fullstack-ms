@@ -1,8 +1,3 @@
-import About from "./About"
-import C404 from './404'
-import Contact from "./Contact"
-export {
-  About,
-  C404,
-  Contact,
-}
+export { default as About } from './About'
+export { default as C404 } from './404'
+export { default as Contact } from './Contact'

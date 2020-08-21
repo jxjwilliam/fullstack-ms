@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { List, ListItem, ListItemIcon, ListItemText, } from '@material-ui/core'
+import { NavLink } from 'react-router-dom'
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 /**
@@ -53,9 +53,11 @@ const NavList = ({ base, navs }) => {
   ))
   return (
     <>
-      <List component="nav" className={classes.root}>{list}</List>
+      <List component="nav" className={classes.root}>
+        {list}
+      </List>
     </>
   )
 }
 
-export default NavList;
+export default NavList

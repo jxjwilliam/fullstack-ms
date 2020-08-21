@@ -1,11 +1,11 @@
-import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import NoSsr from '@material-ui/core/NoSsr';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { palette, spacing, typography } from '@material-ui/system';
+import React from 'react'
+import styled, { ThemeProvider } from 'styled-components'
+import NoSsr from '@material-ui/core/NoSsr'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { palette, spacing, typography } from '@material-ui/system'
 
-const Box = styled.div`${palette}${spacing}${typography}`;
-const theme = createMuiTheme();
+const Box = styled.div`${palette}${spacing}${typography}`
+const theme = createMuiTheme()
 
 export default function () {
   return (
@@ -22,5 +22,5 @@ export default function () {
         </Box>
       </ThemeProvider>
     </NoSsr>
-  );
+  )
 }

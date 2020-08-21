@@ -1,74 +1,84 @@
-import React, {Fragment} from 'react'
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import {
-  AppBar, Container, CssBaseline, Toolbar,
-  ButtonGroup, Link, Button,
-} from "@material-ui/core";
-import { Drawer1, footers } from "../components";
-import theme from './theme';
-import ServiceDemo from "./demo";
-import { ThemeProvider } from "@material-ui/styles";
-import { BusinessRouters } from '../routers';
+  AppBar,
+  Container,
+  CssBaseline,
+  Toolbar,
+  ButtonGroup,
+  Link,
+  Button,
+} from '@material-ui/core'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ThemeProvider } from '@material-ui/styles'
+import { Home as HomeIcon } from '@material-ui/icons'
+import { Drawer1, footers, menus } from '../components'
+import theme from './theme'
+import ServiceDemo from './demo'
+import { BusinessRouters } from '../routers'
 import { navList as navs1 } from '../01-risk-management/routers'
 import { navList as navs2 } from '../02-core_business/routers'
 import { navList as navs3 } from '../03-supplier/routers'
 import { navList as navs4 } from '../04-customer/routers'
 import { navList as navs5 } from '../05-financing/routers'
-import { menus } from '../components'
-import {Home as HomeIcon} from "@material-ui/icons";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     '& > *': {
       margin: theme.spacing(1),
     },
   },
-}));
+})
 
 const getMap = () => {
-  const Routers = [navs1, navs2, navs3, navs4, navs5];
+  const Routers = [navs1, navs2, navs3, navs4, navs5]
   return BusinessRouters.reduce((map, br, idx) => {
-    if (!Routers[idx]) return map;
-    const { component, ...others } = br;
+    if (!Routers[idx]) return map
+    const { component, ...others } = br
     map.set(others, Routers[idx])
-    return map;
-  }, new Map);
+    return map
+  }, new Map())
 }
 
 const patch = (routers) => {
-  const certificate = BusinessRouters[BusinessRouters.length-1]
-  const {path, title, icon:Icon} = certificate
+  const certificate = BusinessRouters[BusinessRouters.length - 1]
+  const { path, title, icon: Icon } = certificate
   return routers.push(
-    <ButtonGroup key={title} ariant="contained"  aria-label="outlined primary button group">
-      <Button
-        color="inherit"
-        startIcon={<Icon />}
-        component={Link}
-        href={path}
-      >
+    <ButtonGroup
+      key={title}
+      ariant="contained"
+      aria-label="outlined primary button group"
+    >
+      <Button color="inherit" startIcon={<Icon />} component={Link} href={path}>
         {title}
       </Button>
     </ButtonGroup>
-  );
+  )
 }
 
 export default function () {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const all5 = getMap();
-  console.log('-----', all5, null, 4);
+  const all5 = getMap()
+  console.log('-----', all5, null, 4)
 
-  let routers = [];
-  for (let [key, value] of all5) {
-    const { path, title, icon: CompIcon } = key;
+  const routers = []
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [key, value] of all5) {
+    const { path, title, icon: CompIcon } = key
     routers.push(
       <ButtonGroup key={title}>
-        <menus.Menu2 routers={value} base={path} title={title} Icon={CompIcon} />
+        <menus.Menu2
+          routers={value}
+          base={path}
+          title={title}
+          Icon={CompIcon}
+        />
       </ButtonGroup>
     )
   }
 
-  patch(routers);
+  patch(routers)
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,7 +86,9 @@ export default function () {
       <Container fixed className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Link href="/" color="inherit" variant="h6"><HomeIcon/></Link>
+            <Link href="/" color="inherit" variant="h6">
+              <HomeIcon />
+            </Link>
             <Drawer1 />
             {routers}
           </Toolbar>

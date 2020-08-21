@@ -12,9 +12,9 @@ import {
   AccountBox,
   ExitToApp,
 } from '@material-ui/icons'
-import {Menus} from './constants'
-import Home from './home';
-import Service from './service';
+import { Menus } from './constants'
+import Home from './home'
+import Service from './service'
 import { SignIn, SignInSide, SignOut } from './signin'
 import Signup from './signup'
 import Admin from './01-risk-management'
@@ -27,7 +27,7 @@ import { C404 } from './containers'
 
 // TODO:
 const getRouters = () => {
-  const ary = Menus.find(menu => menu.type === 'Business').list
+  const ary = Menus.find((menu) => menu.type === 'Business').list
   ary.map((nav, idx) => {
     return {
       path: `/$nav`,
@@ -64,7 +64,7 @@ const BusinessRouters = [
     component: Customer,
   },
   {
-    path: '/融资管理', //financing
+    path: '/融资管理', // financing
     title: '融资管理',
     icon: Store,
     component: Financing,
@@ -96,23 +96,26 @@ const GeneralRouters = [
     title: '登录',
     icon: VerifiedUser,
     component: SignIn,
-  }, {
+  },
+  {
     path: '/login',
     title: '切换用户',
     icon: LockOpen,
     component: SignInSide,
-  }, {
+  },
+  {
     path: '/logout',
     title: '退出',
     icon: ExitToApp,
     component: SignOut,
-  }, {
+  },
+  {
     path: '/signup',
     title: '注册',
     icon: AccountBox,
     component: Signup,
   },
-];
+]
 
 const BackdoorRouters = [
   {
@@ -121,14 +124,9 @@ const BackdoorRouters = [
     component: Home,
   },
   {
-    path: "*",
+    path: '*',
     component: C404,
-  }
+  },
 ]
 
-export {
-  BusinessRouters,
-  GeneralRouters,
-  BackdoorRouters
-}
-
+export { BusinessRouters, GeneralRouters, BackdoorRouters }

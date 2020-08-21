@@ -1,52 +1,51 @@
 import React, { Component } from 'react'
-import {DropzoneDialog} from 'material-ui-dropzone'
-import Button from '@material-ui/core/Button';
+import { DropzoneDialog } from 'material-ui-dropzone'
+import Button from '@material-ui/core/Button'
 
 // https://github.com/Yuvaleros/material-ui-dropzone
 export default class DropzoneDialogExample extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       open: false,
-      files: []
-    };
+      files: [],
+    }
   }
 
   handleClose() {
     this.setState({
-      open: false
-    });
+      open: false,
+    })
   }
 
   handleSave(files) {
-    //Saving files to state for further use and closing Modal.
+    // Saving files to state for further use and closing Modal.
     this.setState({
-      files: files,
-      open: false
-    });
+      files,
+      open: false,
+    })
   }
 
   handleOpen() {
     this.setState({
       open: true,
-    });
+    })
   }
 
   render() {
+    const { open } = this.state
     return (
       <div>
-        <Button onClick={this.handleOpen.bind(this)}>
-          Add Image
-        </Button>
+        <Button onClick={this.handleOpen}>Add Image</Button>
         <DropzoneDialog
-          open={this.state.open}
-          onSave={this.handleSave.bind(this)}
+          open={open}
+          onSave={this.handleSave}
           acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
-          showPreviews={true}
+          showPreviews
           maxFileSize={5000000}
-          onClose={this.handleClose.bind(this)}
+          onClose={this.handleClose}
         />
       </div>
-    );
+    )
   }
 }

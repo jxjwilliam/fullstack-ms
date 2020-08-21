@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { compose } from 'recompose';
-import axios from 'axios'
+import { compose } from 'recompose'
 import {
   Avatar,
   Button,
@@ -14,14 +13,15 @@ import {
   Grid,
   Typography,
   Container,
-} from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
+} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { makeStyles } from '@material-ui/core/styles'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { withStyles } from '@material-ui/styles'
 import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
 import { loginAction } from '../state/actions'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
@@ -44,47 +44,56 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+}))
 
 class SignIn extends Component {
+  // eslint-disable-next-line react/state-in-constructor
   state = {
     login: {
       user: '',
       password: '',
     },
-    done: false
+    done: false,
   }
 
   validateForm = () => {
-    return this.state.login.user.length > 0 && this.state.login.password.length > 0;
+    const {
+      login: { user, password },
+    } = this.state
+    return user.length > 0 && password.length > 0
   }
 
   // this.setState({[e.target.id]: e.target.value});
-  handleChange = e => {
-    this.setState({ login: { ...this.state.login, [e.target.id]: e.target.value } })
+  handleChange = (e) => {
+    this.setState((prevState) => ({
+      login: { ...prevState.login, [e.target.id]: e.target.value },
+    }))
   }
 
-  handleSubmit = ev => {
-    ev.preventDefault();
-    // TODO validates, post a form-body
-    this.props.loginAction(this.state.login)
-      .then(data => {
-        const { loggedIn } = this.props.auth;
-        if (loggedIn) {
-          this.setState({ done: true });
-          sessionStorage.setItem(TOKEN, this.props.auth.token)
-        }
-        else {
-          this.setState({ done: false, title: this.props.auth.msg });
-          sessionStorage.removeItem(TOKEN)
-        }
-      })
+  handleSubmit = (ev) => {
+    ev.preventDefault()
+    const { auth } = this.props
+    const { login } = this.state
+
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.loginAction(login).then((data) => {
+      const { loggedIn } = auth
+      if (loggedIn) {
+        this.setState({ done: true })
+        sessionStorage.setItem(TOKEN, auth.token)
+      } else {
+        this.setState({ done: false, title: auth.msg })
+        sessionStorage.removeItem(TOKEN)
+      }
+    })
   }
 
   render() {
-    const { classes } = this.props;
-    const { login: { user, password }, done } = this.state;
-    //if (this.props.auth.isAuthenticated())
+    const { classes } = this.props
+    const {
+      login: { user, password },
+      done,
+    } = this.state
     if (done) {
       return <Redirect to={DEFAULT_HOME_PAGE} />
     }
@@ -154,14 +163,11 @@ class SignIn extends Component {
           </form>
         </div>
       </Container>
-    );
+    )
   }
 }
 
 export default compose(
   withStyles(useStyles, { name: 'login1' }),
-  connect(
-    state => ({ auth: state.auth }),
-    { loginAction }
-  )
-)(SignIn);
+  connect((state) => ({ auth: state.auth }), { loginAction })
+)(SignIn)

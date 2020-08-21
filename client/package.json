@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@williamjiang/util": "^1.0.5",
+    "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
     "http-proxy-middleware": "^1.0.5",
     "jwt-decode": "^2.2.0",

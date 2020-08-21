@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Box } from '@material-ui/core'
 import { Emoji, ProTip } from '../components'
 

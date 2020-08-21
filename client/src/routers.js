@@ -28,14 +28,12 @@ import { C404 } from './containers'
 // TODO:
 const getRouters = () => {
   const ary = Menus.find((menu) => menu.type === 'Business').list
-  ary.map((nav, idx) => {
-    return {
-      path: `/$nav`,
-      title: nav,
-      icon: OfflineBolt,
-      component: Admin,
-    }
-  })
+  ary.map(nav => ({
+    path: `/$nav`,
+    title: nav,
+    icon: OfflineBolt,
+    component: Admin,
+  }))
 }
 
 const BusinessRouters = [

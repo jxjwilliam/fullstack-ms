@@ -1,7 +1,10 @@
 import {
-  SIGNUP_SUCCESS, SIGNUP_FAIL,
-  LOGIN_SUCCESS, LOGIN_FAIL,
-  LOGOUT_SUCCESS, LOGOUT_FAIL
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL,
 } from '../ActionTypes'
 
 /**
@@ -11,31 +14,35 @@ import {
 
 const initLogin = {
   loggedIn: false,
-  token: null
+  token: null,
 }
 export const loginReducer = (state = initLogin, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return {token: action.payload, loginInfo: action.loginInfo, loggedIn: true}
+      return {
+        token: action.payload,
+        loginInfo: action.loginInfo,
+        loggedIn: true,
+      }
     case LOGIN_FAIL:
-      return {...action.payload, loggedIn: false}
+      return { ...action.payload, loggedIn: false }
     case LOGOUT_SUCCESS:
-      return {...action.payload, loggedIn: false}
+      return { ...action.payload, loggedIn: false }
     case LOGOUT_FAIL:
-      return {...action.payload, loggedIn: true}
+      return { ...action.payload, loggedIn: true }
     default:
-      return state;
+      return state
   }
 }
 
 export const signupReducer = (state = '', action) => {
   switch (action.type) {
     case SIGNUP_SUCCESS:
-      return action.payload;
+      return action.payload
     case SIGNUP_FAIL:
-      return action.payload;
+      return action.payload
     default:
-      return state;
+      return state
   }
 }
 
@@ -43,11 +50,11 @@ export const logoutReducer = (state = '', action) => {
   switch (action.type) {
     case LOGOUT_SUCCESS:
       // TODO: remove token
-      return action.payload;
+      return action.payload
     case LOGOUT_FAIL:
-      //TODO: remove token
-      return action.payload;
+      // TODO: remove token
+      return action.payload
     default:
-      return state;
+      return state
   }
 }

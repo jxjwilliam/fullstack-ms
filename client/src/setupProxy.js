@@ -8,13 +8,13 @@ require('dotenv').config()
 const MS_BFF_PORT = process.env.BFF_PORT
 const MS_SSL_PORT = process.env.BFF_SSL_PORT
 
-const local_ms = ['/api', '/doc', '/table']
-const static_ms = ['/data', '/mock']
-const other_ms = ['/sms', '/rest']
+const localMs = ['/api', '/doc', '/table']
+const staticMs = ['/data', '/mock']
+const otherMs = ['/sms', '/rest']
 
 module.exports = function (app) {
   app.use(
-    createProxyMiddleware([...local_ms, ...static_ms, ...other_ms], {
+    createProxyMiddleware([...localMs, ...staticMs, ...otherMs], {
       target: `${URLS[0]}:${MS_BFF_PORT}/`,
       changeOrigin: true,
     })

@@ -11,7 +11,7 @@ import I18n from './Localization'
 import FormDialog from '../dialogs/Dialog1'
 import { DEFAULT_LOGIN_PAGE } from '../../constants'
 import Drawer1 from '../misc/Drawer1'
-import menus from '../menus'
+import * as menus from '../menus'
 import { BusinessRouters } from '../../routers'
 
 const Group1 = () => (
@@ -55,7 +55,7 @@ export default function ({ children }) {
     setTo(DEFAULT_LOGIN_PAGE)
   }
 
-  // eslint-disable-next-line prettier/prettier
+  // eslint-disable-next-line
   return to ? <Redirect to={to} /> : (
     <div style={{ flexGrow: 1 }}>
       <AppBar position="static">

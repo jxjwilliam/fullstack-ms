@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import * as menus from '../menus'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   grow: {
     flexGrow: 1,
   },
-}))
+})
 
 const routers = [
   {

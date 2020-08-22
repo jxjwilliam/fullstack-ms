@@ -7,7 +7,7 @@ import { Menu as MenuIcon } from '@material-ui/icons'
 const useStyles = makeStyles((theme) => ({
   link: {
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.5),
       textDecoration: 'none',
     },
   },

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container, CssBaseline, Typography } from '@material-ui/core'
@@ -27,12 +28,17 @@ const RouteList = ({ routes1, routes2, routes3 }) => {
 }
 
 class App extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    locale: Languages[0],
-    changeLocale: (idx) => {
-      this.setState({ locale: Languages[idx] })
-    },
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      locale: Languages[0],
+      changeLocale: this.changeLocale,
+    }
+  }
+
+  changeLocale = (idx) => {
+    this.setState({ locale: Languages[idx] })
   }
 
   render() {

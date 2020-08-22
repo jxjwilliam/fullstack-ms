@@ -60,9 +60,12 @@ class Login extends Component {
     done: false,
   }
 
-  validateForm = () => (
-    this.state.login.user.length > 0 && this.state.login.password.length > 0
-  )
+  validateForm = () => {
+    const {
+      login: { user, password },
+    } = this.state
+    return user.length > 0 && password.length > 0
+  }
 
   // this.setState({[e.target.id]: e.target.value});
   handleChange = (e) => {

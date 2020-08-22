@@ -12,7 +12,7 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ThemeProvider } from '@material-ui/styles'
 import { Home as HomeIcon } from '@material-ui/icons'
-import { Drawer1, footers, menus } from '../components'
+import { Drawer1, Menu2, footers } from '../components'
 import theme from './theme'
 import ServiceDemo from './demo'
 import { BusinessRouters } from '../routers'
@@ -68,12 +68,7 @@ export default function () {
     const { path, title, icon: CompIcon } = key
     routers.push(
       <ButtonGroup key={title}>
-        <menus.Menu2
-          routers={value}
-          base={path}
-          title={title}
-          Icon={CompIcon}
-        />
+        <Menu2 routers={value} base={path} title={title} Icon={CompIcon} />
       </ButtonGroup>
     )
   }

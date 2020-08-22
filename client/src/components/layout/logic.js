@@ -43,7 +43,6 @@ class CTemplate extends Component {
 function getRouters(url, currentNav, mainList) {
   const subAry = mainList.find((item) => item.nav === currentNav).main
   const basePath = `${url}/${currentNav}`
-  console.log('333', basePath, subAry)
   return [basePath, subAry]
 }
 
@@ -130,7 +129,9 @@ const getPageLayout = (navList, mainList, options) => {
       throw new Error('TODO: ')
   }
 
+  console.group()
   console.log('!!!', redirect, url2, url3)
+  console.groupEnd()
 
   const [basePath, subAry] = getRouters(url, url2, mainList)
 

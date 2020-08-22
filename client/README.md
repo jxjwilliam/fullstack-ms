@@ -1,4 +1,4 @@
-### create-react-app
+### create-react-app (CRA)
 
 ---
 
@@ -18,14 +18,16 @@ $ npx create-react-app client
 
 - Tabsize: File > Preferences > Settings > `editor: tab size` => Tab Size: 2
 - npx install-peerdeps
-
-````
-
-[eslint-prettier-airbnb-react](https://github.com/jxjwilliam/eslint-prettier-airbnb-react)
-
+- All-In-One: [eslint-prettier-airbnb-react](https://github.com/jxjwilliam/eslint-prettier-airbnb-react)
 ```shell
 $ exec 3<&1;bash <&3 <(curl https://raw.githubusercontent.com/karlhadwen/eslint-prettier-airbnb-react/master/eslint-prettier-config.sh 2> /dev/null)
 ````
+
+fix eslint conflict issue:
+```text
+/client/node_modules/react-scripts/package.json:
+  "eslint": "^7.7.0",
+```
 
 ### emoji
 
@@ -92,3 +94,7 @@ const FancyLink = React.forwardRef((props, ref) => <a ref={ref}>💅 {props.chil
   ...
 </MuiLink>
 ```
+
+### Test
+
+- jest

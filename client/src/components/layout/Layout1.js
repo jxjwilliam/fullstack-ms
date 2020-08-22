@@ -129,7 +129,7 @@ export default (menu, content) => ({ pathname, url }) => {
       <main className={classes.content} style={{ position: 'relative' }}>
         {/* <div className={classes.appBarSpacer}/> */}
         <Container maxWidth="lg" className={classes.container}>
-          <Title path={pathname} />
+          <Title path={pathname} title={'TODO???'} />
           {content}
         </Container>
       </main>

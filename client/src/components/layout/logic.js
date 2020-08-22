@@ -130,7 +130,7 @@ const getPageLayout = (navList, mainList, options) => {
   }
 
   console.group()
-  console.log('!!!', redirect, url2, url3)
+  console.log('👋 👏', redirect, url2, url3)
   console.groupEnd()
 
   const [basePath, subAry] = getRouters(url, url2, mainList)

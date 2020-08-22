@@ -52,7 +52,6 @@ export default function () {
         <Container maxWidth="sm">
           <Tabs value={value} onChange={handleChange} aria-label={'simple tabs example'}>
             {labels}
-            {() => { console.log('???????')}}
           </Tabs>
         </Container>
       </footer>

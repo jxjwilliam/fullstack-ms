@@ -50,11 +50,13 @@ const mainList = [
         icon: BarChart,
       },
       {
-        path: '额度分配（发起额度分配流程）',
+        path: '额度分配',
+        title: '额度分配（发起额度分配流程）',
         icon: Layers,
       },
       {
-        path: '额度变更（发起额度变更流程）',
+        path: '额度变更',
+        title: '额度变更（发起额度变更流程）',
         icon: People,
       },
     ],

@@ -23,7 +23,6 @@ export  default class extends Component {
   componentDidMount() {
     fetching('/data/stuff')
       .then(data => {
-        console.log(data);
         this.setState({data})
       })
   }

@@ -60,7 +60,7 @@ export default function () {
   const classes = useStyles()
 
   const all5 = getMap()
-  console.log('-----', all5, null, 4)
+  console.log('✋ ✌', all5, null, 4)
 
   const routers = []
   // eslint-disable-next-line no-restricted-syntax

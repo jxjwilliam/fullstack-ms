@@ -8,9 +8,9 @@
     "dialect": "mysql"
   },
   "test": {
-    "database": "mengxin",
-    "username": "dev_user_general",
-    "password": "dzfactoringMengxin123$",
+    "database": "dbms",
+    "username": "dbms_user",
+    "password": "dbms~123456$",
     "host": "localhost",
     "port": 3306,
     "dialect": "mysql"

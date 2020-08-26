@@ -2,37 +2,52 @@ const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const connectDb = require('./helpers/mongo-connect')
+const mongoose = require('mongoose')
+const route = require('./routes')
 
 const app = express()
 
 require('dotenv').config()
 app.set('port', process.env.PORT)
 
-connectDb({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE,
-})
+const { AUTHDB_URL } = require('./etc/config')
 
-app
-  .use(logger('dev'))
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: false }))
+// const AUTHDB_URL = process.env.AUTHDB_URL || AUTHDB_URL;
+mongoose.connect(
+  AUTHDB_URL,
+  {
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
+  },
+  () => {
+    console.info('连接成功 AUTHDB ->', AUTHDB_URL)
+  }
+)
+
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({ extended: false }));
 
 ///////////////////////////////
 
 app.get('/', (req, res) => {
-  res.status(200).send('MS-DOC works!')
+  res.status(200).send('MS-AUTH works!')
 })
+
+app.use(['/user', '/users'], route.user)
+
+// app.use(route.auth)
+
+///////////////////////////////
 
 app
   .use(function (req, res, next) {
     next(createError(404))
   })
   .use(function (err, req, res) {
-    // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 

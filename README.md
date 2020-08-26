@@ -40,3 +40,23 @@ $ npx sequelize init
 
 - `.huskyrc`在`git pre-commit`的钩子调起 `lint-staged`
 - `lint-staged` 取得所有被提交的文件依次执行写好的任务(ESLint 和 Prettier), 如果有错误(没通过 ESlint 检查)则停止任务，等待下次`commit`，同时打印错误信息
+
+
+### License
+
+---
+
+```text
+$ npx license
+```
+
+
+
+###
+
+| module | function | note | example |
+| --- | --- | --- | --- |
+| gateway | | |
+| ms-auth |  | |
+| ms-dbms |  | |
+| ms-doc |  | |

@@ -1,5 +1,0 @@
-### localhost
-GET http://localhost:10001
-
-### 127.0.0.1
-GET http://127.0.0.1:10001

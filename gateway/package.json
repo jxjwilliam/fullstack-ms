@@ -1,23 +1,25 @@
 {
   "name": "basic-gateway",
-  "version": "0.1.1",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
-    "start": "npx nodemon --exec babel-node ./app",
-    "prod": "node ./app",
+    "start": "npx nodemon --exec babel-node ./server",
+    "prod": "node ./server",
     "test": "echo %npm_package_version%",
     "clean": "rimraf build"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "axios": "^0.20.0",
     "cors": "^2.8.5",
-    "debug": "~2.6.9",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "express-jwt": "^6.0.0",
     "helmet": "^3.23.3",
     "http-errors": "^1.8.0",
     "http-proxy": "^1.18.1",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {

@@ -1,0 +1,5 @@
+### localhost
+GET http://localhost:8068
+
+### 127.0.0.1
+GET http://127.0.0.1:8068

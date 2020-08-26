@@ -15,3 +15,15 @@ $ cd basic
 $ yarn run-prod
 $ open http：//localhost:10000
 ```
+
+### request.js
+
+
+`Request` is going into maintenance mode, this is what you need to know.
+
+Alternatives to Request:
+
+- Got
+- Axios
+- Node Fetch
+- Superagent

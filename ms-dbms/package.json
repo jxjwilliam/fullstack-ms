@@ -3,8 +3,8 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "start": "npx nodemon  --exec babel-node  ./app",
-    "prod": "node ./app",
+    "start": "npx nodemon  --exec babel-node  ./server",
+    "prod": "node ./server",
     "test": "echo %npm_package_version%"
   },
   "dependencies": {
@@ -22,7 +22,8 @@
     "mysql2": "^2.1.0",
     "node-fetch": "^2.6.0",
     "query-string": "^6.13.1",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "sequelize-auto": "^0.5.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",

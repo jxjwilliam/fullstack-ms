@@ -1,32 +1,61 @@
-const express = require('express')
-const httpProxy = require('http-proxy')
 const createError = require('http-errors')
+const express = require('express')
 const path = require('path')
+const httpProxy = require('http-proxy')
 const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
-const http = require('http')
-const debug = require('debug')('gateway:app')
-
-require('dotenv').config()
+const expressJwt = require('express-jwt')
 
 const app = express()
 
+require('dotenv').config()
+app.set('port', process.env.PORT)
+
+const jwtSecretSalt = process.env.SECRET
+
+
 // app.use(favicon(path.join(__dirname, '../client/public', 'favicon.ico')))
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
-app.use(logger('dev'))
-app.use(helmet())
-app.use(cors())
-app.use(express.static(path.join(__dirname, 'build')))
+  .use(cors())
+  .use(logger('dev'))
+  .use(helmet())
+  .use(express.static(path.join(__dirname, 'build')))
 
-const port = process.env.BFF_PORT
-app.set('port', port)
+// TODO?
+app.use(express.urlencoded({ extended: false }));
 
-// 测试接口
+
+///////////////////////////////
+
+// 1. 测试接口
 app.get('/', (req, res) => {
   res.status(200).send('Hello from BFF proxy server!')
 })
+
+
+const apiProxy = httpProxy.createProxyServer()
+const { MS_AUTH, MS_DBMS, MS_DOC } = process.env
+
+app.all(['/register', '/login'], (req, res) => {
+  console.log(`${req.url} redirects to ${MS_DBMS}`)
+  apiProxy.web(req, res, { target: MS_AUTH })
+})
+
+// authentication
+app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
+  (err, req, res, next) => {
+    console.group('authentication');
+    console.log(req.baseUrl, req.originalUrl, req.url);
+    console.groupEnd()
+    if (err.name === 'UnauthorizedError') {
+      console.error(req.user, req.ip, 'invalid token');
+      next()
+    }
+  }
+)
+
 
 // `gateway` folder: cache all static data.
 app.get('/mock/:resource', (req, res) => {
@@ -45,64 +74,31 @@ app.get('/data/:resource', (req, res) => {
   res.sendFile(f);
 });
 
-const apiProxy = httpProxy.createProxyServer()
 
-const { MS_DBMS_URL, MS_DOC_URL } = process.env
-
-app.all('/api/*', (req, res) => {
-  console.log(`${req.url} redirects to ${MS_DBMS_URL}`)
-  apiProxy.web(req, res, { target: MS_DBMS_URL })
+app.all('/api/dbms', (req, res) => {
+  console.log(`${req.url} redirects to ${MS_DBMS}`)
+  apiProxy.web(req, res, { target: MS_DBMS })
 })
 
-app.all('/doc/*', (req, res) => {
-  console.log(`${req.url} redirects to ${MS_DOC_URL}`)
-  apiProxy.web(req, res, { target: MS_DOC_URL })
+app.all('/api/doc', (req, res) => {
+  console.log(`${req.url} redirects to ${MS_DOC}`)
+  apiProxy.web(req, res, { target: MS_DOC })
 })
 
-app.use('*', (req, res) => {
-  const { url, params, query, body } = req
-  console.error('BFF-路由服务器 无效URL: ', url, params, query, body)
-  res.sendStatus(404)
-})
 
-app.use(function (req, res, next) {
-  next(createError(404))
-})
+app
+  .use(function (req, res, next) {
+    const { url, params, query, body } = req
+    console.error('BFF-路由服务器 无效URL: ', url, params, query, body)
+    next(createError(404))
+  })
+  .use(function (err, req, res) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-app.use(function (err, req, res) {
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  })
 
-  res.status(err.status || 500)
-  res.render('error')
-})
-
-const server = http.createServer(app)
-
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error
-  }
-
-  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(`${bind} requires elevated privileges`)
-      process.exit(1)
-    case 'EADDRINUSE':
-      console.error(`${bind} is already in use`)
-      process.exit(1)
-    default:
-      throw error
-  }
-}
-
-server.on('error', onError)
-
-server.listen(port, () => {
-  const addr = server.address()
-  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
-  console.log(`BFF 代理服务正运行于端口 ${bind}`)
-})
+module.exports = app;

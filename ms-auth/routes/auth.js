@@ -1,11 +1,26 @@
 const express = require('express')
-
-const router = express.Router()
 const controller = require('../controllers/auth')
 
-router.route(['/register', '/signup', '/user', '/auth']).post(controller.signup)
+const router = express.Router()
 
-router.route(['/login', '/signin']).post(controller.signin)
+router.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to the AUTH API!',
+    app: req.app,
+    url: req.url,
+    baseUrl: req.baseUrl,
+    originalUrl: req.originalUrl,
+    path: req.path,
+    hostname: req.hostname,
+    ip: req.ip,
+    xhr: req.xhr,
+    locals: res.locals
+  })
+})
+
+router.post(['/register', '/signup'], controller.signup)
+
+router.post(['/login', '/signin'], controller.signin)
 
 router.get(['/logout', '/signout'], controller.signout)
 

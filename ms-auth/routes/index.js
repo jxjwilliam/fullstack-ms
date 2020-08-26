@@ -1,7 +1,2 @@
-import auth from './auth';
-import user from './user';
-
-module.exports = {
-  auth,
-  user,
-};
+export { default as auth } from './auth';
+export { default as user } from './user';

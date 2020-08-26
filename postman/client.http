@@ -1,2 +1,19 @@
 ### localhost
 GET http://localhost:3000
+
+### GATEWAY
+GET http://localhost:3000/data/address
+
+### MS-AUTH
+GET http://localhost:3000/auth
+
+
+### MS-DBMS
+GET http://localhost:3000/api/dbms
+
+### MS-DOC
+GET http://localhost:3000/api/doc
+
+
+### Gitbook
+GET http://localhost/gitbook

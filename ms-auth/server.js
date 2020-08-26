@@ -10,10 +10,6 @@ server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
 function normalizePort(val) {
   // eslint-disable-next-line no-shadow
   const port = parseInt(val, 10)
@@ -25,16 +21,11 @@ function normalizePort(val) {
   }
 
   if (port >= 0) {
-    // port number
     return port
   }
 
   return false
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -55,10 +46,6 @@ function onError(error) {
       throw error
   }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
   const addr = server.address()

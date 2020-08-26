@@ -10,9 +10,8 @@ const app = express()
 require('dotenv').config()
 app.set('port', process.env.PORT)
 
-const { AUTHDB_URL } = require('./etc/config')
+const AUTHDB_URL = process.env.AUTHDB_URL;
 
-// const AUTHDB_URL = process.env.AUTHDB_URL || AUTHDB_URL;
 mongoose.connect(
   AUTHDB_URL,
   {
@@ -34,12 +33,12 @@ app.use(express.urlencoded({ extended: false }));
 ///////////////////////////////
 
 app.get('/', (req, res) => {
-  res.status(200).send('MS-AUTH works!')
+  res.status(200).send(`MS-AUTH  ${req.baseUrl}, ${req.url}  works!`)
 })
 
-app.use(['/user', '/users'], route.user)
-
-// app.use(route.auth)
+app.use('/auth', route.auth)
+// TODO
+app.use('/user', route.user)
 
 ///////////////////////////////
 

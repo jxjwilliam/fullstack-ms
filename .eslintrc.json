@@ -29,16 +29,6 @@
 		"func-names": "off",
 		"global-require": "off",
 		"camelcase": "off",
-		"import/no-dynamic-require": "off",
-		"react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-		"react/prop-types": "off",
-		"react/destructuring-assignment": "off",
-		"react/no-unescaped-entities": "off",
-		"react/jsx-one-expression-per-line": "off",
-		"react/display-name": "off",
-		"react/prefer-stateless-function": "off",
-		"react/jsx-props-no-spreading": "off",
-		"react/react-in-jsx-scope": "off",
-		"react/jsx-indent-props": ["error", 2]
+		"import/no-dynamic-require": "off"
 	}
 }

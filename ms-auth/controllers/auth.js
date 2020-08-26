@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const { SECRET } = require('../etc/config');
+const bcrypt = require("bcrypt");
 const User = require('../models/User');
+
+require('dotenv').config();
+const SECRET = process.env.SECRET;
 
 const signup = (req, res, next) => {
   const user = new User(req.body);

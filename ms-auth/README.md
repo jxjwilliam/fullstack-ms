@@ -4,6 +4,12 @@
 
 这是一个 issue `jwt-token`的简单的微服务，使用`MongoDB` + `mongoose`
 
+Auth Flow:
+![Auth Flow](./etc/imgs/auth-flow.png)
+
+JWT Flow:
+![JWT Flow](./etc/imgs/jwt-flow.png)
+
 ### 📑 功能
 
 ---

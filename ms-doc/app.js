@@ -24,7 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 ///////////////////////////////
 
 app.get('/', (req, res) => {
-  res.status(200).send('MS-DOC works!')
+  res.status(200).send(`MS-DOC ${req.baseUrl}, ${req.url} works!`)
+})
+
+app.get('/api/doc', (req, res) => {
+  res.status(200).send(`MS-DOC ${req.baseUrl}, ${req.url} works!`)
 })
 
 app

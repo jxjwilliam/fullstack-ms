@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 const UserSchema = new Schema({
   username: {
@@ -50,7 +50,7 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.statics.authenticate = function (username, password, callback) {
   console.log("如何调用？什么时候执行 ？");
-  User.findOne({username})
+  User.findOne({ username })
     .exec(function (err, user) {
       if (err) {
         return callback(err)

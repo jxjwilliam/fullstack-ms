@@ -19,12 +19,8 @@ const list = (req, res, next) => {
 
 const get = (req, res, next) => res.json(req.user);
 
-const search = (req, res, next) => {
-  res.send('TODO');
-};
-
 const put = (req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, user) => {
     if (err) next(err);
     else res.json(user);
   });
@@ -42,7 +38,6 @@ module.exports = {
   param,
   list,
   get,
-  search,
   put,
   remove,
 };

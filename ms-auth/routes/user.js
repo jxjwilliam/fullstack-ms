@@ -5,7 +5,7 @@ const controller = require('../controllers/user');
 
 router.param('id', controller.param);
 
-router.route('/').get(controller.list);
+router.get('/', controller.list);
 
 router
   .route('/:id')

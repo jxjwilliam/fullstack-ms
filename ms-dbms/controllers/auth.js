@@ -6,7 +6,7 @@ const Organization = db.Organization;
 const Op = db.Sequelize.Op;
 
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const signup = (req, res, next) => {
   const {

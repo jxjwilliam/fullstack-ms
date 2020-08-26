@@ -38,8 +38,9 @@ app.get('/', (req, res) => {
 const apiProxy = httpProxy.createProxyServer()
 const { MS_AUTH, MS_DBMS, MS_DOC } = process.env
 
-app.all(['/register', '/login'], (req, res) => {
-  console.log(`${req.url} redirects to ${MS_DBMS}`)
+// 2. MS-AUTH
+app.all('/auth', (req, res) => {
+  console.log(`${req.url} redirects to ${MS_AUTH}`)
   apiProxy.web(req, res, { target: MS_AUTH })
 })
 
@@ -57,7 +58,7 @@ app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
 )
 
 
-// `gateway` folder: cache all static data.
+// 3. `gateway` folder: cache all static data.
 app.get('/mock/:resource', (req, res) => {
   const r = req.params.resource;
   let dir = '01';

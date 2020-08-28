@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env DEBUG=express:* nodemon --exec babel-node ./server",
-    "start1": "cross-env NODE_ENV=development nodemon ./server",
+    "start": "nodemon --exec babel-node ./server",
+    "dev": "cross-env NODE_ENV=developmentv DEBUG=express:* nodemon --exec babel-node ./server",
     "test": "mocha controllers/**/*.test.js ./connect.test.js"
   },
   "keywords": [],

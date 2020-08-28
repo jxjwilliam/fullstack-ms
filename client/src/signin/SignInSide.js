@@ -15,19 +15,20 @@ import {
   Typography,
 } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { makeStyles } from '@material-ui/core/styles'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core/styles'
 import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
 import { loginAction } from '../state/actions'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = theme => ({
   root: {
     height: '100vh',
   },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -48,30 +49,21 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+})
 
+// https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in-side/SignInSide.js
 class Login extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  state = {
-    login: {
-      user: '',
-      password: '',
-    },
-    done: false,
-  }
+  state = {login: {user: '', password: '',}, done: false,}
 
   validateForm = () => {
-    const {
-      login: { user, password },
-    } = this.state
+    const {login: { user, password },} = this.state
     return user.length > 0 && password.length > 0
   }
 
   // this.setState({[e.target.id]: e.target.value});
   handleChange = (e) => {
-    this.setState({
-      login: { ...this.state.login, [e.target.id]: e.target.value },
-    })
+    this.setState({login: { ...this.state.login, [e.target.id]: e.target.value }})
   }
 
   handleSubmit = (ev) => {
@@ -91,10 +83,7 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props
-    const {
-      login: { user, password },
-      done,
-    } = this.state
+    const {login: { user, password }, done,} = this.state
     //if (this.props.auth.isAuthenticated())
     if (done) {
       return <Redirect to={DEFAULT_HOME_PAGE} />
@@ -122,6 +111,7 @@ class Login extends Component {
                 name="user"
                 autoComplete="user"
                 autoFocus
+                value={user}
                 onChange={this.handleChange}
               />
               <TextField
@@ -134,6 +124,7 @@ class Login extends Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
                 onChange={this.handleChange}
               />
               <FormControlLabel

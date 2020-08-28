@@ -14,14 +14,13 @@ import {
   Typography,
   Container,
 } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { makeStyles } from '@material-ui/core/styles'
+import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core/styles'
 import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
 import { loginAction } from '../state/actions'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = theme => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
@@ -44,34 +43,23 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+})
 
 class SignIn extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  state = {
-    login: {
-      user: '',
-      password: '',
-    },
-    done: false,
-  }
+  state = { login: { user: '', password: '', }, done: false, }
 
   validateForm = () => {
-    const {
-      login: { user, password },
-    } = this.state
+    const { login: { user, password }, } = this.state
     return user.length > 0 && password.length > 0
   }
 
   // this.setState({[e.target.id]: e.target.value});
   handleChange = (e) => {
-    this.setState((prevState) => ({
-      login: { ...prevState.login, [e.target.id]: e.target.value },
-    }))
+    this.setState({login: { ...this.state.login, [e.target.id]: e.target.value }})
   }
 
-  handleSubmit = (ev) => {
-    ev.preventDefault()
+  handleSubmit = () => {
     const { auth } = this.props
     const { login } = this.state
 
@@ -90,10 +78,7 @@ class SignIn extends Component {
 
   render() {
     const { classes } = this.props
-    const {
-      login: { user, password },
-      done,
-    } = this.state
+    const { login: { user, password }, done, } = this.state
     if (done) {
       return <Redirect to={DEFAULT_HOME_PAGE} />
     }
@@ -115,10 +100,11 @@ class SignIn extends Component {
               required
               fullWidth
               id="user"
-              label="用户名"
               name="user"
+              label="用户名"
               autoComplete="user"
               autoFocus
+              value={user}
               onChange={this.handleChange}
             />
             <TextField
@@ -126,11 +112,12 @@ class SignIn extends Component {
               margin="normal"
               required
               fullWidth
+              id="password"
               name="password"
               label="密码"
               type="password"
-              id="password"
-              autoComplete="current-password"
+              autoComplete="password"
+              value={password}
               onChange={this.handleChange}
             />
             <FormControlLabel
@@ -145,6 +132,7 @@ class SignIn extends Component {
               className={classes.submit}
               disabled={!this.validateForm}
               onClick={this.handleSubmit}
+              endIcon={<LockOpenIcon />}
             >
               登录
             </Button>

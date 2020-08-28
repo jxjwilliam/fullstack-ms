@@ -4,6 +4,7 @@
 
 - [client](client.md)
 - [gateway](gateway.md)
+- [ms-auth](ms-auth.md)
 - [ms-dbms](ms-dbms.md)
 - [ms-doc](ms-doc.md)
 - [mui](mui.md)

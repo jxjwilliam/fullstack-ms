@@ -2,7 +2,7 @@ const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const connectDb = require('./helpers/mongo-connect')
+const connectDb = require('./connect')
 
 const app = express()
 
@@ -19,7 +19,7 @@ app
   .use(logger('dev'))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }))
 
 ///////////////////////////////
 

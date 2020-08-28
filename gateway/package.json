@@ -3,7 +3,7 @@
   "version": "0.5.1",
   "private": true,
   "scripts": {
-    "start": "npx nodemon --exec babel-node ./server",
+    "start": "nodemon --exec babel-node ./server",
     "prod": "node ./server",
     "test": "echo %npm_package_version%",
     "clean": "rimraf build"
@@ -27,6 +27,8 @@
     "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4",
     "rimraf": "^3.0.2"
   }
 }

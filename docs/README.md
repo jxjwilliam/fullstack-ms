@@ -1,4 +1,0 @@
-### Features
-
-- Datagrid
-- Data validation

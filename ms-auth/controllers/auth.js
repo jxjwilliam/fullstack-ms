@@ -5,51 +5,47 @@ const User = require('../models/User');
 require('dotenv').config();
 const SECRET = process.env.SECRET;
 
-const signup = (req, res, next) => {
-  const user = new User(req.body);
-  // pre-save: user.password = bcrypt.hashSync(user.password, 10);
-  user.save(err => {
-    if (err) {
-      console.log(err);
-      next(err);
-    }
-    else res.json(user);
+// email + phone => unique
+// name => unique
+function checkExisted(req, res, next) {
+  const {name, email, phone} = req.body
+  User.findOne({ name, email, phone }, (err, user) => {
+    if (err) res.send(err)
+    else if(user) res.send(user)
+    else next()
   });
-};
+}
 
-/**
- * 1. 查询该用户存在否？如果存在就提示并退出。
- * 2. 比较口令，如果口令不对，就提示并退出。
- * 3. 生成jwt-token，并设置有效期（24小时或10分钟?)
- * 4. 返回token
- */
-const handleErrors = (req, res, err) => {
-  return res.json({
-    success: false,
-    message: err,
-    data: null
+function hashPassword(req, res, next) {
+  const { password } = req.body
+  // pre-save: user.password = bcrypt.hashSync(user.password, 10);
+  bcrypt.hash(password, 10, (err, hashed) => {
+    if (err) return res.send(err);
+    req.body.password = hashed;
+    next();
   })
-};
+}
 
-// 注册的时候issue。
-const signin = async (req, res, next) => {
-  const { username, password } = req.body;
-  let user;
-  try {
-    user = await User.findOne({ username });
-  } catch (err) {
-    handleErrors(req, res, err);
-  }
+function signup (req, res, next) {
+  const user = new User(req.body);
+  user.save(err => {
+    if (err) res.send(err)
+    const { password, ...others } = user
+    res.json(others)
+  });
+}
 
-  if (!user || Object.keys(user).length === 0) {
-    return res.status(404).json({ msg: '该用户不存在' });
-  }
-
+function verifyPassword(req, res, next) {
+  const {} = req.body
   const passwordIsValid = bcrypt.compareSync(password, user.password);
   if (!passwordIsValid) {
     return res.status(401).json({ auth: false, accessToken: null, msg: "口令无效!" });
   }
 
+}
+
+// 注册的时候issue。
+const signin = async (req, res, next) => {
   if (user) {
     const { password, timestamp, ...userInfo } = user;
     const token = jwt.sign(userInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
@@ -58,34 +54,48 @@ const signin = async (req, res, next) => {
   }
 };
 
-const signout = (req, res, next) => {
+function signout (req, res, next) {
   return res.status(200).json({ msg: '退出' });
 };
 
-// 验证
-const authenticate = (req, res, next) => {
+/**
+ * 验证 Token
+ * GET https://localhost/api/userOrders
+ *  Authorization: Bearer JWT_ACCESS_TOKEN
+ */
+function authenticate (req, res, next) {
   const token = req.headers["x-access-token"] || req.body.token || req.params["token"];
 
   if (token) {
     jwt.verify(token, SECRET, (error, decoded) => {
-      if (error) {
-        console.log(error);
-        return res.json({ msg: "auth认证失败。" });
-      }
+      if (error) return res.status(403).json({ msg: "auth认证失败。" });
       else {
         req.decoded = decoded;
+        req.userId = decoded._id;
         console.log('auth认证---> ', req.decoded);
         next();
       }
     });
-  } else {
-    return res.status(403).json({ msg: "auth token不存在。" });
   }
-};
+  else {
+    return res.status(401).json({ msg: "auth token不存在。" });
+  }
+}
+
+
+function checkRole (req, res, next) {
+  User.findById(req.params._id, (err, role) => {
+    if(err) res.send(err)
+    next()
+  })
+}
 
 module.exports = {
-  authenticate,
+  checkExisted,
+  hashPassword,
   signup,
+  verifyPassword,
   signin,
   signout,
-};
+  authenticate,
+}

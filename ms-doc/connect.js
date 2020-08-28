@@ -4,17 +4,12 @@ mongoose.Promise = global.Promise
 
 // TODO: windows -> docker_mongo, host.docker.internal
 module.exports = async (dbOptions = {}) => {
-  const {
-    host = '192.168.99.100',
-    port = '27071',
-    database = 'ms-doc',
-  } = dbOptions
-
+  const {host, port, database,} = dbOptions
   const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
     useCreateIndex: true,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
   }
 
   const uri = `mongodb://${host}:${port}/${database}`

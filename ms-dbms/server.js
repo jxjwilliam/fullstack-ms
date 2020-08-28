@@ -9,6 +9,15 @@ server.listen(port)
 server.on('error', onError);
 server.on('listening', onListening);
 
+// 使用pm2 和如下处理，来避免服务crash。
+process.on('uncaughtException', function (err) {
+  console.error('ms-dbms uncaughtException异常: ' + err)
+})
+
+process.on('unhandledRejection', function (reason, promise) {
+  console.error('ms-dbms unhandledRejection异常: ', promise, 'reason:', reason)
+})
+
 function normalizePort(val) {
   var port = parseInt(val, 10);
 

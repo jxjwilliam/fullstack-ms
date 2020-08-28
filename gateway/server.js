@@ -9,6 +9,14 @@ server.listen(port)
 server.on('error', onError);
 server.on('listening', onListening);
 
+process.on('uncaughtException', err => {
+  console.error(`global exception: ${err}`)
+})
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason)
+})
+
 function normalizePort(val) {
   var port = parseInt(val, 10);
 

@@ -19,6 +19,14 @@ const list = (req, res, next) => {
 
 const get = (req, res, next) => res.json(req.user);
 
+const post = (req, res, next) => {
+  const user = new User(req.body)
+  user.save(err => {
+    if(err) next(err)
+    else res.json(user)
+  })
+}
+
 const put = (req, res, next) => {
   User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, user) => {
     if (err) next(err);
@@ -38,6 +46,7 @@ module.exports = {
   param,
   list,
   get,
+  post,
   put,
   remove,
 };

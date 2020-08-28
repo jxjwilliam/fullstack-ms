@@ -1,5 +1,5 @@
 const express = require('express')
-const controller = require('../controllers/auth')
+const auth = require('../controllers/auth')
 
 const router = express.Router()
 
@@ -18,12 +18,20 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post(['/register', '/signup'], controller.signup)
+router.post(['/register', '/signup'],
+  auth.checkUnique,
+  auth.hashPassword,
+  auth.signup
+)
 
-router.post(['/login', '/signin'], controller.signin)
+router.post(['/login', '/signin'],
+  auth.checkExisted,
+  auth.verifyPassword,
+  auth.signin
+)
 
-router.get(['/logout', '/signout'], controller.signout)
+router.get(['/logout', '/signout'], auth.signout)
 
-router.get('/authenticate', controller.authenticate)
+router.get('/authenticate', auth.authenticate)
 
 module.exports = router

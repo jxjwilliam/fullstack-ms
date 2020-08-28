@@ -9,6 +9,7 @@ const app = express()
 
 require('dotenv').config()
 app.set('port', process.env.PORT)
+app.set('superSecret', process.env.SECRET)
 
 const AUTHDB_URL = process.env.AUTHDB_URL;
 
@@ -28,7 +29,7 @@ mongoose.connect(
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 
 ///////////////////////////////
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const verifySignUp = require('../auth/verifySignUp');
-const authJwt = require('../auth/verifyJwtToken');
+const verifySignUp = require('../../ms-auth/controllers/verifySignUp');
+const authJwt = require('../../ms-auth/controllers/verifyJwtToken');
 const controller = require('../controllers/auth');
 
 router.route(['/login', '/signin'])

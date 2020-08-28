@@ -1,23 +1,17 @@
 const mongoose = require('mongoose')
+const {DB_HOST, DB_PORT, DATABASE, MongoOptions} = require('./constants')
 
 mongoose.Promise = global.Promise
 
 // TODO: windows -> docker_mongo, host.docker.internal
-module.exports = async (dbOptions = {}) => {
-  const {host, port, database,} = dbOptions
-  const options = {
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-  }
+module.exports = async () => {
 
-  const uri = `mongodb://${host}:${port}/${database}`
+  const uri = `mongodb://${DB_HOST}:${DB_PORT}/${DATABASE}`
 
   try {
-    await mongoose.connect(uri, options)
+    await mongoose.connect(uri, MongoOptions)
     console.log('连接 Mongo 数据库 -> ', uri)
   } catch (err) {
-    console.error('连接 Mongo 数据库失败: ', String(err))
+    throw new Error('连接 Mongo 数据库失败: ', String(err))
   }
 }

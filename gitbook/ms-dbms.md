@@ -18,6 +18,17 @@ $ npx sequelize-cli model:generate - name User - attributes firstName:st
 $ npx sequelize-auto -o "./models" -d dbname -h localhost -u root -p 3306 -x motdepasse -e mysql
 ```
 
+## Model Query
+
+```text
+findAll
+findByPk
+findOne
+findOrCreate
+findAndCountAll
+
+
+```
 
 ### API
 

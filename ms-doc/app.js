@@ -2,18 +2,13 @@ const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const connectDb = require('./connect')
+const connectMongoDB = require('./connect')
+const {PORT} = require('./constants')
+
+connectMongoDB()
 
 const app = express()
-
-require('dotenv').config()
-app.set('port', process.env.PORT)
-
-connectDb({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE,
-})
+app.set('port', PORT)
 
 app
   .use(logger('dev'))

@@ -2,29 +2,15 @@ const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const route = require('./routes')
+// const route = require('./routes')
+const connectMongoDB = require('./connect')
+const { PORT, SECRET } = require('./constants')
+
+connectMongoDB()
 
 const app = express()
-
-require('dotenv').config()
-app.set('port', process.env.PORT)
-app.set('superSecret', process.env.SECRET)
-
-const AUTHDB_URL = process.env.AUTHDB_URL;
-
-mongoose.connect(
-  AUTHDB_URL,
-  {
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-  },
-  () => {
-    console.info('连接成功 AUTHDB ->', AUTHDB_URL)
-  }
-)
+app.set('port', PORT)
+app.set('Secret', SECRET)
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -37,9 +23,9 @@ app.get('/', (req, res) => {
   res.status(200).send(`MS-AUTH  ${req.baseUrl}, ${req.url}  works!`)
 })
 
-app.use('/auth', route.auth)
+// app.use('/auth', route.auth)
 // TODO
-app.use('/user', route.user)
+// app.use('/user', route.user)
 
 ///////////////////////////////
 

@@ -3,17 +3,15 @@
 const mongoose = require("mongoose");
 const User = require('../models/User');
 const demousers = require('./demousers.json')
+const connectMongoDB = require('../connect')
+
+const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
 
 try {
-  mongoose.connect(
-    'mongodb://localhost:27017/ms-auth',
-    {
-      useCreateIndex: true,
-      useUnifiedTopology: true,
-      useNewUrlParser: true
-    })
-    .then(() => console.log('連接成功：'))
-    .then(async () => {
+    new Promise(resolve => {
+      connectMongoDB()
+      setTimeout(resolve, 10)
+    }).then(async () => {
       for (const user of demousers) {
         const newuser = new User(user);
         await newuser.save((err, doc) => {
@@ -28,5 +26,5 @@ catch (e) {
 } finally {
   setTimeout(() => {
     mongoose.connection.close();
-  }, 2000)
+  }, 4000)
 }

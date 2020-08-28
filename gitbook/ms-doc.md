@@ -27,3 +27,14 @@
 | 表   | CRUD | API        | 说明             |
 | ---- | ---- | ---------- | ---------------- |
 | User | GET  | /api/users | 取所有`用户信息` |
+
+
+### Issues:
+
+1. .babelrc
+```text
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-decorators"
+  ]
+```

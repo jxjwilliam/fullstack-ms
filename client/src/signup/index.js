@@ -1,16 +1,15 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import {
+  Avatar, Button, CssBaseline, FormControlLabel, TextField, Grid, Checkbox,
+  Link as MuiLink, Select, InputLabel, MenuItem, FormControl,
+  Typography, Container
+} from '@material-ui/core';
+import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import {signupAction} from "../state/actions";
 
 // https://raw.githubusercontent.com/mui-org/material-ui/master/docs/src/pages/getting-started/templates/sign-up/SignUp.js
 const useStyles = makeStyles((theme) => ({
@@ -31,10 +30,41 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
-export default function Index() {
+function Signup (props) {
   const classes = useStyles();
+  const [register, setRegister] = useState({
+    username: '',
+    phone: '',
+    email: '',
+    password: '',
+    role: '',
+    category: '',
+  })
+
+  // Select can't capture `id`: undefined. Only `name` works.
+  const handleChange = ({target: { id, name, value}}) => {
+    setRegister({...register, [name]: value})
+  }
+
+  const handleSubmit = (ev) => {
+    props.signupAction(register).then(data => {
+      console.log('WHATS GOING ON???')
+    })
+    ev.preventDefault()
+  }
+
+  const roleList = ['member', 'admin', 'owner'].map(item => (
+    <MenuItem value={item} key={item}>{item}</MenuItem>
+  ))
+  const categoryList = ['local', 'wechat', 'gmail'].map(item => (
+    <MenuItem value={item} key={item}>{item}</MenuItem>
+  ))
 
   return (
     <Container component="main" maxWidth="xs">
@@ -44,20 +74,22 @@ export default function Index() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          POC系统注册
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="account"
+                name="username"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="username"
+                label="账户名称"
                 autoFocus
+                value={register.username}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -65,10 +97,12 @@ export default function Index() {
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="phone"
+                label="手机号码"
+                name="phone"
+                autoComplete="phone"
+                value={register.phone}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -77,9 +111,11 @@ export default function Index() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="邮件"
                 name="email"
                 autoComplete="email"
+                value={register.email}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -87,17 +123,47 @@ export default function Index() {
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
                 id="password"
+                label="密码"
+                name="password"
+                type="password"
                 autoComplete="current-password"
+                value={register.password}
+                onChange={handleChange}
               />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="role-label">Role</InputLabel>
+                <Select
+                  labelId='role-label'
+                  id={'role'}
+                  name={'role'}
+                  value={register.role}
+                  onChange={handleChange}
+                >
+                  {roleList}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="category-label">Category</InputLabel>
+                <Select
+                  labelId='category-label'
+                  id={'category'}
+                  name={'category'}
+                  value={register.category}
+                  onChange={handleChange}
+                >
+                  {categoryList}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                control={<Checkbox value="allowExtraInfo" color="primary" />}
+                label="希望了解更多"
               />
             </Grid>
           </Grid>
@@ -107,14 +173,16 @@ export default function Index() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
+            endIcon={<LockOpenIcon />}
           >
-            Sign Up
+            提交注册申请
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
+              <MuiLink component={Link} to="/signin" variant="body2">
+                已经注册？点击登陆
+              </MuiLink>
             </Grid>
           </Grid>
         </form>
@@ -122,3 +190,9 @@ export default function Index() {
     </Container>
   );
 }
+
+const mapStateToProps = state => ({ register: state.register });
+
+const mapDispatchToProps = dispatch => bindActionCreators({ signupAction }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

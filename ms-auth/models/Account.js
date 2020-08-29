@@ -5,8 +5,8 @@ const validator = require('validator')
 const Role = require('./Role')
 const { RoleSchema, CategorySchema } = require('./common')
 
-const UserSchema = new Schema({
-  name: {
+const AccountSchema = new Schema({
+  username: {
     type: String,
     required: true,
     unique: true
@@ -47,28 +47,28 @@ const UserSchema = new Schema({
   },
 });
 
-UserSchema.index({ email: 1, phone: 1 }, { unique: true })
+AccountSchema.index({ email: 1, phone: 1 }, { unique: true })
 
-UserSchema.pre('save', function (next) {
-  const user = this;
-  bcrypt.hash(user.password, 10, function (err, hash) {
+AccountSchema.pre('save', function (next) {
+  const account = this;
+  bcrypt.hash(account.password, 10, function (err, hash) {
     if (err) return next(err);
-    user.password = hash;
+    account.password = hash;
     next();
   })
 });
 
-UserSchema.post('save', function(doc) {
+AccountSchema.post('save', function(doc) {
   // TODO
 })
 
-UserSchema.statics.authenticate = function (username, password, callback) {
+AccountSchema.statics.authenticate = function (username, password, callback) {
   console.log("如何调用？什么时候执行 ？");
-  User.findOne({ name })
+  Account.findOne({ name })
     .exec(function (err, user) {
       if (err) return callback(err)
       else if (!user) {
-        let err = new Error('User not found.');
+        let err = new Error('Account not found.');
         err.status = 401;
         return callback(err);
       }
@@ -79,4 +79,4 @@ UserSchema.statics.authenticate = function (username, password, callback) {
     });
 };
 
-module.exports = mongoose.model('User', UserSchema, 'users');
+module.exports = mongoose.model('Account', AccountSchema, 'accounts');

@@ -21,7 +21,7 @@ export const signupAction = (body) => (dispatch) => {
     body: JSON.stringify(body),
   }
 
-  return fetch('/api/auth/signup', options)
+  return fetch('/auth/signup', options)
     .then((res) => res.json())
     .then((data) => {
       if (data.account) {
@@ -42,13 +42,15 @@ export const loginSucc = (payload, loginInfo) => ({
 const loginFail = (payload) => ({ type: LOGIN_FAIL, payload })
 
 export const loginAction = (body) => (dispatch) => {
+  console.log('??????', body)
+  return;
   const options = {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(body),
   }
 
-  return fetch('/api/auth/login', options)
+  return fetch('/auth/login', options)
     .then((res) => res.json())
     .then((data) => {
       if (data.auth && data.accessToken) {

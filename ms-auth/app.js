@@ -2,7 +2,7 @@ const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-// const route = require('./routes')
+const route = require('./routes')
 const connectMongoDB = require('./connect')
 const { PORT, SECRET } = require('./constants')
 
@@ -19,12 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 ///////////////////////////////
 
+// http://localhost:8066
 app.get('/', (req, res) => {
   res.status(200).send(`MS-AUTH  ${req.baseUrl}, ${req.url}  works!`)
 })
 
-// app.use('/auth', route.auth)
-// TODO
+// http://localhost/auth/*
+app.use('/auth', route.auth)
 // app.use('/user', route.user)
 
 ///////////////////////////////

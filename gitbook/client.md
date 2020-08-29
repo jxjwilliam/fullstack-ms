@@ -3,8 +3,9 @@
 - Datagrid
 - Data validation
 
-https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/checkout
-
+- [material-ui-templates](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates)
+- [example: checkout](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/checkout
+)
 `Material-ui` is the most popular component library for React.
 
 ## styled-components

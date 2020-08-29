@@ -1,15 +1,15 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const User = require('../models/User');
+const User = require('../models/Account');
 
 require('dotenv').config();
 const SECRET = process.env.SECRET;
 
 // email + phone => unique
-// name => unique
-function checkExisted(req, res, next) {
-  const {name, email, phone} = req.body
-  User.findOne({ name, email, phone }, (err, user) => {
+// username => unique
+    function checkExisted(req, res, next) {
+  const {username, email, phone} = req.body
+  User.findOne({ username, email, phone }, (err, user) => {
     if (err) res.send(err)
     else if(user) res.send(user)
     else next()

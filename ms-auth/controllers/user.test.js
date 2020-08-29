@@ -1,15 +1,14 @@
 const expect = require('chai').expect
-const User = require('../models/User');
+const Account = require('../models/Account');
 
-describe('User', () => {
+describe('Account', () => {
   let callback
   beforeEach(() => {
     callback = function(){}
   })
   it('user', () => {
     // With a JSON doc
-    User.
-    find({
+    Account.find({
       occupation: /host/,
       'name.last': 'Ghost',
       age: { $gt: 17, $lt: 66 },

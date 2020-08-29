@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import {
@@ -9,7 +9,7 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
+  Link as MuiLink,
   Paper,
   Grid,
   Typography,
@@ -54,16 +54,16 @@ const useStyles = theme => ({
 // https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in-side/SignInSide.js
 class Login extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  state = {login: {user: '', password: '',}, done: false,}
+  state = {login: {username: '', password: '',}, done: false,}
 
   validateForm = () => {
-    const {login: { user, password },} = this.state
-    return user.length > 0 && password.length > 0
+    const {login: { username, password },} = this.state
+    return username.length > 0 && password.length > 0
   }
 
   // this.setState({[e.target.id]: e.target.value});
-  handleChange = (e) => {
-    this.setState({login: { ...this.state.login, [e.target.id]: e.target.value }})
+  handleChange = ({target: {name, value}}) => {
+    this.setState({login: { ...this.state.login, [name]: value }})
   }
 
   handleSubmit = (ev) => {
@@ -83,7 +83,7 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props
-    const {login: { user, password }, done,} = this.state
+    const {login: { username, password }, done,} = this.state
     //if (this.props.auth.isAuthenticated())
     if (done) {
       return <Redirect to={DEFAULT_HOME_PAGE} />
@@ -106,12 +106,12 @@ class Login extends Component {
                 margin="normal"
                 required
                 fullWidth
-                id="user"
+                id="username"
                 label="用户名"
-                name="user"
-                autoComplete="user"
+                name="username"
+                autoComplete="username"
                 autoFocus
-                value={user}
+                value={username}
                 onChange={this.handleChange}
               />
               <TextField
@@ -144,14 +144,14 @@ class Login extends Component {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <MuiLink component={Link} to="/home" variant="body2">
                     忘记密码?
-                  </Link>
+                  </MuiLink>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <MuiLink component={Link} to="/signup" variant="body2">
                     还没有账号？注册～🤠
-                  </Link>
+                  </MuiLink>
                 </Grid>
               </Grid>
             </form>

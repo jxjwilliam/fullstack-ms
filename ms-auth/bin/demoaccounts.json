@@ -1,6 +1,6 @@
 [
   {
-    "name": "admin",
+    "username": "admin",
     "email": "admin@bestitconsulting.com",
     "phone": "13472581629",
     "password": "123",
@@ -12,7 +12,7 @@
     }
   },
   {
-    "name": "test",
+    "username": "test",
     "email": "test@bestitconsulting.com",
     "phone": "13472581628",
     "password": "123",
@@ -25,7 +25,7 @@
     "desc": "local test account"
   },
   {
-    "name": "demo",
+    "username": "demo",
     "email": "demo@bestitconsulting.com",
     "phone": "13472581626",
     "password": "123",

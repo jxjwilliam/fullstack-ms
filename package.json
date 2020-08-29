@@ -9,6 +9,7 @@
     "run-auth": "cd ms-auth && yarn start",
     "run-dbms": "cd ms-dbms && yarn start",
     "run-doc": "cd ms-doc && yarn start",
+    "debug:ms-auth": "concurrently \"yarn run-client\" \"yarn run-gateway\"",
     "prestart": "node bin/update-config.js",
     "run-start": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\"",
     "run-dev": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\" \"yarn run-dbms\" \"yarn run-doc\"",

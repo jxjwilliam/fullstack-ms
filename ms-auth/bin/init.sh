@@ -2,11 +2,11 @@
 
 set -eo pipefail
 
-mongoimport --db ms-auth --collection users --file ./demousers.json
+mongoimport --db ms-auth --collection accounts --file ./demoaccounts.json
 
 # TODO
 moreusers=<<__EOF__
 
 __EOF__
 
-cat ${moreusers} | mongoimport --db ms-auth --collection users
+cat ${moreusers} | mongoimport --db ms-auth --collection accounts

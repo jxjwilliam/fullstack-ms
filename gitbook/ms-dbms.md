@@ -10,7 +10,7 @@ $ npx sequelize-cli init
 
 
 ```shell script
-$ npx sequelize-cli model:generate - name User - attributes firstName:string,lastName:string,email:string
+$ npx sequelize-cli model:generate - name Account - attributes firstName:string,lastName:string,email:string
 ```
 
 
@@ -36,4 +36,4 @@ findAndCountAll
 
 | 表   | CRUD | API        | 说明             |
 | ---- | ---- | ---------- | ---------------- |
-| User | GET  | /api/users | 取所有`用户信息` |
+| Account | GET  | /api/users | 取所有`用户信息` |

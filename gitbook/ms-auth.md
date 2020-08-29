@@ -66,7 +66,7 @@ If you have a single client application then you can do following steps, 当前�
 
 - check existed ?
 - bcrypt.hash(Sync)
-- new User(req.body).save
+- new Account(req.body).save
 
 ### 📑 login
 
@@ -80,7 +80,7 @@ If you have a single client application then you can do following steps, 当前�
 - Role: admin, member, owner?
 - Category: ?
 - compose **token**
-- User.authenticate() ?
+- Account.authenticate() ?
 
 ### 📑 authentication
 
@@ -172,6 +172,6 @@ Model.updateOne()
 new mongoose.Schema({
     postBy: userSchema
     // Or:
-    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
 })
 ```

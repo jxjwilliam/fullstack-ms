@@ -47,16 +47,17 @@ const useStyles = theme => ({
 
 class SignIn extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  state = { login: { user: '', password: '', }, done: false, }
+  state = { login: { username: '', password: '', }, done: false, }
 
   validateForm = () => {
-    const { login: { user, password }, } = this.state
-    return user.length > 0 && password.length > 0
+    const { login: { username, password }, } = this.state
+    return username.length > 0 && password.length > 0
   }
 
   // this.setState({[e.target.id]: e.target.value});
-  handleChange = (e) => {
-    this.setState({login: { ...this.state.login, [e.target.id]: e.target.value }})
+  // Material-UI <Select>'s `id` doesn't work: undefined
+  handleChange = ({target: {name, value}}) => {
+    this.setState({login: { ...this.state.login, [name]: value }})
   }
 
   handleSubmit = () => {
@@ -78,7 +79,7 @@ class SignIn extends Component {
 
   render() {
     const { classes } = this.props
-    const { login: { user, password }, done, } = this.state
+    const { login: { username, password }, done, } = this.state
     if (done) {
       return <Redirect to={DEFAULT_HOME_PAGE} />
     }
@@ -99,12 +100,12 @@ class SignIn extends Component {
               margin="normal"
               required
               fullWidth
-              id="user"
-              name="user"
+              id="username"
+              name="username"
               label="用户名"
-              autoComplete="user"
+              autoComplete="username"
               autoFocus
-              value={user}
+              value={username}
               onChange={this.handleChange}
             />
             <TextField

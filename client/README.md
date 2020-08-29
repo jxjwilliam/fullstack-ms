@@ -35,6 +35,7 @@ fix eslint conflict issue:
 
 👋 👏 ✋ ✌️
 
+
 ### react-router: (1) url, path, pathname
 
 ---
@@ -94,6 +95,13 @@ const FancyLink = React.forwardRef((props, ref) => <a ref={ref}>💅 {props.chil
   ...
 </MuiLink>
 ```
+
+### @williamjiang/util
+
+```shell script
+$ yarn add @williamjiang/util
+```
+
 
 ### Test
 

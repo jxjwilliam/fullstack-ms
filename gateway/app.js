@@ -39,7 +39,7 @@ const apiProxy = httpProxy.createProxyServer()
 const { MS_AUTH, MS_DBMS, MS_DOC } = process.env
 
 // 2. MS-AUTH
-app.all('/auth', (req, res) => {
+app.all('/auth/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS_AUTH}`)
   apiProxy.web(req, res, { target: MS_AUTH })
 })

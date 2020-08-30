@@ -10,8 +10,8 @@ const SECRET = process.env.SECRET;
 function checkExisted(req, res, next) {
   const {username, email, phone} = req.body
   Account.findOne({ username, email, phone }, (err, account) => {
-    if (err) res.send(err)
-    else if(account) res.json(account)
+    if (err) res.json({success: false, data: "Error"})
+    else if (account) res.json({success: false, data: "Existed"})
     else next()
   });
 }
@@ -20,18 +20,23 @@ function hashPassword(req, res, next) {
   const { password } = req.body
   // pre-save: account.password = bcrypt.hashSync(account.password, 10);
   bcrypt.hash(password, 10, (err, hashed) => {
-    if (err) return res.send(err);
+    if (err) return res.json({success: false, data: "Bcrypt Hash Error"})
     req.body.password = hashed;
     next();
   })
 }
 
 function signup (req, res, next) {
-  const account = new Account(req.body);
+  const { role, category, ...others } = req.body
+  const account = new Account({
+    ...others,
+    role: {name: role, desc: 'role'},
+    category: {name: category, desc: 'category'}
+  });
   account.save(err => {
-    if (err) res.send(err)
-    const { password, ...others } = account
-    res.json(others)
+    if (err) return res.json({success: false, data: "DB Error"})
+    const { password, ...info } = account
+    return res.json(info)
   });
 }
 
@@ -45,7 +50,6 @@ function checkAccountExist(req, res, next) {
   Account.findOne({ username }, (err, account) => {
     if (err) res.json({success: false, data: "Error"})
     else if (account) {
-      console.log('???password???', account)
       req.account = account;
       next()
     }
@@ -66,8 +70,9 @@ function verifyPassword(req, res, next) {
 const signin = async (req, res, next) => {
   const {account} = req;
   if (account) {
-    const { password, timestamp, ...userInfo } = account;
-    const token = jwt.sign(userInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
+    const { password, timestamp, __v, isActive, desc, role, category, ...others } = account;
+    const tokenInfo = { ...others, role: role.name, category: category.name }
+    const token = jwt.sign(tokenInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
 
     return res.status(200).json({ auth: true, accessToken: token });
   }

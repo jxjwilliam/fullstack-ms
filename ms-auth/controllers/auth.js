@@ -16,23 +16,6 @@ function checkExisted(req, res, next) {
   });
 }
 
-/**
- * 3 cases: 1 error, 2 exist, 3 not exist.
- * (3) res: res.status(404)
- */
-
-function checkAccountExist(req, res, next) {
-  const {username} = req.body
-  Account.findOne({ username }, (err, account) => {
-    if (err) next(err) //?
-    else if(account) res.json(account)
-    else {
-      console.log('???WHAT IS GOING ON???')
-      return res.status(404).send({success: false, data: "NOT FOUND"})
-    }
-  });
-}
-
 function hashPassword(req, res, next) {
   const { password } = req.body
   // pre-save: account.password = bcrypt.hashSync(account.password, 10);
@@ -52,17 +35,36 @@ function signup (req, res, next) {
   });
 }
 
+/**
+ * tip: onSubmit: needs `event.preventDefault`.
+ * 3 cases: 1 error, 2 exist, 3 not exist.
+ * (3) res: res.status(404)
+ */
+function checkAccountExist(req, res, next) {
+  const {username} = req.body
+  Account.findOne({ username }, (err, account) => {
+    if (err) res.json({success: false, data: "Error"})
+    else if (account) {
+      console.log('???password???', account)
+      req.account = account;
+      next()
+    }
+    else res.status(404).send({success: false, data: "NOT FOUND"})
+  });
+}
+
 function verifyPassword(req, res, next) {
   const {password} = req.body
-  const passwordIsValid = bcrypt.compareSync(password, account.password);
+  const passwordIsValid = bcrypt.compareSync(password, req.account.password);
   if (!passwordIsValid) {
     return res.status(401).json({ auth: false, accessToken: null, msg: "口令无效!" });
   }
-
+  next()
 }
 
 // 注册的时候issue。
 const signin = async (req, res, next) => {
+  const {account} = req;
   if (account) {
     const { password, timestamp, ...userInfo } = account;
     const token = jwt.sign(userInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours

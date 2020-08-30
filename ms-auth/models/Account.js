@@ -24,7 +24,7 @@ const AccountSchema = new Schema({
   password: {
     type: String,
     required: true,
-    select: false
+    // select: false, //~: is set, not select when query
   },
   role: RoleSchema,
   // role: {

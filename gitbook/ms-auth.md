@@ -25,13 +25,11 @@ $ node bin/init.js
 
 | action   | 调用            | 说明                                            |
 | -------- | --------------- | ----------------------------------------------- |
-| 注册     | signup | register | 保存用户信息，包括口令                          |
-| 登录     | signin | login    | 验证用户信息, 调用 authentication/authorization |
-| 退出     | signout | logout  | 取消 token                                      |
-| 查看所有 | list            | 查看                                            |
-| 查看一个 | get             | 查看 by id                                      |
-| 编辑     | put             | 编辑 by id                                      |
-| 删除     | remove          | 删除注册用户                                    |
+| 注册     | /auth/signup | /auth/register | 保存用户信息，包括口令                          |
+| 登录     | /auth/signin | /auth/login    | 验证用户信息, 调用 authentication/authorization |
+| 退出     | /auth/signout | /auth/logout  | 取消 token                                      |
+| Account | /auth/account            | 查看 accounts                                            |
+| Role | /auth/role             | 查看 roles                               |
 
 > Notice: 多个表之间的关联
 
@@ -87,7 +85,14 @@ If you have a single client application then you can do following steps, 当前�
 - middleware: router.use(express-jwt)
 - jwt.verify
 
-###  📑 express.request
+## 📑 Express
+---
+
+### 1. express
+
+- express.Router
+
+### 2. express.Request
 
 - baseUrl: 
 - path: // example.com/users?sort=desc -> '/users'
@@ -102,6 +107,20 @@ app.use('/admin', function (req, res, next) { // GET 'http://www.example.com/adm
   next()
 })
 ```
+
+### 3. express.Response
+
+### 4. express.Router
+
+Creates a new router object:
+
+- router.all
+- router.param
+- router.route
+- router.use
+
+### 5. express.Application
+
 
 ### 📑 bcrypt
 

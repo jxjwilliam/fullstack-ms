@@ -1,24 +1,41 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const User = require('../models/Account');
+const Account = require('../models/Account');
 
 require('dotenv').config();
 const SECRET = process.env.SECRET;
 
 // email + phone => unique
 // username => unique
-    function checkExisted(req, res, next) {
+function checkExisted(req, res, next) {
   const {username, email, phone} = req.body
-  User.findOne({ username, email, phone }, (err, user) => {
+  Account.findOne({ username, email, phone }, (err, account) => {
     if (err) res.send(err)
-    else if(user) res.send(user)
+    else if(account) res.json(account)
     else next()
+  });
+}
+
+/**
+ * 3 cases: 1 error, 2 exist, 3 not exist.
+ * (3) res: res.status(404)
+ */
+
+function checkAccountExist(req, res, next) {
+  const {username} = req.body
+  Account.findOne({ username }, (err, account) => {
+    if (err) next(err) //?
+    else if(account) res.json(account)
+    else {
+      console.log('???WHAT IS GOING ON???')
+      return res.status(404).send({success: false, data: "NOT FOUND"})
+    }
   });
 }
 
 function hashPassword(req, res, next) {
   const { password } = req.body
-  // pre-save: user.password = bcrypt.hashSync(user.password, 10);
+  // pre-save: account.password = bcrypt.hashSync(account.password, 10);
   bcrypt.hash(password, 10, (err, hashed) => {
     if (err) return res.send(err);
     req.body.password = hashed;
@@ -27,17 +44,17 @@ function hashPassword(req, res, next) {
 }
 
 function signup (req, res, next) {
-  const user = new User(req.body);
-  user.save(err => {
+  const account = new Account(req.body);
+  account.save(err => {
     if (err) res.send(err)
-    const { password, ...others } = user
+    const { password, ...others } = account
     res.json(others)
   });
 }
 
 function verifyPassword(req, res, next) {
-  const {} = req.body
-  const passwordIsValid = bcrypt.compareSync(password, user.password);
+  const {password} = req.body
+  const passwordIsValid = bcrypt.compareSync(password, account.password);
   if (!passwordIsValid) {
     return res.status(401).json({ auth: false, accessToken: null, msg: "口令无效!" });
   }
@@ -46,8 +63,8 @@ function verifyPassword(req, res, next) {
 
 // 注册的时候issue。
 const signin = async (req, res, next) => {
-  if (user) {
-    const { password, timestamp, ...userInfo } = user;
+  if (account) {
+    const { password, timestamp, ...userInfo } = account;
     const token = jwt.sign(userInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
 
     return res.status(200).json({ auth: true, accessToken: token });
@@ -84,7 +101,7 @@ function authenticate (req, res, next) {
 
 
 function checkRole (req, res, next) {
-  User.findById(req.params._id, (err, role) => {
+  Account.findById(req.params._id, (err, role) => {
     if(err) res.send(err)
     next()
   })
@@ -92,6 +109,7 @@ function checkRole (req, res, next) {
 
 module.exports = {
   checkExisted,
+  checkAccountExist,
   hashPassword,
   signup,
   verifyPassword,

@@ -45,17 +45,17 @@ app.all('/auth/*', (req, res) => {
 })
 
 // authentication
-app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
-  (err, req, res, next) => {
-    console.group('authentication');
-    console.log(req.baseUrl, req.originalUrl, req.url);
-    console.groupEnd()
-    if (err.name === 'UnauthorizedError') {
-      console.error(req.user, req.ip, 'invalid token');
-      next()
-    }
-  }
-)
+// app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
+//   (err, req, res, next) => {
+//     console.group('authentication');
+//     console.log(req.baseUrl, req.originalUrl, req.url);
+//     console.groupEnd()
+//     if (err.name === 'UnauthorizedError') {
+//       console.error(req.user, req.ip, 'invalid token');
+//       next()
+//     }
+//   }
+// )
 
 
 // 3. `gateway` folder: cache all static data.

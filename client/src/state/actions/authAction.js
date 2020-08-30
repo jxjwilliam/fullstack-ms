@@ -42,24 +42,23 @@ export const loginSucc = (payload, loginInfo) => ({
 const loginFail = (payload) => ({ type: LOGIN_FAIL, payload })
 
 export const loginAction = (body) => (dispatch) => {
-  console.log('??????', body)
-  return;
   const options = {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(body),
   }
 
-  return fetch('/auth/login', options)
-    .then((res) => res.json())
-    .then((data) => {
+  return fetch("/auth/login", options)
+    .then(res => res.json())
+    .then(data => {
       if (data.auth && data.accessToken) {
-        dispatch(loginSucc(data.accessToken, data.loginInfo))
-      } else {
+        dispatch(loginSucc(data.accessToken, data.loginInfo));
+      }
+      else {
         dispatch(loginFail(data))
       }
     })
-    .catch((e) => console.error(e))
+    .catch(e => console.error(e))
 }
 
 // 3. logout

@@ -60,7 +60,8 @@ class SignIn extends Component {
     this.setState({login: { ...this.state.login, [name]: value }})
   }
 
-  handleSubmit = () => {
+  handleSubmit = (ev) => {
+    ev.preventDefault()
     const { auth } = this.props
     const { login } = this.state
 
@@ -94,7 +95,7 @@ class SignIn extends Component {
           <Typography component="h1" variant="h5">
             微服务 POC
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -132,7 +133,7 @@ class SignIn extends Component {
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm}
-              onClick={this.handleSubmit}
+              // onClick={this.handleSubmit}
               endIcon={<LockOpenIcon />}
             >
               登录

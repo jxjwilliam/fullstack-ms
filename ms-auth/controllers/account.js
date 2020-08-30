@@ -3,9 +3,11 @@ const Account = require('../models/Account');
 const param = (req, res, next, id) => {
   Account.findById(id, (err, account) => {
     if (err) next(err);
-    else {
+    else if(account) {
       req.account = account;
       next();
+    } else {
+      next(new Error('failed to load account'))
     }
   });
 };

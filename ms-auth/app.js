@@ -25,8 +25,7 @@ app.get('/', (req, res) => {
 })
 
 // http://localhost/auth/*
-app.use('/auth', route.auth)
-// app.use('/user', route.user)
+app.use('/auth', route)
 
 ///////////////////////////////
 

@@ -1,47 +1,50 @@
-const mongoose = require('mongoose')
-
-const response = {
-  resError: function(res, err, statusCode) {
-    return res.status(statusCode).json(err.message)
-  },
-  resSuccess: function(res, data, statusCode) {
-    return res.status(statusCode).json(data);
-  },
-  resData: function (res, err) {
-    return (err, data) => {
-      if(err) return this.resError(res, err)
-      return this.resSuccess(data)
-    }
-  }
-}
-
-const crud = {
-  create: function(Model, options) {
-    return (req, res) => {
+function crud(Model) {
+  return {
+    create: (req, res, next) => {
       const newItem = new Model(req.body)
-      return newItem.save()
-
-    }
-  },
-  read: function(Model, options) {
-    return (req, res) => (
-      Model.find(...req.query, )
-    )
-  },
-  update: function(Model, options) {
-    return (req, res) => {
+      return newItem.save(err => {
+        if (err) next(err)
+        else res.json(newItem)
+      })
+    },
+    param: (req, res, next, id) => {
+      Model.findById(id, (err, data) => {
+        if (err) next(err);
+        else if (data) {
+          req.data = data;
+          next();
+        } else {
+          next(new Error('failed to load data'))
+        }
+      });
+    },
+    list: (req, res, next) => (
+      Model.find(req.query, function (err, data) {
+        if (err) next(err)
+        else if (data) res.json(data)
+        else next(new Error('failed to load user'))
+      })
+    ),
+    read: (req, res, next) => (
+      res.json(req.data)
+    ),
+    update: (req, res, next) => {
       Model.findByIdAndUpdate(
         req.params._id,
         req.body,
-        {new: true},
-      ).populate()
-    }
-  },
-  delete: function(Model) {
-    return (req, res) => (
-      Model.deleteOne({_id: req.params._id})
+        { new: true },
+        (err, data) => {
+          if (err) next(err)
+          else res.json(data)
+        })
+    },
+    delete: (req, res, next) => (
+      Model.deleteOne({ _id: req.params._id }, err => {
+        if (err) next(err);
+        else res.json(req.data);
+      })
     )
-  },
+  }
 }
 
 const middleware = {
@@ -53,5 +56,4 @@ const middleware = {
 module.exports = {
   crud,
   middleware,
-  response,
 };

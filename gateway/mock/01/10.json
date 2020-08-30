@@ -1,9 +1,0 @@
-{
-  "credit_application_no": "授信申请书号",
-  "customer_name": "客户名称",
-  "credit_amount": "授信金额",
-  "start_date": "起始日期",
-  "end_date": "到期日期",
-  "credit_status": "授信状态",
-  "occupy_3_quota": "是否占用第三方额度"
-}

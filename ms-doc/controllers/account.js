@@ -1,4 +1,4 @@
-const Account = require('../models/Account');
+const Account = require('../../ms-auth/models/Account');
 
 const param = (req, res, next, id) => {
   Account.findById(id, (err, account) => {

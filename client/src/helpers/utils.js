@@ -26,7 +26,7 @@ const fetching1 = (url, opts = {}, isFileOrProxy) => {
       ...opts.headers,
     }
   } else {
-    const token = sessionStorage.getItem('authToken')
+    const token = sessionStorage.getItem(TOKEN)
     if (!token) {
       console.error('权限认证失败，请先注册')
       return null // TODO: Redirect

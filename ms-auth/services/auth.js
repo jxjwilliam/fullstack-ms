@@ -61,7 +61,7 @@ function verifyPassword(req, res, next) {
   const {password} = req.body
   const passwordIsValid = bcrypt.compareSync(password, req.account.password);
   if (!passwordIsValid) {
-    return res.status(401).json({ auth: false, accessToken: null, msg: "口令无效!" });
+    return res.status(401).json({ auth: false, token: null, msg: "口令无效!" });
   }
   next()
 }
@@ -74,13 +74,15 @@ const signin = async (req, res, next) => {
     const tokenInfo = { ...others, role: role.name, category: category.name }
     const token = jwt.sign(tokenInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
 
-    return res.status(200).json({ auth: true, accessToken: token });
+    return res.status(200).json({ auth: true, token });
+  } else {
+    next(new Error('account error'))
   }
 };
 
 function signout (req, res, next) {
   return res.status(200).json({ msg: '退出' });
-};
+}
 
 /**
  * 验证 Token

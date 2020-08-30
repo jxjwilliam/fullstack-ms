@@ -1,3 +1,36 @@
+const express = require('express')
+
+const middleware = {
+  notFound: function (req, res) {
+    return res.status(404).json({
+      success: false,
+      orginalUrl: req.originalUrl,
+      baseUrl: req.baseUrl,
+      url: req.url,
+      error: 'NOT FOUND'
+    })
+  }
+}
+
+function routing (SpecificModel) {
+  const router = express.Router()
+  const Model = crud(SpecificModel)
+
+  router.param('id', Model.param)
+  router.route('/')
+    .get(Model.list)
+    .post(Model.create)
+
+  router.route('/:id')
+    .get(Model.read)
+    .put(Model.update)
+    .delete(Model.delete);
+
+  router.use(middleware.notFound)
+
+  return router;
+}
+
 function crud(Model) {
   return {
     create: (req, res, next) => {
@@ -14,6 +47,7 @@ function crud(Model) {
           req.data = data;
           next();
         } else {
+          return res.json({message: 'No such record'});
           next(new Error('failed to load data'))
         }
       });
@@ -47,19 +81,8 @@ function crud(Model) {
   }
 }
 
-const middleware = {
-  notFound: function (req, res) {
-    return res.status(404).json({
-      success: false,
-      orginalUrl: req.originalUrl,
-      baseUrl: req.baseUrl,
-      url: req.url,
-      error: 'NOT FOUND'
-    })
-  }
-}
-
 module.exports = {
   crud,
+  routing,
   middleware,
 };

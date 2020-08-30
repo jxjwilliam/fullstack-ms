@@ -33,10 +33,9 @@ export const signupAction = (body) => (dispatch) => {
 }
 
 // 2. login
-export const loginSucc = (payload, loginInfo) => ({
+export const loginSucc = (payload) => ({
   type: LOGIN_SUCCESS,
   payload,
-  loginInfo,
 })
 
 const loginFail = (payload) => ({ type: LOGIN_FAIL, payload })
@@ -51,8 +50,8 @@ export const loginAction = (body) => (dispatch) => {
   return fetch("/auth/login", options)
     .then(res => res.json())
     .then(data => {
-      if (data.auth && data.accessToken) {
-        dispatch(loginSucc(data.accessToken, data.loginInfo));
+      if (data.auth && data.token) {
+        dispatch(loginSucc(data.token));
       }
       else {
         dispatch(loginFail(data))

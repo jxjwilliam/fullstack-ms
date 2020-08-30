@@ -65,32 +65,25 @@ const signin = (req, res, next) => {
 
     const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
     if (!passwordIsValid) {
-      return res.status(401).json({auth: false, accessToken: null, msg: "口令无效!"});
+      return res.status(401).json({auth: false, token: null, msg: "口令无效!"});
     }
     return user;
 
   }).then(user => {
-    const token = jwt.sign({id: user.id}, SECRET, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-
-    // TODO: change!
     const oid = JSON.parse(JSON.stringify(user.Organization));
     const rids = JSON.parse(JSON.stringify(user.Roles)).reduce((t, r) => [...t, {id: r.id, name: r.name}], []);
 
-    const loginInfo = {
+    const token = jwt.sign({
       id: user.id,
       account: user.account,
       name: user.name,
       oid: oid.id, // undefined: user.organization_id,
       oname: oid.name,
       rid: rids
-    };
-
-    console.log('--- loginInfo ---: ', loginInfo);
-
-    res.status(200).json({auth: true, accessToken: token, loginInfo});
-
+    }, SECRET, {
+      expiresIn: 86400 // expires in 24 hours
+    });
+    res.status(200).json({auth: true, token});
   }).catch(err => {
     res.json({msg: 'Error -> ' + err});
   });

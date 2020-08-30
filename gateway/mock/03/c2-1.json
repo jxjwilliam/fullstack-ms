@@ -1,8 +1,0 @@
-{
-  "report_period": "报表期次",
-  "report_template_type": "报表模板类型",
-  "report_nature": "报表性质",
-  "isAudit": "是否审计",
-  "currency": "币种",
-  "operation": "操作"
-}

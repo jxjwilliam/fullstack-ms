@@ -15,7 +15,6 @@ app.set('port', process.env.PORT)
 
 const jwtSecretSalt = process.env.SECRET
 
-
 // app.use(favicon(path.join(__dirname, '../client/public', 'favicon.ico')))
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
   .use(cors())
@@ -45,30 +44,20 @@ app.all('/auth/*', (req, res) => {
 })
 
 // authentication
-// app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
-//   (err, req, res, next) => {
-//     console.group('authentication');
-//     console.log(req.baseUrl, req.originalUrl, req.url);
-//     console.groupEnd()
-//     if (err.name === 'UnauthorizedError') {
-//       console.error(req.user, req.ip, 'invalid token');
-//       next()
-//     }
-//   }
-// )
+app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
+  (err, req, res, next) => {
+    console.group('authentication');
+    console.log(req.baseUrl, req.originalUrl, req.url);
+    console.groupEnd()
+    if (err.name === 'UnauthorizedError') {
+      console.error(req.user, req.ip, 'invalid token');
+      next()
+    }
+  }
+)
 
 
 // 3. `gateway` folder: cache all static data.
-app.get('/mock/:resource', (req, res) => {
-  const r = req.params.resource;
-  let dir = '01';
-  if (/^m\d/.test(r)) dir = '02';
-  else if (/^c\d/.test(r)) dir = '03';
-  const f = path.join(__dirname, 'mock', dir, r + '.json');
-  res.sendFile(f);
-});
-
-
 app.get('/data/:resource', (req, res) => {
   const r = req.params.resource;
   const f = path.join(__dirname, 'data', r + '.json');

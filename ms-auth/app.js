@@ -2,7 +2,7 @@ const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const route = require('./routes')
+const route = require('./services')
 const connectMongoDB = require('./connect')
 const { PORT, SECRET } = require('./constants')
 
@@ -21,13 +21,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // http://localhost:8066
 app.get('/', (req, res) => {
-  res.status(200).send(`MS-AUTH  ${req.baseUrl}, ${req.url}  works!`)
+  res.status(200).send(`MS-AUTH originalUrl=${req.originalUrl}, baseUrl=${req.baseUrl}, url=${req.url}  works!`)
 })
 
 // http://localhost/auth/*
 app.use('/auth', route)
 
 ///////////////////////////////
+// TODO: http://localhost:8066/: GET /favicon.ico 404 7.955 ms - 2040
 
 app
   .use(function (req, res, next) {

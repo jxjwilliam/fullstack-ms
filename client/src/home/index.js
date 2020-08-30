@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ThemeProvider } from '@material-ui/styles'
 import { Container, CssBaseline } from '@material-ui/core'
-import { DEFAULT_LOGIN_PAGE } from '../constants'
+import { DEFAULT_LOGIN_PAGE, TOKEN } from '../constants'
 import { bars, footers } from '../components'
 import theme from './theme'
 import HomeDemo from './demo'
@@ -22,7 +22,9 @@ function Home() {
 }
 
 function HomeContainer({ auth }) {
-  const hasToken = sessionStorage.getItem('authToken')
+  const hasToken = sessionStorage.getItem(TOKEN)
+
+  console.log('???', auth, hasToken, hasToken === auth)
 
   if (!hasToken) {
     const { loggedIn } = auth

@@ -49,7 +49,13 @@ function crud(Model) {
 
 const middleware = {
   notFound: function (req, res) {
-    return response.resError(res, 404)
+    return res.status(404).json({
+      success: false,
+      orginalUrl: req.originalUrl,
+      baseUrl: req.baseUrl,
+      url: req.url,
+      error: 'NOT FOUND'
+    })
   }
 }
 

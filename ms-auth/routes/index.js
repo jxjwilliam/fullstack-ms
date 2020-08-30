@@ -3,6 +3,8 @@ const router = express.Router()
 
 const auth = require('../controllers/auth')
 const {crud, middleware: {notFound} } = require('../controllers/utils')
+const Account = require('../models/Account')
+const Role = require('../models/Role')
 
 // 1. http://localhost:3000/auth
 router.get('/', (req, res) => {
@@ -47,38 +49,38 @@ router.get('/authenticate', auth.authenticate)
 
 
 const accountRouter = express.Router()
-const Account = crud('Account')
+const accounts = crud(Account)
 
 const roleRouter = express.Router()
-const Role = crud('Role')
+const roles = crud(Role)
 
 
 // 3. /auth/account,
-accountRouter.param('id', Account.param)
+accountRouter.param('id', accounts.param)
 
 accountRouter.route('/')
-  .get(Account.list)
-  .post(Account.create)
+  .get(accounts.list)
+  .post(accounts.create)
 
 accountRouter.route('/:id')
-  .get(Account.read)
-  .put(Account.update)
-  .delete(Account.delete);
+  .get(accounts.read)
+  .put(accounts.update)
+  .delete(accounts.delete);
 
 accountRouter.use(notFound)
 
 
 // 4. /auth/role
-roleRouter.param('id', Role.param);
+roleRouter.param('id', roles.param);
 
 roleRouter.route('/')
-  .get(Role.list)
-  .post(Role.create)
+  .get(roles.list)
+  .post(roles.create)
 
 roleRouter.route('/:id')
-  .get(Role.read)
-  .put(Role.update)
-  .delete(Role.delete)
+  .get(roles.read)
+  .put(roles.update)
+  .delete(roles.delete)
 roleRouter.use(notFound)
 
 router.use('/account', accountRouter)

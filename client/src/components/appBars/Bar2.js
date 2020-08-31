@@ -25,7 +25,7 @@ import { AccountCircle, Home as HomeIcon } from '@material-ui/icons'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Login from '../../07-sign/SigninSide'
-import {checkLogin, getTokenAccount} from "../../helpers/utils";
+import {checkLogin, getToken} from "../../helpers/utils";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Bar2(props) {
   const { children, auth: { token } } = props
-  let account = getTokenAccount()
+  let account = getToken().account || 'TODO-getToken.account'
 
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)

@@ -8,42 +8,33 @@ const Role = require('../models/Role')
 
 // 1. http://localhost:3000/auth
 router.get('/', (req, res) => {
+  const {app, url, baseUrl, originalUrl, path, hostname, ip, xhr} = req
+  const { locals } = res
   res.json({
     message: 'Welcome to the AUTH API!',
-    app: req.app,
-    url: req.url,
-    baseUrl: req.baseUrl,
-    originalUrl: req.originalUrl,
-    path: req.path,
-    hostname: req.hostname,
-    ip: req.ip,
-    xhr: req.xhr,
-    locals: res.locals
+    app, url, baseUrl, originalUrl, path, hostname, ip, xhr,
+    locals
   })
 })
 
-
-// 2. /auth/login...
-router.post(['/register', '/signup'],
-  auth.checkExisted,
-  auth.hashPassword,
-  auth.signup
-)
+// 2. /auth/register...
+const {isNotExist, hashPassword, register} = auth
+router.post(['/register', '/signup'], isNotExist, hashPassword, register)
 
 /**
+ * 3. /auth/login
  * req:
  *   originalUrl="/auth/login"
  *   baseUrl="/auth"
  *   url="/login"
  *   statusCode=null, statusMessage=null
  */
-router.post(['/login', '/signin'],
-  auth.checkAccountExist,
-  auth.verifyPassword,
-  auth.signin
-)
+const {isExist, verifyPassword, issueToken, login} = auth
+router.post(['/login', '/signin'], isExist, verifyPassword, issueToken, login)
+
 
 router.get(['/logout', '/signout'], auth.signout)
+
 
 router.get('/authenticate', auth.authenticate)
 

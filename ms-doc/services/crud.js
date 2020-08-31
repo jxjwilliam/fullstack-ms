@@ -1,41 +1,82 @@
-const { errData, errorRes, successRes } = require('../common/response')
-const mongoose = require('mongoose')
+const express = require('express')
+const createError = require('http-errors')
 
-
-function create (model, populate=[]) {
-  return (req, res) => {
-    const newData = new model({
-      _id: new mongoose.Types.ObjectId(),
-      ...req.body
-    })
-    return newData.save()
-      .then(t => t.populate(...populate, errData(res)))
-      .catch(err => errorRes(res, err))
+const middleware = {
+  notFound: function (req, res, next) {
+    const {originalUrl, baseUrl, url} = req
+    console.error('😞 notFound Error 😞 ', {originalUrl, baseUrl, url,})
+    next(createError(404))
   }
 }
 
-function read (model, populate=[]) {
-  return (req, res) => (
-    model.find(...req.body, errData(res)).populate(...populate)
-  )
-}
-
-function update (model, populate=[]) {
-  return (req, res) => {
-    req.body.updated_at = new Date()
-    return model.findByIdAndUpdate(
-      req.params._id,
-      req.body,
-      { new: true },
-      errData(res)
-    ).populate(...populate)
+function crud(Model) {
+  return {
+    create: (req, res, next) => {
+      const newItem = new Model(req.body)
+      return newItem.save(err => {
+        if (err) next(err)
+        else res.json(newItem)
+      })
+    },
+    param: (req, res, next, id) => {
+      Model.findById(id, (err, data) => {
+        if (err) next(err);
+        else if (data) {
+          req.data = data;
+          next();
+        } else {
+          return res.json({message: 'No such record'});
+          next(new Error('failed to load data'))
+        }
+      });
+    },
+    list: (req, res, next) => (
+      Model.find(req.query, function (err, data) {
+        if (err) next(err)
+        else if (data) res.json(data)
+        else next(new Error('failed to load user'))
+      })
+    ),
+    read: (req, res, next) => (
+      res.json(req.data)
+    ),
+    update: (req, res, next) => {
+      Model.findByIdAndUpdate(
+        req.params._id,
+        req.body,
+        { new: true },
+        (err, data) => {
+          if (err) next(err)
+          else res.json(data)
+        })
+    },
+    delete: (req, res, next) => (
+      Model.deleteOne({ _id: req.params._id }, err => {
+        if (err) next(err);
+        else res.json(req.data);
+      })
+    )
   }
 }
 
-function remove (model) {
-  return (req, res) => (
-    model.deleteOne({ _id: req.params._id }, errData(res))
-  )
+function routing(MongoModel) {
+  const router = express.Router()
+  const Model = crud(MongoModel)
+
+  router.param('id', Model.param)
+
+  router.route('/')
+    .get(Model.list)
+    .post(Model.create)
+
+  router.route('/:id')
+    .get(Model.read)
+    .put(Model.update)
+    .delete(Model.delete)
+
+  router.use(middleware.notFound)
+
+  return router;
 }
 
-module.exports = { read, create, update, remove }
+module.exports = { middleware, crud, routing }

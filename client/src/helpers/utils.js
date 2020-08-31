@@ -13,66 +13,45 @@ const isEmpty = (prop) =>
 
 /**
  * 1. local 加token，有content-type和accept
- * 2. dzqz 不加，但有content-type和accept
- * 3. 上传文件，加token，但没有content-type
+ * 2. 上传文件，加token，但没有content-type
  *  in case encType="multipart/form-data", remove "Content-Type": "application/json; charset=UTF-8",
+ * 3. 代理第三方服务不加，但有content-type和accept
+ * 4. 选项 isFileOrProxy: 1 文件; 2 proxy; undefined 普通fetch，等于fetchingOrig+token
  */
-const fetching1 = (url, opts = {}, isFileOrProxy) => {
+const fetching = (url, opts = {}, isFileOrProxy) => {
   let body
   let headers = {}
 
-  // 电子签章
+  // 代理第三方服务，比如Java App，不需要验证
   if (isFileOrProxy === 2) {
-    headers = {
-      ...HEADERS,
-      ...opts.headers,
-    }
+    headers = { ...HEADERS, ...opts.headers }
   } else {
-    const token = sessionStorage.getItem(TOKEN)
-    if (!token) {
+    const authToken = sessionStorage.getItem(TOKEN)
+    if (!authToken) {
       console.error('权限认证失败，请先注册')
       return null // TODO: Redirect
     }
 
-    // 文件上传, 不要content-type
-    if (isFileOrProxy === 1) {
-      headers = {
-        Accept: HEADERS.Accept,
-        'x-access-token': token,
-        ...opts.headers,
-      }
-    } else {
-      headers = {
-        ...HEADERS,
-        'x-access-token': token,
-        ...opts.headers,
-      }
-    }
+    // 文件上传(isFileOrProxy===1), 不要content-type
+    headers = isFileOrProxy === 1 ? {Accept: HEADERS.Accept} : HEADERS
+    headers = { ...headers, ...opts.headers, 'x-access-token': authToken}
   }
 
   const method = opts.method || 'GET'
   if (opts.body) body = opts.body
 
-  return fetch(url, { method, headers, body })
+  return fetchingOrig(url, { method, headers, body })
+}
+
+const fetchingOrig = (url, opts = {}) => {
+  return fetch(url, opts)
     .then((res) => res.json())
     .catch((e) => console.error('操作失败: ', e.message))
 }
 
-const fetching = (url, opts = {}) => {
-  let body
-  const headers = { ...HEADERS, ...opts.headers }
-  const method = opts.method || 'GET'
-  if (opts.body) body = opts.body
-
-  return fetch(url, { method, headers, body })
-    .then((res) => res.json())
-    .catch((e) => alert(e))
-}
-
 const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const capitalize = (str) =>
-  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
 const getToken = () => {
   const authToken = sessionStorage.getItem(TOKEN)
@@ -95,12 +74,7 @@ const checkLogin = (token) => {
   return false
 }
 
-const getTokenAccount = () => {
-  const token = getToken()
-  return token.account || ''
-}
-
 export {
   isEmpty, fetching, defer, capitalize,
-  getToken, checkLogin, getTokenAccount
+  getToken, checkLogin
 }

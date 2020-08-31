@@ -28,7 +28,7 @@ export const Contacts = {
 
 export const HEADERS = {
   'Content-type': 'application/json',
-  Accept: 'application/json',
+  'Accept': 'application/json',
 }
 
 export const TOKEN = 'authToken'

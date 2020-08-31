@@ -7,7 +7,7 @@ const SECRET = process.env.SECRET;
 
 // email + phone => unique
 // username => unique
-function checkExisted(req, res, next) {
+function isNotExist(req, res, next) {
   const {username, email, phone} = req.body
   Account.findOne({ username, email, phone }, (err, account) => {
     if (err) res.json({success: false, data: "Error"})
@@ -26,7 +26,7 @@ function hashPassword(req, res, next) {
   })
 }
 
-function signup (req, res, next) {
+function register (req, res, next) {
   const { role, category, ...others } = req.body
   const account = new Account({
     ...others,
@@ -46,7 +46,7 @@ function signup (req, res, next) {
  * (3) res: res.status(404)
  * Document.prototype.toObject: https://mongoosejs.com/docs/api.html#document_Document-toObject
  */
-function checkAccountExist(req, res, next) {
+function isExist(req, res, next) {
   const {username} = req.body
   Account.findOne({ username }, (err, account) => {
     if (err) res.json({success: false, data: "Error"})
@@ -67,20 +67,26 @@ function verifyPassword(req, res, next) {
   next()
 }
 
-// 注册的时候issue。
-const signin = async (req, res, next) => {
+async function issueToken(req, res, next) {
   const {account} = req;
-  if (account) {
-    const { password, timestamp, __v, isActive, desc, role, category, ...others } = account;
-    const tokenInfo = { ...others, role: role.name, category: category.name }
-    const token = jwt.sign(tokenInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
-    return res.status(200).json({ token });
+  const { password, timestamp, __v, isActive, desc, role, category, ...others } = account;
+  const tokenInfo = { ...others, role: role.name, category: category.name }
+  req.token = await jwt.sign(tokenInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
+  next()
+}
+
+// 注册的时候issue。
+function login (req, res, next) {
+  const {token} = req
+  if (token) {
+    return res.status(200).json({token});
   } else {
     next(new Error('account error'))
   }
-};
+}
 
-function signout (req, res, next) {
+function signout (req, res) {
+  console.log('TODO signout')
   return res.status(200).json({ msg: '退出' });
 }
 
@@ -108,21 +114,14 @@ function authenticate (req, res, next) {
   }
 }
 
-
-function checkRole (req, res, next) {
-  Account.findById(req.params._id, (err, role) => {
-    if(err) res.send(err)
-    next()
-  })
-}
-
 module.exports = {
-  checkExisted,
-  checkAccountExist,
+  isNotExist,
   hashPassword,
-  signup,
+  register,
+  isExist,
   verifyPassword,
-  signin,
+  issueToken,
+  login,
   signout,
   authenticate,
 }

@@ -1,34 +1,29 @@
 const express = require('express')
 const createError = require('http-errors')
+// const jwt_decode = require('jwt-decode')
 
 const middleware = {
   notFound: function (req, res, next) {
-    console.log('😞 notFound Error 😞 ', {
-      orginalUrl: req.originalUrl,
-      baseUrl: req.baseUrl,
-      url: req.url,
-    })
+    const {originalUrl, baseUrl, url} = req
+    console.error('😞 notFound Error 😞 ', {originalUrl, baseUrl, url,})
     next(createError(404))
-  }
+  },
 }
 
-function routing (SpecificModel) {
-  const router = express.Router()
-  const Model = crud(SpecificModel)
-
-  router.param('id', Model.param)
-  router.route('/')
-    .get(Model.list)
-    .post(Model.create)
-
-  router.route('/:id')
-    .get(Model.read)
-    .put(Model.update)
-    .delete(Model.delete);
-
-  router.use(middleware.notFound)
-
-  return router;
+const getAccountInfo = (authToken) => {
+  const token = {}; //jwt_decode(authToken)
+  return {
+    getRole: function (req, res, next) {
+      return token.role
+    },
+    getCategory: function (req, res, next) {
+      return token.category
+    },
+    getAccount: function (req, res, next) {
+      const accountInfo = ({username,email,phone} = token);
+      return accountInfo
+    }
+  }
 }
 
 function crud(Model) {
@@ -81,8 +76,27 @@ function crud(Model) {
   }
 }
 
+function routing (MongoModel) {
+  const router = express.Router()
+  const Model = crud(MongoModel)
+
+  router.param('id', Model.param)
+  router.route('/')
+    .get(Model.list)
+    .post(Model.create)
+
+  router.route('/:id')
+    .get(Model.read)
+    .put(Model.update)
+    .delete(Model.delete);
+
+  router.use(middleware.notFound)
+
+  return router;
+}
+
 module.exports = {
+  middleware,
   crud,
   routing,
-  middleware,
 };

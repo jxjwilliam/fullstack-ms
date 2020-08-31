@@ -62,17 +62,17 @@ class SignIn extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    const { auth } = this.props
+    const { loginAction } = this.props
     const { login } = this.state
 
     // eslint-disable-next-line react/destructuring-assignment
-    this.props.loginAction(login).then((data) => {
-      const { loggedIn } = auth
+    loginAction(login).then((data) => {
+      const { auth: { loggedIn, token } } = this.props;
       if (loggedIn) {
         this.setState({ done: true })
-        sessionStorage.setItem(TOKEN, auth.token)
+        sessionStorage.setItem(TOKEN, token)
       } else {
-        this.setState({ done: false, title: auth.msg })
+        this.setState({ done: false })
         sessionStorage.removeItem(TOKEN)
       }
     })
@@ -84,7 +84,6 @@ class SignIn extends Component {
     if (done) {
       return <Redirect to={DEFAULT_HOME_PAGE} />
     }
-
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />

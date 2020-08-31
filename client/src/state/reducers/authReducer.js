@@ -7,15 +7,8 @@ import {
   LOGOUT_FAIL,
 } from '../ActionTypes'
 
-/**
- * import jwt_decode from 'jwt-decode'
- * let decoded = jwt_decode(token)
- */
+const initLogin = { loggedIn: false, token: null,}
 
-const initLogin = {
-  loggedIn: false,
-  token: null,
-}
 export const loginReducer = (state = initLogin, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
@@ -42,14 +35,14 @@ export const signupReducer = (state = '', action) => {
   }
 }
 
-export const logoutReducer = (state = '', action) => {
+export const logoutReducer = (state = {loggedIn: true}, action) => {
   switch (action.type) {
     case LOGOUT_SUCCESS:
       // TODO: remove token
-      return action.payload
+      return { ... action.payload, loggedIn: false }
     case LOGOUT_FAIL:
       // TODO: remove token
-      return action.payload
+      return { ... action.payload, loggedIn: true }
     default:
       return state
   }

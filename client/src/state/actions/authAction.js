@@ -24,19 +24,14 @@ export const signupAction = (body) => (dispatch) => {
   return fetch('/auth/signup', options)
     .then((res) => res.json())
     .then((data) => {
-      if (data.account) {
-        return dispatch(sigupSucc(data))
-      }
-      return dispatch(signupFail(data))
+      if (data.account) dispatch(sigupSucc(data))
+      else dispatch(signupFail(data))
     })
     .catch((e) => console.error(e))
 }
 
 // 2. login
-export const loginSucc = (payload) => ({
-  type: LOGIN_SUCCESS,
-  payload,
-})
+const loginSucc = (payload) => ({type: LOGIN_SUCCESS, payload,})
 
 const loginFail = (payload) => ({ type: LOGIN_FAIL, payload })
 
@@ -50,12 +45,8 @@ export const loginAction = (body) => (dispatch) => {
   return fetch("/auth/login", options)
     .then(res => res.json())
     .then(data => {
-      if (data.auth && data.token) {
-        dispatch(loginSucc(data.token));
-      }
-      else {
-        dispatch(loginFail(data))
-      }
+      if (data.token)  dispatch(loginSucc(data.token));
+      else dispatch(loginFail(data))
     })
     .catch(e => console.error(e))
 }

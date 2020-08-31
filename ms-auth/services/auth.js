@@ -44,13 +44,14 @@ function signup (req, res, next) {
  * tip: onSubmit: needs `event.preventDefault`.
  * 3 cases: 1 error, 2 exist, 3 not exist.
  * (3) res: res.status(404)
+ * Document.prototype.toObject: https://mongoosejs.com/docs/api.html#document_Document-toObject
  */
 function checkAccountExist(req, res, next) {
   const {username} = req.body
   Account.findOne({ username }, (err, account) => {
     if (err) res.json({success: false, data: "Error"})
     else if (account) {
-      req.account = account;
+      req.account = account.toObject();
       next()
     }
     else res.status(404).send({success: false, data: "NOT FOUND"})
@@ -73,8 +74,7 @@ const signin = async (req, res, next) => {
     const { password, timestamp, __v, isActive, desc, role, category, ...others } = account;
     const tokenInfo = { ...others, role: role.name, category: category.name }
     const token = jwt.sign(tokenInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
-
-    return res.status(200).json({ auth: true, token });
+    return res.status(200).json({ token });
   } else {
     next(new Error('account error'))
   }

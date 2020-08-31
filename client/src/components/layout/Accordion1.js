@@ -16,7 +16,7 @@ import {
   History,
   Help,
 } from '@material-ui/icons'
-import { loginInfos } from '../../helpers/utils'
+import { getToken } from '../../helpers/utils'
 import { Emails, Contacts } from '../../constants'
 import { version } from '../../../package.json'
 
@@ -78,20 +78,20 @@ const Typography1 = (props) => {
 
 const OperatorInfo = () => {
   const {
-    account = '测试用户',
-    name = '微服务',
-    organization = { name: '微服务企业' },
-    roles = [{ name: '操作员' }],
-  } = loginInfos()
-  const rolesNames = roles.map((r) => r.name).join(',')
+    username:account='测试用户',
+    category:organization = '微服务企业',
+    role = '操作员',
+    email: name = '微服务',
+    phone
+  } = getToken()
+
   const title = '操作员信息'
   const icon = SupervisorAccount
-
   const aryInfo = [
-    `企业：${organization.name}`,
+    `企业：${organization}`,
     `账号：${account}`,
     `名称：${name}`,
-    `角色：${rolesNames}`,
+    `角色：${role}`,
   ].map((item) => <Typography1 key={item}>{item}</Typography1>)
 
   return (

@@ -129,8 +129,8 @@ const getPageLayout = (navList, mainList, options) => {
       throw new Error('TODO: ')
   }
 
-  console.group()
-  console.log('👋 👏', redirect, url2, url3)
+  console.group('👏 👋 Layout')
+  console.log(redirect, url2, url3)
   console.groupEnd()
 
   const [basePath, subAry] = getRouters(url, url2, mainList)

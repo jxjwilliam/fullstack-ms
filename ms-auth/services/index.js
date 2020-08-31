@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const auth = require('./auth')
-const {crud, routing, middleware: {notFound} } = require('./utils')
+const {routing, middleware: {notFound} } = require('./utils')
 const Account = require('../models/Account')
 const Role = require('../models/Role')
 
@@ -50,5 +50,7 @@ router.get('/authenticate', auth.authenticate)
 
 router.use('/account', routing(Account))
 router.use('/role', routing(Role))
+
+router.use(notFound)
 
 module.exports = router

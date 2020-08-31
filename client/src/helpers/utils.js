@@ -72,10 +72,16 @@ const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
 const capitalize = (str) =>
   str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
-const loginInfos = () => {
+const getToken = () => {
   const token = sessionStorage.getItem(TOKEN)
-  if (token) return jwt_decode(token)
+  if (token) {
+    const authToken = jwt_decode(token)
+    console.group('👋 👏 authToken')
+    console.log(authToken)
+    console.groupEnd()
+    return authToken
+  }
   return {}
 }
 
-export { isEmpty, fetching, defer, capitalize, loginInfos }
+export { isEmpty, fetching, defer, capitalize, getToken }

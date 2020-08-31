@@ -1,5 +1,5 @@
-const createError = require('http-errors')
 const express = require('express')
+const createError = require('http-errors')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const route = require('./services')
@@ -30,17 +30,19 @@ app.use('/auth', route)
 ///////////////////////////////
 // TODO: http://localhost:8066/: GET /favicon.ico 404 7.955 ms - 2040
 
-app
-  .use(function (req, res, next) {
-    next(createError(404))
-  })
-  .use(function (err, req, res) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+/**
+ * when 404, createError will res.send and exit, not to next middleware line 40.
+ */
+app.use(function (req, res, next) {
+  next(createError(404))
+})
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  })
+app.use(function (err, req, res) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  return res.status(err.status || 500).json({'error': 'Not found'});
+})
 
 module.exports = app

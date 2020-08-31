@@ -14,7 +14,7 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { withStyles } from '@material-ui/core/styles'
 import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
@@ -63,19 +63,23 @@ class Login extends Component {
 
   // this.setState({[e.target.id]: e.target.value});
   handleChange = ({target: {name, value}}) => {
-    this.setState({login: { ...this.state.login, [name]: value }})
+    const { login } = this.state
+    this.setState({login: { ...login, [name]: value }})
   }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
+    const { loginAction } = this.props
+    const { login } = this.state
+
     // TODO validates, post a form-body
-    this.props.loginAction(this.state.login).then((data) => {
-      const { loggedIn } = this.props.auth
+    loginAction(login).then(() => {
+      const { auth: { loggedIn, token } } = this.props;
       if (loggedIn) {
         this.setState({ done: true })
-        sessionStorage.setItem(TOKEN, this.props.auth.token)
+        sessionStorage.setItem(TOKEN, token)
       } else {
-        this.setState({ done: false, title: this.props.auth.msg })
+        this.setState({ done: false })
         sessionStorage.removeItem(TOKEN)
       }
     })
@@ -100,7 +104,7 @@ class Login extends Component {
             <Typography component="h1" variant="h5">
               微服务 POC
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -138,7 +142,7 @@ class Login extends Component {
                 color="primary"
                 className={classes.submit}
                 disabled={!this.validateForm}
-                onClick={this.handleSubmit}
+                endIcon={<LockOpenIcon />}
               >
                 登录
               </Button>

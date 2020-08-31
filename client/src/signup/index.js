@@ -46,15 +46,17 @@ function Signup (props) {
     role: '',
     category: '',
   })
+  // TODO: `done`
+  const [done, setDone] = useState(false)
 
   // Select can't capture `id`: undefined. Only `name` works.
-  const handleChange = ({target: { id, name, value}}) => {
+  const handleChange = ({target: { name, value}}) => {
     setRegister({...register, [name]: value})
   }
 
   const handleSubmit = (ev) => {
     props.signupAction(register).then(data => {
-      console.log('WHATS GOING ON???')
+      setDone(true)
     })
     ev.preventDefault()
   }

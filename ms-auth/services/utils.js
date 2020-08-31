@@ -1,14 +1,14 @@
 const express = require('express')
+const createError = require('http-errors')
 
 const middleware = {
-  notFound: function (req, res) {
-    return res.status(404).json({
-      success: false,
+  notFound: function (req, res, next) {
+    console.log('😞 notFound Error 😞 ', {
       orginalUrl: req.originalUrl,
       baseUrl: req.baseUrl,
       url: req.url,
-      error: 'NOT FOUND'
     })
+    next(createError(404))
   }
 }
 

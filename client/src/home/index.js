@@ -24,8 +24,6 @@ function Home() {
 function HomeContainer({ auth }) {
   const hasToken = sessionStorage.getItem(TOKEN)
 
-  console.log('???', auth, hasToken, hasToken === auth)
-
   if (!hasToken) {
     const { loggedIn } = auth
     if (!loggedIn) {

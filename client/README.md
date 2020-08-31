@@ -88,7 +88,7 @@ const FancyLink = React.forwardRef((props, ref) => <a ref={ref}>💅 {props.chil
   - variant
   - underline: none/hover, always
 
-- solve `yarn build` -> `nginx/gateway host` issue
+- Solve `yarn build` -> `nginx/gateway host` issue
 
 ```jsx
 <MuiLink component={Link} to="/">
@@ -102,6 +102,20 @@ const FancyLink = React.forwardRef((props, ref) => <a ref={ref}>💅 {props.chil
 $ yarn add @williamjiang/util
 ```
 
+### redux
+
+There are 2 places to save accessToken:
+
+- sessionStorage
+- redux
+
+### redux-devtools-extension in browser
+
+Only `process.env.NODE_ENV === 'development'` will activate
+
+```text
+ "start": "cross-env NODE_ENV=development REACT_APP_ENV=development react-scripts start",
+```
 
 ### Test
 

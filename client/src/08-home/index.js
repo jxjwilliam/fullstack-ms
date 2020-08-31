@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ThemeProvider } from '@material-ui/styles'
 import { Container, CssBaseline } from '@material-ui/core'
-import { DEFAULT_LOGIN_PAGE, TOKEN } from '../constants'
 import { bars, footers } from '../components'
 import theme from './theme'
 import HomeDemo from './demo'
+import {checkLogin} from "../helpers/utils";
 
 function Home() {
   return (
@@ -21,17 +21,9 @@ function Home() {
   )
 }
 
-function HomeContainer({ auth }) {
-  const hasToken = sessionStorage.getItem(TOKEN)
-
-  if (!hasToken) {
-    const { loggedIn } = auth
-    if (!loggedIn) {
-      console.log(`TODO: should redirect to ${DEFAULT_LOGIN_PAGE}`)
-      // return <Redirect to={DEFAULT_LOGIN_PAGE}/>
-    }
-  }
-  return (
+function HomeContainer({ auth: {token} }) {
+  console.log('??????', token)
+  return checkLogin(token) || (
     <ThemeProvider theme={theme}>
       <Home />
     </ThemeProvider>

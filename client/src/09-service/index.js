@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   AppBar,
@@ -21,6 +22,7 @@ import { navList as navs2 } from '../02-core_business/routers'
 import { navList as navs3 } from '../03-supplier/routers'
 import { navList as navs4 } from '../04-customer/routers'
 import { navList as navs5 } from '../05-financing/routers'
+import {checkLogin} from "../helpers/utils";
 
 const useStyles = makeStyles({
   root: {
@@ -56,13 +58,11 @@ const patch = (routers) => {
   )
 }
 
-export default function () {
+function Service ({auth: { token}}) {
   const classes = useStyles()
-
   const all5 = getMap()
-  console.log('✋ ✌', all5, null, 4)
-
   const routers = []
+
   // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of all5) {
     const { path, title, icon: CompIcon } = key
@@ -75,7 +75,7 @@ export default function () {
 
   patch(routers)
 
-  return (
+  return checkLogin(token) || (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container fixed className={classes.root}>
@@ -94,3 +94,5 @@ export default function () {
     </ThemeProvider>
   )
 }
+
+export default connect(state => ({auth: state.auth}))(Service)

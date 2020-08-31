@@ -9,7 +9,8 @@ import {
 
 const initLogin = { loggedIn: false, token: null,}
 
-export const loginReducer = (state = initLogin, action) => {
+export const authReducer = (state = initLogin, action) => {
+  console.log('++++++', state, action)
   switch (action.type) {
     case LOGIN_SUCCESS:
       return { token: action.payload, loggedIn: true }
@@ -30,19 +31,6 @@ export const signupReducer = (state = '', action) => {
       return action.payload
     case SIGNUP_FAIL:
       return action.payload
-    default:
-      return state
-  }
-}
-
-export const logoutReducer = (state = {loggedIn: true}, action) => {
-  switch (action.type) {
-    case LOGOUT_SUCCESS:
-      // TODO: remove token
-      return { ... action.payload, loggedIn: false }
-    case LOGOUT_FAIL:
-      // TODO: remove token
-      return { ... action.payload, loggedIn: true }
     default:
       return state
   }

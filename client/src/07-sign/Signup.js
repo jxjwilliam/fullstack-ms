@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
 import {
   Avatar, Button, CssBaseline, FormControlLabel, TextField, Grid, Checkbox,
   Link as MuiLink, Select, InputLabel, MenuItem, FormControl,
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Signup (props) {
+function SignUp (props) {
   const classes = useStyles();
   const [register, setRegister] = useState({
     username: '',
@@ -55,9 +54,7 @@ function Signup (props) {
   }
 
   const handleSubmit = (ev) => {
-    props.signupAction(register).then(data => {
-      setDone(true)
-    })
+    props.signupAction(register).then(() => setDone(true))
     ev.preventDefault()
   }
 
@@ -193,8 +190,8 @@ function Signup (props) {
   );
 }
 
-const mapStateToProps = state => ({ register: state.register });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signupAction }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signup)
+export default connect(
+  state => ({ register: state.register }),
+  { signupAction }
+  )(SignUp)

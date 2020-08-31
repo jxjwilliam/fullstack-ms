@@ -1,6 +1,8 @@
+import React from 'react'
+import { Redirect } from 'react-router-dom'
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
-import { HEADERS, TOKEN } from '../constants'
+import {DEFAULT_LOGIN_PAGE, HEADERS, TOKEN} from '../constants'
 
 const isEmpty = (prop) =>
   prop === null ||
@@ -73,15 +75,32 @@ const capitalize = (str) =>
   str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
 const getToken = () => {
-  const token = sessionStorage.getItem(TOKEN)
-  if (token) {
-    const authToken = jwt_decode(token)
-    console.group('👋 👏 authToken')
-    console.log(authToken)
-    console.groupEnd()
-    return authToken
+  const authToken = sessionStorage.getItem(TOKEN)
+  if (authToken) {
+    const token = jwt_decode(authToken)
+    // console.group('👋 👏 authToken')
+    // console.log(token)
+    // console.groupEnd()
+    return token
   }
   return {}
 }
 
-export { isEmpty, fetching, defer, capitalize, getToken }
+const checkLogin = (token) => {
+  const authToken = token || sessionStorage.getItem(TOKEN)
+  if (isEmpty(authToken)) {
+    console.log(`TODO: should redirect to ${DEFAULT_LOGIN_PAGE}`)
+    return <Redirect to={DEFAULT_LOGIN_PAGE}/>
+  }
+  return false
+}
+
+const getTokenAccount = () => {
+  const token = getToken()
+  return token.account || ''
+}
+
+export {
+  isEmpty, fetching, defer, capitalize,
+  getToken, checkLogin, getTokenAccount
+}

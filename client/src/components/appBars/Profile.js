@@ -18,6 +18,10 @@ const routers = [
     title: 'My account',
     path: '/myAccount',
   },
+  {
+    title: 'Sign Out',
+    path: '/logout'
+  }
 ]
 
 export default function () {

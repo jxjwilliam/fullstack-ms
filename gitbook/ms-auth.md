@@ -4,11 +4,35 @@
 
 这是一个 issue `jwt-token`的简单的微服务，使用`MongoDB` + `mongoose`
 
-Auth Flow:
-![Auth Flow](./imgs/auth-flow.png)
+### Mongoose 5.10.1
 
-JWT Flow:
-![JWT Flow](./imgs/jwt-flow.png)
+```text
+Model.deleteMany()
+Model.deleteOne()
+Model.find()
+Model.findById()
+Model.findByIdAndDelete()
+Model.findByIdAndRemove()
+Model.findByIdAndUpdate()
+Model.findOne()
+Model.findOneAndDelete()
+Model.findOneAndRemove()
+Model.findOneAndReplace()
+Model.findOneAndUpdate()
+Model.replaceOne()
+Model.updateMany()
+Model.updateOne()
+```
+
+### mongoose: ref, populate
+
+```text
+new mongoose.Schema({
+    postBy: userSchema
+    // Or:
+    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
+})
+```
 
 ### Initialize
 
@@ -32,6 +56,7 @@ $ node bin/init.js
 | Role | /auth/role             | 查看 roles                               |
 
 > Notice: 多个表之间的关联
+
 
 ### 📑 Auth Service - Microservices Authentication and Authorization
 
@@ -160,37 +185,14 @@ So, a request to a microservices would pass just the `Auth token`. if it's valid
 
 - `oAuth2` 允许微信，google 等账号登入。
 
+
 ### 参考
 
 [bradtraversy/node_jwt_example](https://github.com/bradtraversy/node_jwt_example/blob/master/app.js)
 [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com/users)
 
-### Mongoose 5.10.1
+Auth Flow:
+![Auth Flow](./imgs/auth-flow.png)
 
-```text
-Model.deleteMany()
-Model.deleteOne()
-Model.find()
-Model.findById()
-Model.findByIdAndDelete()
-Model.findByIdAndRemove()
-Model.findByIdAndUpdate()
-Model.findOne()
-Model.findOneAndDelete()
-Model.findOneAndRemove()
-Model.findOneAndReplace()
-Model.findOneAndUpdate()
-Model.replaceOne()
-Model.updateMany()
-Model.updateOne()
-```
-
-### mongoose: ref, populate
-
-```text
-new mongoose.Schema({
-    postBy: userSchema
-    // Or:
-    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
-})
-```
+JWT Flow:
+![JWT Flow](./imgs/jwt-flow.png)

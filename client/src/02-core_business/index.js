@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from '../state/actions'
 import { getPageLayout } from '../components'
 import { navList, mainList } from './routers'
+import {checkLogin} from "../helpers/utils";
 
 class CoreBusiness extends Component {
   constructor(props) {
@@ -14,20 +15,17 @@ class CoreBusiness extends Component {
 
   render() {
     const {
+      auth: { token },
       location: { pathname },
       match: { url, path },
     } = this.props
-    const options = {
-      pathname,
-      url,
-      path,
-    }
-    const pageLayout = getPageLayout(navList, mainList, options)
-    return <>{pageLayout}</>
+    const pageLayout = getPageLayout(navList, mainList, {pathname, url, path,})
+    return checkLogin(token) || <>{pageLayout}</>
   }
 }
 
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   menu1: state.menu1,
   menu2: state.menu2,
 })

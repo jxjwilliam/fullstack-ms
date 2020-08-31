@@ -13,16 +13,15 @@ import {
   ExitToApp,
 } from '@material-ui/icons'
 import { Menus } from './constants'
-import Home from './home'
-import Service from './service'
-import { SignIn, SignInSide, SignOut } from './signin'
-import Signup from './signup'
 import Admin from './01-risk-management'
 import Company from './02-core_business'
 import Supplier from './03-supplier'
 import Customer from './04-customer'
 import Financing from './05-financing'
 import Certificate from './06-certificate'
+import Home from './08-home'
+import Service from './09-service'
+import { SignIn, SignInSide, SignUp, SignOut } from './07-sign'
 import { C404 } from './containers'
 
 // TODO:
@@ -84,7 +83,7 @@ const GeneralRouters = [
     component: Home,
   },
   {
-    path: '/service',
+    path: '/09-service',
     title: 'Service',
     icon: BusinessCenter,
     component: Service,
@@ -111,13 +110,13 @@ const GeneralRouters = [
     path: '/signup',
     title: '注册',
     icon: AccountBox,
-    component: Signup,
+    component: SignUp,
   },
 ]
 
 const BackdoorRouters = [
   {
-    path: '/home',
+    path: '/08-home',
     title: '首页',
     component: Home,
   },

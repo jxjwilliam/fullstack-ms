@@ -66,7 +66,7 @@ class SignIn extends Component {
     const { login } = this.state
 
     // eslint-disable-next-line react/destructuring-assignment
-    loginAction(login).then((data) => {
+    loginAction(login).then(() => {
       const { auth: { loggedIn, token } } = this.props;
       if (loggedIn) {
         this.setState({ done: true })

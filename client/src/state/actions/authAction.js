@@ -35,14 +35,14 @@ const loginSucc = (payload) => ({type: LOGIN_SUCCESS, payload,})
 
 const loginFail = (payload) => ({ type: LOGIN_FAIL, payload })
 
-export const loginAction = (body) => (dispatch) => {
+export const loginAction = (body) => async dispatch => {
   const options = {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(body),
   }
 
-  return fetch("/auth/login", options)
+  return await fetch("/auth/login", options)
     .then(res => res.json())
     .then(data => {
       if (data.token)  dispatch(loginSucc(data.token));
@@ -56,8 +56,15 @@ const logoutSucc = () => ({ type: LOGOUT_SUCCESS })
 
 const logoutFail = (payload) => ({ type: LOGOUT_FAIL, payload })
 
-export const logoutAction = (dispatch) => {
-  defer(1)
+export const logoutAction1 = () => (dispatch) => {
+  return fetch('/auth/logout')
+    .then(res => res.json())
+    .then(() => dispatch(logoutSucc()))
+    .catch(() => dispatch(logoutFail()))
+}
+
+export const logoutAction = () => (dispatch) => {
+  return defer(1)
     .then(() => dispatch(logoutSucc()))
     .catch(() => dispatch(logoutFail()))
 }

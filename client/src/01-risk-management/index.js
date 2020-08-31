@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from '../state/actions'
 import { getPageLayout } from '../components'
 import { mainList, navList } from './routers'
+import {checkLogin} from "../helpers/utils";
 
 class RiskManagement extends Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class RiskManagement extends Component {
   }
 
   render() {
-    console.log('william test: ', this.props)
     const {
+      auth: { token },
       location: { pathname },
       match: { url },
     } = this.props
@@ -23,11 +24,12 @@ class RiskManagement extends Component {
       url,
     }
     const pageLayout = getPageLayout(navList, mainList, options)
-    return <>{pageLayout}</>
+    return checkLogin(token) || <>{pageLayout}</>
   }
 }
 
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   menu1: state.menu1,
   menu2: state.menu2,
 })

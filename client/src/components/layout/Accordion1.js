@@ -152,6 +152,20 @@ const HideInfo = () => {
   )
 }
 
+// TODO: cache
+const showHide = (prefix) => {
+  const all3 = [OperatorInfo, HelperInfo, VersionInfo].map((Item, idx) => (
+    <ListItem key={idx}>
+      <Item />
+    </ListItem>
+  ))
+  return (operator) => {
+    return (
+      <>{all3}</>
+    )
+  }
+}
+
 export default {
   ShowInfo,
   HideInfo,

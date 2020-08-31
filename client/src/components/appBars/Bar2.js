@@ -24,7 +24,8 @@ import {
 import { AccountCircle, Home as HomeIcon } from '@material-ui/icons'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Login from '../../signin/SigninSide'
+import Login from '../../07-sign/SigninSide'
+import {checkLogin, getTokenAccount} from "../../helpers/utils";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -68,11 +69,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Bar2(props) {
-  const { children, auth } = props
-  let account = ''
-  if (auth.loginInfo && auth.loginInfo.account) {
-    account = auth.loginInfo.account
-  }
+  const { children, auth: { token } } = props
+  let account = getTokenAccount()
+
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState(false)
@@ -211,7 +210,7 @@ function Bar2(props) {
     </>
   )
 
-  return (
+  return checkLogin(token) || (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>

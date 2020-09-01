@@ -8,6 +8,10 @@ const middleware = {
     console.error('😞 notFound Error 😞 ', { originalUrl, baseUrl, url, })
     next(createError(404))
   },
+  print: function(req, res) {
+    const { url, baseUrl, originalUrl, path, hostname } = req
+    console.log('url, baseUrl, originalUrl: ', url, baseUrl, originalUrl, path, hostname)
+  }
 }
 
 const getAccountInfo = (authToken) => {
@@ -20,15 +24,20 @@ const getAccountInfo = (authToken) => {
       return token.category
     },
     getAccount: function (req, res, next) {
-      const accountInfo = ({ username, email, phone } = token);
-      return accountInfo
-    }
+      const { username, email, phone } = token;
+      return { username, email, phone }
+    },
   }
 }
 
 function crud(Model) {
   return {
+    // 需要重定向： /auth/account -> /auth/register
     create: (req, res, next) => {
+      middleware.print(req, res)
+      if (req.baseUrl === '/auth/account') {
+        return res.redirect(307, '/auth/register')  // 302: FOUND
+      }
       const newItem = new Model(req.body)
       return newItem.save(err => {
         if (err) next(err)

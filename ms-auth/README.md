@@ -21,7 +21,7 @@ $ touch favicon.ico
 
 
 
-### Https status
+### [Https status](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
 ```text
 100 Continue
@@ -79,3 +79,16 @@ $ touch favicon.ico
 510 Not Extended
 511 Network Authentication Required
 ```
+
+- http: 409 is the correct status code for duplicate resource or resource already exists.
+- `res.redirect(307, '/auth/register')`: 307 Temporary Redirect (since HTTP/1.1) In this occasion, the request should be repeated with another URI, but future requests can still use the original URI.2 
+In contrast to 303, the request method should not be changed when reissuing the original request. For instance, a `POST` request must be repeated using another POST request.
+
+### authentication and authorization
+
+According to standard, client should send `token` to server via HTTP request in a header called `Authorization` with the form `Bearer [JWT_TOKEN]`.
+```text
+headers: { 'Authorization': 'Bearer ...token...',  'Content-Type': 'application/json'}
+```
+
+   

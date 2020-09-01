@@ -37,7 +37,7 @@ function signup(req, res) {
   });
   account.save(err => {
     if (err) return res.json({ success: false, data: "DB Error" })
-    const { password, ...info } = account
+    const { password, __v, isActive, ...info } = account.toObject()
     return res.json(info)
   });
 }
@@ -54,8 +54,7 @@ function isExist(req, res, next) {
   Account.findOne({ username }, (err, account) => {
     if (err) res.json({ success: false, data: err.message })
     else if (account) {
-      const tmp = account.toObject();
-      const { timestamp, __v, isActive, desc, role, category, ...others } = tmp;
+      const { timestamp, __v, isActive, desc, role, category, ...others } = account.toObject();
       req.decoded = { ...others, role: role.name, category: category.name }
       next()
     }
@@ -97,8 +96,8 @@ function signin(req, res, next) {
 // ------------ 3. logout ------------
 function signout(req, res) {
   const { refreshToken } = req
-  refreshTokenAry = refreshTokenAry.filter(rt => rt !== refreshToken)
-  return res.sendStatus(204);
+  refreshTokenAry = refreshTokenAry.filter(token => token !== refreshToken)
+  return res.sendStatus(204); //No Content
 }
 
 

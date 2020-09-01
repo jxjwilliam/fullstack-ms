@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-// All routers are here.
+// 路由表都放在这里，方便管理。
 
 const auth = require('./auth')
 const { routing, middleware: { notFound } } = require('./utils')

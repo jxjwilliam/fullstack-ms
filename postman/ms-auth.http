@@ -42,9 +42,18 @@ Content-Type: application/json
 
 ### /auth/account
 GET http://localhost:3000/auth/account/5f49a0ca9743db411812343a
-Authorization: Bearer eyJhbGciOiJIUz1I1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTE1MDY2LCJleHAiOjE1OTkwMDE0NjZ9.F00P5kkiBgr9uCP2CefulRl6rV7JSukaXQ5cG3xpeo8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTc3Mjg3LCJleHAiOjE1OTg5NzkwODd9.XyzYLDg7i-xV7ttY983XheC0HgiSfWHMN5Jil8ZQ-Og
 
 
-### /data/enterprise
-GET http://localhost:3000/auth/account
-Authorization: Bearer
+
+### /auth/account
+POST http://localhost:3000/auth/account
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTc5NDU2LCJleHAiOjE1OTg5ODEyNTZ9.xPw32cXKWFgEs1y2K4uN3ZN81Ii820h4xc_luykBpMk
+
+{
+    "username": "test6",
+    "password": "123",
+    "email": "test6@abc.com",
+    "phone": "3478221246"
+}

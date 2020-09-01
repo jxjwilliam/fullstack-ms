@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { compose } from 'recompose';
-import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import {
   Avatar,
@@ -50,9 +49,8 @@ class CascadeAddress extends Component {
   };
 
   async componentDidMount() {
-    const result = await axios(`/data/address`);
+    const data = await fetching(`/data/address`);
     this.setState(() => {
-      const data = result.data;
       const provinces = Object.keys(data);
       return { data, provinces };
     })
@@ -213,8 +211,6 @@ class SignUp1 extends Component {
   }
 
   async componentDidMount() {
-    // const result = await axios(`/data/signupInfo`);
-    // this.setState(() => ({...result.data}));
     this.loadResources('organizations');
   }
 

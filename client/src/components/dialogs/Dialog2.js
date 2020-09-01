@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios'
 import {
   Button,
   Input,
@@ -10,6 +9,7 @@ import {
   DialogTitle,
 } from '@material-ui/core'
 import {withStyles} from '@material-ui/styles';
+import {fetching} from '../../helpers/utils'
 
 const styles = theme => ({
   select: {
@@ -33,9 +33,8 @@ class Dialog2 extends Component {
   }
 
   async componentDidMount() {
-    const result = await axios(`/data/address`);
+    const data = await fetching(`/data/address`);
     this.setState(() => {
-      const data = result.data;
       const provinces = Object.keys(data);
       return {data, provinces};
     })

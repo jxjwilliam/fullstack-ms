@@ -34,7 +34,7 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
 
     // 文件上传(isFileOrProxy===1), 不要content-type
     headers = isFileOrProxy === 1 ? {Accept: HEADERS.Accept} : HEADERS
-    headers = { ...headers, ...opts.headers, 'authorization': authToken}
+    headers = { ...headers, ...opts.headers, 'authorization': `Bearer ${authToken}`}
   }
 
   const method = opts.method || 'GET'
@@ -67,14 +67,12 @@ const getToken = () => {
 
 const checkLogin = (token) => {
   const authToken = token || sessionStorage.getItem(TOKEN)
-  if (isEmpty(authToken)) {
-    console.log(`TODO: should redirect to ${DEFAULT_LOGIN_PAGE}`)
-    return <Redirect to={DEFAULT_LOGIN_PAGE}/>
-  }
-  return false
+  if (isEmpty(authToken)) return <Redirect to={DEFAULT_LOGIN_PAGE}/>
+  return null
 }
 
 export {
-  isEmpty, fetching, defer, capitalize,
+  isEmpty, fetching, fetchingOrig,
+  defer, capitalize,
   getToken, checkLogin
 }

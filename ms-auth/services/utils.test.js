@@ -5,7 +5,6 @@ describe('crud', () => {
 
   describe('create', () => {
     it('test status', (done) => {
-      // fetch('http://localhost:8066')
       fetch('https://jsonplaceholder.typicode.com/todos/1')
         .then(res => {
           // status=200, statusCode=undefined

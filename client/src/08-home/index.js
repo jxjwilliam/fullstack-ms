@@ -22,7 +22,7 @@ function Home() {
 }
 
 function HomeContainer({ auth: {token} }) {
-  console.log('??????', token)
+  console.log('Home Token: ', token)
   return checkLogin(token) || (
     <ThemeProvider theme={theme}>
       <Home />

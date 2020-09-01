@@ -31,8 +31,7 @@ export class ReviewSigned extends Component {
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {

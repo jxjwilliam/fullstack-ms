@@ -19,7 +19,7 @@ import {
 } from '@material-ui/core';
 import {Add} from '@material-ui/icons';
 
-const styles = theme => ({
+const styles = {
   form: {
     width: 300
   },
@@ -27,7 +27,7 @@ const styles = theme => ({
     width: 260,
     marginLeft: 20,
   }
-});
+};
 
 class Dialog1 extends Component {
   state = {
@@ -42,7 +42,6 @@ class Dialog1 extends Component {
   }
 
   async componentDidMount() {
-    // const result = await axios(`/api/user/lists`);
     const data = {}; //result.data;
     this.setState(() => ({...data, roles: data.roles || []}))
   }

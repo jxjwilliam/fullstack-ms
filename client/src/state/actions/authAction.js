@@ -7,7 +7,7 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
 } from '../ActionTypes'
-import { defer } from '../../helpers/utils'
+import { fetching } from '../../helpers/utils'
 
 // 1. signup/register
 const sigupSucc = (payload) => ({ type: SIGNUP_SUCCESS, payload })
@@ -56,15 +56,9 @@ const logoutSucc = () => ({ type: LOGOUT_SUCCESS })
 
 const logoutFail = (payload) => ({ type: LOGOUT_FAIL, payload })
 
-export const logoutAction1 = () => (dispatch) => {
-  return fetch('/auth/logout')
-    .then(res => res.json())
-    .then(() => dispatch(logoutSucc()))
-    .catch(() => dispatch(logoutFail()))
-}
-
 export const logoutAction = () => (dispatch) => {
-  return defer(1)
+  return fetching('/auth/logout') // defer(1)
+    .then(res => res.json())
     .then(() => dispatch(logoutSucc()))
     .catch(() => dispatch(logoutFail()))
 }

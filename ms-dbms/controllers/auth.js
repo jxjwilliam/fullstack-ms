@@ -91,7 +91,7 @@ const signin = (req, res, next) => {
 
 const authenticate = (req, res, next) => {
 
-  const token = req.body.token || req.params["token"] || req.headers["x-access-token"];
+  const token = req.body.token || req.params["token"] || req.headers["authorization"];
 
   if (token) {
     jwt.verify(token, SECRET, (err, decoded) => {

@@ -21,7 +21,7 @@ export const signupAction = (body) => (dispatch) => {
     body: JSON.stringify(body),
   }
 
-  return fetch('/auth/signup', options)
+  return fetch('/auth/register', options)
     .then((res) => res.json())
     .then((data) => {
       if (data.account) dispatch(sigupSucc(data))

@@ -34,7 +34,7 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
 
     // 文件上传(isFileOrProxy===1), 不要content-type
     headers = isFileOrProxy === 1 ? {Accept: HEADERS.Accept} : HEADERS
-    headers = { ...headers, ...opts.headers, 'x-access-token': authToken}
+    headers = { ...headers, ...opts.headers, 'authorization': authToken}
   }
 
   const method = opts.method || 'GET'

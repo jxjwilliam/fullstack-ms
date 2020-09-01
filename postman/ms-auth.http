@@ -1,2 +1,50 @@
 ### TEST
 GET http://localhost:8066
+
+
+### /auth/signin
+POST http://localhost:8066/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123"
+}
+
+### /auth/login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "demo",
+  "password": "123"
+}
+
+### /auth/token
+POST http://localhost:3000/auth/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0M2EiLCJ1c2VybmFtZSI6ImRlbW8iLCJlbWFpbCI6ImRlbW9AYmVzdGl0Y29uc3VsdGluZy5jb20iLCJwaG9uZSI6IjEzNDcyNTgxNjI2Iiwicm9sZSI6Im1lbWJlciIsImNhdGVnb3J5Ijoib3RoZXJzIiwiaWF0IjoxNTk4OTQwNTY4fQ.6u8tjFQMFsW1CJkDyglcOie0RKiKmc5aU1aFWQ4WG1Y"
+}
+
+### /auth/register
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "test2",
+  "password": "123",
+  "email": "test2@abc.com",
+  "phone": "3478221246"
+}
+
+
+### /auth/account
+GET http://localhost:3000/auth/account/5f49a0ca9743db411812343a
+Authorization: Bearer eyJhbGciOiJIUz1I1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTE1MDY2LCJleHAiOjE1OTkwMDE0NjZ9.F00P5kkiBgr9uCP2CefulRl6rV7JSukaXQ5cG3xpeo8
+
+
+### /data/enterprise
+GET http://localhost:3000/auth/account
+Authorization: Bearer

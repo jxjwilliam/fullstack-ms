@@ -18,19 +18,19 @@ describe('crud', () => {
 
   describe('read', () => {
     it('read', () => {
-      expect(1+1).to.equal(2)
+      expect(1 + 1).to.equal(2)
     })
   })
 
   describe('update', () => {
     it('update', () => {
-      expect(1+1).to.equal(2)
+      expect(1 + 1).to.equal(2)
     })
   })
 
   describe('delete', () => {
     it('delete', () => {
-      expect(1+1).to.equal(2)
+      expect(1 + 1).to.equal(2)
     })
   })
 

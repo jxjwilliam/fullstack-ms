@@ -4,13 +4,12 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const route = require('./services')
 const connectMongoDB = require('./connect')
-const { PORT, SECRET } = require('./constants')
+const { PORT } = require('./constants')
 
 connectMongoDB()
 
 const app = express()
 app.set('port', PORT)
-app.set('Secret', SECRET)
 
 app.use(logger('dev'))
 app.use(bodyParser.json())

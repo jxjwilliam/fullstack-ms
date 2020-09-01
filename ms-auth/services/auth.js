@@ -1,17 +1,19 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Account = require('../models/Account');
+const { ACCESS_SECRET, REFRESH_TOKEN } = require('../constants')
 
-require('dotenv').config();
-const SECRET = process.env.SECRET;
+let refreshTokenAry = [];
 
+// ------------ 1. register ------------
 // email + phone => unique
 // username => unique
+// http: 409 is the correct status code for duplicate resource or resource already exists.
 function isNotExist(req, res, next) {
-  const {username, email, phone} = req.body
+  const { username, email, phone } = req.body
   Account.findOne({ username, email, phone }, (err, account) => {
-    if (err) res.json({success: false, data: "Error"})
-    else if (account) res.json({success: false, data: "Existed"})
+    if (err) res.json({ success: false, data: err.message })
+    else if (account) res.sendStatus(409)
     else next()
   });
 }
@@ -20,26 +22,27 @@ function hashPassword(req, res, next) {
   const { password } = req.body
   // pre-save: account.password = bcrypt.hashSync(account.password, 10);
   bcrypt.hash(password, 10, (err, hashed) => {
-    if (err) return res.json({success: false, data: "Bcrypt Hash Error"})
+    if (err) return res.status(406).json({ success: false, data: "Bcrypt Hash Error" })
     req.body.password = hashed;
     next();
   })
 }
 
-function register (req, res, next) {
+function signup(req, res) {
   const { role, category, ...others } = req.body
   const account = new Account({
     ...others,
-    role: {name: role, desc: 'role'},
-    category: {name: category, desc: 'category'}
+    role: { name: role, desc: 'role' },
+    category: { name: category, desc: 'category' }
   });
   account.save(err => {
-    if (err) return res.json({success: false, data: "DB Error"})
+    if (err) return res.json({ success: false, data: "DB Error" })
     const { password, ...info } = account
     return res.json(info)
   });
 }
 
+// ------------ 2. login ------------
 /**
  * tip: onSubmit: needs `event.preventDefault`.
  * 3 cases: 1 error, 2 exist, 3 not exist.
@@ -47,81 +50,103 @@ function register (req, res, next) {
  * Document.prototype.toObject: https://mongoosejs.com/docs/api.html#document_Document-toObject
  */
 function isExist(req, res, next) {
-  const {username} = req.body
+  const { username } = req.body
   Account.findOne({ username }, (err, account) => {
-    if (err) res.json({success: false, data: "Error"})
+    if (err) res.json({ success: false, data: err.message })
     else if (account) {
-      req.account = account.toObject();
+      const tmp = account.toObject();
+      const { timestamp, __v, isActive, desc, role, category, ...others } = tmp;
+      req.decoded = { ...others, role: role.name, category: category.name }
       next()
     }
-    else res.status(404).send({success: false, data: "NOT FOUND"})
+    else res.sendStatus(404)
   });
 }
 
 function verifyPassword(req, res, next) {
-  const {password} = req.body
-  const passwordIsValid = bcrypt.compareSync(password, req.account.password);
+  const { password } = req.body
+  const passwordIsValid = bcrypt.compareSync(password, req.decoded.password);
   if (!passwordIsValid) {
-    return res.status(401).json({ auth: false, token: null, msg: "口令无效!" });
+    return res.sendStatus(401);
   }
   next()
 }
 
-async function issueToken(req, res, next) {
-  const {account} = req;
-  const { password, timestamp, __v, isActive, desc, role, category, ...others } = account;
-  const tokenInfo = { ...others, role: role.name, category: category.name }
-  req.token = await jwt.sign(tokenInfo, SECRET, { expiresIn: 86400 }); // expires in 24 hours
+// for access and refresh token
+function generateToken(user, secret, expires_option) {
+  return jwt.sign(user, secret, expires_option); // 86400: expires in 24 hours, '15s'
+}
+
+function issueToken(req, res, next) {
+  const { decoded : { password, ...others} } = req;
+
+  req.accessToken = generateToken(others, ACCESS_SECRET, { expiresIn:  '30m' }); // 86400: expires in 24 hours, '15s'
+  req.refreshToken = generateToken(others, REFRESH_TOKEN)
+
   next()
 }
 
-// 注册的时候issue。
-function login (req, res, next) {
-  const {token} = req
-  if (token) {
-    return res.status(200).json({token});
-  } else {
-    next(new Error('account error'))
-  }
+// 注册的时候issue。 Not use `return`
+function signin(req, res, next) {
+  const { accessToken, refreshToken } = req
+  refreshTokenAry.push(refreshToken)
+  if (accessToken) res.status(200).json({ token: accessToken,  refreshToken });
+  else next(new Error('account error'))
 }
 
-function signout (req, res) {
-  console.log('TODO signout')
-  return res.status(200).json({ msg: '退出' });
+// ------------ 3. logout ------------
+function signout(req, res) {
+  const { refreshToken } = req
+  refreshTokenAry = refreshTokenAry.filter(rt => rt !== refreshToken)
+  return res.sendStatus(204);
 }
 
+
+// ------------ 4. authenticate ------------
 /**
  * 验证 Token
  * GET https://localhost/api/userOrders
  *  Authorization: Bearer JWT_ACCESS_TOKEN
+ * 401: Unauthorized, 403: FORBIDDEN
  */
-function authenticate (req, res, next) {
-  const token = req.headers["x-access-token"] || req.body.token || req.params["token"];
-
+function authenticate(req, res, next) {
+  const authToken = req.headers["authorization"]
+  // Bearer eyJhbGciOiJIUzI1N...
+  const token = authToken && authToken.split(' ')[1]
   if (token) {
-    jwt.verify(token, SECRET, (error, decoded) => {
-      if (error) return res.status(403).json({ msg: "auth认证失败。" });
+    jwt.verify(token, ACCESS_SECRET, (error, account) => {
+      if (error) return res.sendStatus(403);
       else {
-        req.decoded = decoded;
-        req.userId = decoded._id;
-        console.log('auth认证---> ', req.decoded);
+        req.account = account;
         next();
       }
     });
   }
-  else {
-    return res.status(401).json({ msg: "auth token不存在。" });
-  }
+  else return res.sendStatus(401);
+}
+
+// ------------ 5. refresh token ------------
+// [JWT Authentication Tutorial - Node.js](https://www.youtube.com/watch?v=mbsmsi7l3r4)
+function refreshToken(req, res) {
+  const {token} = req.body
+  if(token === null) return res.sendStatus(401)
+  if (!refreshTokenAry.includes(token)) return res.sendStatus(403)
+  jwt.verify(token, REFRESH_TOKEN, (err, account) => {
+    if (err) return res.sendStatus(403)
+    const accessToken = generateToken(account, ACCESS_SECRET, { expiresIn: '30m'})
+    res.json({token: accessToken})
+  })
 }
 
 module.exports = {
   isNotExist,
   hashPassword,
-  register,
+  signup,
   isExist,
   verifyPassword,
   issueToken,
-  login,
+  signin,
   signout,
   authenticate,
+  refreshToken
 }

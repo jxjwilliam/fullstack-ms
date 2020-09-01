@@ -101,7 +101,7 @@ const GeneralRouters = [
     component: SignInSide,
   },
   {
-    path: '/logout',
+    path: '/signout',
     title: '退出',
     icon: ExitToApp,
     component: SignOut,

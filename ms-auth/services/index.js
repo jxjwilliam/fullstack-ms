@@ -1,14 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
+// All routers are here.
+
 const auth = require('./auth')
-const {routing, middleware: {notFound} } = require('./utils')
+const { routing, middleware: { notFound } } = require('./utils')
 const Account = require('../models/Account')
 const Role = require('../models/Role')
 
 // 1. http://localhost:3000/auth
 router.get('/', (req, res) => {
-  const {app, url, baseUrl, originalUrl, path, hostname, ip, xhr} = req
+  const { app, url, baseUrl, originalUrl, path, hostname, ip, xhr } = req
   const { locals } = res
   res.json({
     message: 'Welcome to the AUTH API!',
@@ -18,8 +20,8 @@ router.get('/', (req, res) => {
 })
 
 // 2. /auth/register...
-const {isNotExist, hashPassword, register} = auth
-router.post(['/register', '/signup'], isNotExist, hashPassword, register)
+const { isNotExist, hashPassword, signup } = auth
+router.post('/register', isNotExist, hashPassword, signup)
 
 /**
  * 3. /auth/login
@@ -29,17 +31,22 @@ router.post(['/register', '/signup'], isNotExist, hashPassword, register)
  *   url="/login"
  *   statusCode=null, statusMessage=null
  */
-const {isExist, verifyPassword, issueToken, login} = auth
-router.post(['/login', '/signin'], isExist, verifyPassword, issueToken, login)
+const { isExist, verifyPassword, issueToken, signin } = auth
+router.post('/login', isExist, verifyPassword, issueToken, signin)
 
 
-router.get(['/logout', '/signout'], auth.signout)
+router.post('/token', auth.refreshToken)
+
+router.use(auth.authenticate)
+
+router.get('/logout', auth.signout)
 
 
 router.get('/authenticate', auth.authenticate)
 
 
 router.use('/account', routing(Account))
+
 router.use('/role', routing(Role))
 
 router.use(notFound)

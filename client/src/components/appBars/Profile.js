@@ -20,7 +20,7 @@ const routers = [
   },
   {
     title: 'Sign Out',
-    path: '/logout'
+    path: '/signout'
   }
 ]
 

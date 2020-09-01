@@ -4,8 +4,8 @@ const createError = require('http-errors')
 
 const middleware = {
   notFound: function (req, res, next) {
-    const {originalUrl, baseUrl, url} = req
-    console.error('😞 notFound Error 😞 ', {originalUrl, baseUrl, url,})
+    const { originalUrl, baseUrl, url } = req
+    console.error('😞 notFound Error 😞 ', { originalUrl, baseUrl, url, })
     next(createError(404))
   },
 }
@@ -20,7 +20,7 @@ const getAccountInfo = (authToken) => {
       return token.category
     },
     getAccount: function (req, res, next) {
-      const accountInfo = ({username,email,phone} = token);
+      const accountInfo = ({ username, email, phone } = token);
       return accountInfo
     }
   }
@@ -42,7 +42,7 @@ function crud(Model) {
           req.data = data;
           next();
         } else {
-          return res.json({message: 'No such record'});
+          return res.json({ message: 'No such record' });
           next(new Error('failed to load data'))
         }
       });
@@ -76,7 +76,7 @@ function crud(Model) {
   }
 }
 
-function routing (MongoModel) {
+function routing(MongoModel) {
   const router = express.Router()
   const Model = crud(MongoModel)
 

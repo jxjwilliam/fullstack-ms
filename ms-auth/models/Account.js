@@ -5,6 +5,8 @@ const validator = require('validator')
 const Role = require('./Role')
 const { RoleSchema, CategorySchema } = require('./common')
 
+// 1. username: unique
+// 2. email + phone: unique
 const AccountSchema = new Schema({
   username: {
     type: String,
@@ -49,34 +51,34 @@ const AccountSchema = new Schema({
 
 AccountSchema.index({ email: 1, phone: 1 }, { unique: true })
 
-AccountSchema.pre('save', function (next) {
-  const account = this;
-  bcrypt.hash(account.password, 10, function (err, hash) {
-    if (err) return next(err);
-    account.password = hash;
-    next();
-  })
-});
+// Only 1-time bcrypt.hash, otherwise error.
+// AccountSchema.pre('save', function (next) {
+//   const account = this;
+//   console.log('Schema: ', account)
+//   bcrypt.hash(account.password, 10, function (err, hash) {
+//     if (err) return next(err);
+//     account.password = hash;
+//     next();
+//   })
+// });
 
-AccountSchema.post('save', function(doc) {
-  // TODO
-})
 
-AccountSchema.statics.authenticate = function (username, password, callback) {
-  console.log("如何调用？什么时候执行 ？");
-  Account.findOne({ name })
-    .exec(function (err, user) {
-      if (err) return callback(err)
-      else if (!user) {
-        let err = new Error('Account not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (result) return callback(null, user);
-        else return callback();
-      })
-    });
-};
+// Account.authenticate
+// AccountSchema.statics.authenticate = function (username, password, callback) {
+//   console.log("如何调用？什么时候执行 ？");
+//   Account.findOne({ name })
+//     .exec(function (err, user) {
+//       if (err) return callback(err)
+//       else if (!user) {
+//         let err = new Error('Account not found.');
+//         err.status = 401;
+//         return callback(err);
+//       }
+//       bcrypt.compare(password, user.password, function (err, result) {
+//         if (result) return callback(null, user);
+//         else return callback();
+//       })
+//     });
+// };
 
 module.exports = mongoose.model('Account', AccountSchema, 'accounts');

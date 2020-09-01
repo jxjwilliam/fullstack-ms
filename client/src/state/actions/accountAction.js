@@ -11,7 +11,7 @@ import {
 const getHeader = (token) => ({
   headers: {
     ...HEADERS,
-    'x-access-token': token,
+    'authorization': token,
   },
 })
 

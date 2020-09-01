@@ -52,7 +52,7 @@ const useStyles = theme => ({
 })
 
 // https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in-side/SignInSide.js
-class Login extends Component {
+class SignInSide extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {login: {username: '', password: '',}, done: false,}
 
@@ -169,4 +169,4 @@ class Login extends Component {
 export default compose(
   withStyles(useStyles, { name: 'login2' }),
   connect((state) => ({ auth: state.auth }), { loginAction })
-)(Login)
+)(SignInSide)

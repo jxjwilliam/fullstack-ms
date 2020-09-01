@@ -120,3 +120,10 @@ Only `process.env.NODE_ENV === 'development'` will activate
 ### Test
 
 - jest
+
+| client files | client function-name | router | rest-name | server function-name | server files | 
+| --- | --- | --- | --- | --- | --- |
+| sign/Signin.js | SignIn | /signup | /auth/login | ms-auth:signin | auth.js|
+| sign/SigninSide.js | SignInSide | /login | /auth/login | ms-auth:signin| auth.js |
+| sign/Signout.js | SignOut | /signout | /auth/logout | ms-auth:signout| auth.js|
+| sign/Signup.js | SignUp | /signup | /auth/register | ms-auth:signup| auth.js |

@@ -17,16 +17,15 @@ $ node bin/init.js
 - 注冊，查詢，修改，刪除用戶信息表
 - 登录，登出系统，issue 颁发 token 认证。
 
-| action   | 调用            | 说明                                            |
-| -------- | --------------- | ----------------------------------------------- |
-| 注册     | /auth/signup | /auth/register | 保存用户信息，包括口令                          |
-| 登录     | /auth/signin | /auth/login    | 验证用户信息, 调用 authentication/authorization |
-| 退出     | /auth/signout | /auth/logout  | 取消 token                                      |
-| Account | /auth/account            | 查看 accounts                                            |
-| Role | /auth/role             | 查看 roles                               |
+| action  | 调用          | 说明           |
+| ------- | ------------- | -------------- |
+| 注册    | /auth/signup  | /auth/register | 保存用户信息，包括口令 |
+| 登录    | /auth/signin  | /auth/login    | 验证用户信息, 调用 authentication/authorization |
+| 退出    | /auth/signout | /auth/logout   | 取消 token |
+| Account | /auth/account | 查看 accounts  |
+| Role    | /auth/role    | 查看 roles     |
 
 > Notice: 多个表之间的关联
-
 
 ### 📑 Auth Service - Microservices Authentication and Authorization
 
@@ -48,12 +47,11 @@ If you have a single client application then you can do following steps, 当前�
 
 - You can call the authentication api to validate and decode your token or you can write 3 to 4 line of code in every microservice in middleware.
 
-### 📑 
+### 📑
 
-| validation | frontend | backend | DB | notes |
-| --- | --- | --- | --- | --- |
-| password | ✋ (form)  | | | |
-
+| validation | frontend  | backend | DB  | notes |
+| ---------- | --------- | ------- | --- | ----- |
+| password   | ✋ (form) |         |     |       |
 
 ### 📑 register
 
@@ -81,6 +79,7 @@ If you have a single client application then you can do following steps, 当前�
 - jwt.verify
 
 ## 📑 Express
+
 ---
 
 ### 1. express
@@ -89,17 +88,18 @@ If you have a single client application then you can do following steps, 当前�
 
 ### 2. express.Request
 
-- baseUrl: 
+- baseUrl:
 - path: // example.com/users?sort=desc -> '/users'
-- originalUrl: req.originalUrl  = req.baseUrl + req.path
+- originalUrl: req.originalUrl = req.baseUrl + req.path
 - url: `req.url` is not a native Express property, it is inherited from Node’s [`http module`](https://nodejs.org/api/http.html#http_message_url).
 
 ```javascript
-app.use('/admin', function (req, res, next) { // GET 'http://www.example.com/admin/new'
-  console.dir(req.originalUrl) // '/admin/new'
-  console.dir(req.baseUrl) // '/admin'
-  console.dir(req.path) // '/new'
-  next()
+app.use('/admin', function (req, res, next) {
+	// GET 'http://www.example.com/admin/new'
+	console.dir(req.originalUrl) // '/admin/new'
+	console.dir(req.baseUrl) // '/admin'
+	console.dir(req.path) // '/new'
+	next()
 })
 ```
 
@@ -116,7 +116,6 @@ Creates a new router object:
 
 ### 5. express.Application
 
-
 ### 📑 bcrypt
 
 - compare(data, encrypted, cb)
@@ -127,11 +126,7 @@ Creates a new router object:
 - jwt.sign(payload, secretOrPrivateKey, [options, callback])
 - jwt.verify(token, secretOrPublicKey, [options, callback])
 
-
 ### express-jwt
-
-
-
 
 ### 📑 解决有效期的问题
 
@@ -154,7 +149,6 @@ So, a request to a microservices would pass just the `Auth token`. if it's valid
 - 如何解决登录有效时间是 10 分钟的问题？
 
 - `oAuth2` 允许微信，google 等账号登入。
-
 
 ### 参考
 

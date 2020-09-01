@@ -92,8 +92,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function(Menu, Content) {
-  function Dashboard({location:{pathname}, match:{url, path}}) {
+export default function (Menu, Content) {
+  function Dashboard({ location: { pathname }, match: { url, path } }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -105,28 +105,28 @@ export default function(Menu, Content) {
 
     return (
       <div className={classes.root}>
-        <CssBaseline/>
+        <CssBaseline />
         <Drawer
           variant="permanent"
-          classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}}
+          classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose) }}
           open={open}
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-              {open ? <ChevronLeft/> : <ChevronRight/>}
+              {open ? <ChevronLeft /> : <ChevronRight />}
             </IconButton>
           </div>
-          <Divider/>
+          <Divider />
           <Fragment>
-            <Menu/>
-            {open ? <accordion.ShowInfo/> : <accordion.HideInfo/>}
+            <Menu />
+            {open ? <accordion.ShowInfo /> : <accordion.HideInfo />}
           </Fragment>
         </Drawer>
-        <main className={classes.content} style={{position: 'relative'}}>
+        <main className={classes.content} style={{ position: 'relative' }}>
           {/*<div className={classes.appBarSpacer}/>*/}
           <Container maxWidth="lg" className={classes.container}>
-            <Title path={pathname}/>
-            <Content/>
+            <Title path={pathname} />
+            <Content />
           </Container>
         </main>
       </div>

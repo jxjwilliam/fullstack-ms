@@ -18,7 +18,6 @@ $ open http：//localhost:10000
 
 ### request.js
 
-
 `Request` is going into maintenance mode, this is what you need to know.
 
 Alternatives to Request:
@@ -28,11 +27,10 @@ Alternatives to Request:
 - Node Fetch
 - Superagent
 
-
 ### API
 
 ---
 
-| 表   | CRUD | API        | 说明             |
-| ---- | ---- | ---------- | ---------------- |
+| 表      | CRUD | API        | 说明             |
+| ------- | ---- | ---------- | ---------------- |
 | Account | GET  | /api/users | 取所有`用户信息` |

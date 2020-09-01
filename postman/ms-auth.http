@@ -1,8 +1,8 @@
-### TEST
+### test server is Running
 GET http://localhost:8066
 
 
-### /auth/signin
+### LOGIN1: /auth/signin
 POST http://localhost:8066/auth/login
 Content-Type: application/json
 
@@ -11,7 +11,7 @@ Content-Type: application/json
   "password": "123"
 }
 
-### /auth/login
+### LOGIN2: /auth/login
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
@@ -20,15 +20,7 @@ Content-Type: application/json
   "password": "123"
 }
 
-### /auth/token
-POST http://localhost:3000/auth/token
-Content-Type: application/json
-
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0M2EiLCJ1c2VybmFtZSI6ImRlbW8iLCJlbWFpbCI6ImRlbW9AYmVzdGl0Y29uc3VsdGluZy5jb20iLCJwaG9uZSI6IjEzNDcyNTgxNjI2Iiwicm9sZSI6Im1lbWJlciIsImNhdGVnb3J5Ijoib3RoZXJzIiwiaWF0IjoxNTk4OTQwNTY4fQ.6u8tjFQMFsW1CJkDyglcOie0RKiKmc5aU1aFWQ4WG1Y"
-}
-
-### /auth/register
+### REGISTER /auth/register
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
@@ -40,13 +32,12 @@ Content-Type: application/json
 }
 
 
-### /auth/account
+### test authenticate(): /auth/account 
 GET http://localhost:3000/auth/account/5f49a0ca9743db411812343a
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTc3Mjg3LCJleHAiOjE1OTg5NzkwODd9.XyzYLDg7i-xV7ttY983XheC0HgiSfWHMN5Jil8ZQ-Og
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0M2EiLCJ1c2VybmFtZSI6ImRlbW8iLCJlbWFpbCI6ImRlbW9AYmVzdGl0Y29uc3VsdGluZy5jb20iLCJwaG9uZSI6IjEzNDcyNTgxNjI2Iiwicm9sZSI6Im1lbWJlciIsImNhdGVnb3J5Ijoib3RoZXJzIiwiaWF0IjoxNTk4OTg3NzY5LCJleHAiOjE1OTg5ODk1Njl9.L_W0u1t2rFLrK_Bml1CMueHFOo1-yoV8NKVRV3utah8
 
 
-
-### /auth/account
+### redirec /auth/account -> /auth/register
 POST http://localhost:3000/auth/account
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTc5NDU2LCJleHAiOjE1OTg5ODEyNTZ9.xPw32cXKWFgEs1y2K4uN3ZN81Ii820h4xc_luykBpMk
@@ -56,4 +47,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjY
     "password": "123",
     "email": "test6@abc.com",
     "phone": "3478221246"
+}
+
+
+### test refreshtoken: /auth/token
+POST http://localhost:3000/auth/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0M2EiLCJ1c2VybmFtZSI6ImRlbW8iLCJlbWFpbCI6ImRlbW9AYmVzdGl0Y29uc3VsdGluZy5jb20iLCJwaG9uZSI6IjEzNDcyNTgxNjI2Iiwicm9sZSI6Im1lbWJlciIsImNhdGVnb3J5Ijoib3RoZXJzIiwiaWF0IjoxNTk4OTQwNTY4fQ.6u8tjFQMFsW1CJkDyglcOie0RKiKmc5aU1aFWQ4WG1Y"
 }

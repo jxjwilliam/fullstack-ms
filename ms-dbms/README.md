@@ -8,6 +8,7 @@
 - findOrCreate
 - findByPk
 - findAll
+- findOne
 - create
 - update
 

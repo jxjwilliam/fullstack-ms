@@ -19,7 +19,35 @@ $ touch favicon.ico
 3. authentication
 4. refresh tokens
 
+### Mongoose 5.10.1
 
+```text
+Model.deleteMany()
+Model.deleteOne()
+Model.find()
+Model.findById()
+Model.findByIdAndDelete()
+Model.findByIdAndRemove()
+Model.findByIdAndUpdate()
+Model.findOne()
+Model.findOneAndDelete()
+Model.findOneAndRemove()
+Model.findOneAndReplace()
+Model.findOneAndUpdate()
+Model.replaceOne()
+Model.updateMany()
+Model.updateOne()
+```
+
+### mongoose: ref, populate
+
+```text
+new mongoose.Schema({
+    postBy: userSchema
+    // Or:
+    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
+})
+```
 
 ### [Https status](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
@@ -80,9 +108,10 @@ $ touch favicon.ico
 511 Network Authentication Required
 ```
 
-- http: 409 is the correct status code for duplicate resource or resource already exists.
-- `res.redirect(307, '/auth/register')`: 307 Temporary Redirect (since HTTP/1.1) In this occasion, the request should be repeated with another URI, but future requests can still use the original URI.2 
-In contrast to 303, the request method should not be changed when reissuing the original request. For instance, a `POST` request must be repeated using another POST request.
+- http: `409` is the correct status code for duplicate resource or resource already exists.
+- `res.redirect(307, '/auth/register')`: `307 Temporary Redirect (since HTTP/1.1)` In this occasion, the request should be repeated with another URI, but future requests can still use the original URI.2
+In contrast to `303`, the request method should not be changed when reissuing the original request. For instance, a `POST` request must be repeated using another POST request.
+- The only difference between `307` and `302` is that `307` guarantees that the method and the body will not be changed when the redirected request is made.
 
 ### authentication and authorization
 
@@ -91,4 +120,21 @@ According to standard, client should send `token` to server via HTTP request in 
 headers: { 'Authorization': 'Bearer ...token...',  'Content-Type': 'application/json'}
 ```
 
-   
+### [Common System Errors](https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+This is a list of system errors commonly-encountered when writing a Node.js program. 
+
+- EACCES (Permission denied)
+- EADDRINUSE (Address already in use)
+- ECONNREFUSED (Connection refused)
+- ECONNRESET (Connection reset by peer)
+- EEXIST (File exists)
+- EISDIR (Is a directory)
+- EMFILE (Too many open files in system)
+- ENOENT (No such file or directory)
+- ENOTDIR (Not a directory)
+- ENOTEMPTY (Directory not empty)
+- ENOTFOUND (DNS lookup failed)
+- EPERM (Operation not permitted)
+- EPIPE (Broken pipe)
+- ETIMEDOUT (Operation timed out)

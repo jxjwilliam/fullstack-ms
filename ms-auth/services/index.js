@@ -41,10 +41,6 @@ router.use(auth.authenticate)
 
 router.get('/logout', auth.signout)
 
-
-router.get('/authenticate', auth.authenticate)
-
-
 router.use('/account', routing(Account))
 
 router.use('/role', routing(Role))

@@ -43,15 +43,14 @@ app.all('/auth/*', (req, res) => {
   apiProxy.web(req, res, { target: MS_AUTH })
 })
 
-// authentication
+// authentication: jsonwebtoke.sign -> algorithm(default='HS256')
+// without `next`: [HPM] Error occurred while trying to proxy request /data/stuff from localhost:3000 to http://loc
+// alhost:8081/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
 app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
   (err, req, res, next) => {
-    console.group('authentication');
-    console.log(req.baseUrl, req.originalUrl, req.url);
-    console.groupEnd()
-    if (err.name === 'UnauthorizedError') {
-      console.error(req.user, req.ip, 'invalid token');
-      next()
+    if (err.name) {
+      const {name, message, status} = err
+      return res.status(status).json({name, message})
     }
   }
 )
@@ -76,19 +75,19 @@ app.all('/api/doc', (req, res) => {
 })
 
 
-app
-  .use(function (req, res, next) {
-    const { url, params, query, body } = req
-    console.error('BFF-路由服务器 无效URL: ', url, params, query, body)
-    next(createError(404))
-  })
-  .use(function (err, req, res) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (req, res, next) {
+  const { url, params, query, body } = req
+  console.error('BFF-路由服务器 无效URL: ', url, params, query, body)
+  next(createError(404))
+})
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  })
+app.use(function (err, req, res) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+})
 
 module.exports = app;

@@ -4,36 +4,6 @@
 
 这是一个 issue `jwt-token`的简单的微服务，使用`MongoDB` + `mongoose`
 
-### Mongoose 5.10.1
-
-```text
-Model.deleteMany()
-Model.deleteOne()
-Model.find()
-Model.findById()
-Model.findByIdAndDelete()
-Model.findByIdAndRemove()
-Model.findByIdAndUpdate()
-Model.findOne()
-Model.findOneAndDelete()
-Model.findOneAndRemove()
-Model.findOneAndReplace()
-Model.findOneAndUpdate()
-Model.replaceOne()
-Model.updateMany()
-Model.updateOne()
-```
-
-### mongoose: ref, populate
-
-```text
-new mongoose.Schema({
-    postBy: userSchema
-    // Or:
-    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
-})
-```
-
 ### Initialize
 
 ```shell script

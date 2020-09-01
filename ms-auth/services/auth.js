@@ -72,14 +72,14 @@ function verifyPassword(req, res, next) {
 }
 
 // for access and refresh token
-function generateToken(user, secret, expires_option) {
-  return jwt.sign(user, secret, expires_option); // 86400: expires in 24 hours, '15s'
+function generateToken(info, secret, expires_option) {
+  return jwt.sign(info, secret, expires_option); // 86400: expires in 24 hours, '15s'
 }
 
 function issueToken(req, res, next) {
-  const { decoded : { password, ...others} } = req;
+  const { decoded: { password, ...others } } = req;
 
-  req.accessToken = generateToken(others, ACCESS_SECRET, { expiresIn:  '30m' }); // 86400: expires in 24 hours, '15s'
+  req.accessToken = generateToken(others, ACCESS_SECRET, { expiresIn: '30m' }); // 86400: expires in 24 hours, '15s'
   req.refreshToken = generateToken(others, REFRESH_TOKEN)
 
   next()
@@ -89,7 +89,7 @@ function issueToken(req, res, next) {
 function signin(req, res, next) {
   const { accessToken, refreshToken } = req
   refreshTokenAry.push(refreshToken)
-  if (accessToken) res.status(200).json({ token: accessToken,  refreshToken });
+  if (accessToken) res.status(200).json({ token: accessToken, refreshToken });
   else next(new Error('account error'))
 }
 
@@ -109,8 +109,8 @@ function signout(req, res) {
  * 401: Unauthorized, 403: FORBIDDEN
  */
 function authenticate(req, res, next) {
-  const authToken = req.headers["authorization"]
   // Bearer eyJhbGciOiJIUzI1N...
+  const authToken = req.headers["authorization"]
   const token = authToken && authToken.split(' ')[1]
   if (token) {
     jwt.verify(token, ACCESS_SECRET, (error, account) => {
@@ -127,13 +127,13 @@ function authenticate(req, res, next) {
 // ------------ 5. refresh token ------------
 // [JWT Authentication Tutorial - Node.js](https://www.youtube.com/watch?v=mbsmsi7l3r4)
 function refreshToken(req, res) {
-  const {token} = req.body
-  if(token === null) return res.sendStatus(401)
+  const { token } = req.body
+  if (token === null) return res.sendStatus(401)
   if (!refreshTokenAry.includes(token)) return res.sendStatus(403)
   jwt.verify(token, REFRESH_TOKEN, (err, account) => {
     if (err) return res.sendStatus(403)
-    const accessToken = generateToken(account, ACCESS_SECRET, { expiresIn: '30m'})
-    res.json({token: accessToken})
+    const accessToken = generateToken(account, ACCESS_SECRET, { expiresIn: '30m' })
+    res.json({ token: accessToken })
   })
 }
 

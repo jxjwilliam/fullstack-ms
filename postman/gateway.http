@@ -5,3 +5,6 @@ GET http://localhost:8081
 GET http://127.0.0.1:8081
 
 ###
+
+http://localhost:3000/data/stuff
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk4OTg5NjU4LCJleHAiOjE1OTg5OTE0NTh9.FGmq1ImjN69QzsWV0InnA6JLm6csiBrWEAg_taZsRsI

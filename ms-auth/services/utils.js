@@ -8,7 +8,7 @@ const middleware = {
     console.error('😞 notFound Error 😞 ', { originalUrl, baseUrl, url, })
     next(createError(404))
   },
-  print: function(req, res) {
+  print: function (req, res) {
     const { url, baseUrl, originalUrl, path, hostname } = req
     console.log('url, baseUrl, originalUrl: ', url, baseUrl, originalUrl, path, hostname)
   }

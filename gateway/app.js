@@ -43,14 +43,17 @@ app.all('/auth/*', (req, res) => {
   apiProxy.web(req, res, { target: MS_AUTH })
 })
 
-// authentication: jsonwebtoke.sign -> algorithm(default='HS256')
-// without `next`: [HPM] Error occurred while trying to proxy request /data/stuff from localhost:3000 to http://loc
-// alhost:8081/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+/**
+ * authentication: jsonwebtoke.sign -> algorithm(default='HS256')
+ * without `next`: [HPM] Error occurred while trying to proxy request /data/stuff from localhost:3000 to http://loc
+ * alhost:8081/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+ * 401 Unauthorized: {name: "UnauthorizedError", message: "jwt expired"}
+ */
 app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
   (err, req, res, next) => {
     if (err.name) {
-      const {name, message, status} = err
-      return res.status(status).json({name, message})
+      const { name, message, status } = err
+      return res.status(status).json({ name, message })
     }
   }
 )

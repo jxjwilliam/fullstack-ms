@@ -1,0 +1,83 @@
+{
+  "localhost": {
+    "url": "http://127.0.0.1",
+    "ms": {
+      "discovery": {
+        "PORT": 3800
+      },
+      "client": {
+        "PORT": 3000
+      },
+      "gateway": {
+        "PORT": 8800
+      },
+      "admin": {
+        "PORT": 8801
+      },
+      "dbms": {
+        "PORT": 8802,
+        "uploads": "/C/Users/willi/MY_DATA/uploads",
+        "MYSQL_DB": "ms-dbms"
+      },
+      "features": {
+        "PORT": 8803,
+        "uploads": "/C/Users/willi/MY_DATA/uploads",
+        "MYSQL_DB": "ms-features-mysql",
+        "MONGO_DB": "ms-features-mongo"
+      },
+      "graphql": {
+        "PORT": 8804
+      },
+      "auth": {
+        "PORT": 8805,
+        "MONGO_DB": "ms-auth"
+      },
+      "mongo": {
+        "PORT": 8806,
+        "MONGO_DB": "ms-mongo"
+      },
+      "redis": {
+        "PORT": 8807
+      },
+      "socket": {
+        "PORT": 8808
+      },
+      "swagger": {
+        "PORT": 8809
+      },
+      "gatsby": {
+        "PORT": 8810
+      },
+      "电子签章代理": {
+        "PORT": 8901
+      },
+      "短信代理": {
+        "PORT": 8902
+      }
+    }
+  },
+  "dzfactoring.com.cn": {
+    "ip": "39.101.135.100",
+    "url": "https://www.dzfactoring.com.cn"
+  },
+  "erongdan.com": {
+    "ip": "125.76.225.115",
+    "url": "https://www.erongdan.com"
+  },
+  "116.196.85.178:3000": {
+    "ip": "116.196.85.178",
+    "url": "http://116.196.85.178:3000"
+  },
+  "116.196.85.178:4000": {
+    "ip": "116.196.85.178",
+    "url": "http://116.196.85.178:4000"
+  },
+  "116.196.85.178:5000": {
+    "ip": "116.196.85.178",
+    "url": "http://116.196.85.178:5000"
+  },
+  "119.3.219.40": {
+    "ip": "119.3.219.40",
+    "url": "http://119.3.219.40"
+  }
+}

@@ -1,5 +1,6 @@
 export const DEFAULT_HOME_PAGE = '/'
 export const DEFAULT_LOGIN_PAGE = '/signin'
+export const REGISTER_PAGE = '/signup'
 
 export const Menus = [
   {

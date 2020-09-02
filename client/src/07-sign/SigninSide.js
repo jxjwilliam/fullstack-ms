@@ -17,7 +17,7 @@ import {
 import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { withStyles } from '@material-ui/core/styles'
-import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
+import { DEFAULT_HOME_PAGE, TOKEN, REGISTER_PAGE } from '../constants'
 import { loginAction } from '../state/actions'
 
 const useStyles = theme => ({
@@ -153,8 +153,8 @@ class SignInSide extends Component {
                   </MuiLink>
                 </Grid>
                 <Grid item>
-                  <MuiLink component={Link} to="/signup" variant="body2">
-                    还没有账号？注册～🤠
+                  <MuiLink component={Link} to={REGISTER_PAGE} variant="body2">
+                    还没有账号？注册～<span role="img" aria-label="hat">🤠</span>
                   </MuiLink>
                 </Grid>
               </Grid>

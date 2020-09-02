@@ -9,6 +9,7 @@ import {
 import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import {signupAction} from "../state/actions";
+import {DEFAULT_LOGIN_PAGE} from '../constants'
 
 // https://raw.githubusercontent.com/mui-org/material-ui/master/docs/src/pages/getting-started/templates/sign-up/SignUp.js
 const useStyles = makeStyles((theme) => ({
@@ -179,7 +180,7 @@ function SignUp (props) {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <MuiLink component={Link} to="/signin" variant="body2">
+              <MuiLink component={Link} to={DEFAULT_LOGIN_PAGE} variant="body2">
                 已经注册？点击登陆
               </MuiLink>
             </Grid>

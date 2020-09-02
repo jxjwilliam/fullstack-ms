@@ -1,0 +1,31 @@
+{
+  "name": "ms-discovery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "ip": "^1.1.5",
+    "morgan": "~1.9.1",
+    "request": "^2.88.2",
+    "dotenv": "^8.2.0",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4"
+  }
+}

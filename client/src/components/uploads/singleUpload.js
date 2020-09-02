@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -7,15 +6,14 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-import { createStyles, Theme, withStyles} from '@material-ui/core/styles';
-import { concat } from 'rxjs';
+import { withStyles} from '@material-ui/core/styles';
 
-const styles = (theme) =>
-  createStyles({
-    root: {
-      maxWidth:'1000px'
-    },
-  });
+const styles = {
+  root: {
+    maxWidth:'1000px'
+  },
+}
+
 class Upload extends Component {
    state = {
     value: '',
@@ -46,9 +44,9 @@ class Upload extends Component {
             if(type2 === 'image/png' || type2 === 'image/jpeg' || type2 === 'image/jpg') {
                 if(files[0]){
                     imgUrl = URL.createObjectURL(files[0]);
-                }    
+                }
                 this.props.uploadChange({fileList,uploadName})
-                 formData.append('image', files[0]);                         
+                 formData.append('image', files[0]);
                 // fetch('/api/upload', {
                 //   method: 'POST',
                 //   body: formData,
@@ -160,11 +158,11 @@ class Upload extends Component {
                         </IconButton> */}
                     </MuiDialogTitle>
                     <MuiDialogContent style={{minWidth:'600px',minHeight:'400px'}}>
-                        <img src={imgUrl} />
+                        <img src={imgUrl} alt={'signleUpload'} />
                     </MuiDialogContent>
                 </Dialog>
             </div>
         )
     }
 }
-export default withStyles(styles)(Upload);
+export default withStyles(styles, { name: 'singleUpload' })(Upload);

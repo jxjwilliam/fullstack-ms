@@ -12,7 +12,7 @@ import {
   AccountBox,
   ExitToApp,
 } from '@material-ui/icons'
-import { Menus } from './constants'
+import { Menus, DEFAULT_LOGIN_PAGE, REGISTER_PAGE } from './constants'
 import Admin from './01-risk-management'
 import Company from './02-core_business'
 import Supplier from './03-supplier'
@@ -89,7 +89,7 @@ const GeneralRouters = [
     component: Service,
   },
   {
-    path: '/signin',
+    path: DEFAULT_LOGIN_PAGE, // signin
     title: '登录',
     icon: VerifiedUser,
     component: SignIn,
@@ -107,7 +107,7 @@ const GeneralRouters = [
     component: SignOut,
   },
   {
-    path: '/signup',
+    path: REGISTER_PAGE, // signup
     title: '注册',
     icon: AccountBox,
     component: SignUp,

@@ -424,7 +424,7 @@ class SignUp1 extends Component {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="/signin" variant="body2">
+                <Link href={DEFAULT_LOGIN_PAGE} variant="body2">
                   已经注册？点击登陆
                 </Link>
               </Grid>

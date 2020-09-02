@@ -7,14 +7,14 @@ import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import MuiDialogContent from '@material-ui/core/DialogContent'
-import { createStyles, Theme, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 
-const styles = (theme) =>
-  createStyles({
-    root: {
-      maxWidth: '1000px',
-    },
-  })
+const styles = {
+  root: {
+    maxWidth: '1000px',
+  },
+}
+
 class Upload extends Component {
   constructor(props) {
     super(props)
@@ -253,4 +253,4 @@ class Upload extends Component {
     )
   }
 }
-export default withStyles(styles)(Upload)
+export default withStyles(styles, { name: 'multiUpload' })(Upload)

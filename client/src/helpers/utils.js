@@ -11,6 +11,8 @@ const isEmpty = (prop) =>
   (prop.hasOwnProperty('length') && prop.length === 0) ||
   (prop.constructor === Object && Object.keys(prop).length === 0)
 
+const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
+
 /**
  * 1. local 加token，有content-type和accept
  * 2. 上传文件，加token，但没有content-type
@@ -45,24 +47,18 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
 
 const fetchingOrig = (url, opts = {}) => {
   return fetch(url, opts)
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.status && /^4\d{2}/.test(res.status)) { // 401,403,
+        expiredReload()
+      }
+      else return res.json()
+    })
     .catch((e) => console.error('操作失败: ', e.message))
 }
 
-const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
-
-const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-
 const getToken = () => {
   const authToken = sessionStorage.getItem(TOKEN)
-  if (authToken) {
-    const token = jwt_decode(authToken)
-    // console.group('👋 👏 authToken')
-    // console.log(token)
-    // console.groupEnd()
-    return token
-  }
-  return {}
+  return authToken ? jwt_decode(authToken) : {}
 }
 
 const checkLogin = (token) => {
@@ -71,8 +67,31 @@ const checkLogin = (token) => {
   return null
 }
 
+function expiredReload () {
+  sessionStorage.removeItem(TOKEN)
+  window.location.href = DEFAULT_LOGIN_PAGE
+}
+
+function capitalize (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+}
+function isJson(str) {
+  try {
+    JSON.parse(str)
+  } catch(e) {
+    return false
+  }
+  return true
+}
+function showGroup (content, title='') {
+  console.group(`👋 👏 ${title}`)
+  console.log(content)
+  console.groupEnd()
+}
+
 export {
-  isEmpty, fetching, fetchingOrig,
-  defer, capitalize,
-  getToken, checkLogin
+  isEmpty, defer,
+  fetching, fetchingOrig,
+  getToken, checkLogin,
+  capitalize, isJson, showGroup,
 }

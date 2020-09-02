@@ -31,7 +31,7 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
     const authToken = sessionStorage.getItem(TOKEN)
     if (!authToken) {
       console.error('权限认证失败，请先注册')
-      return null // TODO: Redirect
+      return pageReload()
     }
 
     // 文件上传(isFileOrProxy===1), 不要content-type
@@ -49,7 +49,7 @@ const fetchingOrig = (url, opts = {}) => {
   return fetch(url, opts)
     .then((res) => {
       if (res.status && /^4\d{2}/.test(res.status)) { // 401,403,
-        expiredReload()
+        return pageReload()
       }
       else return res.json()
     })
@@ -67,31 +67,17 @@ const checkLogin = (token) => {
   return null
 }
 
-function expiredReload () {
-  sessionStorage.removeItem(TOKEN)
-  window.location.href = DEFAULT_LOGIN_PAGE
-}
-
-function capitalize (str) {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
-function isJson(str) {
-  try {
-    JSON.parse(str)
-  } catch(e) {
-    return false
-  }
-  return true
-}
-function showGroup (content, title='') {
-  console.group(`👋 👏 ${title}`)
-  console.log(content)
-  console.groupEnd()
+// 401, 403, no token etc...
+function pageReload () {
+  setTimeout(() => {
+    sessionStorage.removeItem(TOKEN)
+    window.location.href = DEFAULT_LOGIN_PAGE
+  }, 1000)
 }
 
 export {
   isEmpty, defer,
   fetching, fetchingOrig,
   getToken, checkLogin,
-  capitalize, isJson, showGroup,
+  pageReload
 }

@@ -12,7 +12,11 @@ import {
   AccountBox,
   ExitToApp,
 } from '@material-ui/icons'
-import { Menus, DEFAULT_LOGIN_PAGE, REGISTER_PAGE } from './constants'
+import {
+  Menus, DEFAULT_HOME_PAGE,
+  DEFAULT_LOGIN_PAGE, DIALOG_LOGIN_PAGE,
+  REGISTER_PAGE, SIGNOUT_PAGE,
+} from './constants'
 import Admin from './01-risk-management'
 import Company from './02-core_business'
 import Supplier from './03-supplier'
@@ -76,7 +80,7 @@ const BusinessRouters = [
 
 const GeneralRouters = [
   {
-    path: '/',
+    path: DEFAULT_HOME_PAGE, //~: /,
     title: '首页',
     exact: true,
     icon: AppHome,
@@ -89,25 +93,25 @@ const GeneralRouters = [
     component: Service,
   },
   {
-    path: DEFAULT_LOGIN_PAGE, // signin
+    path: DEFAULT_LOGIN_PAGE, //~: /signin
     title: '登录',
     icon: VerifiedUser,
     component: SignIn,
   },
   {
-    path: '/login',
+    path: DIALOG_LOGIN_PAGE, //~: /login
     title: '切换用户',
     icon: LockOpen,
     component: SignInSide,
   },
   {
-    path: '/signout',
+    path: SIGNOUT_PAGE, //~: /signout
     title: '退出',
     icon: ExitToApp,
     component: SignOut,
   },
   {
-    path: REGISTER_PAGE, // signup
+    path: REGISTER_PAGE, //~: /signup
     title: '注册',
     icon: AccountBox,
     component: SignUp,

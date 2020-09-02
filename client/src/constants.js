@@ -1,6 +1,8 @@
 export const DEFAULT_HOME_PAGE = '/'
 export const DEFAULT_LOGIN_PAGE = '/signin'
+export const DIALOG_LOGIN_PAGE = '/login'
 export const REGISTER_PAGE = '/signup'
+export const SIGNOUT_PAGE = '/signout'
 
 export const Menus = [
   {
@@ -18,8 +20,8 @@ export const Menus = [
 ]
 
 export const Emails = {
-  admin: 'admin@poc.com',
-  support: 'support@poc.com',
+  admin: 'admin@bestitconsulting.com',
+  support: 'support@bestitconsulting.com',
 }
 
 export const Contacts = {

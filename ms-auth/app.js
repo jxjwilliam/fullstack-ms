@@ -26,9 +26,6 @@ app.get('/', (req, res) => {
 // http://localhost/auth/*
 app.use('/auth', route)
 
-///////////////////////////////
-// TODO: http://localhost:8066/: GET /favicon.ico 404 7.955 ms - 2040
-
 /**
  * when 404, createError will res.send and exit, not to next middleware line 40.
  */

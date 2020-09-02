@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Modal, Backdrop, Fade, Button } from '@material-ui/core'
+import { pageReload } from '../../helpers/utils'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -31,6 +32,7 @@ export default function () {
   const handleOk = () => {
     // TODO: logout flow.
     handleClose()
+    pageReload()
   }
 
   return (

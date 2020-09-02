@@ -14,22 +14,6 @@ const middleware = {
   }
 }
 
-const getAccountInfo = (authToken) => {
-  const token = {}; //jwt_decode(authToken)
-  return {
-    getRole: function (req, res, next) {
-      return token.role
-    },
-    getCategory: function (req, res, next) {
-      return token.category
-    },
-    getAccount: function (req, res, next) {
-      const { username, email, phone } = token;
-      return { username, email, phone }
-    },
-  }
-}
-
 function crud(Model) {
   return {
     // 需要重定向： /auth/account -> /auth/register

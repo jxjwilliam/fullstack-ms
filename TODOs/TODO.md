@@ -1,6 +1,6 @@
 # TODO
 
-## 🀄️🐶 authentication, authorization (.ssl)
+## 🀄️🐶 ssl certificate, https
 
 ---
 
@@ -51,3 +51,7 @@
 - Mammoth.js
 - JSZip
 - turndown
+
+### Pending
+
+- gateway: app.use(express.urlencoded({ extended: false }));

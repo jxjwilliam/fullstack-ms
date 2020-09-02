@@ -22,9 +22,6 @@ app.use(favicon(path.join(__dirname, 'favicon.ico')))
   .use(helmet())
   .use(express.static(path.join(__dirname, 'build')))
 
-// TODO?
-app.use(express.urlencoded({ extended: false }));
-
 
 ///////////////////////////////
 

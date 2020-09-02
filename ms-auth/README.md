@@ -8,7 +8,7 @@ HISTORY to fix:
 to fix:
 
 ```shell script
-$ touch favicon.ico
+$ cd ms-auth; touch favicon.ico
 ```
 
 

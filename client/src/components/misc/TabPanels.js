@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function (props) {
+export default function ({ary = []}) {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
@@ -48,15 +48,13 @@ export default function (props) {
     setValue(newValue)
   }
 
-  const { ary = [] } = props
-
-  const TabList = ary.map((tab, inx) => (
-    <Tab label={tab} {...a11yProps({ inx })} key={`${tab}_${inx}`} />
+  const TabList = ary.map((tab, idx) => (
+    <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />
   ))
 
   const TabPanelList = (item) =>
-    ary.map((tab, inx) => (
-      <TabPanel value={item} index={inx} key={`${tab}${inx}`}>
+    ary.map((tab, idx) => (
+      <TabPanel value={item} index={idx} key={`${tab}${idx}`}>
         {tab}
       </TabPanel>
     ))
@@ -64,7 +62,7 @@ export default function (props) {
   return (
     <>
       <Paper className={classes.root}>
-        <Tabs value={value} onChange={handleChange} aria-label="可用POC">
+        <Tabs value={value} onChange={handleChange} aria-label="Tabs">
           {TabList}
         </Tabs>
       </Paper>

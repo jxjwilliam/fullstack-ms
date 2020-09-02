@@ -59,4 +59,7 @@ $ npx license
 | gateway | | |
 | ms-auth |  | |
 | ms-dbms |  | |
-| ms-doc |  | |
+| ms-mongo |  | |
+| ms-discovery |  | |
+| ms-graphql |  | |
+| ms-gitbook |  | |

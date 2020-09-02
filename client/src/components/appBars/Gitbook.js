@@ -16,14 +16,29 @@ const routers = [
     icon: MenuBook,
   },
   {
+    title: 'Discovery API',
+    path: '/ms-discovery',
+    icon: PostAdd,
+  },
+  {
+    title: 'Auth API',
+    path: '/ms-auth',
+    icon: PostAdd,
+  },
+  {
     title: 'DBMS API',
     path: '/ms-dbms',
     icon: Storage,
   },
   {
-    title: 'DOC API',
-    path: '/ms-doc',
+    title: 'DOC/Mongo API',
+    path: '/ms-mongo',
     icon: PostAdd,
+  },
+  {
+    title: 'GraphQL API',
+    path: '/ms-graphql',
+    icon: Storage,
   },
 ]
 

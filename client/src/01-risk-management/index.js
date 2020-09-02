@@ -9,8 +9,12 @@ import {checkLogin} from "../helpers/utils";
 class RiskManagement extends Component {
   constructor(props) {
     super(props)
-    props.getMenu1Action()
     this.state = {}
+  }
+
+  componentDidMount() {
+    this.props.getMenu1Action()
+    this.props.getMenu2Action()
   }
 
   render() {

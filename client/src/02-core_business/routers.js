@@ -133,6 +133,7 @@ const mainList = [
       {
         path: '单文件上传',
         icon: MoneyOff,
+        component: FP.Demo1,
       },
       {
         path: '多文件上传',

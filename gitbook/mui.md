@@ -12,3 +12,8 @@ xl >= 1920px
 
 - [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone)
 - [emoji-key](https://allcontributors.org/docs/en/emoji-key)
+
+
+### Tips
+
+- Material-ui `text fields` expose input ref.

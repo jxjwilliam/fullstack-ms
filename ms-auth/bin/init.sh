@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-mongoimport --db ms-auth --collection accounts --file ./demoaccounts.json
+mongoimport --db ms-auth --collection accounts --file ./accounts.json
 
 # TODO
 moreusers=<<__EOF__

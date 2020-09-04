@@ -5,10 +5,13 @@ import { DEFAULT_HOME_PAGE, TOKEN } from '../constants'
 import {logoutAction} from '../state/actions'
 
 function SignOut (props) {
-  sessionStorage.removeItem(TOKEN)
   useEffect(() => {
     props.logoutAction()
-      .then(data => console.log(data))
+      .then(data => console.log('???????', data))
+      .then(() => {
+        sessionStorage.removeItem(TOKEN)
+        }
+      )
       .catch(e => console.error(e))
   })
 

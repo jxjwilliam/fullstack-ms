@@ -2,13 +2,14 @@
 
 const mongoose = require("mongoose");
 const Account = require('../models/Account');
-const demo_accounts = require('./demoaccounts.json')
+const demo_accounts = require('./accounts.json')
 const connectMongoDB = require('../connect')
 
 try {
     new Promise(resolve => {
-      connectMongoDB()
-      setTimeout(resolve, 10)
+      const asyncConnection = connectMongoDB()
+      resolve(asyncConnection)
+      // setTimeout(resolve, 10)
     }).then(async () => {
       for (const account of demo_accounts) {
         const new_account = new Account(account);
@@ -24,5 +25,5 @@ catch (e) {
 } finally {
   setTimeout(() => {
     mongoose.connection.close();
-  }, 4000)
+  }, 2000)
 }

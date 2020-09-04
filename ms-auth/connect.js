@@ -1,7 +1,14 @@
 const mongoose = require('mongoose')
-const { AUTHDB_URL, MongoOptions } = require('./constants')
+const { AUTHDB_URL } = require('./constants')
 
 mongoose.Promise = global.Promise
+
+const MongoOptions = {
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+}
 
 module.exports = async () => {
   try {

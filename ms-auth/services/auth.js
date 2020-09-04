@@ -94,6 +94,7 @@ function signin(req, res, next) {
 }
 
 // ------------ 3. logout ------------
+// The JWT is stored on browser, so remove the token deleting the cookie at client side
 function signout(req, res) {
   const { refreshToken } = req
   refreshTokenAry = refreshTokenAry.filter(token => token !== refreshToken)

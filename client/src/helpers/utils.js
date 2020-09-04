@@ -27,7 +27,8 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
   // 代理第三方服务，比如Java App，不需要验证
   if (isFileOrProxy === 2) {
     headers = { ...HEADERS, ...opts.headers }
-  } else {
+  }
+  else {
     const authToken = sessionStorage.getItem(TOKEN)
     if (!authToken) {
       console.error('权限认证失败，请先注册')

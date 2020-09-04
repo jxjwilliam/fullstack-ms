@@ -1,4 +1,4 @@
-import { HEADERS } from '../../constants'
+import {HEADERS, TOKEN} from '../../constants'
 import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
@@ -7,7 +7,6 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
 } from '../ActionTypes'
-import { fetching } from '../../helpers/utils'
 
 // 1. signup/register
 const sigupSucc = (payload) => ({ type: SIGNUP_SUCCESS, payload })
@@ -35,15 +34,22 @@ const loginSucc = (payload) => ({type: LOGIN_SUCCESS, payload,})
 
 const loginFail = (payload) => ({ type: LOGIN_FAIL, payload })
 
-export const loginAction = (body) => async dispatch => {
+export const loginAction = (body) => dispatch => {
   const options = {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(body),
   }
 
-  return await fetch("/auth/login", options)
-    .then(res => res.json())
+  return fetch("/auth/login", options)
+    .then(res => {
+      // 404 res.sendStatus(404)
+      if (!res.ok) {
+        console.log('TODO: notification!', res)
+        return { data: res.statusText }
+      }
+      return res.json()
+    })
     .then(data => {
       if (data.token)  dispatch(loginSucc(data.token));
       else dispatch(loginFail(data))
@@ -57,8 +63,15 @@ const logoutSucc = () => ({ type: LOGOUT_SUCCESS })
 const logoutFail = (payload) => ({ type: LOGOUT_FAIL, payload })
 
 export const logoutAction = () => (dispatch) => {
-  return fetching('/auth/logout') // defer(1)
-    .then(res => res.json())
+  const authToken = sessionStorage.getItem(TOKEN)
+  const opts = {
+    headers: {'authorization': `Bearer ${authToken}`}
+  }
+  return fetch('/auth/logout', opts)
+    .then(res => {
+      console.log(res)
+      return res.json()
+    })
     .then(() => dispatch(logoutSucc()))
     .catch(() => dispatch(logoutFail()))
 }

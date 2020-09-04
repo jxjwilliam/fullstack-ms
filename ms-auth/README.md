@@ -138,3 +138,9 @@ This is a list of system errors commonly-encountered when writing a Node.js prog
 - EPERM (Operation not permitted)
 - EPIPE (Broken pipe)
 - ETIMEDOUT (Operation timed out)
+
+
+## HTTP Default MIME:
+
+- Accept: */*
+- Content-type: text/plain

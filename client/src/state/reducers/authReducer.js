@@ -10,7 +10,6 @@ import {
 const initLogin = { loggedIn: false, token: null,}
 
 export const authReducer = (state = initLogin, action) => {
-  console.log('++++++', state, action)
   switch (action.type) {
     case LOGIN_SUCCESS:
       return { token: action.payload, loggedIn: true }
@@ -19,7 +18,7 @@ export const authReducer = (state = initLogin, action) => {
     case LOGOUT_SUCCESS:
       return { ...action.payload, loggedIn: false }
     case LOGOUT_FAIL:
-      return { ...action.payload, loggedIn: true }
+      return { ...action.payload, loggedIn: false }
     default:
       return state
   }

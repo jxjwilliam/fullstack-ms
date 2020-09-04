@@ -10,7 +10,7 @@ class CoreBusiness extends Component {
   constructor(props) {
     super(props)
     props.getMenu1Action()
-    this.state = {}
+    this.state = { title: '核心企业'}
   }
 
   render() {

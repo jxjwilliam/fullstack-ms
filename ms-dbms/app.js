@@ -9,6 +9,7 @@ const controller = require('./controllers')
 const route = require('./routes')
 const uploadSController = require('./controllers/upload_single')
 const uploadMController = require('./controllers/upload_multiple')
+const photosRouter = require('./routes/photo')
 
 const app = express()
 
@@ -17,8 +18,9 @@ app.set('port', process.env.PORT)
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
+// what's the benefit of using bodyParser.urlencoded over express.urlencoded?
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "uploads")));
 
 ///////////////////////////////
 
@@ -30,6 +32,7 @@ app.get('/api/dbms', (req, res) => {
   res.status(200).send(`MS-DBMS ${req.baseUrl}, ${req.url} works!`)
 })
 
+app.use("/api/dbms/photos", photosRouter);
 app.use(['/api/dbms/customer_info', '/api/dbms/customer_info/'], route.customer_info);
 app.use(['/api/dbms/organizations', '/api/dbms/organizations/'], route.organization);
 app.use(['/api/dbms/flows', '/api/dbms/flows/'], route.flow);
@@ -50,23 +53,20 @@ app.use(['/api/dbms/circulation', '/api/dbms/circulation/'], route.circulation);
 app.use(['/api/dbms/financing', '/api/dbms/financing/'], route.financing);
 app.use(['/api/dbms/issue', '/api/dbms/issue/'], route.issue);
 
-app.use(controller.error404);
-
-app.use(controller.error500);
 
 // catch 404 and forward to error handler
-app
-  .use(function (req, res, next) {
-    next(createError(404))
-  })
-  .use(function (err, req, res) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (req, res, next) {
+  next(createError(404))
+})
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  })
+app.use(function (err, req, res) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+})
 
 module.exports = app

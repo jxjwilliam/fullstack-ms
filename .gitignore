@@ -32,6 +32,6 @@ nohup.out
 .eslintcache
 
 build
-./uploads
+uploads
 client/public/_book/
 client/public/gitbook/

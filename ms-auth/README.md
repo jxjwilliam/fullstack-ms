@@ -3,14 +3,13 @@ HISTORY to fix:
 - When http://localhost:8066/auth, get warning:
 <blockquote>
   GET http://localhost:8066/favicon.ico 404 (Not Found)
-</blockquote>    
+</blockquote>
 
 to fix:
 
 ```shell script
 $ cd ms-auth; touch favicon.ico
 ```
-
 
 ### auth server
 
@@ -110,19 +109,20 @@ new mongoose.Schema({
 
 - http: `409` is the correct status code for duplicate resource or resource already exists.
 - `res.redirect(307, '/auth/register')`: `307 Temporary Redirect (since HTTP/1.1)` In this occasion, the request should be repeated with another URI, but future requests can still use the original URI.2
-In contrast to `303`, the request method should not be changed when reissuing the original request. For instance, a `POST` request must be repeated using another POST request.
+  In contrast to `303`, the request method should not be changed when reissuing the original request. For instance, a `POST` request must be repeated using another POST request.
 - The only difference between `307` and `302` is that `307` guarantees that the method and the body will not be changed when the redirected request is made.
 
 ### authentication and authorization
 
 According to standard, client should send `token` to server via HTTP request in a header called `Authorization` with the form `Bearer [JWT_TOKEN]`.
+
 ```text
 headers: { 'Authorization': 'Bearer ...token...',  'Content-Type': 'application/json'}
 ```
 
 ### [Common System Errors](https://nodejs.org/api/errors.html#errors_common_system_errors)
 
-This is a list of system errors commonly-encountered when writing a Node.js program. 
+This is a list of Express Server common errors:
 
 - EACCES (Permission denied)
 - EADDRINUSE (Address already in use)
@@ -139,8 +139,27 @@ This is a list of system errors commonly-encountered when writing a Node.js prog
 - EPIPE (Broken pipe)
 - ETIMEDOUT (Operation timed out)
 
+### HTTP Default MIME:
 
-## HTTP Default MIME:
+---
 
-- Accept: */*
+- Accept: _/_
 - Content-type: text/plain
+
+### HTTP response
+
+---
+
+The standard way to get full HttpResponse that includes following properties
+
+- body //contains your data
+- headers
+- ok
+- status
+- statusText
+- type
+- url
+
+```javascript
+res.status === 200 && res.ok === true
+```

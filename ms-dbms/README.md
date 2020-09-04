@@ -3,7 +3,7 @@
 - coorporate with `routes`, `models`.
 - test with `Postman` plugin/app.
 
-##
+## Sequelize Query &
 
 - findOrCreate
 - findByPk
@@ -24,7 +24,9 @@ returns Instance as first argument, and created boolean as the second.
 Good for making sure you don't make a bunch of duplicates
 - if the above queries return nothing, return value will be null
 
+## [Sequelize, Mutler](https://levelup.gitconnected.com/how-to-upload-files-with-react-and-node-js-a622b4594bb9)
 
+ 
 ## Reference:
 
 - [1702 Express/Sequelize/Associations Review](https://github.com/ianmunrobot/1702-express-review)

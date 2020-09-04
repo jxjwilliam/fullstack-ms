@@ -15,14 +15,22 @@ import {
   MoneyOff,
   VerifiedUser,
   Money,
+  FilterVintage,
+  TrackChanges,
+  PersonPin,
+  ExpandLess,
+  ExpandMore,
+  StarBorder
 } from '@material-ui/icons'
-import { C1_1, C2_1, C3_1, C3_2, C3_3 } from './containers'
+import Blog from './blog/Blog'
+import Checkout from './checkout/Checkout'
+import Dashboard from './dashboard/Dashboard'
+import { LightBulb, Pricing, Album } from './containers'
 
-// const base = '核心企业'
 
 const navList = [
   {
-    path: 'POC额度',
+    path: 'Codesandbox',
     icon: FormatQuote,
   },
   {
@@ -30,7 +38,7 @@ const navList = [
     icon: People,
   },
   {
-    path: 'POC流转',
+    path: 'Material-UI-Demo',
     icon: MoveToInbox,
   },
   {
@@ -41,13 +49,13 @@ const navList = [
 
 const mainList = [
   {
-    nav: 'POC额度',
+    nav: 'Codesandbox',
     main: [
       {
-        path: '额度查询',
+        path: 'LightBulb',
         icon: BarChart,
-        title: '额度查询',
-        component: C1_1,
+        title: 'LightBulb',
+        component: LightBulb,
       },
     ],
   },
@@ -55,9 +63,9 @@ const mainList = [
     nav: 'POC管理',
     main: [
       {
-        path: '我的POC',
+        path: 'Pricing',
         icon: Person,
-        component: C2_1,
+        component: Pricing,
       },
       {
         path: '申请单列表',
@@ -78,23 +86,28 @@ const mainList = [
     ],
   },
   {
-    nav: 'POC流转',
+    nav: 'Material-UI-Demo',
     main: [
       {
-        path: 'POC收支',
+        path: 'Album',
         icon: Payment,
-        component: C3_1,
+        component: Album,
       },
       {
-        path: 'POC融资',
+        path: 'Dashboard',
         icon: MergeType,
-        component: C3_2,
+        component: Dashboard,
       },
       {
-        path: '转让回执',
+        path: 'Blog',
         icon: AssignmentReturned,
-        component: C3_3,
+        component: Blog,
       },
+      {
+        path: 'Checkout',
+        icon: FormatListBulleted,
+        component: Checkout,
+      }
     ],
   },
   {

@@ -22,69 +22,43 @@ import {
   ExpandMore,
   StarBorder
 } from '@material-ui/icons'
-import Blog from './blog/Blog'
-import Checkout from './checkout/Checkout'
-import Dashboard from './dashboard/Dashboard'
-import { LightBulb, Pricing, Album } from './containers'
-
+import {
+  Album,
+  Blog,
+  Checkout,
+  Dashboard,
+  LightBulb,
+  Pricing,
+} from './material-ui-templates'
+import * as AG  from './apollographql'
+import * as CSB from './codesandbox'
+import * as FP from './fileupload'
 
 const navList = [
-  {
-    path: 'Codesandbox',
-    icon: FormatQuote,
-  },
-  {
-    path: 'POC管理',
-    icon: People,
-  },
   {
     path: 'Material-UI-Demo',
     icon: MoveToInbox,
   },
   {
-    path: '还款管理',
+    path: 'Codesandbox',
+    icon: FormatQuote,
+  },
+  {
+    path: 'GraphQL',
+    icon: People,
+  },
+  {
+    path: '文件上传',
     icon: Payment,
   },
+  {
+    path: '其它',
+    icon: TrackChanges,
+  },
+
 ]
 
 const mainList = [
-  {
-    nav: 'Codesandbox',
-    main: [
-      {
-        path: 'LightBulb',
-        icon: BarChart,
-        title: 'LightBulb',
-        component: LightBulb,
-      },
-    ],
-  },
-  {
-    nav: 'POC管理',
-    main: [
-      {
-        path: 'Pricing',
-        icon: Person,
-        component: Pricing,
-      },
-      {
-        path: '申请单列表',
-        icon: FormatListBulleted,
-      },
-      {
-        path: 'POC开具制单',
-        icon: Description,
-      },
-      {
-        path: 'POC开具复核',
-        icon: AssignmentTurnedIn,
-      },
-      {
-        path: '已开POC',
-        icon: OpenInBrowser,
-      },
-    ],
-  },
   {
     nav: 'Material-UI-Demo',
     main: [
@@ -92,11 +66,6 @@ const mainList = [
         path: 'Album',
         icon: Payment,
         component: Album,
-      },
-      {
-        path: 'Dashboard',
-        icon: MergeType,
-        component: Dashboard,
       },
       {
         path: 'Blog',
@@ -107,24 +76,76 @@ const mainList = [
         path: 'Checkout',
         icon: FormatListBulleted,
         component: Checkout,
-      }
+      },
+      {
+        path: 'Dashboard',
+        icon: MergeType,
+        component: Dashboard,
+      },
+      {
+        path: 'Pricing',
+        icon: Person,
+        component: Pricing,
+      },
     ],
   },
   {
-    nav: '还款管理',
+    nav: 'Codesandbox',
     main: [
       {
-        path: '待还款',
+        path: 'LightBulb',
+        icon: BarChart,
+        title: 'LightBulb',
+        component: CSB.LightBulb,
+      },
+    ],
+  },
+  {
+    nav: 'GraphQL',
+    main: [
+      {
+        path: 'apollographql-demo-1',
+        title: 'Demo 1',
+        icon: FormatListBulleted,
+        component: AG.Demo1
+      },
+      {
+        path: 'apollographql-demo-2',
+        title: 'Demo 2',
+        icon: Description,
+        component: AG.Demo2
+      },
+      {
+        path: 'apollographql-demo-3',
+        title: 'Demo 3',
+        icon: AssignmentTurnedIn,
+      },
+      {
+        path: 'apollographql-demo-4',
+        title: 'Demo 4',
+        icon: OpenInBrowser,
+      },
+    ],
+  },
+  {
+    nav: '文件上传',
+    main: [
+      {
+        path: '单文件上传',
         icon: MoneyOff,
       },
       {
-        path: '还款审批',
+        path: '多文件上传',
         icon: VerifiedUser,
       },
       {
-        path: '已还款',
+        path: '照片上传',
         icon: Money,
       },
+      {
+        path: 'dropzone',
+        icon: FilterVintage,
+      }
     ],
   },
   {

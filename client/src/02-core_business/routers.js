@@ -30,7 +30,7 @@ import {
   LightBulb,
   Pricing,
 } from './material-ui-templates'
-import * as AG  from './apollographql'
+import * as AG from './apollographql'
 import * as CSB from './codesandbox'
 import * as FP from './fileupload'
 
@@ -98,6 +98,11 @@ const mainList = [
         title: 'LightBulb',
         component: CSB.LightBulb,
       },
+      {
+        path: 'Carousel',
+        icon: StarBorder,
+        component: CSB.Carousel,
+      }
     ],
   },
   {

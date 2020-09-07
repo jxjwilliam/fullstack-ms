@@ -127,3 +127,15 @@ Only `process.env.NODE_ENV === 'development'` will activate
 | sign/SigninSide.js | SignInSide | /login | /auth/login | ms-auth:signin| auth.js |
 | sign/Signout.js | SignOut | /signout | /auth/logout | ms-auth:signout| auth.js|
 | sign/Signup.js | SignUp | /signup | /auth/register | ms-auth:signup| auth.js |
+
+
+
+### fix react-open-weather bug:
+
+ReactWeather.js line 42202 `getNextDays`:
+
+```javascript
+tomorrow_formated = tomorrow.getFullYear() + "-" + ("0" + (tomorrow.getMonth() + 1)).slice(-2) + "-" + ("0"+(tomorrow.getDate())).slice(-2);
+```
+
+mv `react-open-weather` to `src/vendors`.

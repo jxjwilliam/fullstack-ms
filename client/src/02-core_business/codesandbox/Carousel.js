@@ -39,11 +39,14 @@ class SlideShow extends Component {
 }
 
 export default function () {
+  const list = [
+    'https://images.unsplash.com/photo-1595438309107-a51996cb63e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1525672716948-1f0bb9c49883?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1520551149954-41255a5fa237?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+  ].map((img, idx) => <img src={img} key={`img_${idx}`} alt={`Bikini ${idx}`} />)
   return (
     <SlideShow>
-      <img src="https://images.unsplash.com/photo-1595438309107-a51996cb63e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Bikini" />
-      <img src="https://images.unsplash.com/photo-1525672716948-1f0bb9c49883?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Bikini" />
-      <img src="https://images.unsplash.com/photo-1520551149954-41255a5fa237?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Bikini" />
+      {list}
     </SlideShow>
   )
 }

@@ -26,6 +26,9 @@
 
 ### 🍺 REST: request.js, node-fetch
 
+isomorphic-fetch: 4,881,045
+node-fetch: 16,710,148
+
 ### 🍺 邮件 nodemailer
 
 ### 🍺 日期时间：moment, date-fns

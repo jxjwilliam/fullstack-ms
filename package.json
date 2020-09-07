@@ -49,6 +49,7 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
+    "@react-google-maps/api": "^1.9.12",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0"

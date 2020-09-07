@@ -49,8 +49,7 @@ import {
   C7_4,
   C9_1,
 } from './containers'
-
-// const base = '风险管理'
+import * as Live from './live'
 
 const navList = [
   {
@@ -107,15 +106,18 @@ const mainList = [
         path: '角色查询',
         title: '用户角色查询',
         icon: Person,
+        component: Live.OpenWeatherMap,
       },
       {
         path: '口令更改',
         title: '用户口令更改',
         icon: Visibility,
+        component: Live.GoogleMap,
       },
       {
         path: '用户信息权限变更',
         icon: Update,
+        component: Live.NewsApi,
       },
     ],
   },

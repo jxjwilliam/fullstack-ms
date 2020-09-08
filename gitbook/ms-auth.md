@@ -22,7 +22,7 @@ $ node bin/init.js
 | 注册    | /auth/signup  | /auth/register | 保存用户信息，包括口令 |
 | 登录    | /auth/signin  | /auth/login    | 验证用户信息, 调用 authentication/authorization |
 | 退出    | /auth/signout | /auth/logout   | 取消 token |
-| Account | /auth/account | 查看 accounts  |
+| User | /auth/account | 查看 accounts  |
 | Role    | /auth/role    | 查看 roles     |
 
 > Notice: 多个表之间的关联
@@ -57,7 +57,7 @@ If you have a single client application then you can do following steps, 当前�
 
 - check existed ?
 - bcrypt.hash(Sync)
-- new Account(req.body).save
+- new User(req.body).save
 
 ### 📑 login
 
@@ -71,7 +71,7 @@ If you have a single client application then you can do following steps, 当前�
 - Role: admin, member, owner?
 - Category: ?
 - compose **token**
-- Account.authenticate() ?
+- User.authenticate() ?
 
 ### 📑 authentication
 

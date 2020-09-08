@@ -6,7 +6,6 @@ require('dotenv').config()
 
 // same as in bff/.env:
 const MS_BFF_PORT = process.env.BFF_PORT
-const MS_SSL_PORT = process.env.BFF_SSL_PORT
 
 const localMs = ['/api', '/auth']
 const staticMs = ['/data', '/graphql']
@@ -19,15 +18,4 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   )
-
-  app.use(
-    createProxyMiddleware('/sapi', {
-      target: `${URLS[1]}:${MS_SSL_PORT}/`,
-      changeOrigin: true,
-      secure: false,
-      https: true,
-    })
-  )
 }
-
-// TODO: graphql 如何代理？

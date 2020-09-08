@@ -19,11 +19,11 @@ app.use(express.urlencoded({ extended: false }))
 ///////////////////////////////
 
 app.get('/', (req, res) => {
-  res.status(200).send(`MS-Mongo ${req.baseUrl}, ${req.url} works!`)
+  res.status(200).send(`MS-Doc ${req.baseUrl}, ${req.url} works!`)
 })
 
 app.get('/api/doc', (req, res) => {
-  res.status(200).send(`MS-Mongo ${req.baseUrl}, ${req.url} works!`)
+  res.status(200).send(`MS-Doc ${req.baseUrl}, ${req.url} works!`)
 })
 
 app

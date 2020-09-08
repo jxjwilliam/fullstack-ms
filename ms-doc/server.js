@@ -47,5 +47,5 @@ function onError(error) {
 function onListening() {
   const addr = server.address()
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
-  debug(`✈ ms-mongo 服务正运行在端口 ${bind}`)
+  debug(`✈ ms-doc 服务正运行在端口 ${bind}`)
 }

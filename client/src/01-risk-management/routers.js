@@ -152,7 +152,7 @@ const mainList = [
         component: live.InfiniteLoop,
       },
       {
-        path: '流程',
+        path: 'Accounts',
         icon: LocalFlorist,
         component: auth.Account
       },

@@ -44,7 +44,7 @@ Model.updateOne()
 new mongoose.Schema({
     postBy: userSchema
     // Or:
-    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
+    postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 })
 ```
 

@@ -1,7 +1,7 @@
-const Account = require('../../ms-auth/models/Account');
+const User = require('../models/User');
 
 const param = (req, res, next, id) => {
-  Account.findById(id, (err, account) => {
+  User.findById(id, (err, account) => {
     if (err) next(err);
     else if(account) {
       req.account = account;
@@ -13,7 +13,7 @@ const param = (req, res, next, id) => {
 };
 
 const list = (req, res, next) => {
-  Account.find(req.query, function (err, account) {
+  User.find(req.query, function (err, account) {
     if (err) next(err);
     else res.json(account);
   });
@@ -22,7 +22,7 @@ const list = (req, res, next) => {
 const get = (req, res, next) => res.json(req.account);
 
 const post = (req, res, next) => {
-  const account = new Account(req.body)
+  const account = new User(req.body)
   account.save(err => {
     if(err) next(err)
     else res.json(account)
@@ -30,7 +30,7 @@ const post = (req, res, next) => {
 }
 
 const put = (req, res, next) => {
-  Account.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, account) => {
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, account) => {
     if (err) next(err);
     else res.json(account);
   });

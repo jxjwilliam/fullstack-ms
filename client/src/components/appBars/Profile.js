@@ -30,7 +30,7 @@ export default function () {
 
   return (
     <div className={classes.grow}>
-      <menus.Menu1 routers={routers} Icon={AccountCircle} title="Account" />
+      <menus.Menu1 routers={routers} Icon={AccountCircle} title="User" />
     </div>
   )
 }

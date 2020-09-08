@@ -32,7 +32,7 @@ const routers = [
   },
   {
     title: 'DOC/Mongo API',
-    path: '/ms-mongo',
+    path: '/ms-doc',
     icon: PostAdd,
   },
   {

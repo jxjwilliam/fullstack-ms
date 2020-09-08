@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -6,22 +6,17 @@ import {
   Container,
   CssBaseline,
   Toolbar,
-  ButtonGroup,
   Link,
-  Button,
 } from '@material-ui/core'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ThemeProvider } from '@material-ui/styles'
 import { Home as HomeIcon } from '@material-ui/icons'
-import { Drawer1, Menu2, footers } from '../components'
+import faker from 'faker'
+import getNavList from './navList'
+import { Drawer1, footers } from '../components'
 import theme from './theme'
 import ServiceDemo from './demo'
-import { BusinessRouters } from '../routers'
-import { navList as navs1 } from '../01-risk-management/routers'
-import { navList as navs2 } from '../02-core_business/routers'
-import { navList as navs3 } from '../03-supplier/routers'
-import { navList as navs4 } from '../04-customer/routers'
-import { navList as navs5 } from '../05-financing/routers'
+import SimpleCard from './simpleCard'
+
 import {checkLogin} from "../helpers/utils";
 
 const useStyles = makeStyles({
@@ -32,48 +27,19 @@ const useStyles = makeStyles({
   },
 })
 
-const getMap = () => {
-  const Routers = [navs1, navs2, navs3, navs4, navs5]
-  return BusinessRouters.reduce((map, br, idx) => {
-    if (!Routers[idx]) return map
-    const { component, ...others } = br
-    map.set(others, Routers[idx])
-    return map
-  }, new Map())
-}
-
-const patch = (routers) => {
-  const certificate = BusinessRouters[BusinessRouters.length - 1]
-  const { path, title, icon: Icon } = certificate
-  return routers.push(
-    <ButtonGroup
-      key={title}
-      ariant="contained"
-      aria-label="outlined primary button group"
-    >
-      <Button color="inherit" startIcon={<Icon />} component={Link} href={path}>
-        {title}
-      </Button>
-    </ButtonGroup>
-  )
-}
-
 function Service ({auth: { token}}) {
   const classes = useStyles()
-  const all5 = getMap()
-  const routers = []
+  const [data, setData] = useState([]);
+  const routers = getNavList()
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const [key, value] of all5) {
-    const { path, title, icon: CompIcon } = key
-    routers.push(
-      <ButtonGroup key={title}>
-        <Menu2 routers={value} base={path} title={title} Icon={CompIcon} />
-      </ButtonGroup>
-    )
-  }
-
-  patch(routers)
+  useEffect(() => {
+    new Promise(resolve => {
+      setTimeout(() => {
+        setData([faker.lorem.sentence(), faker.lorem.sentence()]);
+        resolve();
+      }, 2000);
+    })
+  }, [])
 
   return checkLogin(token) || (
     <ThemeProvider theme={theme}>
@@ -89,6 +55,8 @@ function Service ({auth: { token}}) {
           </Toolbar>
         </AppBar>
         <ServiceDemo />
+        <SimpleCard data={data[0]}/>
+        <SimpleCard data={data[1]}/>
         <footers.Footer2 />
       </Container>
     </ThemeProvider>

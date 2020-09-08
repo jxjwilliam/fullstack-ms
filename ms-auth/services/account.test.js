@@ -1,13 +1,15 @@
 const expect = require('chai').expect
 const mongoose = require("mongoose");
-const connectMongoDB = require('../../ms-auth/connect')
-const Account = require('../../ms-auth/models/Account');
+const connectMongoDB = require('../connect')
+const Account = require('../models/Account');
 
 describe('Account', () => {
   before('connect', (done) => {
     new Promise(resolve => {
-      connectMongoDB();
-      setTimeout(() => resolve('connection'), 10)
+      setTimeout(() => {
+        connectMongoDB();
+        resolve('connected')
+      }, 1000)
     }).then(() => done())
   })
 
@@ -22,17 +24,15 @@ describe('Account', () => {
   })
   it('account', () => {
     const account = Account.find({
-      // username: /test/,
-      // 'role.name': 'member',
-      // 'category.name': 'local',
-      // age: { $gt: 17, $lt: 66 },
-      // phone: { $in: ['1347', '8221246'] }
+      username: 'admin',
+      'role.name': 'admin',
+      'category.name': 'local',
+      phone: { $in: ['1347', '8221246'] }
     }).
     limit(10).
     sort({ username: -1 }).
     select({ username: 1, phone: 1 }).
     exec(callback);
-console.log('---', account)
     expect([1, 2]).to.be.an('array').that.does.not.include(3);
   })
 })

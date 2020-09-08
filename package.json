@@ -9,9 +9,9 @@
     "run-auth": "cd ms-auth && yarn start",
     "run-dbms": "cd ms-dbms && yarn start",
     "run-doc": "cd ms-doc && yarn start",
-    "debug:ms-auth": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\"",
+    "debug:ms-auth": "concurrently \"yarn run-client\" \"yarn run-gateway\"",
     "prestart1": "node bin/update-config.js",
-    "run-start": "concurrently \"yarn run-client\" \"yarn run-gateway\"",
+    "run-start": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\"",
     "run-dev": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\" \"yarn run-dbms\" \"yarn run-doc\"",
     "start": "yarn run-start",
     "test": "lerna run test",
@@ -49,7 +49,6 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "@react-google-maps/api": "^1.9.12",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0"

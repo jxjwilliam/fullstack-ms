@@ -34,7 +34,7 @@
       },
       "mongo": {
         "PORT": 8806,
-        "MONGO_DB": "ms-mongo"
+        "MONGO_DB": "ms-doc"
       },
       "redis": {
         "PORT": 8807

@@ -2,10 +2,11 @@ import React from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '600px',
-  height: '400px'
+  width: '800px',
+  height: '600px'
 };
 
+// My Place position
 const center = {
   lat: 49.104431,
   lng: -122.801094
@@ -25,9 +26,7 @@ function MyComponent() {
   }, [])
 
   return (
-    <LoadScript
-      googleMapsApiKey="AIzaSyCcHehvrIdujbyeiKCBaivkE3SNZLiUcYE"
-    >
+    <LoadScript googleMapsApiKey="AIzaSyCcHehvrIdujbyeiKCBaivkE3SNZLiUcYE">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

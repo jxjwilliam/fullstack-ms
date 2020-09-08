@@ -1,10 +1,11 @@
 import React from 'react';
 import {TabPanels} from '../../components'
 
-export default function () {
+export default function() {
   const ary = [
-    'C5_2',
+    '客户评级查询',
+    '评级流程查询'
   ];
 
-  return <TabPanels ary={ary}/>;
+  return <TabPanels ary={ary} />;
 }

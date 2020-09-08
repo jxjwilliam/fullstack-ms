@@ -49,7 +49,8 @@ import {
   C7_4,
   C9_1,
 } from './containers'
-import * as Live from './live'
+import * as live from './live'
+import * as auth from './auth'
 
 const navList = [
   {
@@ -106,18 +107,18 @@ const mainList = [
         path: '角色查询',
         title: '用户角色查询',
         icon: Person,
-        component: Live.OpenWeatherMap,
+        component: live.OpenWeatherMap,
       },
       {
         path: '口令更改',
         title: '用户口令更改',
         icon: Visibility,
-        component: Live.GoogleMap,
+        component: live.GoogleMap,
       },
       {
         path: '用户信息权限变更',
         icon: Update,
-        component: Live.NewsApi,
+        component: live.NewsApi,
       },
     ],
   },
@@ -145,13 +146,15 @@ const mainList = [
     nav: '评级限额',
     main: [
       {
-        path: '查询',
+        path: 'infinite-loop',
+        title: 'Infinite Loop',
         icon: Contacts,
-        component: C3_1,
+        component: live.InfiniteLoop,
       },
       {
         path: '流程',
         icon: LocalFlorist,
+        component: auth.Account
       },
     ],
   },

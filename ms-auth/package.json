@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node ./server",
-    "dev": "cross-env NODE_ENV=developmentv DEBUG=express:* nodemon --exec babel-node ./server",
+    "dev": "cross-env NODE_ENV=development DEBUG=express:* nodemon --exec babel-node ./server",
     "test": "mocha services/**/*.test.js"
   },
   "keywords": [],

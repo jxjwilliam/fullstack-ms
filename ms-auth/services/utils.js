@@ -36,7 +36,6 @@ function crud(Model) {
           next();
         } else {
           return res.json({ message: 'No such record' });
-          next(new Error('failed to load data'))
         }
       });
     },
@@ -65,7 +64,23 @@ function crud(Model) {
         if (err) next(err);
         else res.json(req.data);
       })
-    )
+    ),
+    updateMany: (req, res, next) => {
+     Model.findAndModify(  //updateMany
+       req.query,
+       req.body,
+       {new: true},
+       (err, data) => {
+         if (err) next(err)
+         else res.json(data)
+       })
+    },
+    deleteMany: (req, res, next) => {
+      Model.delete(req.query, err => {
+        if (err) next(err)
+        else res.sendStatus(200)
+      })
+    }
   }
 }
 
@@ -74,9 +89,12 @@ function routing(MongoModel) {
   const Model = crud(MongoModel)
 
   router.param('id', Model.param)
+
   router.route('/')
     .get(Model.list)
     .post(Model.create)
+    .put(Model.updateMany)
+    .delete(Model.deleteMany)
 
   router.route('/:id')
     .get(Model.read)

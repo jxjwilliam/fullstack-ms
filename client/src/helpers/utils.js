@@ -49,10 +49,10 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
 const fetchingOrig = (url, opts = {}) => {
   return fetch(url, opts)
     .then((res) => {
-      if (res.status && /^4\d{2}/.test(res.status)) { // 401,403,
-        return pageReload()
+      if (res.ok) return res.json()
+      else { // 401, 403, statusText="Unauthorized"
+        throw new Error(res.statusText)
       }
-      else return res.json()
     })
     .catch((e) => console.error('操作失败: ', e.message))
 }

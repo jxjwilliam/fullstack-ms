@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { makeStyles} from "@material-ui/core/styles";
+import React, { useEffect, useState } from 'react'
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
   CardActions,
@@ -22,18 +22,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // use iframe + 3rd react-app
-export default function() {
+export default function () {
+  const style = { border: 0, width: "100vw", height: "100vh", frameborde: 0, seamless: "seamless" }
   return (
-    <iframe src="http://localhost:3001/" style={{border: 0, width: "100vh", height: "80vh"}}></iframe>
+    <iframe src="http://localhost:3001/" style={style}></iframe>
   )
 }
 
 // Use `bff` proxy instead.
-export function CorsBlock () {
+export function CorsBlock() {
   const classes = useStyles()
   const [news, setNews] = useState({})
 
-  useEffect( () => {
+  useEffect(() => {
     newsapi.v2.topHeadlines({
       q: 'trump',
       category: 'politics',
@@ -49,7 +50,8 @@ export function CorsBlock () {
           articles: [...]
         }
       */
-    });  }, [])
+    });
+  }, [])
 
   return (
     <Card className={classes.root}>

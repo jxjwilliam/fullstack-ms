@@ -4,12 +4,14 @@ import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from '../state/actions'
 import { getPageLayout } from '../components'
 import { mainList, navList } from './routers'
-import {checkLogin} from "../helpers/utils";
+import { checkLogin } from "../helpers/utils";
 
 class RiskManagement extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      base: '风险管理'
+    }
   }
 
   componentDidMount() {

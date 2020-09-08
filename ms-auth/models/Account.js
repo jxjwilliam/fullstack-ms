@@ -52,15 +52,15 @@ const AccountSchema = new Schema({
 AccountSchema.index({ email: 1, phone: 1 }, { unique: true })
 
 // Only 1-time bcrypt.hash, otherwise error.
-// AccountSchema.pre('save', function (next) {
-//   const account = this;
-//   console.log('Schema: ', account)
-//   bcrypt.hash(account.password, 10, function (err, hash) {
-//     if (err) return next(err);
-//     account.password = hash;
-//     next();
-//   })
-// });
+AccountSchema.pre('save', function (next) {
+  const account = this;
+  console.log('Schema: ', account)
+  bcrypt.hash(account.password, 10, function (err, hash) {
+    if (err) return next(err);
+    account.password = hash;
+    next();
+  })
+});
 
 
 // Account.authenticate

@@ -1,5 +1,9 @@
 HISTORY to fix:
 
+### Default favicon.ico
+
+---
+
 - When http://localhost:8066/auth, get warning:
 <blockquote>
   GET http://localhost:8066/favicon.ico 404 (Not Found)
@@ -11,14 +15,24 @@ to fix:
 $ cd ms-auth; touch favicon.ico
 ```
 
-### auth server
+### Ms-Auth authentication and authorization
+
+---
 
 1. login / logout
 2. register
-3. authentication
+3. authentication / issue access token
 4. refresh tokens
 
-### Mongoose 5.10.1
+According to standard, client should send `token` to server via HTTP request in a header called `Authorization` with the form `Bearer [JWT_TOKEN]`.
+
+```text
+headers: { 'Authorization': 'Bearer ...token...',  'Content-Type': 'application/json'}
+```
+
+### Mongoose Queries (5.10.1)
+
+---
 
 ```text
 Model.deleteMany()
@@ -38,7 +52,7 @@ Model.updateMany()
 Model.updateOne()
 ```
 
-### mongoose: ref, populate
+- association: ref, populate
 
 ```text
 new mongoose.Schema({
@@ -49,6 +63,8 @@ new mongoose.Schema({
 ```
 
 ### [Https status](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
+
+---
 
 ```text
 100 Continue
@@ -112,15 +128,9 @@ new mongoose.Schema({
   In contrast to `303`, the request method should not be changed when reissuing the original request. For instance, a `POST` request must be repeated using another POST request.
 - The only difference between `307` and `302` is that `307` guarantees that the method and the body will not be changed when the redirected request is made.
 
-### authentication and authorization
-
-According to standard, client should send `token` to server via HTTP request in a header called `Authorization` with the form `Bearer [JWT_TOKEN]`.
-
-```text
-headers: { 'Authorization': 'Bearer ...token...',  'Content-Type': 'application/json'}
-```
-
 ### [Common System Errors](https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+---
 
 This is a list of Express Server common errors:
 
@@ -139,16 +149,16 @@ This is a list of Express Server common errors:
 - EPIPE (Broken pipe)
 - ETIMEDOUT (Operation timed out)
 
-### HTTP Default MIME:
+### HTTP
 
 ---
+
+1. Default MIME:
 
 - Accept: _/_
 - Content-type: text/plain
 
-### HTTP response
-
----
+2. Response
 
 The standard way to get full HttpResponse that includes following properties
 
@@ -163,3 +173,34 @@ The standard way to get full HttpResponse that includes following properties
 ```javascript
 res.status === 200 && res.ok === true
 ```
+
+3. res.send vs res.json
+
+Main difference between `.json` and `.send` comes into picture when you have to pass non objects as a response. `.json` will convert non objects `(ex. null, undefined etc)` to JSON whereas `res.send` will not convert them. `.
+
+### CORS and Same-Origin policy
+
+---
+
+[跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+
+对那些可能对服务器数据产生副作用的 HTTP 请求方法（特别是 GET 以外的 HTTP 请求，或者搭配某些 MIME 类型的 `POST` 请求），浏览器必须首先使用 `OPTIONS` 方法发起一个预检请求（preflight request），从而获知服务端是否允许该跨域请求。服务器确认允许之后，才发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（包括 Cookies 和 HTTP 认证相关数据）。
+
+1. The same-origin policy is active `by default` and most browsers provide good error messages when actions cannot be executed because of same-origin policy issues. For instance, the following script defines an illegal cross-origin HTTP request.
+
+```text
+// document origin: https://example.com
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://codecentric.de');
+xhr.send();
+
+// fails with the following message in Google Chrome:
+// XMLHttpRequest cannot load http://codecentric.de. No
+// 'Access-Control-Allow-Origin' header is present on
+// the requested resource. Origin 'https://example.com'
+// is therefore not allowed access.
+```
+
+2. Cross-Origin Resource Sharing (`CORS`) can be used to `whitelist` origins for specific resources.
+
+3. Cors + Nginx Proxying

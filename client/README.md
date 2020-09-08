@@ -19,11 +19,13 @@ $ npx create-react-app client
 - Tabsize: File > Preferences > Settings > `editor: tab size` => Tab Size: 2
 - npx install-peerdeps
 - All-In-One: [eslint-prettier-airbnb-react](https://github.com/jxjwilliam/eslint-prettier-airbnb-react)
+
 ```shell
 $ exec 3<&1;bash <&3 <(curl https://raw.githubusercontent.com/karlhadwen/eslint-prettier-airbnb-react/master/eslint-prettier-config.sh 2> /dev/null)
-````
+```
 
 fix eslint conflict issue:
+
 ```text
 /client/node_modules/react-scripts/package.json:
   "eslint": "^7.7.0",
@@ -34,7 +36,6 @@ fix eslint conflict issue:
 ---
 
 👋 👏 ✋ ✌️
-
 
 ### react-router: (1) url, path, pathname
 
@@ -121,21 +122,37 @@ Only `process.env.NODE_ENV === 'development'` will activate
 
 - jest
 
-| client files | client function-name | router | rest-name | server function-name | server files | 
-| --- | --- | --- | --- | --- | --- |
-| sign/Signin.js | SignIn | /signup | /auth/login | ms-auth:signin | auth.js|
-| sign/SigninSide.js | SignInSide | /login | /auth/login | ms-auth:signin| auth.js |
-| sign/Signout.js | SignOut | /signout | /auth/logout | ms-auth:signout| auth.js|
-| sign/Signup.js | SignUp | /signup | /auth/register | ms-auth:signup| auth.js |
-
-
 
 ### fix react-open-weather bug:
 
-ReactWeather.js line 42202 `getNextDays`:
+ReactWeather.js line 4202 `getNextDays`:
 
 ```javascript
 tomorrow_formated = tomorrow.getFullYear() + "-" + ("0" + (tomorrow.getMonth() + 1)).slice(-2) + "-" + ("0"+(tomorrow.getDate())).slice(-2);
 ```
 
 mv `react-open-weather` to `src/vendors`.
+
+| client files       | client function-name | router   | rest-name      | server function-name | server files |
+| ------------------ | -------------------- | -------- | -------------- | -------------------- | ------------ |
+| sign/Signin.js     | SignIn               | /signup  | /auth/login    | ms-auth:signin       | auth.js      |
+| sign/SigninSide.js | SignInSide           | /login   | /auth/login    | ms-auth:signin       | auth.js      |
+| sign/Signout.js    | SignOut              | /signout | /auth/logout   | ms-auth:signout      | auth.js      |
+| sign/Signup.js     | SignUp               | /signup  | /auth/register | ms-auth:signup       | auth.js      |
+
+### fetch response
+
+in `Login` function:
+
+```javascript
+  onSubmit(event) {
+    event.preventDefault();
+
+    const response = await fetch('/auth/login', formdata)
+    if (response.ok) {
+      location.href='/';
+    } else {
+      notify('Failed to login')
+    }
+  }
+```

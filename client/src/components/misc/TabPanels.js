@@ -36,9 +36,11 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
 }))
+
 
 export default function ({ary = []}) {
   const classes = useStyles()
@@ -52,17 +54,26 @@ export default function ({ary = []}) {
     <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />
   ))
 
-  const TabPanelList = (item) =>
+  const TabPanelList = (item) => (
     ary.map((tab, idx) => (
       <TabPanel value={item} index={idx} key={`${tab}${idx}`}>
         {tab}
       </TabPanel>
     ))
+  )
 
   return (
     <>
       <Paper className={classes.root}>
-        <Tabs value={value} onChange={handleChange} aria-label="Tabs">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="on"
+          indicatorColor="primary"
+          textColor="primary"
+          aria-label="scrollable tabs"
+        >
           {TabList}
         </Tabs>
       </Paper>

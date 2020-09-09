@@ -6,41 +6,50 @@ import {
   useQuery,
   gql
 } from "@apollo/client";
+import { TabPanels, Error, Loading, NotFound } from '../../components'
+import { NavLabels, Queries } from './config'
 
-// https://codesandbox.io/s/get-started-coinbase-client-73r10?file=/src/index.js:0-905
+// https://48p1r2roz4.sse.codesandbox.io/
+// https://graphqlzero.almansi.me/#example-top
+// https://jsonplaceholder.typicode.com/users
+function graphNavLabels() {
+  for (let [key, value] of NavLabels) {
+
+  }
+  return <TabPanels ary={NavLabels} withIcon={true} />;
+}
+
 const client = new ApolloClient({
-  uri: "https://48p1r2roz4.sse.codesandbox.io",
+  uri: "https://graphqlzero.almansi.me/api",
   cache: new InMemoryCache()
 });
 
-function ExchangeRates() {
+
+/**
+ * `useQuery` hook exposes `error`, `loading`, `data` to `children`.
+ */
+function Launches(idx) {
   const { loading, error, data } = useQuery(gql`
-    {
-      rates(currency: "USD") {
-        currency
-        rate
-      }
-    }
+    ${Queries[4]}
   `);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Loading />
+  if (error) return <Error error={error} />
+  if (!data) return <NotFound />
 
-  return data.rates.map(({ currency, rate }) => (
-    <div key={currency}>
-      <p>
-        {currency}: {rate}
-      </p>
-    </div>
-  ));
+  return (
+    <>
+      {JSON.stringify(data, null, 2)}
+    </>
+  );
 }
 
-export default function Demo1() {
+export default function () {
   return (
     <ApolloProvider client={client}>
       <div>
-        <h2>My first Apollo app 🚀</h2>
-        <ExchangeRates />
+        <TabPanels ary={NavLabels} />
+        <Launches />
       </div>
     </ApolloProvider>
   );

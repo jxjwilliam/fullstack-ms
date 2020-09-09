@@ -28,18 +28,21 @@ const useStyles = makeStyles(theme => ({
 export default function LocalWeather() {
   const {openweathermap_key: key} = config
   return (
-    <ReactWeather
-      forecast="5days"
-      apikey={key}
-      type="city"
-      city="Vancouver"
-      lang="cn"
-    />
+    <>
+      <ReactWeather
+        forecast="5days"
+        apikey={key}
+        type="city"
+        city="Vancouver"
+        lang="cn"
+      />
+      <Weather/>
+    </>
   )
 }
 
 /**
- * works. need parse {}: https://openweathermap.org/api/one-call-api
+ * works version. need parse {}: https://openweathermap.org/api/one-call-api
  */
 export function Weather () {
   const classes = useStyles()

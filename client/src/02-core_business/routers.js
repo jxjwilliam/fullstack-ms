@@ -20,6 +20,7 @@ import {
   PersonPin,
   ExpandLess,
   ExpandMore,
+  AvTimer,
   StarBorder
 } from '@material-ui/icons'
 import {
@@ -27,7 +28,6 @@ import {
   Blog,
   Checkout,
   Dashboard,
-  LightBulb,
   Pricing,
 } from './material-ui-templates'
 import * as AG from './apollographql'
@@ -55,7 +55,6 @@ const navList = [
     path: '其它',
     icon: TrackChanges,
   },
-
 ]
 
 const mainList = [
@@ -64,7 +63,7 @@ const mainList = [
     main: [
       {
         path: 'Album',
-        icon: Payment,
+        icon: PersonPin,
         component: Album,
       },
       {
@@ -110,8 +109,8 @@ const mainList = [
     main: [
       {
         path: 'apollographql-demo-1',
-        title: 'Demo 1',
-        icon: FormatListBulleted,
+        title: 'Graphqlzero 🚀',
+        icon: AvTimer,
         component: AG.Demo1
       },
       {

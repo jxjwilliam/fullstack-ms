@@ -21,13 +21,10 @@ const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
  * 4. 选项 isFileOrProxy: 1 文件; 2 proxy; undefined 普通fetch，等于fetchingOrig+token
  */
 const fetching = (url, opts = {}, isFileOrProxy) => {
-  let body
-  let headers = {}
+  let [headers, body, method='GET'] = [{}, null]
 
   // 代理第三方服务，比如Java App，不需要验证
-  if (isFileOrProxy === 2) {
-    headers = { ...HEADERS, ...opts.headers }
-  }
+  if (isFileOrProxy === 2) headers = { ...HEADERS, ...opts.headers }
   else {
     const authToken = sessionStorage.getItem(TOKEN)
     if (!authToken) {
@@ -40,22 +37,23 @@ const fetching = (url, opts = {}, isFileOrProxy) => {
     headers = { ...headers, ...opts.headers, 'authorization': `Bearer ${authToken}`}
   }
 
-  const method = opts.method || 'GET'
+  if(opts.method) method = opts.method
+  // need JSON.stringify (POST) ?
   if (opts.body) body = opts.body
 
-  return fetchingOrig(url, { method, headers, body })
-}
-
-const fetchingOrig = (url, opts = {}) => {
-  return fetch(url, opts)
+  return fetch(url, { method, headers, body })
     .then((res) => {
       if (res.ok) return res.json()
-      else { // 401, 403, statusText="Unauthorized"
-        throw new Error(res.statusText)
+      else {
+        if (/^4\d{2}/.test(res.status)) {
+          // access-token expired, 401, 403, statusText="Unauthorized"
+          return pageReload()
+        } else throw new Error(res.statusText)
       }
     })
     .catch((e) => console.error('操作失败: ', e.message))
 }
+
 
 const getToken = () => {
   const authToken = sessionStorage.getItem(TOKEN)
@@ -78,7 +76,7 @@ function pageReload () {
 
 export {
   isEmpty, defer,
-  fetching, fetchingOrig,
+  fetching,
   getToken, checkLogin,
   pageReload
 }

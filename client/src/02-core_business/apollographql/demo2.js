@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,6 +6,7 @@ import {
   useQuery,
   gql
 } from "@apollo/client";
+import { TabPanels, Error, Loading, NotFound } from '../../components'
 
 // https://codesandbox.io/s/queries-example-app-final-nrlnl?file=/src/index.js:0-1890
 const client = new ApolloClient({
@@ -26,8 +26,9 @@ const GET_DOGS = gql`
 function Dogs({ onDogSelected }) {
   const { loading, error, data } = useQuery(GET_DOGS);
 
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+  if (loading) return <Loading />
+  if (error) return <Error error={error} />
+  if(!data) return <NotFound />
 
   return (
     <select name="dog" onChange={onDogSelected}>
@@ -73,7 +74,7 @@ function DogPhoto({ breed }) {
   );
 }
 
-export default function Demo2() {
+export default function () {
   const [selectedDog, setSelectedDog] = useState(null);
 
   function onDogSelected({ target }) {

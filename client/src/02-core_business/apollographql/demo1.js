@@ -18,9 +18,7 @@ const client = new ApolloClient({
 export default function () {
   return (
     <ApolloProvider client={client}>
-      <div>
-        <TabsPanel mapList={NavLabels} />
-      </div>
+      <TabsPanel mapList={NavLabels} />
     </ApolloProvider>
   );
 }

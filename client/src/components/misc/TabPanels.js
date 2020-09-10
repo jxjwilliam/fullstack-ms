@@ -51,7 +51,6 @@ export default function ({ ary = [] }) {
     setValue(newValue)
   }
 
-
   const tabs = (value, handleChange) => {
     const tablist = ary.map((tab, idx) => (
       <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />

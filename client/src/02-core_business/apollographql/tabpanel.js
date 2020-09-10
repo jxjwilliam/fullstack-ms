@@ -74,9 +74,13 @@ function LaunchQuery({ value }) {
 function LaunchMutation({ value }) {
   const [mutation, variables] = Queries[value]
 
-  const [createPost, { data }] = useMutation(gql`${mutation}`)
+  const [mutationAction, { loading, error, data }] = useMutation(gql`${mutation}`)
 
-  createPost({ variables })
+  mutationAction({ variables })
+
+  if (loading) return <Loading />
+  if (error) return <Error error={error} />
+  if (!data) return <NotFound />
 
   return (
     <>
@@ -123,7 +127,7 @@ export default function ({ mapList }) {
           {tabs}
         </Tabs>
       </Paper>
-      { value < 5 ? <LaunchQuery value={value} /> : <LaunchMutation value={value} /> }
+      {value < 5 ? <LaunchQuery value={value} /> : <LaunchMutation value={value} />}
     </>
   )
 }

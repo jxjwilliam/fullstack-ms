@@ -9,6 +9,7 @@ const middleware = {
   }
 }
 
+// fur MongoDB/Mongoose
 function crud(Model) {
   return {
     create: (req, res, next) => {
@@ -26,7 +27,6 @@ function crud(Model) {
           next();
         } else {
           return res.json({message: 'No such record'});
-          next(new Error('failed to load data'))
         }
       });
     },

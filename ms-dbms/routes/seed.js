@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/roles');
+const controller = require('../controllers/seed');
+
+router.param('id', controller.param);
 
 router.route('/')
   .get(controller.list)
   .post(controller.post);
 
-router.route('/:oid')
+router.route('/:id')
   .get(controller.get1)
   .put(controller.put)
-  .delete(controller.delete1);
+  .delete(controller.remove);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/users');
+const controller = require('../controllers/user');
 
 // We will use router.param to match any route with an ':id' param in it.
 // this callback function will run anytime the route matches that param
@@ -16,10 +16,6 @@ router.route('/')
 router.route('/:id')
   .get(controller.get)
   .put(controller.put)
-  .delete(controller.delete1);
-
-router.put('/:id/role', controller.putRole);
-
-router.put('/:id/organization', controller.putOrganization);
+  .delete(controller.remove);
 
 module.exports = router;

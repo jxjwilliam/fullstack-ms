@@ -14,6 +14,7 @@ const middleware = {
   }
 }
 
+// MongoDB + Mongoose
 function crud(Model) {
   return {
     // 需要重定向： /auth/account -> /auth/register

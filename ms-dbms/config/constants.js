@@ -1,5 +1,3 @@
-const SECRET = 'supplychainfinance-super-secret-key';
-
 // the following are for test purpose.
 const JSON_MSG = {"message": "It works!"};
 const PLAIN_MSG = 'It works!';
@@ -19,11 +17,8 @@ const ERRORS = {
 }
 
 module.exports = {
-  SECRET,
   JSON_MSG,
   PLAIN_MSG,
   APP_MSG,
   ERRORS,
 }
-
-//TODO: integrate with client/src/helpers/constants.js

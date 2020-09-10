@@ -4,17 +4,22 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 
-const config = require('./config/constants');
-const controller = require('./controllers')
 const route = require('./routes')
-const uploadSController = require('./controllers/upload_single')
-const uploadMController = require('./controllers/upload_multiple')
-const photosRouter = require('./routes/photo')
+const uploadPhoto = require('./upload_service/photo')
+const uploadSingle = require('./upload_service/single')
+const uploadMultiple = require('./upload_service/multiple')
 
 const app = express()
 
 require('dotenv').config()
 app.set('port', process.env.PORT)
+
+const {UPLOAD_DIR} = process.env
+const option = {
+  photo_dir: path.join(__dirname, UPLOAD_DIR, 'photo'),
+  single_dir: path.join(__dirname, UPLOAD_DIR, 'single'),
+  multiple_dir: path.join(__dirname, UPLOAD_DIR, 'multiple'),
+}
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -32,26 +37,17 @@ app.get('/api/dbms', (req, res) => {
   res.status(200).send(`MS-DBMS ${req.baseUrl}, ${req.url} works!`)
 })
 
-app.use("/api/dbms/photos", photosRouter);
-app.use(['/api/dbms/customer_info', '/api/dbms/customer_info/'], route.customer_info);
-app.use(['/api/dbms/organizations', '/api/dbms/organizations/'], route.organization);
-app.use(['/api/dbms/flows', '/api/dbms/flows/'], route.flow);
-app.use(['/api/dbms/departments', '/api/dbms/departments/'], route.department);
-app.use(['/api/dbms/roles', '/api/dbms/roles/'], route.role);
-app.use(['/api/dbms/auth', '/api/dbms/signup'], route.auth);
+app.use('/api/dbms/users', route.user);
 
-uploadSController(app);
-uploadMController(app);
+app.use("/api/dbms/photos", uploadPhoto(option.photo_dir));
 
-// app.use(controller.authenticate);
-
-app.use(['/api/dbms/users', '/api/dbms/users/'], route.users);
-app.use(['/api/dbms/status', '/api/dbms/status/'], route.status);
-app.use(['/api/dbms/core-businesses', '/api/dbms/core-business/'], route.core_business);
-app.use(['/api/dbms/suppliers', '/api/dbms/suppliers/'], route.supplier);
-app.use(['/api/dbms/circulation', '/api/dbms/circulation/'], route.circulation);
-app.use(['/api/dbms/financing', '/api/dbms/financing/'], route.financing);
-app.use(['/api/dbms/issue', '/api/dbms/issue/'], route.issue);
+/**
+ * if want to use app.get('ms_dir'), replace the following:
+ * uploadSingle(app);
+ * uploadMultiple(app);
+ */
+app.use("/api/dbms/upload", uploadSingle(option.single_dir))
+app.use("/api/dbms/uploads", uploadMultiple(option.multiple_dir))
 
 
 // catch 404 and forward to error handler

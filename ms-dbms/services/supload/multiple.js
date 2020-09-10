@@ -1,39 +1,40 @@
+const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const Upload = require('../models').Upload;
+const moment = require('moment')
+const Uploads = require('../models').Multiple;
 
-module.exports = (app) => {
+const router = express.Router();
 
-  const uploadDir = app.get('ms_dir') + '/uploads/';
+module.exports = (uploadsDir) => {
 
   const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-      callback(null, uploadDir)
+      callback(null, uploadsDir)
     },
     filename: (req, file, callback) => {
-      callback(null, file.originalname)
+      const today = moment(new Date()).format('YYYY-MM-DD')
+      callback(null, `${file.originalname}_${today}`)
     }
   });
 
   const uploads = multer({storage});
 
-  app.get('/api/uploads', (req, res, next) => {
-    Upload.findAll({raw: true})
+  router.get('/', (req, res, next) => {
+    Uploads.findAll({raw: true})
       .then(data => res.json(data))
       .catch(next);
   });
 
-  app.get('/api/uploads/:id', (req, res, next) => {
+  router.get('/:id', (req, res, next) => {
     const id = req.params.id;
-    Upload.findByPk(id, {raw: true})
+    Uploads.findByPk(id, {raw: true})
       .then(data => res.json(data))
       .catch(next);
   });
 
   // 一次上载的文件查询。
-  app.get('/api/uploads/name/:name', (req, res, next) => {
-    Upload.findAll({
+  router.get('/name/:name', (req, res, next) => {
+    Uploads.findAll({
       where: {name: req.params.name},
       include: [{all: true}]
     }, {raw: true})
@@ -41,11 +42,9 @@ module.exports = (app) => {
       .catch(next);
   });
 
-  app.post('/api/uploads', uploads.array('images', 4), (req, res, next) => {
+  router.post('/', uploads.array('images', 4), (req, res, next) => {
 
     const files = req.files;
-    console.log('~~~~~~~', files);
-
     if (!files) {
       const error = new Error('请选择上传文件');
       error.httpStatusCode = 400;
@@ -57,12 +56,14 @@ module.exports = (app) => {
     //   files.forEach(file => {
     //     const fstat = {
     //       name: file.originalname,
-    //       file_path: uploadDir + '/uloads/' + file.originalname,
+    //       file_path: uploadsDir + '/uloads/' + file.originalname,
     //       field_name: file.fieldname,
     //       size: file.size,
     //       type: file.mimetype,
     //     };
-    //     Upload.create(fstat).then(r => console.log(fstat));
+    //     Uploads.create(fstat).then(r => console.log(fstat));
     //   });
   });
+
+  return router
 };

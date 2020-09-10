@@ -1,7 +1,15 @@
 ## How it works
 
-- coorporate with `routes`, `models`.
-- test with `Postman` plugin/app.
+MVC has 2 ways to implement:
+
+- corporate `routes` + `controllers` with `models`.
+  * the files in `routes` and `controllers` are enum.
+- corporate `services` with `modles`
+  * the file in `services` are abstract and HOC.
+
+<blockquote>
+  test REST API are in  `postman` folder.
+</blockquote>
 
 ## Sequelize Query &
 

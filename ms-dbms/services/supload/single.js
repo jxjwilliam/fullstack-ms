@@ -1,28 +1,28 @@
+const express = require('express');
 const multer = require('multer');
-const path = require('path');
 const fs = require('fs');
-const Upload = require('../models').Upload;
+const Upload = require('../models').Single;
+
+const router = express.Router();
 
 const uploadTempDir = multer({dest: '/tmp/'});
 
-module.exports = (app) => {
+module.exports = (uploadDir) => {
 
-  const uploadDir = app.get('ms_dir') + '/uploads/';
-
-  app.get('/api/upload', (req, res, next) => {
+  router.get('/', (req, res, next) => {
     Upload.findAll({raw: true})
       .then(data => res.json(data))
       .catch(next);
   });
 
-  app.get('/api/upload/:id', (req, res, next) => {
+  router.get('/:id', (req, res, next) => {
     const id = req.params.id;
     Upload.findByPk(id, {raw: true})
       .then(data => res.json(data))
       .catch(next);
   });
 
-  app.get('/api/upload/name/:name', (req, res, next) => {
+  router.get('/name/:name', (req, res, next) => {
     Upload.findAll({
       where: {name: req.params.name},
       include: [{all: true}]
@@ -31,7 +31,7 @@ module.exports = (app) => {
       .catch(next);
   });
 
-  app.post('/api/upload', uploadTempDir.single('image'), (req, res) => {
+  router.post('/', uploadTempDir.single('image'), (req, res) => {
     const file = uploadDir + req.file.originalname;
     fs.rename(req.file.path, file, function (err) {
       if (err) {
@@ -52,4 +52,6 @@ module.exports = (app) => {
       }
     });
   })
+
+  return router
 };

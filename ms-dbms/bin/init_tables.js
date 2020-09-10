@@ -8,7 +8,7 @@ const basename = path.resolve(path.join(__dirname, '..'));
 console.log(basename);
 
 const db = require(`${basename}/models/index`);
-const AllData = require(`${basename}/config/init_data`);
+const AllData = require(`${basename}/bin/init_data`);
 
 const seed = (obj) => {
   Object.keys(obj).forEach(key => {

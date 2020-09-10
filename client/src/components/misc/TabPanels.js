@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Tabs, Tab, Typography, Box, Paper } from '@material-ui/core'
 
-function TabPanel(props) {
+// TODO: compare with @material-ui/lab/TabPanel ?
+function Panel(props) {
   const { children, value, index, ...other } = props
 
   return (
@@ -20,7 +21,7 @@ function TabPanel(props) {
   )
 }
 
-TabPanel.propTypes = {
+Panel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default function ({ary = []}) {
+export default function ({ ary = [] }) {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
@@ -50,34 +51,40 @@ export default function ({ary = []}) {
     setValue(newValue)
   }
 
-  const TabList = ary.map((tab, idx) => (
-    <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />
-  ))
 
-  const TabPanelList = (item) => (
-    ary.map((tab, idx) => (
-      <TabPanel value={item} index={idx} key={`${tab}${idx}`}>
-        {tab}
-      </TabPanel>
+  const tabs = (value, handleChange) => {
+    const tablist = ary.map((tab, idx) => (
+      <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />
     ))
-  )
-
-  return (
-    <>
+    return (
       <Paper className={classes.root}>
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="on"
-          indicatorColor="primary"
-          textColor="primary"
+          indicatorColor="secondary"
+          textColor="secondary"
           aria-label="scrollable tabs"
         >
-          {TabList}
+          {tablist}
         </Tabs>
       </Paper>
-      {TabPanelList(value)}
+    )
+  }
+
+  const panels = (item) => (
+    ary.map((tab, idx) => (
+      <Panel value={item} index={idx} key={`${tab}${idx}`}>
+        {tab}
+      </Panel>
+    ))
+  )
+
+  return (
+    <>
+      {tabs(value, handleChange)}
+      {panels(value)}
     </>
   )
 }

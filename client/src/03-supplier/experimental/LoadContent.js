@@ -49,15 +49,13 @@ function useFetcher(action) {
   return [data, loading, error];
 }
 
-const Spinner = () => <h1>Spinner</h1>
-const Error = () => <h1>Error</h1>
-
 const Fetcher = ({ action, children }) => {
   const [data, loading, error] = useFetcher(action);
 
   if (loading) return <Loading />;
   if (error) return <Error error={error} />
   if (!data) return <NotFound />;
+
   return children(data);
 };
 

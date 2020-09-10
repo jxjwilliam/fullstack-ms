@@ -28,7 +28,7 @@ function Dogs({ onDogSelected }) {
 
   if (loading) return <Loading />
   if (error) return <Error error={error} />
-  if(!data) return <NotFound />
+  if (!data) return <NotFound />
 
   return (
     <select name="dog" onChange={onDogSelected}>

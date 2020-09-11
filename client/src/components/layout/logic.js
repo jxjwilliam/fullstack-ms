@@ -50,7 +50,7 @@ const renderNav = (base, navList) => (
   <bars.Bar2>
     <Drawer1 />
     <Typography>
-      <MuiLink href={base} color="inherit" variant="h6">
+      <MuiLink href={`/${base}`} color="inherit" variant="h6">
         {base}
       </MuiLink>
     </Typography>

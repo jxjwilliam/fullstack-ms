@@ -7,7 +7,7 @@ require('dotenv').config()
 // same as in bff/.env:
 const MS_BFF_PORT = process.env.BFF_PORT
 
-const localMs = ['/api', '/auth']
+const localMs = ['/auth', '/api']
 const staticMs = ['/data', '/graphql']
 const otherMs = ['/sms', '/rest']
 

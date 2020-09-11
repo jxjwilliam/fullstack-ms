@@ -4,7 +4,7 @@ import { Paper, Tabs, Tab, } from '@material-ui/core'
 import { Card, CardContent, Typography } from '@material-ui/core'
 import { Queries } from './config'
 import { gql, useQuery, useMutation } from "@apollo/client";
-import { Error, Loading, NotFound } from "../../components/misc";
+import { Error, Loading, NotFound } from "../../../components/misc";
 // not work well: { TabContext, TabList, TabPanel } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({

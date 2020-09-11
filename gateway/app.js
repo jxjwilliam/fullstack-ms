@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 
 const apiProxy = httpProxy.createProxyServer()
-const { MS_AUTH, MS_DBMS, MS_DOC } = process.env
+const { MS_AUTH, MS_DBMS, MS_DOC, MS_GRAPHQL, MS_DISCOVERY } = process.env
 
 // 2. MS-AUTH
 app.all('/auth/*', (req, res) => {
@@ -72,6 +72,11 @@ app.all('/api/dbms', (req, res) => {
 app.all('/api/doc', (req, res) => {
   console.log(`${req.url} redirects to ${MS_DOC}`)
   apiProxy.web(req, res, { target: MS_DOC })
+})
+
+app.all('/graphql', (req, res) => {
+  console.log(`${req.url} redirects to ${MS_GRAPHQL}`)
+  apiProxy.web(req, res, { target: MS_GRAPHQL })
 })
 
 

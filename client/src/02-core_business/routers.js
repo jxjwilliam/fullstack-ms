@@ -108,21 +108,22 @@ const mainList = [
     nav: 'GraphQL',
     main: [
       {
-        path: 'apollographql-demo-1',
+        path: 'graphqlzero',
         title: 'Graphqlzero 🚀',
         icon: AvTimer,
-        component: AG.Demo1
+        component: AG.Graphqlzero
       },
       {
-        path: 'apollographql-demo-2',
-        title: 'Demo 2',
+        path: 'github',
+        title: 'Github',
         icon: Description,
-        component: AG.Demo2
+        component: AG.Github
       },
       {
         path: 'apollographql-demo-3',
-        title: 'Demo 3',
+        title: 'Local Server',
         icon: AssignmentTurnedIn,
+        component: AG.Local,
       },
       {
         path: 'apollographql-demo-4',

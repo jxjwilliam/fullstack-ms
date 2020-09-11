@@ -5,6 +5,11 @@ const expressJwt = require('express-jwt')
 
 const TOKEN_SECRET = require('crypto').randomBytes(64).toString('hex')
 
+function signToken(tokenInfo) {
+  const token = jwt.sign(tokenInfo, TOKEN_SECRET, { algorithm: 'HS256', expiresIn: '30m' })
+  // res.json({token})
+}
+
 // authenticateToken is a express-middleware.
 function authenticate(req, res, next) {
   const authHeader = req.headers['authorization']
@@ -16,11 +21,6 @@ function authenticate(req, res, next) {
     req.user = user
     next()
   })
-}
-
-function signToken(tokenInfo) {
-  const token = jwt.sign(tokenInfo, TOKEN_SECRET, { algorithm: 'HS256', expiresIn: '30m' })
-  // res.json({token})
 }
 
 function verifyToken(token) {

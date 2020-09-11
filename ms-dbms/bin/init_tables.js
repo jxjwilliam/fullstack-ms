@@ -1,4 +1,4 @@
-#! /usr/local/bin/node
+#! /usr/bin/env node
 
 //Because Sequelize is doing a lot of magic, you have to call `Sequelize.sync` after setting the associations!
 

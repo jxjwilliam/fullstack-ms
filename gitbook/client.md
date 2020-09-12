@@ -4,14 +4,12 @@
 - Data validation
 
 - [material-ui-templates](https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates)
-- [example: checkout](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/checkout
-)
-`Material-ui` is the most popular component library for React.
+- [example: checkout](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/checkout)
+  `Material-ui` is the most popular component library for React.
 
 ## styled-components
 
 [How to use styled components with Material UI in a React app](https://www.sipios.com/blog-tech/how-to-use-styled-components-with-material-ui-in-a-react-app)
-
 
 ## netlify
 
@@ -28,3 +26,18 @@ to monitor the test coverage.
 ## React DnD
 
 React DnD is a library used to build complex drag and drop interfaces
+
+### props.children(state) + {loading, error, data}
+
+---
+
+```text
+this.state = {loading, error, data}
+this.props.children(this.state)
+
+{({ loading, error, data}) => {
+    if(loading) return <p>Loading</p>;
+    if(error) return <p>Error:(</p>
+    data.map(renderDataMap)
+}}
+```

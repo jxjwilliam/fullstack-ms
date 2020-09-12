@@ -14,3 +14,37 @@
 - HOC
 - Render Props
 - Hooks
+
+
+### fetching
+
+- Generic (authentication)
+
+```text
+headers: { 
+    'authorization': `Bearer ${authToken}`, 
+    'Content-type':'application/json', 
+    'Accept':'application/json', 
+}
+```
+
+- file upload form  (authentication)
+
+```text
+headers: { 
+    'authorization': `Bearer ${authToken}`, 
+    'Content-type':'Content-Type: multipart/form-data', 
+    'Accept':'application/json', 
+}
+```
+
+- proxy (e.g. sms)  (NO authentication)
+
+```text
+headers: { 
+    'Content-type':'application/json', 
+    'Accept':'application/json', 
+}
+```
+
+- Individual cases (NO authentication) === proxy

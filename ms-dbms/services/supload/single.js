@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
-const Upload = require('../models').Single;
+const Upload = require('../../models').Single;
 
 const router = express.Router();
 

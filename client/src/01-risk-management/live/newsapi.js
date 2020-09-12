@@ -23,13 +23,13 @@ const useStyles = makeStyles(theme => ({
 
 // use iframe + 3rd react-app
 export default function () {
-  const style = { border: 0, width: "100vw", height: "100vh", frameborde: 0, seamless: "seamless" }
+  const style = { border: 0, width: "80vw", height: "80vh", frameborde: 0, seamless: "seamless" }
   return (
-    <iframe src="http://localhost:3001/" style={style}></iframe>
+    <iframe src="http://localhost:5000/" style={style}></iframe>
   )
 }
 
-// Use `bff` proxy instead.
+// access-denied. Use `bff` proxy instead.
 export function CorsBlock() {
   const classes = useStyles()
   const [news, setNews] = useState({})
@@ -66,41 +66,3 @@ export function CorsBlock() {
     </Card>
   )
 }
-
-
-// // To query everything
-// // You must include at least one q, source, or domain
-// newsapi.v2.everything({
-//   q: 'trump',
-//   sources: 'bbc-news,the-verge',
-//   domains: 'bbc.co.uk,techcrunch.com',
-//   from: '2017-12-01',
-//   to: '2017-12-12',
-//   language: 'en',
-//   sortBy: 'relevancy',
-//   page: 2
-// }).then(response => {
-//   console.log(response);
-//   /*
-//     {
-//       status: "ok",
-//       articles: [...]
-//     }
-//   */
-// });
-//
-// // To query sources
-// // All options are optional
-// newsapi.v2.sources({
-//   category: 'technology',
-//   language: 'en',
-//   country: 'us'
-// }).then(response => {
-//   console.log(response);
-//   /*
-//     {
-//       status: "ok",
-//       sources: [...]
-//     }
-//   */
-// });

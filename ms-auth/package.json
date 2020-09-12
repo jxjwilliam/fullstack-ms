@@ -9,7 +9,7 @@
     "test": "mocha services/**/*.test.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Best IT Consultants",
   "license": "ISC",
   "dependencies": {
     "@williamjiang/util": "^1.0.5",

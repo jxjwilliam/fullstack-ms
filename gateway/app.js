@@ -42,9 +42,10 @@ app.all('/auth/*', (req, res) => {
 
 /**
  * authentication: jsonwebtoke.sign -> algorithm(default='HS256')
- * without `next`: [HPM] Error occurred while trying to proxy request /data/stuff from localhost:3000 to http://loc
- * alhost:8081/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+ * without `next`: [HPM] Error occurred while trying to proxy request /data/stuff from localhost:3000 to
+ * http://localhost:8081/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
  * 401 Unauthorized: {name: "UnauthorizedError", message: "jwt expired"}
+ * { "name": "UnauthorizedError","message": "No authorization token was found","code": "credentials_required","status": 401}
  */
 app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
   (err, req, res, next) => {
@@ -77,6 +78,11 @@ app.all('/api/doc', (req, res) => {
 app.all('/graphql', (req, res) => {
   console.log(`${req.url} redirects to ${MS_GRAPHQL}`)
   apiProxy.web(req, res, { target: MS_GRAPHQL })
+})
+
+app.all('/discovery', (req, res) => {
+  console.log(`${req.url} redirects to ${MS_DISCOVERY}`)
+  apiProxy.web(req, res, { target: MS_DISCOVERY })
 })
 
 

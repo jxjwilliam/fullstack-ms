@@ -18,4 +18,6 @@ router.route('/:id')
   .put(controller.put)
   .delete(controller.remove);
 
+router.get('/search/:search', controller.search)
+
 module.exports = router;

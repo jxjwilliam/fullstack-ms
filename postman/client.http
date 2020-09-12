@@ -14,6 +14,10 @@ GET http://localhost:3000/api/dbms
 ### MS-DOC
 GET http://localhost:3000/api/doc
 
+### MS-GRAPHQL
+GET http://localhost:3000/graphql
+
+
 
 ### Gitbook
 GET http://localhost/gitbook

@@ -26,8 +26,8 @@
     "Basic Implementation",
     "Microservice Templates"
   ],
-  "author": "William Jiang Team",
-  "license": "0BSD",
+  "author": "Best IT Consultants",
+  "license": "ISC",
   "devDependencies": {
     "commitizen": "^4.1.2",
     "concurrently": "^5.2.0",

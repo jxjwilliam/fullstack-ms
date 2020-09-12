@@ -93,10 +93,6 @@ const navList = [
     path: '流程管理',
     icon: FilterVintage,
   },
-  {
-    path: '参数配置',
-    icon: Layers,
-  },
 ]
 
 const mainList = [
@@ -105,20 +101,25 @@ const mainList = [
     main: [
       {
         path: '角色查询',
-        title: '用户角色查询',
+        title: 'Weather',
         icon: Person,
         component: live.OpenWeatherMap,
       },
       {
         path: '口令更改',
-        title: '用户口令更改',
+        title: 'Google Map',
         icon: Visibility,
         component: live.GoogleMap,
       },
       {
-        path: '用户信息权限变更',
+        path: 'NewsApi',
         icon: Update,
         component: live.NewsApi,
+      },
+      {
+        path: 'Gnews',
+        icon: Layers,
+        component: live.GNews,
       },
     ],
   },

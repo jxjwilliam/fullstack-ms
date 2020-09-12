@@ -55,3 +55,8 @@
 ### Pending
 
 - gateway: app.use(express.urlencoded({ extended: false }));
+
+
+### Heroku hosting
+
+make `news-api-react` hosted in heroku

@@ -9,7 +9,7 @@ router.route('/')
   .post(controller.post);
 
 router.route('/:id')
-  .get(controller.get1)
+  .get(controller.get)
   .put(controller.put)
   .delete(controller.remove);
 

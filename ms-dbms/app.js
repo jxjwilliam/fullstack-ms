@@ -5,9 +5,7 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 
 const route = require('./routes')
-const uploadPhoto = require('./upload_service/photo')
-const uploadSingle = require('./upload_service/single')
-const uploadMultiple = require('./upload_service/multiple')
+const {uploadPhoto, uploadSingle, uploadMultiple } = require('./services/supload')
 
 const app = express()
 

@@ -4,12 +4,10 @@ import {
   ApolloClient,
   createHttpLink,
   InMemoryCache,
-  useQuery,
-  useMutation,
   gql,
 } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
-import { Error, Loading, NotFound } from '../../components'
+import { LaunchQuery, LaunchMutation } from './common'
 
 const httpLink = createHttpLink({
   uri: "http://localhost:8081/graphql"
@@ -31,23 +29,12 @@ const client = new ApolloClient({
 })
 
 function Hello() {
-  const { loading, error, data } = useQuery(gql`
+  const QUERY = gql`
     {
       hello
     }
-  `)
-
-  if (loading) return <Loading />
-  if (error) return <Error error={error} />
-  if (!data) return <NotFound />
-
-  return (
-    <pre style={{ textAlign: 'initial' }}>
-      <code>
-        {JSON.stringify(data, null, 4)}
-      </code>
-    </pre>
-  );
+  `
+  return <LaunchQuery query={QUERY} />
 }
 
 export default function () {

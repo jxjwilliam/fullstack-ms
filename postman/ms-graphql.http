@@ -1,0 +1,21 @@
+### 
+
+POST http://localhost:3000/graphql
+X-Request-Type: GraphQL
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5YTBjYTk3NDNkYjQxMTgxMjM0MzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBiZXN0aXRjb25zdWx0aW5nLmNvbSIsInBob25lIjoiMTM0NzI1ODE2MjkiLCJyb2xlIjoiYWRtaW4iLCJjYXRlZ29yeSI6ImxvY2FsIiwiaWF0IjoxNTk5ODQ1ODU2LCJleHAiOjE1OTk4NDc2NTZ9.SmUJHT3urCz_MTonNTnQrLmINIm6Lt61Z8n7uuUWzd8
+
+{
+  query {
+    hello
+  }
+}
+
+###
+GET http://localhost:3000/POST url HTTP/1.1
+X-Request-Type: GraphQL
+header name: header value
+
+body content
+
+variables content(optional)
+

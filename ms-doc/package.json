@@ -1,7 +1,8 @@
 {
   "name": "basic-ms-doc",
   "version": "0.1.1",
-  "private": true,
+  "author": "Best IT Consultants",
+  "license": "ISC",
   "scripts": {
     "start": "nodemon --exec babel-node ./server",
     "dev": "cross-env DEBUG=express:* nodemon --exec babel-node ./server",

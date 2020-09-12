@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import ReactWeather from 'react-open-weather';
 import 'react-open-weather/lib/css/ReactWeather.css';
+import {DataPrint} from "../../helpers/utils";
 
 const config = {
   address: "9727 152b Street, Surrey Bc Canada",
@@ -36,7 +37,7 @@ export default function LocalWeather() {
         city="Vancouver"
         lang="cn"
       />
-      <Weather/>
+      {/*<Weather/>*/}
     </>
   )
 }
@@ -59,16 +60,19 @@ export function Weather () {
   }, [])
 
   return (
+    <>
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color={'textSecondary'} gutterBottom variant={"body2"}>
-          {JSON.stringify(weather, null, 4)}
+          Weather
         </Typography>
       </CardContent>
       <CardActions>
         <Button>Learn More</Button>
       </CardActions>
     </Card>
+    <DataPrint data={weather}/>
+    </>
   )
 }
 

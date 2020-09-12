@@ -132,7 +132,7 @@ const getPageLayout = (navList, mainList, options) => {
       <bars.Bar2>
         <Drawer1 />
         <Typography>
-          <MuiLink href={base} color="inherit" variant="h6">{base}</MuiLink>
+          <MuiLink component={Link} to={`/${base}`} color="inherit" variant="h6">{base}</MuiLink>
         </Typography>
         <NavList navs={navs} />
       </bars.Bar2>

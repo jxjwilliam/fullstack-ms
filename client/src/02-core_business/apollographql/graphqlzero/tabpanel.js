@@ -5,6 +5,7 @@ import { Card, CardContent, Typography } from '@material-ui/core'
 import { Queries } from './config'
 import { gql, useQuery, useMutation } from "@apollo/client";
 import { Error, Loading, NotFound } from "../../../components/misc";
+import {DataPrint} from "../../../helpers/utils";
 // not work well: { TabContext, TabList, TabPanel } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({
@@ -62,11 +63,7 @@ function LaunchQuery({ value }) {
   return (
     <>
       <Card1 data={data} />
-      <pre style={{ textAlign: 'initial' }}>
-        <code>
-          {JSON.stringify(data, null, 4)}
-        </code>
-      </pre>
+      <DataPrint data={data} />
     </>
   );
 }
@@ -74,9 +71,8 @@ function LaunchQuery({ value }) {
 function LaunchMutation({ value }) {
   const [mutation, variables] = Queries[value]
 
-  const [mutationAction, { loading, error, data }] = useMutation(gql`${mutation}`)
-
-  mutationAction({ variables })
+  const [action, { loading, error, data }] = useMutation(gql`${mutation}`)
+  action({ variables })
 
   if (loading) return <Loading />
   if (error) return <Error error={error} />
@@ -85,11 +81,7 @@ function LaunchMutation({ value }) {
   return (
     <>
       {/*<Card1 data={data} />*/}
-      <pre style={{ textAlign: 'initial' }}>
-        <code>
-          {JSON.stringify(data, null, 4)}
-        </code>
-      </pre>
+      <DataPrint data={data} />
     </>
   )
 }

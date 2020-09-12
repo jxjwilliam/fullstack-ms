@@ -66,6 +66,8 @@ new mongoose.Schema({
 
 ---
 
+- redirect: 301, 302, 303, 307, 308
+
 ```text
 100 Continue
 101 Switching Protocols

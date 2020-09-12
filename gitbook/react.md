@@ -8,8 +8,40 @@
 
 ### 🍺 代理 http-proxy-middleware
 
-### 🍺 表单处理 react-hook-form, Formik/Yup
+### 🍺 表单处理 FormData, File Upload 处理:
 
+---
+
+1. form submit with `Content-Type=application/json` + `JSON.stringify`, upload-file form use `Content-Type: multipart/form-data`
+
+```javascript
+  fetch('/api/account/signup', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(this.state), //formData
+  })
+```
+
+2. Server-side use `body-parser`:
+
+```javascript
+  // parse application/json
+  app.use(bodyParser.json());
+```
+
+3. express uses `parseFormdata`:
+
+```javascript
+  router.post('/signup', (req, res, next) => {
+    // this is the solution for 'formData'.
+    parseFormdata(req, (err, data) => {
+      console.log('formData, multipart/form-data: ', data.fields, data.parts);
+    })
+   });
+```
+ 
 ### 🍺 表格处理 material-table
 
 ### 🍺 DBMS: MySQL + Sequelize

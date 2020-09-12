@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Redirect, NavLink } from 'react-router-dom'
+import { Switch, Route, Redirect, Link, NavLink } from 'react-router-dom'
 import {
   Container,
   List,
@@ -50,7 +50,7 @@ const renderNav = (base, navList) => (
   <bars.Bar2>
     <Drawer1 />
     <Typography>
-      <MuiLink href={`/${base}`} color="inherit" variant="h6">
+      <MuiLink component={Link} to={`/${base}`} color="inherit" variant="h6">
         {base}
       </MuiLink>
     </Typography>

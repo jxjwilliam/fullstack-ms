@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const moment = require('moment')
-const Photo = require("../models").Photo;
+const Photo = require("../../models").Photo;
 
 const router = express.Router();
 

@@ -16,7 +16,7 @@ $ yarn run-prod
 $ open http：//localhost:10000
 ```
 
-### request.js
+### request.js (Deprecated)
 
 `Request` is going into maintenance mode, this is what you need to know.
 
@@ -27,10 +27,20 @@ Alternatives to Request:
 - Node Fetch
 - Superagent
 
-### API
 
----
+### Nginx delegate Node-app
 
-| 表      | CRUD | API        | 说明             |
-| ------- | ---- | ---------- | ---------------- |
-| User | GET  | /api/users | 取所有`用户信息` |
+This *NOT* work.
+```text
+  location /news-api-react/ {
+    alias "C:/Users/willi/MY_TOOL/nginx-1.18.0/news_api_react/";
+    index  index.html index.htm;
+  }
+```
+This *WORK*:
+```text
+location /  {
+    proxy_pass    http://127.0.0.1:5000/;
+    try_files $uri $uri/ =404;
+}
+```

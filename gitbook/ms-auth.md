@@ -17,13 +17,13 @@ $ node bin/init.js
 - 注冊，查詢，修改，刪除用戶信息表
 - 登录，登出系统，issue 颁发 token 认证。
 
-| action  | 调用          | 说明           |
-| ------- | ------------- | -------------- |
-| 注册    | /auth/signup  | /auth/register | 保存用户信息，包括口令 |
-| 登录    | /auth/signin  | /auth/login    | 验证用户信息, 调用 authentication/authorization |
-| 退出    | /auth/signout | /auth/logout   | 取消 token |
-| User | /auth/account | 查看 accounts  |
-| Role    | /auth/role    | 查看 roles     |
+| action | 调用          | 说明           |
+| ------ | ------------- | -------------- |
+| 注册   | /auth/signup  | /auth/register | 保存用户信息，包括口令 |
+| 登录   | /auth/signin  | /auth/login    | 验证用户信息, 调用 authentication/authorization |
+| 退出   | /auth/signout | /auth/logout   | 取消 token |
+| User   | /auth/account | 查看 accounts  |
+| Role   | /auth/role    | 查看 roles     |
 
 > Notice: 多个表之间的关联
 

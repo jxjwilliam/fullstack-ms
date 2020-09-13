@@ -16,7 +16,7 @@ $ git push heroku master
 $ heroku logs --tail
 ```
 
-- 426 Upgrade required:
+- `https://news-api-react.herokuapp.com/` NOT work: `426` Upgrade required:
 
 Since 22 May 2020 they changed the liberties of the free developer keys and now they `reject any request` using that key that is not coming from `localhost`.
 

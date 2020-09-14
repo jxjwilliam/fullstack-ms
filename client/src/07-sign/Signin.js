@@ -19,6 +19,7 @@ import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@mat
 import { withStyles } from '@material-ui/core/styles'
 import { DEFAULT_HOME_PAGE, TOKEN, REGISTER_PAGE } from '../constants'
 import { loginAction } from '../state/actions'
+import { Loading } from '../components/misc'
 
 const useStyles = theme => ({
   '@global': {
@@ -47,7 +48,7 @@ const useStyles = theme => ({
 
 class SignIn extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  state = { login: { username: '', password: '', }, done: false, }
+  state = { login: { username: '', password: '', }, loading: false, done: false, }
 
   validateForm = () => {
     const { login: { username, password }, } = this.state
@@ -67,12 +68,14 @@ class SignIn extends Component {
 
     // eslint-disable-next-line react/destructuring-assignment
     loginAction(login).then(() => {
+      this.setState({loading: true})
+      
       const { auth: { loggedIn, token } } = this.props;
       if (loggedIn) {
-        this.setState({ done: true })
+        this.setState({ done: true, loading: false })
         sessionStorage.setItem(TOKEN, token)
       } else {
-        this.setState({ done: false })
+        this.setState({ done: false, loading: false })
         sessionStorage.removeItem(TOKEN)
       }
     })
@@ -80,10 +83,9 @@ class SignIn extends Component {
 
   render() {
     const { classes } = this.props
-    const { login: { username, password }, done, } = this.state
-    if (done) {
-      return <Redirect to={DEFAULT_HOME_PAGE} />
-    }
+    const { login: { username, password }, done, loading} = this.state
+    if (loading) return <Loading />
+    if (done) return <Redirect to={DEFAULT_HOME_PAGE} />
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />

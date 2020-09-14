@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import MaterialTable from 'material-table';
 import {makeStyles} from "@material-ui/core/styles";
 import moment from 'moment'
-import { fetching } from "../../helpers/utils";
+import Fetcher, {loadContent} from "../../helpers/LoadContent";
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -17,7 +17,6 @@ const convertTimestamp = (obj) => {
 
 function Account() {
   const classes = useStyles()
-  const [accounts, setAccounts ] = useState([])
   const [columns, setColumns] = useState([])
   const ths = {
     username: "Account",
@@ -34,23 +33,22 @@ function Account() {
     setColumns(columns)
   }, [])
 
-  // /auth/account/5f49a0ca9743db411812343a
-  useEffect(() => {
-    fetching('/auth/account')
-      .then(accounts => {
-        if (!Array.isArray(accounts)) accounts = [ accounts ]
-        accounts.forEach(convertTimestamp)
-        setAccounts(accounts)
-      })
-      .catch(e => console.error(e))
-  }, [])
+  const renderAccount = accounts => {
+    if (!Array.isArray(accounts)) accounts = [ accounts ]
+    accounts.forEach(convertTimestamp)
+    return (
+      <MaterialTable
+        title={'Accounts'}
+        columns={columns}
+        data={accounts}
+      />
+    )
+  }
 
   return (
-    <MaterialTable
-      title={'Accounts'}
-      columns={columns}
-      data={accounts}
-    />
+    <Fetcher action={loadContent('/auth/account')}>
+      {data => renderAccount(data)}
+    </Fetcher>
   )
 }
 

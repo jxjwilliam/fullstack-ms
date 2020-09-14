@@ -1,28 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {fetching} from "../../helpers/utils";
-import {Loading, NotFound, Error} from '../../components/misc'
+import fetching from "./fetching";
+import {Loading, NotFound, Error} from '../components/misc'
 
 // useCallback, useFetchData
-export default function LoadContent({url, children}) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    setLoading(true)
-    fetching(url)
-      .then(data => {
-        setLoading(false)
-        setData(data)
-      })
-      .catch(err => {
-        setLoading(false)
-        setError(err)
-      }, [url])
-  })
-
-  return children({loading, error, data})
-}
+export const loadContent = url => () => fetching(url)
 
 // ref: https://medium.com/front-end-weekly/data-fetcher-component-using-hooks-and-render-props-aacf3162dfc2
 function useFetcher(action) {
@@ -43,8 +24,8 @@ function useFetcher(action) {
   }
 
   useEffect(() => {
-    loadData();
-  }, [action]);
+    loadData()
+  }, []);
 
   return [data, loading, error];
 }
@@ -59,8 +40,4 @@ const Fetcher = ({ action, children }) => {
   return children(data);
 };
 
-// const UserProfile = ({id}) => (
-//   <Fetcher action={api.fetchProfile(id)}>
-//     {data => renderProfile(data)}
-//   </Fetcher>
-// )
+export default Fetcher;

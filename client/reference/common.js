@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {isEmpty} from "../../helpers/utils";
+import {isEmpty} from "../src/helpers/utils";
 
 // https://www.youtube.com/watch?v=LTunyI2Oyzw
 const LoaderHOC = propName => Comp => {

@@ -56,9 +56,7 @@ function calls() {
         return (
           <ComplexList
             data={data}
-            renderHeader={() => (
-              <span>{loading ? 'Loading...' : 'Header Content'}</span>
-            )}
+            renderHeader={() => <span>{loading ? 'Loading...' : 'Header Content'}</span>}
             renderListItem={(item) => <div>{item}</div>}
           >
             <div>We have {data.length} items</div>

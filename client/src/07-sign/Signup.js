@@ -48,6 +48,7 @@ function SignUp (props) {
   })
   // TODO: `done`
   const [done, setDone] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // Select can't capture `id`: undefined. Only `name` works.
   const handleChange = ({target: { name, value}}) => {
@@ -55,7 +56,11 @@ function SignUp (props) {
   }
 
   const handleSubmit = (ev) => {
-    props.signupAction(register).then(() => setDone(true))
+    setLoading(true)
+    props.signupAction(register).then(() => {
+      setLoading(false)
+      setDone(true)
+    })
     ev.preventDefault()
   }
 

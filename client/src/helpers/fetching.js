@@ -34,7 +34,7 @@ export default function(url, opts = {}, isFileOrProxy) {
     .then((res) => {
       if (res.ok) return res.json()
       else {
-        if (/^4\d{2}/.test(res.status)) {
+        if (/^4\d{2}/.test(res.status)) { //res.status is string or number? res.status.startsWith(4)
           // access-token expired, 401, 403, statusText="Unauthorized"
           return pageReload()
         } else throw new Error(res.statusText)

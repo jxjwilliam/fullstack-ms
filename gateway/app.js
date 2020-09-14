@@ -15,13 +15,12 @@ app.set('port', process.env.PORT)
 
 const jwtSecretSalt = process.env.SECRET
 
-// app.use(favicon(path.join(__dirname, '../client/public', 'favicon.ico')))
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
   .use(cors())
   .use(logger('dev'))
   .use(helmet())
   .use(express.static(path.join(__dirname, 'build')))
-
+  .use(express.static(path.join(__dirname, 'news-api-react')))
 
 ///////////////////////////////
 

@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import MaterialTable from 'material-table';
 import {makeStyles} from "@material-ui/core/styles";
 import moment from 'moment'
-import Fetcher, {loadContent} from "../../helpers/LoadContent";
+import Fetcher, {actionFetcher} from "../../helpers/Fetcher";
+import Toast from "../../components/misc/Toast";
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -18,6 +19,7 @@ const convertTimestamp = (obj) => {
 function Account() {
   const classes = useStyles()
   const [columns, setColumns] = useState([])
+  const [toast, setToast] = useState(true)
   const ths = {
     username: "Account",
     email: "Email",
@@ -45,10 +47,17 @@ function Account() {
     )
   }
 
+  /**
+   * action: {object}, function, string
+   *  action={actionFetcher('/auth/account')}
+   */
   return (
-    <Fetcher action={loadContent('/auth/account')}>
-      {data => renderAccount(data)}
-    </Fetcher>
+    <>
+      <Fetcher action={'/auth/account'}>
+        {data => renderAccount(data)}
+      </Fetcher>
+      {toast && <Toast message={"Account List"} />}
+      </>
   )
 }
 

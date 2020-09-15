@@ -3,7 +3,7 @@ import fetching from "./fetching";
 import {Loading, NotFound, Error} from '../components/misc'
 
 // useCallback, useFetchData
-export const loadContent = url => () => fetching(url)
+export const actionFetcher = (url, opts={}) => () => fetching(url, opts)
 
 // ref: https://medium.com/front-end-weekly/data-fetcher-component-using-hooks-and-render-props-aacf3162dfc2
 function useFetcher(action) {
@@ -30,8 +30,16 @@ function useFetcher(action) {
   return [data, loading, error];
 }
 
-const Fetcher = ({ action, children }) => {
-  const [data, loading, error] = useFetcher(action);
+const Fetcher = ({ action: args, children }) => {
+  let fetchOrAction;
+  if (typeof args === 'string') fetchOrAction = actionFetcher(args)
+  else if (typeof args === 'function') fetchOrAction = args
+  else if (typeof args === 'object' && args !== null) {
+    const {url, opts} = args
+    fetchOrAction = actionFetcher(url, opts)
+  }
+
+  const [data, loading, error] = useFetcher(fetchOrAction);
 
   if (loading) return <Loading />;
   if (error) return <Error error={error} />

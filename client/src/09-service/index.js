@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -6,7 +7,7 @@ import {
   Container,
   CssBaseline,
   Toolbar,
-  Link,
+  Link as MuiLink,
 } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 import { Home as HomeIcon } from '@material-ui/icons'
@@ -47,9 +48,9 @@ function Service ({auth: { token}}) {
       <Container fixed className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Link href="/" color="inherit" variant="h6">
+            <MuiLink component={Link} to="/" color="inherit" variant="h6">
               <HomeIcon />
-            </Link>
+            </MuiLink>
             <Drawer1 />
             {routers}
           </Toolbar>

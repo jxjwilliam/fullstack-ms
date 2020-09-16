@@ -45,7 +45,7 @@ function DataPrint({ data }) {
 }
 
 // ({...partial, [key]: obj[key]})
-function extractObj(ary=[], obj={}) {
+function extractObj(ary = [], obj = {}) {
   return ary.reduce((partial, key) => {
     if (obj[key]) partial[key] = obj[key]
     return partial

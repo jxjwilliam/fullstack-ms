@@ -1,4 +1,4 @@
-function capitalize (str) {
+function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
 
@@ -6,12 +6,12 @@ function isJson(str) {
   try {
     JSON.parse(str)
     return true
-  } catch(e) {
+  } catch (e) {
     return false
   }
 }
 
-function showGroup (content, title='') {
+function showGroup(content, title = '') {
   console.group(`👋 👏 ${title}`)
   console.log(content)
   console.groupEnd()

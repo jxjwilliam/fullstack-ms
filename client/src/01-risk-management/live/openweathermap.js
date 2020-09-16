@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { makeStyles} from "@material-ui/core/styles";
+import React, { useEffect, useState } from 'react'
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
   CardActions,
@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import ReactWeather from 'react-open-weather';
 import 'react-open-weather/lib/css/ReactWeather.css';
-import {DataPrint} from "../../helpers/utils";
+import { DataPrint } from "../../helpers/utils";
 
 const config = {
   address: "9727 152b Street, Surrey Bc Canada",
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 // https://www.npmjs.com/package/react-open-weather
 export default function LocalWeather() {
-  const {openweathermap_key: key} = config
+  const { openweathermap_key: key } = config
   return (
     <>
       <ReactWeather
@@ -45,12 +45,12 @@ export default function LocalWeather() {
 /**
  * works version. need parse {}: https://openweathermap.org/api/one-call-api
  */
-export function Weather () {
+export function Weather() {
   const classes = useStyles()
   const [weather, setWeather] = useState({})
 
-  useEffect( () => {
-    const {latitude, longitude, openweathermap_key: key} = config
+  useEffect(() => {
+    const { latitude, longitude, openweathermap_key: key } = config
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,daily&appid=${key}`)
       .then(data => data.json())
       .then(info => setWeather(info))
@@ -61,17 +61,17 @@ export function Weather () {
 
   return (
     <>
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color={'textSecondary'} gutterBottom variant={"body2"}>
-          Weather
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography className={classes.title} color={'textSecondary'} gutterBottom variant={"body2"}>
+            Weather
         </Typography>
-      </CardContent>
-      <CardActions>
-        <Button>Learn More</Button>
-      </CardActions>
-    </Card>
-    <DataPrint data={weather}/>
+        </CardContent>
+        <CardActions>
+          <Button>Learn More</Button>
+        </CardActions>
+      </Card>
+      <DataPrint data={weather} />
     </>
   )
 }

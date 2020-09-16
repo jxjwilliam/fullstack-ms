@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from '../state/actions'
 import { getPageLayout } from '../components'
 import { navList, mainList } from './routers'
-import {checkLogin} from "../helpers/utils";
+import { checkLogin } from "../helpers/utils";
 
 class CoreBusiness extends Component {
   constructor(props) {
     super(props)
     props.getMenu1Action()
-    this.state = { title: '核心企业'}
+    this.state = { title: '核心企业' }
   }
 
   render() {
@@ -19,7 +19,7 @@ class CoreBusiness extends Component {
       location: { pathname },
       match: { url, path },
     } = this.props
-    const pageLayout = getPageLayout(navList, mainList, {pathname, url, path,})
+    const pageLayout = getPageLayout(navList, mainList, { pathname, url, path, })
     return checkLogin(token) || <>{pageLayout}</>
   }
 }

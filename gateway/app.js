@@ -49,7 +49,7 @@ app.all('/auth/*', (req, res) => {
 app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
   (err, req, res, next) => {
     if (err.name) {
-      const info = ({ name, message, status, code } = err)
+      const { name, message, status, code } = err
       return res.status(status).json({ name, message, code, status })
     }
   }
@@ -64,22 +64,22 @@ app.get('/data/:resource', (req, res) => {
 });
 
 
-app.all('/api/dbms', (req, res) => {
+app.all('/api/dbms/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS_DBMS}`)
   apiProxy.web(req, res, { target: MS_DBMS })
 })
 
-app.all('/api/doc', (req, res) => {
+app.all('/api/doc/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS_DOC}`)
   apiProxy.web(req, res, { target: MS_DOC })
 })
 
-app.all('/graphql', (req, res) => {
+app.all('/graphql/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS_GRAPHQL}`)
   apiProxy.web(req, res, { target: MS_GRAPHQL })
 })
 
-app.all('/discovery', (req, res) => {
+app.all('/discovery/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS_DISCOVERY}`)
   apiProxy.web(req, res, { target: MS_DISCOVERY })
 })

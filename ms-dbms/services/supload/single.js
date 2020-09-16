@@ -9,6 +9,10 @@ const uploadTempDir = multer({dest: '/tmp/'});
 
 module.exports = (uploadDir) => {
 
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir)
+  }
+
   router.get('/', (req, res, next) => {
     Upload.findAll({raw: true})
       .then(data => res.json(data))
@@ -31,8 +35,18 @@ module.exports = (uploadDir) => {
       .catch(next);
   });
 
-  router.post('/', uploadTempDir.single('image'), (req, res) => {
-    const file = uploadDir + req.file.originalname;
+  router.post('/', uploadTempDir.single('picture'), (req, res) => {
+    /**
+     * {  fieldname: 'picture',
+          originalname: 'sample.png',
+          encoding: '7bit',
+          mimetype: 'image/png',
+          destination: '/tmp/',
+          filename: '0dc53d86843b19c1ed542f7fecfb6d39',
+          path: '\\tmp\\0dc53d86843b19c1ed542f7fecfb6d39',
+          size: 6410 }
+     */
+    const file = `${uploadDir}/${req.file.originalname}`;
     fs.rename(req.file.path, file, function (err) {
       if (err) {
         console.log(err);
@@ -42,12 +56,13 @@ module.exports = (uploadDir) => {
         const fstat = req.file;
         Upload.create({
           name: fstat.originalname,
-          file_path: file,
-          field_name: fstat.fieldname,
+          fieldname: fstat.fieldname,
+          mimetype: fstat.mimetype,
+          path: file,
           size: fstat.size,
-          type: fstat.mimetype,
-        }).then(r => {
-          res.send(r.get({plain: true}));
+        }).then(picture => {
+          console.log('created: ', picture.get({plain: true}))
+          res.json(picture.get({plain: true}));
         });
       }
     });

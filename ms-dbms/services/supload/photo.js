@@ -28,6 +28,7 @@ module.exports = (photoDir) => {
 
   router.post("/add", upload.single("photo"), async (req, res, next) => {
     try {
+      console.log('++++++', req.body, req.file)
       const path = req.file.path;
       const { name, description } = req.body;
       const entry = await Photo.create({

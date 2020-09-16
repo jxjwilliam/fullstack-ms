@@ -32,7 +32,7 @@ import {
 } from './material-ui-templates'
 import * as AG from './apollographql'
 import * as CSB from './codesandbox'
-import * as FP from './fileupload'
+import * as FU from './fileupload'
 
 const navList = [
   {
@@ -138,7 +138,7 @@ const mainList = [
       {
         path: '单文件上传',
         icon: MoneyOff,
-        component: FP.Demo1,
+        component: FU.Single,
       },
       {
         path: '多文件上传',

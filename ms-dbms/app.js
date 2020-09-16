@@ -25,6 +25,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "uploads")));
 
+const testMiddleware = (req, res, next) => {
+  console.log('TEST Middleware')
+  next()
+}
+
 ///////////////////////////////
 
 app.get('/', (req, res) => {
@@ -44,7 +49,8 @@ app.use("/api/dbms/photos", uploadPhoto(option.photo_dir));
  * uploadSingle(app);
  * uploadMultiple(app);
  */
-app.use("/api/dbms/upload", uploadSingle(option.single_dir))
+app.use("/api/dbms/upload", testMiddleware, uploadSingle(option.single_dir))
+
 app.use("/api/dbms/uploads", uploadMultiple(option.multiple_dir))
 
 

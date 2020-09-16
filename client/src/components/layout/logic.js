@@ -104,9 +104,7 @@ const getPageLayout = (navList, mainList, options) => {
 
   const ary = pathname.substr(1).split('/')
   const aryLen = ary.length
-  let url2 = ''
-  let url3 = ''
-  const redirect = {}
+  let [redirect, url2, url3] = [{}, '', '']
 
   switch (aryLen) {
     case 1:
@@ -122,16 +120,13 @@ const getPageLayout = (navList, mainList, options) => {
       redirect.to = `${pathname}/${url3}`
       break
     case 3:
-      url2 = ary[1]
-      url3 = ary[2]
+      [, url2, url3] = ary; // fetch ary[1,2]
       break
     default:
       throw new Error('TODO: ')
   }
 
-  console.group('👏 👋 Layout')
-  console.log('%', 'color: green', redirect, url2, url3)
-  console.groupEnd()
+  console.log('%c Layout', 'background: #222; color: #bada55', redirect, url2, url3)
 
   const [basePath, subAry] = getRouters(url, url2, mainList)
 

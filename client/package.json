@@ -46,7 +46,8 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "styled-components": "^5.1.1",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "yup": "^0.29.3"
   },
   "author": "Best IT Consultants",
   "license": "ISC",

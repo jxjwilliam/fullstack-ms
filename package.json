@@ -13,7 +13,7 @@
     "run-discovery": "cd ms-discovery && yarn start",
     "debug:ms-auth": "concurrently \"yarn run-client\" \"yarn run-gateway\"",
     "prestart1": "node bin/update-config.js",
-    "start": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\" \"yarn run-graphql\"",
+    "start": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\" \"yarn run-dbms\" \"yarn run-graphql\"",
     "run-dev": "concurrently \"yarn run-client\" \"yarn run-gateway\" \"yarn run-auth\" \"yarn run-dbms\" \"yarn run-doc\"",
     "test": "lerna run test",
     "new-version": "lerna version --conventional-commits --yes",

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from "@material-ui/core/styles";
 import MaterialTable from 'material-table';
-import {makeStyles} from "@material-ui/core/styles";
 import moment from 'moment'
-import Fetcher, {actionFetcher} from "../../helpers/Fetcher";
-import Toast from "../../components/misc/Toast";
+import Fetcher, { actionFetcher } from "../../helpers/Fetcher";
+import { Toast } from "../../components/misc";
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -16,7 +16,7 @@ const convertTimestamp = (obj) => {
   obj.timestamp = moment(obj.timestamp).format('YYYY-MM-DD')
 }
 
-function Account() {
+export default function () {
   const classes = useStyles()
   const [columns, setColumns] = useState([])
   const [toast, setToast] = useState(true)
@@ -31,12 +31,12 @@ function Account() {
   }
 
   useEffect(() => {
-    const columns = Object.keys(ths).map(th => ({ title: ths[th], field: th }));
-    setColumns(columns)
+    const cols = Object.keys(ths).map(th => ({ title: ths[th], field: th }));
+    setColumns(cols)
   }, [])
 
   const renderAccount = accounts => {
-    if (!Array.isArray(accounts)) accounts = [ accounts ]
+    if (!Array.isArray(accounts)) accounts = [accounts]
     accounts.forEach(convertTimestamp)
     return (
       <MaterialTable
@@ -49,7 +49,7 @@ function Account() {
 
   /**
    * action: {object}, function, string
-   *  action={actionFetcher('/auth/account')}
+   * e.g: action={actionFetcher('/auth/account')}
    */
   return (
     <>
@@ -57,8 +57,6 @@ function Account() {
         {data => renderAccount(data)}
       </Fetcher>
       {toast && <Toast message={"Account List"} />}
-      </>
+    </>
   )
 }
-
-export default Account

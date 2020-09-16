@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
-import {DEFAULT_LOGIN_PAGE, HEADERS, TOKEN} from '../constants'
+import { DEFAULT_LOGIN_PAGE, HEADERS, TOKEN } from '../constants'
 import fetching from "./fetching";
 
 const isEmpty = (prop) =>
@@ -21,12 +21,12 @@ const getToken = () => {
 
 const checkLogin = (token) => {
   const authToken = token || sessionStorage.getItem(TOKEN)
-  if (isEmpty(authToken)) return <Redirect to={DEFAULT_LOGIN_PAGE}/>
+  if (isEmpty(authToken)) return <Redirect to={DEFAULT_LOGIN_PAGE} />
   return null
 }
 
 // 401, 403, no token etc...
-function pageReload () {
+function pageReload() {
   setTimeout(() => {
     sessionStorage.removeItem(TOKEN)
     window.location.href = DEFAULT_LOGIN_PAGE
@@ -34,7 +34,7 @@ function pageReload () {
 }
 
 
-function DataPrint ({data}) {
+function DataPrint({ data }) {
   return (
     <pre style={{ textAlign: 'initial' }}>
       <code>
@@ -44,9 +44,17 @@ function DataPrint ({data}) {
   );
 }
 
+// ({...partial, [key]: obj[key]})
+function extractObj(ary = [], obj = {}) {
+  return ary.reduce((partial, key) => {
+    if (obj[key]) partial[key] = obj[key]
+    return partial
+  }, {})
+}
+
 export {
   isEmpty, defer,
-  fetching,
+  fetching, extractObj,
   getToken, checkLogin,
   pageReload, DataPrint
 }

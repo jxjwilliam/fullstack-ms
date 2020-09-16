@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import fetching from "./fetching";
-import {Loading, NotFound, Error} from '../components/misc'
+import { Loading, NotFound, Error } from '../components/misc'
 
 // useCallback, useFetchData
-export const actionFetcher = (url, opts={}) => () => fetching(url, opts)
+export const actionFetcher = (url, opts = {}) => () => fetching(url, opts)
 
 // ref: https://medium.com/front-end-weekly/data-fetcher-component-using-hooks-and-render-props-aacf3162dfc2
 function useFetcher(action) {
@@ -35,7 +35,7 @@ const Fetcher = ({ action: args, children }) => {
   if (typeof args === 'string') fetchOrAction = actionFetcher(args)
   else if (typeof args === 'function') fetchOrAction = args
   else if (typeof args === 'object' && args !== null) {
-    const {url, opts} = args
+    const { url, opts } = args
     fetchOrAction = actionFetcher(url, opts)
   }
 

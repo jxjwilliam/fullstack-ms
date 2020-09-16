@@ -28,15 +28,17 @@ function verifyToken(token) {
   console.log(decoded.username)
 }
 
-// a convenient way, same button better than `verfyToken`.
+// a convenient way, same middleware better than `verifyToken`.
+// app.use(verifyExpressJwt)
 function verifyExpressJwt(token) {
   expressJwt({
     secret: TOKEN_SECRET, algorithms: ['HS256'],
     getToken: (req) => {
-      if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-        return req.headers.authorization.split(' ')[1];
-      } else if (req.query && req.query.token) {
-        return req.query.token;
+      const { headers: { authorization }, query: { token } } = req
+      if (authorization && authorization.split(' ')[0] === 'Bearer') {
+        return authorization.split(' ')[1];
+      } else if (token) {
+        return token;
       }
       return null;
     }
@@ -46,5 +48,3 @@ function verifyExpressJwt(token) {
     }
   })
 }
-
-// app.use(verifyExpressJwt)

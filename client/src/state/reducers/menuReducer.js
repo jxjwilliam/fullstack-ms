@@ -20,3 +20,5 @@ export const menu2Reducer = (state = [], action) => {
       return state
   }
 }
+
+//TODO: each menu has a reducer. to swtich locale?

@@ -9,7 +9,7 @@ import faker from 'faker'
 import { groupBy } from 'lodash'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
-import {Loading} from "../../components/misc";
+import { Loading } from "../../components/misc";
 
 // https://virtuoso.dev/material-ui-endless-scrolling/
 const getUser = () => {

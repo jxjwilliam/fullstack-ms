@@ -22,7 +22,7 @@ describe('routers', () => {
 
   beforeEach(() => {
     baseUrl = '风险管理'
-    func = function () {}
+    func = function () { }
     origin_routers = [
       {
         path: `/${baseUrl}/系统管理`,
@@ -128,5 +128,5 @@ describe('routers', () => {
     })
   })
 
-  afterEach(() => {})
+  afterEach(() => { })
 })

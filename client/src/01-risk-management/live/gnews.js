@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {DataPrint} from "../../helpers/utils";
+import React, { useState, useEffect } from "react";
+import { DataPrint } from "../../helpers/utils";
 
 export default function () {
   const [news, setNews] = useState([])

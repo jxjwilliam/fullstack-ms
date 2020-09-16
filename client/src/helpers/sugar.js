@@ -13,7 +13,9 @@ function isJson(str) {
 
 function showGroup (content, title='') {
   console.group(`👋 👏 ${title}`)
-  console.log(content)
+  console.log('%c prev', 'color: gray', content)
+  console.log('%c current', 'color: blue', content)
+  console.log('%c next', 'color: green', content)
   console.groupEnd()
 }
 

@@ -49,7 +49,7 @@ app.all('/auth/*', (req, res) => {
 app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
   (err, req, res, next) => {
     if (err.name) {
-      const { name, message, status, code } = err
+      const info = ({ name, message, status, code } = err)
       return res.status(status).json({ name, message, code, status })
     }
   }

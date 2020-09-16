@@ -5,10 +5,10 @@ function capitalize (str) {
 function isJson(str) {
   try {
     JSON.parse(str)
+    return true
   } catch(e) {
     return false
   }
-  return true
 }
 
 function showGroup (content, title='') {
@@ -20,3 +20,12 @@ function showGroup (content, title='') {
 export {
   capitalize, isJson, showGroup,
 }
+
+// https://morioh.com/p/5b34d9858cb5
+const flatten = (arr, depth = 1) =>
+  arr.reduce((a, v) => a.concat(depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v), []);
+
+const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)));
+
+
+const isObject = val => val !== null && typeof val === 'object';

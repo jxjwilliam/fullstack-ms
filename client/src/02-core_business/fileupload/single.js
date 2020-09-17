@@ -12,6 +12,7 @@ import {
 } from "@material-ui/icons"
 import { Error } from "../../components/misc";
 import fetching from "../../helpers/fetching"
+import { Loading } from '../../components/misc'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,6 +63,8 @@ const ViewImg = ({ handleOpen }) => (
 
 export default function () {
   const classes = useStyles()
+  const [loading, setLoading] = useState(false);
+
   const { register, handleSubmit, errors } = useForm({
     validationSchema: schema
   })
@@ -96,70 +99,77 @@ export default function () {
     const formData = new FormData()
     formData.append('picture', data.picture[0])
     console.log(file, formData);
+
+    setLoading(true);
     fetching("/api/dbms/upload", {
       method: 'POST',
       body: formData
     }, 1)
       .then(data => console.log(data))
       .catch(err => console.error(err))
+      .then(() => setLoading(false))
   }
 
   return (
-    <div className={classes.root}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          ref={register}
-          type="file"
-          accept="image/*"
-          className={classes.input}
-          name="picture"
-          id="picture"
-          onChange={handleChange}
-        />
-        {errors.picture && <Error error={errors.picture.message} />}
-        <label htmlFor="picture">
-          <IconButton component="span" color="primary">
-            <PhotoCamera />
-          </IconButton>
-        </label>
-        <Button
-          variant="contained"
-          color="default"
-          className={classes.button}
-          startIcon={<CloudUploadIcon />}
-          type="submit"
-        >
-          Upload
-      </Button>
-        <Button variant="contained" onClick={handleSnackbarClick} startIcon={<InfoIcon />}>
-          Info
-        </Button>
-        {viewImg && <ViewImg handleOpen={handleDialogClick} />}
-        <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={openSnackbar}
-          autoHideDuration={5000}
-          onClose={handleSnackbarClose}
-          message={'File upload information'}
-          action={<Info handleClose={handleSnackbarClose} />}
-        />
-        <Dialog
-          maxWidth={'lg'}
-          onClose={handleDialogClose}
-          open={openDialog}
-        >
-          <DialogTitle onClose={handleDialogClose}>
-            DialogTitle
-          </DialogTitle>
-          <DialogContent className={classes.img}>
-            <Typography variant="subtitle1">Dialog</Typography>
-            <img src={imgSrc} alt={'single upload'} />
-            <IconButton onClick={handleDialogClose}>
-              <HighlightOff />
-            </IconButton>
-          </DialogContent>
-        </Dialog>
-      </form>
-    </div>
+    <>
+      {loading ? <Loading /> : (
+        <div className={classes.root}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              ref={register}
+              type="file"
+              accept="image/*"
+              className={classes.input}
+              name="picture"
+              id="picture"
+              onChange={handleChange}
+            />
+            {errors.picture && <Error error={errors.picture.message} />}
+            <label htmlFor="picture">
+              <IconButton component="span" color="primary">
+                <PhotoCamera />
+              </IconButton>
+            </label>
+            <Button
+              variant="contained"
+              color="default"
+              className={classes.button}
+              startIcon={<CloudUploadIcon />}
+              type="submit"
+            >
+              Upload
+            </Button>
+            <Button variant="contained" onClick={handleSnackbarClick} startIcon={<InfoIcon />}>
+              Info
+            </Button>
+            {viewImg && <ViewImg handleOpen={handleDialogClick} />}
+            <Snackbar
+              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+              open={openSnackbar}
+              autoHideDuration={5000}
+              onClose={handleSnackbarClose}
+              message={'File upload information'}
+              action={<Info handleClose={handleSnackbarClose} />}
+            />
+            <Dialog
+              maxWidth={'lg'}
+              onClose={handleDialogClose}
+              open={openDialog}
+            >
+              <DialogTitle onClose={handleDialogClose}>
+                DialogTitle
+              </DialogTitle>
+              <DialogContent className={classes.img}>
+                <Typography variant="subtitle1">Dialog</Typography>
+                <img src={imgSrc} alt={'single upload'} />
+                <IconButton onClick={handleDialogClose}>
+                  <HighlightOff />
+                </IconButton>
+              </DialogContent>
+            </Dialog>
+          </form>
+        </div>
+      )}
+    </>
   )
 }

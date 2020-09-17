@@ -53,3 +53,14 @@ Since 22 May 2020 they changed the liberties of the free developer keys and now 
 ---
 
 - API key: AIzaSyCcHehvrIdujbyeiKCBaivkE3SNZLiUcYE
+
+
+### gh-pages
+
+for a create-react-app project:
+
+- yarn add gh-pages
+- setting: git pages
+- homepage:
+- predeploy: yarn build
+- deploy: gh-pages -d build

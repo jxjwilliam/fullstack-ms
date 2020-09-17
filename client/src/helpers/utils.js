@@ -31,6 +31,14 @@ const checkLogin = (token) => {
   if (isEmpty(authToken)) return <Redirect to={DEFAULT_LOGIN_PAGE} />
   return null
 }
+// TODO: req.flash?
+const checkLogin1 = (req, res, next) => {
+  if (!req.session.user) {
+    req.flash('error', '未登录')
+    return res.redirect('/signin')
+  }
+  next()
+}
 
 // 401, 403, no token etc...
 function pageReload() {
@@ -51,12 +59,19 @@ function DataPrint({ data }) {
   );
 }
 
-// ({...partial, [key]: obj[key]})
+// ({...state, [key]: obj[key]})
+// key ? { [key]: payload } : payload
 function extractObj(ary = [], obj = {}) {
-  return ary.reduce((partial, key) => {
-    if (obj[key]) partial[key] = obj[key]
-    return partial
+  return ary.reduce((state, key) => {
+    if (obj[key]) state[key] = obj[key]
+    return state
   }, {})
+}
+
+const extractObj2 = (ary = [], payload = {}) => {
+  const reducer = (state, key) =>
+    Object.assign({}, state, payload[key] && { [key]: payload[key] })
+  return ary.reduce(reducer, {})
 }
 
 export {

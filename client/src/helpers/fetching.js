@@ -46,4 +46,3 @@ export default function (url, opts = {}, isFileOrProxy) {
     })
     .catch((e) => console.error('操作失败: ', e.message))
 }
-

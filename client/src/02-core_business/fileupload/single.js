@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Button, IconButton } from "@material-ui/core";
-import { PhotoCamera, CloudUpload as CloudUploadIcon } from "@material-ui/icons"
+import {
+  Snackbar, Button, IconButton, Typography,
+  Dialog, DialogTitle, DialogContent
+} from "@material-ui/core";
+import {
+  PhotoCamera, CloudUpload as CloudUploadIcon, Info as InfoIcon,
+  HighlightOff, Close as CloseIcon, Photo as PhotoIcon,
+} from "@material-ui/icons"
 import { Error } from "../../components/misc";
 import fetching from "../../helpers/fetching"
 
@@ -19,6 +25,10 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  img: {
+    minWidth: 600,
+    minHeight: 400,
+  }
 }))
 
 const schema = yup.object().shape({
@@ -33,11 +43,52 @@ const schema = yup.object().shape({
     }),
 });
 
+const Info = ({ handleClose }) => (
+  <>
+    <Button color="secondary" size="small" onClick={handleClose}>
+      UNDO
+    </Button>
+    <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  </>
+)
+
+const ViewImg = ({ handleOpen }) => (
+  <IconButton key="view" aria-label="view" color="inherit" onClick={handleOpen}>
+    <PhotoIcon />
+  </IconButton>
+)
+
 export default function () {
   const classes = useStyles()
   const { register, handleSubmit, errors } = useForm({
     validationSchema: schema
   })
+  const [openSnackbar, setOpenSnackbar] = useState(false)
+  const [snackMessage, setSnackMessage] = useState('File upload information')
+  const handleSnackbarClick = () => setOpenSnackbar(true)
+  const handleSnackbarClose = () => setOpenSnackbar(false)
+
+  const [openDialog, setOpenDialog] = useState(false)
+  const handleDialogClick = () => setOpenDialog(true)
+  const handleDialogClose = () => setOpenDialog(false)
+
+  const [imgSrc, setImgSrc] = useState('')
+  const [viewImg, setViewImg] = useState(false)
+  const handleChange = (e) => {
+    try {
+      const picture = e.currentTarget.files[0]
+      if (picture) {
+        const img = URL.createObjectURL(picture)
+        setImgSrc(img)
+        setViewImg(true)
+      }
+    } catch (e) {
+      setOpenSnackbar(true)
+      setSnackMessage(e.message)
+    }
+  }
 
   // FileList, File: {lastModified, lastModifiedDate, name, size, type, webkitRelativePath}
   const onSubmit = (data) => {
@@ -63,6 +114,7 @@ export default function () {
           className={classes.input}
           name="picture"
           id="picture"
+          onChange={handleChange}
         />
         {errors.picture && <Error error={errors.picture.message} />}
         <label htmlFor="picture">
@@ -79,6 +131,34 @@ export default function () {
         >
           Upload
       </Button>
+        <Button variant="contained" onClick={handleSnackbarClick} startIcon={<InfoIcon />}>
+          Info
+        </Button>
+        {viewImg && <ViewImg handleOpen={handleDialogClick} />}
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={openSnackbar}
+          autoHideDuration={5000}
+          onClose={handleSnackbarClose}
+          message={'File upload information'}
+          action={<Info handleClose={handleSnackbarClose} />}
+        />
+        <Dialog
+          maxWidth={'lg'}
+          onClose={handleDialogClose}
+          open={openDialog}
+        >
+          <DialogTitle onClose={handleDialogClose}>
+            DialogTitle
+          </DialogTitle>
+          <DialogContent className={classes.img}>
+            <Typography variant="subtitle1">Dialog</Typography>
+            <img src={imgSrc} alt={'single upload'} />
+            <IconButton onClick={handleDialogClose}>
+              <HighlightOff />
+            </IconButton>
+          </DialogContent>
+        </Dialog>
       </form>
     </div>
   )

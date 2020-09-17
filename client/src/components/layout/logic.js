@@ -59,7 +59,7 @@ const renderNav = (base, navList) => (
 )
 
 const renderMenu = (basePath, items = []) => {
-  const list = items.map(({ path, title, icon: CompIcon }) => (
+  const list = (items || []).map(({ path, title, icon: CompIcon }) => (
     <ListItem
       button
       component={NavLink}

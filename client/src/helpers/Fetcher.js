@@ -14,8 +14,12 @@ function useFetcher(action) {
   async function loadData() {
     try {
       setLoading(true);
-      const actionData = await action();
-      setData(actionData);
+      /**
+       * const response = await fetch(url);
+       * const data = response.json();
+       */
+      const data = await action();
+      setData(data);
     } catch (e) {
       setError(e);
     } finally {
@@ -32,6 +36,7 @@ function useFetcher(action) {
 
 const Fetcher = ({ action: args, children }) => {
   let fetchOrAction;
+  // mostly case is 'string'
   if (typeof args === 'string') fetchOrAction = actionFetcher(args)
   else if (typeof args === 'function') fetchOrAction = args
   else if (typeof args === 'object' && args !== null) {

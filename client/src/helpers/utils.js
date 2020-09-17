@@ -12,7 +12,14 @@ const isEmpty = (prop) =>
   (prop.hasOwnProperty('length') && prop.length === 0) ||
   (prop.constructor === Object && Object.keys(prop).length === 0)
 
-const defer = (ms = 2000) => new Promise((resolve) => setTimeout(resolve, ms))
+// Promise.resolve('Success').then(func)
+const defer = (p = 'fulfilled', ms = 2000) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(p);
+    }, ms);
+  })
+}
 
 const getToken = () => {
   const authToken = sessionStorage.getItem(TOKEN)

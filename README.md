@@ -47,7 +47,7 @@ $ npx sequelize init
 ---
 
 ```text
-$ npx license
+$ npx license (MIT)
 ```
 
 

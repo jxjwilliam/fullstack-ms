@@ -3,7 +3,7 @@ const {graphqlHTTP} = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 require('dotenv').config()
-const port = process.env.EXPRESS_GRAPHQL_PORT
+const port = process.env.GRAPHQL_PORT
 
 // 使用 GraphQL Schema Language 创建一个 schema
 const schema = buildSchema(`

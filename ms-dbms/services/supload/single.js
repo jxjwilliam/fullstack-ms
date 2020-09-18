@@ -5,32 +5,33 @@ const Upload = require('../../models').Single;
 
 const router = express.Router();
 
-const uploadTempDir = multer({dest: '/tmp/'});
+const uploadTempDir = multer({ dest: '/tmp/' });
 
 module.exports = (uploadDir) => {
 
   if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir)
+    console.log('creating dir: ', uploadDir)
+    fs.mkdirSync(uploadDir, { recursive: true })
   }
 
   router.get('/', (req, res, next) => {
-    Upload.findAll({raw: true})
+    Upload.findAll({ raw: true })
       .then(data => res.json(data))
       .catch(next);
   });
 
   router.get('/:id', (req, res, next) => {
     const id = req.params.id;
-    Upload.findByPk(id, {raw: true})
+    Upload.findByPk(id, { raw: true })
       .then(data => res.json(data))
       .catch(next);
   });
 
   router.get('/name/:name', (req, res, next) => {
     Upload.findAll({
-      where: {name: req.params.name},
-      include: [{all: true}]
-    }, {raw: true})
+      where: { name: req.params.name },
+      include: [{ all: true }]
+    }, { raw: true })
       .then(data => res.json(data))
       .catch(next);
   });
@@ -61,8 +62,8 @@ module.exports = (uploadDir) => {
           path: file,
           size: fstat.size,
         }).then(picture => {
-          console.log('created: ', picture.get({plain: true}))
-          res.json(picture.get({plain: true}));
+          console.log('created: ', picture.get({ plain: true }))
+          res.json(picture.get({ plain: true }));
         });
       }
     });

@@ -180,6 +180,9 @@ res.status === 200 && res.ok === true
 
 Main difference between `.json` and `.send` comes into picture when you have to pass non objects as a response. `.json` will convert non objects `(ex. null, undefined etc)` to JSON whereas `res.send` will not convert them. `.
 
+- res.json: convert to JSON string using `JSON.stringify()`
+- res.send: [], {}, '', Boolean, null, undefined.
+
 ### CORS and Same-Origin policy
 
 ---

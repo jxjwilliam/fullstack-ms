@@ -50,3 +50,13 @@ Istio-Manager, Envoy
 ---
 
 PWA（Progressive Web App）是一种理念，使用多种技术来增强 web app 的功能，可以让网站的体验变得更好，能够模拟一些原生功能，比如通知推送。在移动端利用标准化框架，让网页应用呈现和原生应用相似的体验。
+
+## Hooks
+
+- `Refs` provide a way to access `DOM nodes` or `React elements` created in the render method.
+- Instead of exposing `open()` and `close()` methods on a `Dialog` component, pass an `isOpen` prop to it.
+- `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
+- the function passed to `useMemo` runs during `rendering`. Don’t do anything there that you wouldn’t normally do while `rendering`. For example side effects belong in `useEffect`, not `useMemo`.
+- `useRef` will give you the same ref object on every render.
+
+

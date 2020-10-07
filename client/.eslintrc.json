@@ -23,6 +23,7 @@
   "rules": {
     "react/prop-types": 0,
     "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     "no-debugger": 0,
     "no-alert": 0,
     "no-unused-vars": 1,
@@ -60,6 +61,7 @@
     "import/no-cycle": 0,
     "no-underscore-dangle": 0,
     "consistent-return": 0,
+    "exhaustive-deps": 1,
     "react/display-name": 0,
     "react/no-array-index-key": 0,
     "react/react-in-jsx-scope": 0,

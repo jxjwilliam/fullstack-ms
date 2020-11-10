@@ -1,4 +1,4 @@
-# 微服务项目说明
+# Micro-service FullStack Framework
 
 ## client
 
@@ -41,7 +41,6 @@ $ npx sequelize init
 - `.huskyrc`在`git pre-commit`的钩子调起 `lint-staged`
 - `lint-staged` 取得所有被提交的文件依次执行写好的任务(ESLint 和 Prettier), 如果有错误(没通过 ESlint 检查)则停止任务，等待下次`commit`，同时打印错误信息
 
-
 ### License
 
 ---
@@ -50,16 +49,22 @@ $ npx sequelize init
 $ npx license (MIT)
 ```
 
+### Micro-services List
 
+---
 
-### Microservice List
+| microservice | function | note                              | example |
+| ------------ | -------- | --------------------------------- | ------- |
+| gateway      |          | BFF                               |
+| ms-auth      |          | JWT authentication, authorization |
+| ms-dbms      |          | MySQL + Sequelize                 |
+| ms-mongo     |          | MongoDB + Mongoose                |
+| ms-discovery |          |                                   |
+| ms-graphql   |          | Apollo GraphQL                    |
+| ms-gitbook   |          | gatsby + gitbook                  |
 
-| microservice | function | note | example |
-| --- | --- | --- | --- |
-| gateway | | |
-| ms-auth |  | |
-| ms-dbms |  | |
-| ms-mongo |  | |
-| ms-discovery |  | |
-| ms-graphql |  | |
-| ms-gitbook |  | |
+### lerna
+
+---
+
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)

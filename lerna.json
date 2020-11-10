@@ -2,8 +2,11 @@
   "packages": [
     "client/",
     "gateway/",
+    "ms-auth",
     "ms-dbms/",
-    "ms-doc/"
+    "ms-discovery",
+    "ms-doc/",
+    "ms-graphql"
   ],
   "npmClient": "yarn",
   "version": "0.1.1"

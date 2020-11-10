@@ -1,6 +1,16 @@
-HISTORY to fix:
+### 📑 API
 
-### Default favicon.ico
+---
+
+| action | 调用                            | 说明                                            |
+| ------ | ------------------------------- | ----------------------------------------------- |
+| 注册   | /auth/signup, or /auth/register | 保存用户信息，包括口令                          |
+| 登录   | /auth/signin, or /auth/login    | 验证用户信息, 调用 authentication/authorization |
+| 退出   | /auth/signout, or /auth/logout  | 取消 token                                      |
+| User   | /auth/account                   | 查看 accounts                                   |
+| Role   | /auth/role                      | 查看 roles                                      |
+
+### 📑 Default favicon.ico
 
 ---
 
@@ -15,7 +25,7 @@ to fix:
 $ cd ms-auth; touch favicon.ico
 ```
 
-### Ms-Auth authentication and authorization
+### 📑 Ms-Auth authentication and authorization
 
 ---
 
@@ -30,7 +40,7 @@ According to standard, client should send `token` to server via HTTP request in 
 headers: { 'Authorization': 'Bearer ...token...',  'Content-Type': 'application/json'}
 ```
 
-### Mongoose Queries (5.10.1)
+### 📑 Mongoose Queries (5.10.1)
 
 ---
 

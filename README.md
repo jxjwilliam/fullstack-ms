@@ -4,13 +4,28 @@
 
 ---
 
+- React, Material-UI, Hooks, Redux, React-Router-Dom
+- Bootstrap from create-react-app
+
 ```shell
 $ npx create-react-app client
 ```
 
-## 后台
+## Backend
+
+serveral backend micro-service apps, see [etc/framework.png](etc/framework.png)
 
 ---
+
+| microservice | function | note                              | memo           |
+| ------------ | -------- | --------------------------------- | -------------- |
+| gateway      |          | BFF                               | proxy, cors    |
+| ms-auth      |          | JWT authentication, authorization |                |
+| ms-dbms      |          | MySQL + Sequelize                 | multer         |
+| ms-mongo     |          | MongoDB + Mongoose                | multer         |
+| ms-discovery |          | zookeeper                         | service finder |
+| ms-graphql   |          | Apollo GraphQL                    | other repo     |
+| ms-gitbook   |          | gatsby + gitbook                  | other repo     |
 
 ```shell
 $ npx express-generator ms-app
@@ -48,20 +63,6 @@ $ npx sequelize init
 ```text
 $ npx license (MIT)
 ```
-
-### Micro-services List
-
----
-
-| microservice | function | note                              | example |
-| ------------ | -------- | --------------------------------- | ------- |
-| gateway      |          | BFF                               |
-| ms-auth      |          | JWT authentication, authorization |
-| ms-dbms      |          | MySQL + Sequelize                 |
-| ms-mongo     |          | MongoDB + Mongoose                |
-| ms-discovery |          |                                   |
-| ms-graphql   |          | Apollo GraphQL                    |
-| ms-gitbook   |          | gatsby + gitbook                  |
 
 ### lerna
 

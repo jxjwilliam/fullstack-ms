@@ -1,5 +1,7 @@
 # Micro-service FullStack Framework
 
+![Framework](etc/framework.png)
+
 ## client
 
 ---

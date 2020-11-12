@@ -71,3 +71,45 @@ $ npx license (MIT)
 ---
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+
+## Demo Pages:
+
+---
+
+### Menu1
+
+![Menu1](etc/imgs/menu1.PNG)
+
+### Menu2
+
+![Menu2](etc/imgs/menu2.PNG)
+
+### Admin1
+
+![Admin1](etc/imgs/admin1.PNG)
+
+### Admin2
+
+![Admin2](etc/imgs/admin2.PNG)
+
+### Admin3
+
+![Admin3](etc/imgs/admin3.PNG)
+
+### Admin4
+
+![HoAdmin4me](etc/imgs/admin4.PNG)
+
+
+### GraphQL
+
+![GraphQL](etc/imgs/graphql.PNG)
+
+### Signup
+
+![Signup](etc/imgs/signup.PNG)
+
+
+### Login
+
+![Login](etc/imgs/login.PNG)

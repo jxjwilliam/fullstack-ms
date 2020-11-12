@@ -37,7 +37,7 @@ function Service ({auth: { token}}) {
     new Promise(resolve => {
       setTimeout(() => {
         setData([faker.lorem.sentence(), faker.lorem.sentence()]);
-        resolve();
+        resolve('done');
       }, 2000);
     })
   }, [])

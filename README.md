@@ -1,6 +1,6 @@
 # Micro-service FullStack Framework
 
-![Framework](etc/framework.png)
+![Framework](etc/imgs/framework.png)
 
 ## client
 
@@ -15,7 +15,7 @@ $ npx create-react-app client
 
 ## Backend
 
-serveral backend micro-service apps, see [etc/framework.png](etc/framework.png)
+serveral backend micro-service apps, see [framework layout](etc/imgs/framework.png)
 
 ---
 

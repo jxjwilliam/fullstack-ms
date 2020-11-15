@@ -19,28 +19,41 @@ serveral backend micro-service apps, see [framework layout](etc/imgs/framework.p
 
 ---
 
-| microservice | function | note                              | memo           |
-| ------------ | -------- | --------------------------------- | -------------- |
-| gateway      |          | BFF                               | proxy, cors    |
-| ms-auth      |          | JWT authentication, authorization |                |
-| ms-dbms      |          | MySQL + Sequelize                 | multer         |
-| ms-mongo     |          | MongoDB + Mongoose                | multer         |
-| ms-discovery |          | zookeeper                         | service finder |
-| ms-graphql   |          | Apollo GraphQL                    | other repo     |
-| ms-gitbook   |          | gatsby + gitbook                  | other repo     |
+| microservice | function | note                              | memo                        |
+| ------------ | -------- | --------------------------------- | --------------------------- |
+| gateway      |          | BFF                               | proxy, cors                 |
+| ms-auth      |          | JWT authentication, authorization | login, general verification |
+| ms-dbms      |          | MySQL + Sequelize                 | multer                      |
+| ms-mongo     |          | MongoDB + Mongoose                | multer                      |
+| ms-discovery |          | zookeeper                         | service finder              |
+| ms-graphql   |          | Apollo GraphQL                    | other repo                  |
+| ms-gitbook   |          | gatsby + gitbook                  | other repo                  |
 
-```shell
-$ npx express-generator ms-app
-```
+- Among all these microservices, there are 2 mandatory:
 
-## ms-dbms
+  ```text
+    client: frontend
+    gateway: BFF as gateway and static-resource service.
+  ```
 
----
+  Others are all optional.
+
+- Use `express-generator` to generate backend microservice stub.
+- For convenient, it is recommend to globally install common dependencies, such as `eslint`, `sequelize-cli`.
 
 ```shell
 $ yarn add sequelize-cli
 $ npx sequelize init
 ```
+
+### Persistant Data:
+
+For data storage, there are 2 choices:
+
+- install and setup `MySQL` / `MongoDB` as dependencies, check individual `bin/` scripts.
+- use `docker` (I have an all-inclusive docker package)
+
+Besides DBMS/NoSQL data storage which needs to separately install and setup, a quick implementation is to use `SQLite`. (check the example from another repo https://github.com/jxjwilliam/ms-apollo-graphql.git).
 
 ### 包管理
 
@@ -60,9 +73,11 @@ $ npx sequelize init
 
 ### License
 
+Use `MIT` license.
+
 ---
 
-```text
+```shell
 $ npx license (MIT)
 ```
 

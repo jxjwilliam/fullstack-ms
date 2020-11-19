@@ -144,3 +144,29 @@ The following are some screenshots from the App:
 ---
 
 ![Login](etc/imgs/login.PNG)
+
+### code examples
+
+---
+
+>
+
+    client/src:
+      helpers/fetching.js
+      components/logic.js
+      components/layout.js
+      07-sign/Signin.js
+      09-service/index.js
+    gateway/app.js
+    ms-auth/services:
+      utils.js
+      auth.js
+    ms-dbms:
+      app.js
+      services/crud.js
+      routes/user.js
+      controllers/user.js
+      models/user.js
+    ms-mongo/services/crud.js
+
+>

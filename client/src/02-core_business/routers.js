@@ -33,6 +33,7 @@ import {
 import * as AG from './apollographql'
 import * as CSB from './codesandbox'
 import * as FU from './fileupload'
+import Timer from './timer'
 
 const navList = [
   {
@@ -110,7 +111,7 @@ const mainList = [
       {
         path: 'graphqlzero',
         title: 'Graphqlzero 🚀',
-        icon: AvTimer,
+        icon: ContactSupport,
         component: AG.Graphqlzero
       },
       {
@@ -158,8 +159,9 @@ const mainList = [
     nav: '其它',
     main: [
       {
-        path: '帮助',
-        icon: ContactSupport,
+        path: 'timer',
+        icon: AvTimer,
+        component: Timer
       },
     ],
   },

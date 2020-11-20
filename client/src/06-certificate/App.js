@@ -8,7 +8,6 @@ import { Provider } from './context'
 
 class App extends PureComponent {
   constructor(props) {
-    super(props)
     this.state = {
       exercises,
       exercise: {},

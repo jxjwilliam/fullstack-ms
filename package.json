@@ -1,8 +1,18 @@
 {
   "name": "basic-ms",
   "version": "0.5.1",
-  "description": "Basic Microservice framework templates",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "author": "Best IT Consulting Ltd",
+  "license": "ISC",
   "main": "index.js",
+  "keywords": [
+    "Basic Implementation",
+    "Microservice Templates"
+  ],
+  "description": "Basic Microservice framework templates",
   "scripts": {
     "run-client": "cd client && yarn start",
     "run-gateway": "cd gateway && yarn start",
@@ -21,26 +31,31 @@
     "diff": "lerna diff",
     "clean": "rimraf dist"
   },
-  "keywords": [
-    "Basic Implementation",
-    "Microservice Templates"
-  ],
-  "author": "Best IT Consultants",
-  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "commitizen": "^4.1.2",
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.7.0",
+    "eslint": "^7.17.0",
     "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-node": "^4.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-markdown": "^2.0.0-rc.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.2.5",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.11",
@@ -48,11 +63,6 @@
     "pm2": "^4.4.0",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.0"
   },
   "config": {
     "commitizen": {

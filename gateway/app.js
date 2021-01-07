@@ -11,24 +11,23 @@ const expressJwt = require('express-jwt')
 const app = express()
 
 require('dotenv').config()
+
 app.set('port', process.env.PORT)
 
 const jwtSecretSalt = process.env.SECRET
 
-app.use(favicon(path.join(__dirname, 'favicon.ico')))
+app
+  .use(favicon(path.join(__dirname, 'favicon.ico')))
   .use(cors())
   .use(logger('dev'))
   .use(helmet())
   .use(express.static(path.join(__dirname, 'build')))
   .use(express.static(path.join(__dirname, 'news-api-react')))
 
-///////////////////////////////
-
 // 1. 测试接口
 app.get('/', (req, res) => {
   res.status(200).send('Hello from BFF proxy server!')
 })
-
 
 const apiProxy = httpProxy.createProxyServer()
 const { MS_AUTH, MS_DBMS, MS_DOC, MS_GRAPHQL, MS_DISCOVERY } = process.env
@@ -46,23 +45,20 @@ app.all('/auth/*', (req, res) => {
  * 401 Unauthorized: {name: "UnauthorizedError", message: "jwt expired"}
  * { "name": "UnauthorizedError","message": "No authorization token was found","code": "credentials_required","status": 401}
  */
-app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }),
-  (err, req, res, next) => {
-    if (err.name) {
-      const { name, message, status, code } = err
-      return res.status(status).json({ name, message, code, status })
-    }
+// eslint-disable-next-line consistent-return
+app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }), (err, req, res) => {
+  if (err.name) {
+    const { name, message, status, code } = err
+    return res.status(status).json({ name, message, code, status })
   }
-)
-
+})
 
 // 3. `gateway` folder: cache all static data.
 app.get('/data/:resource', (req, res) => {
-  const r = req.params.resource;
-  const f = path.join(__dirname, 'data', r + '.json');
-  res.sendFile(f);
-});
-
+  const r = req.params.resource
+  const f = path.join(__dirname, 'data', `${r}.json`)
+  res.sendFile(f)
+})
 
 app.all('/api/dbms/*', (req, res) => {
   console.log(`${req.url} redirects to ${MS_DBMS}`)
@@ -84,7 +80,6 @@ app.all('/discovery/*', (req, res) => {
   apiProxy.web(req, res, { target: MS_DISCOVERY })
 })
 
-
 app.use(function (req, res, next) {
   const { url, params, query, body } = req
   console.error('BFF-路由服务器 无效URL: ', url, params, query, body)
@@ -92,12 +87,12 @@ app.use(function (req, res, next) {
 })
 
 app.use(function (err, req, res) {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.status(err.status || 500)
+  res.render('error')
 })
 
-module.exports = app;
+module.exports = app

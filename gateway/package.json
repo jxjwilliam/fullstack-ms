@@ -1,7 +1,7 @@
 {
   "name": "ms-gateway",
   "version": "0.5.1",
-  "author": "Best IT Consultants",
+  "author": "Best IT Consulting Inc.",
   "license": "ISC",
   "scripts": {
     "start": "nodemon --exec babel-node ./server",

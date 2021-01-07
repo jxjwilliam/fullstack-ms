@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getMenu1Action, getMenu2Action } from '../state/actions'
 import { getPageLayout } from '../components'
 import { navList, mainList } from './routers'
-import {checkLogin} from "../helpers/utils";
+import { checkLogin } from '../helpers/utils'
 
 class Supplier extends Component {
   render() {
@@ -19,17 +19,16 @@ class Supplier extends Component {
       path,
     }
     const pageLayout = getPageLayout(navList, mainList, options)
-    return checkLogin(token) || <>{pageLayout}</>
+    return checkLogin(token) || { pageLayout }
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   menu1: state.menu1,
   menu2: state.menu2,
 })
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getMenu1Action, getMenu2Action }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ getMenu1Action, getMenu2Action }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Supplier)

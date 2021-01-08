@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 import { Card, CardContent, CardActions, Typography, Button } from '@material-ui/core'
 import TimerIcon from '@material-ui/icons/Timer'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(3),
     '& > *': {
@@ -25,7 +25,7 @@ export default function () {
   }
 
   useEffect(() => {
-    let timer = null;
+    let timer = null
     if (active) {
       timer = setInterval(() => {
         const second = new Date().toLocaleTimeString('en-US')
@@ -35,7 +35,6 @@ export default function () {
       clearInterval(timer)
     }
     return () => clearInterval(timer)
-
   }, [active, seconds])
 
   return (
@@ -45,7 +44,7 @@ export default function () {
           Clock
         </Typography>
         <CardContent>
-          <Typography className={classes.title} color="textSecondary" >
+          <Typography className={classes.title} color="textSecondary">
             {seconds}
           </Typography>
         </CardContent>

@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
-import {
-  ApolloProvider,
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-  gql,
-} from "@apollo/client";
-import { setContext } from '@apollo/client/link/context';
+import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache, gql } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 import { LaunchQuery, LaunchMutation } from './common'
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:8081/graphql"
+  uri: 'http://localhost:8081/graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -19,13 +13,13 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: `Bearer ${token}`,
-    }
+    },
   }
-});
+})
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 })
 
 function Hello() {

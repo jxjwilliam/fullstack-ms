@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles'
+import { Snackbar, Button, IconButton, Typography, Dialog, DialogTitle, DialogContent } from '@material-ui/core'
 import {
-  Snackbar, Button, IconButton, Typography,
-  Dialog, DialogTitle, DialogContent
-} from "@material-ui/core";
-import {
-  PhotoCamera, CloudUpload as CloudUploadIcon, Info as InfoIcon,
-  HighlightOff, Close as CloseIcon, Photo as PhotoIcon,
-} from "@material-ui/icons"
-import { Error } from "../../components/misc";
-import fetching from "../../helpers/fetching"
-import { Loading } from '../../components/misc'
+  PhotoCamera,
+  CloudUpload as CloudUploadIcon,
+  Info as InfoIcon,
+  HighlightOff,
+  Close as CloseIcon,
+  Photo as PhotoIcon,
+} from '@material-ui/icons'
+import { Error, Loading } from '../../components/misc'
+import fetching from '../../helpers/fetching'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,20 +29,20 @@ const useStyles = makeStyles(theme => ({
   img: {
     minWidth: 600,
     minHeight: 400,
-  }
+  },
 }))
 
 const schema = yup.object().shape({
   picture: yup
     .mixed()
-    .required("You need to provide a file")
-    .test("fileSize", "The file is too large", (value) => {
-      return value && value[0].size <= 2000000;
+    .required('You need to provide a file')
+    .test('fileSize', 'The file is too large', value => {
+      return value && value[0].size <= 2000000
     })
-    .test("type", "We only support jpeg", (value) => {
-      return value && value[0].type === "image/jpeg";
+    .test('type', 'We only support jpeg', value => {
+      return value && value[0].type === 'image/jpeg'
     }),
-});
+})
 
 const Info = ({ handleClose }) => (
   <>
@@ -63,10 +63,10 @@ const ViewImg = ({ handleOpen }) => (
 
 export default function () {
   const classes = useStyles()
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const { register, handleSubmit, errors } = useForm({
-    validationSchema: schema
+    validationSchema: schema,
   })
   const [openSnackbar, setOpenSnackbar] = useState(false)
   const [snackMessage, setSnackMessage] = useState('File upload information')
@@ -79,7 +79,7 @@ export default function () {
 
   const [imgSrc, setImgSrc] = useState('')
   const [viewImg, setViewImg] = useState(false)
-  const handleChange = (e) => {
+  const handleChange = e => {
     try {
       const picture = e.currentTarget.files[0]
       if (picture) {
@@ -94,17 +94,21 @@ export default function () {
   }
 
   // FileList, File: {lastModified, lastModifiedDate, name, size, type, webkitRelativePath}
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     const file = data.picture[0]
     const formData = new FormData()
     formData.append('picture', data.picture[0])
-    console.log(file, formData);
+    console.log(file, formData)
 
-    setLoading(true);
-    fetching("/api/dbms/upload", {
-      method: 'POST',
-      body: formData
-    }, 1)
+    setLoading(true)
+    fetching(
+      '/api/dbms/upload',
+      {
+        method: 'POST',
+        body: formData,
+      },
+      1,
+    )
       .then(data => console.log(data))
       .catch(err => console.error(err))
       .then(() => setLoading(false))
@@ -112,7 +116,9 @@ export default function () {
 
   return (
     <>
-      {loading ? <Loading /> : (
+      {loading ? (
+        <Loading />
+      ) : (
         <div className={classes.root}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -148,20 +154,14 @@ export default function () {
               open={openSnackbar}
               autoHideDuration={5000}
               onClose={handleSnackbarClose}
-              message={'File upload information'}
+              message="File upload information"
               action={<Info handleClose={handleSnackbarClose} />}
             />
-            <Dialog
-              maxWidth={'lg'}
-              onClose={handleDialogClose}
-              open={openDialog}
-            >
-              <DialogTitle onClose={handleDialogClose}>
-                DialogTitle
-              </DialogTitle>
+            <Dialog maxWidth="lg" onClose={handleDialogClose} open={openDialog}>
+              <DialogTitle onClose={handleDialogClose}>DialogTitle</DialogTitle>
               <DialogContent className={classes.img}>
                 <Typography variant="subtitle1">Dialog</Typography>
-                <img src={imgSrc} alt={'single upload'} />
+                <img src={imgSrc} alt="single upload" />
                 <IconButton onClick={handleDialogClose}>
                   <HighlightOff />
                 </IconButton>

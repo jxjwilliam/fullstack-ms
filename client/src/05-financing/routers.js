@@ -13,18 +13,8 @@ import {
   WrapText,
 } from '@material-ui/icons'
 import Available from './containers/Available'
-import {
-  InChargeSigned,
-  InChargeAvailable,
-  InChargeFinancing,
-  InChargeAcceptance,
-} from './containers/Operator'
-import {
-  ReviewSigned,
-  ReviewAvailable,
-  ReviewFinancing,
-  ReviewAcceptance,
-} from './containers/Reviewer'
+import { InChargeSigned, InChargeAvailable, InChargeFinancing, InChargeAcceptance } from './containers/Operator'
+import { ReviewSigned, ReviewAvailable, ReviewFinancing, ReviewAcceptance } from './containers/Reviewer'
 import StuffManagement from './containers/StuffManagement'
 
 const base = '融资管理'

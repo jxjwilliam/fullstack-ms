@@ -1,4 +1,4 @@
-const data = require("./data.json")
+const data = require('./data.json')
 
 function categoryIt1() {
   return data.tags.reduce((ary, { name, value }) => {
@@ -6,7 +6,7 @@ function categoryIt1() {
     if (names.indexOf(name) !== -1) {
       const ai = ary.find(item => item.name === name)
       const maybeDuplicate = [...ai.value, ...value]
-      ai.value = [... new Set(maybeDuplicate)]
+      ai.value = [...new Set(maybeDuplicate)]
     } else {
       ary.push({ name, value })
     }
@@ -38,14 +38,10 @@ function categoryIt3() {
       nm.set(name, value)
     }
   })
-  return Object.fromEntries(nm);
+  return Object.fromEntries(nm)
 }
 
-
-
-function categoryIt4() {
-
-}
+function categoryIt4() {}
 
 // console.log(categoryIt1(data))
 console.log(categoryIt3(data))

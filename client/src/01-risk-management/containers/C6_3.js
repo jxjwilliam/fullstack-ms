@@ -1,14 +1,8 @@
-import React from 'react';
-import {TabPanels} from '../../components'
+import React from 'react'
+import { TabPanels } from '../../components'
 
 export default function () {
-  const ary = [
-    '融资申请审核',
-    '询价记录',
-    '融资申请中',
-    '融资进展',
-    '放款异常',
-  ];
+  const ary = ['融资申请审核', '询价记录', '融资申请中', '融资进展', '放款异常']
 
-  return <TabPanels ary={ary}/>;
+  return <TabPanels ary={ary} />
 }

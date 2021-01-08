@@ -1,5 +1,5 @@
-import { HEADERS, TOKEN } from "../constants";
-import { pageReload } from "./utils";
+import { HEADERS, TOKEN } from '../constants'
+import { pageReload } from './utils'
 
 /**
  * 1. local 加token，有content-type和accept
@@ -23,7 +23,7 @@ export default function (url, opts = {}, isFileOrProxy) {
 
     // 文件上传(isFileOrProxy===1), 不要content-type
     headers = isFileOrProxy === 1 ? { Accept: HEADERS.Accept } : HEADERS
-    headers = { ...headers, ...opts.headers, 'authorization': `Bearer ${authToken}` }
+    headers = { ...headers, ...opts.headers, authorization: `Bearer ${authToken}` }
   }
 
   if (opts.method) method = opts.method
@@ -31,18 +31,18 @@ export default function (url, opts = {}, isFileOrProxy) {
   if (opts.body) body = opts.body
 
   return fetch(url, { method, headers, body })
-    .then((res) => {
+    .then(res => {
       if (res.ok) return res.json()
-      else {
-        /**
-         * process 4xx:
-         *  res.status is number, so X: res.status.startsWith(4)
-         *  access-token expired, 401, 403, statusText="Unauthorized"
-         */
-        if (/^4\d{2}/.test(res.status)) {
-          return pageReload()
-        } else throw new Error(res.statusText)
+
+      /**
+       * process 4xx:
+       *  res.status is number, so X: res.status.startsWith(4)
+       *  access-token expired, 401, 403, statusText="Unauthorized"
+       */
+      if (/^4\d{2}/.test(res.status)) {
+        return pageReload()
       }
+      throw new Error(res.statusText)
     })
-    .catch((e) => console.error('操作失败: ', e.message))
+    .catch(e => console.error('操作失败: ', e.message))
 }

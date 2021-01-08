@@ -1,37 +1,43 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button';
-import Typography from "@material-ui/core/Typography";
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(2),
-    }
-  }
+    },
+  },
 }))
 
 // https://codesandbox.io/s/mpnoljl19?from-embed
 export default function LightBulb() {
   const classes = useStyles()
-  let [light, setLight] = useState(0);
+  const [light, setLight] = useState(0)
 
-  const setOff = () => setLight(0);
-  const setOn = () => setLight(1);
+  const setOff = () => setLight(0)
+  const setOn = () => setLight(1)
 
-  let fillColor = light === 1 ? "#ffbb73" : "#000000";
+  const fillColor = light === 1 ? '#ffbb73' : '#000000'
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3" color="error">React Hooks</Typography>
+      <Typography variant="h3" color="error">
+        React Hooks
+      </Typography>
       <div>
         <LightbulbSvg fillColor={fillColor} />
       </div>
 
-      <Button variant="outlined" color="primary" onClick={setOff}>Off</Button>
-      <Button variant="outlined" color="secondary" onClick={setOn}>On</Button>
+      <Button variant="outlined" color="primary" onClick={setOff}>
+        Off
+      </Button>
+      <Button variant="outlined" color="secondary" onClick={setOn}>
+        On
+      </Button>
     </div>
-  );
+  )
 }
 
 function LightbulbSvg(props) {
@@ -44,13 +50,7 @@ function LightbulbSvg(props) {
     */
     <svg width="56px" height="90px" viewBox="0 0 56 90" version="1.1">
       <defs />
-      <g
-        id="Page-1"
-        stroke="none"
-        strokeWidth="1"
-        fill="none"
-        fillRule="evenodd"
-      >
+      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="noun_bulb_1912567" fill="#000000" fillRule="nonzero">
           <path
             d="M38.985,68.873 L17.015,68.873 C15.615,68.873 14.48,70.009 14.48,71.409 C14.48,72.809 15.615,73.944 17.015,73.944 L38.986,73.944 C40.386,73.944 41.521,72.809 41.521,71.409 C41.521,70.009 40.386,68.873 38.985,68.873 Z"
@@ -72,5 +72,5 @@ function LightbulbSvg(props) {
         </g>
       </g>
     </svg>
-  );
+  )
 }

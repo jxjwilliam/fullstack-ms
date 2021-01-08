@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom'
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
 import { DEFAULT_LOGIN_PAGE, HEADERS, TOKEN } from '../constants'
-import fetching from "./fetching";
+import fetching from './fetching'
 
-const isEmpty = (prop) =>
+const isEmpty = prop =>
   prop === null ||
   prop === undefined ||
   // eslint-disable-next-line no-prototype-builtins
@@ -16,8 +16,8 @@ const isEmpty = (prop) =>
 const defer = (p = 'fulfilled', ms = 2000) => {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(p);
-    }, ms);
+      resolve(p)
+    }, ms)
   })
 }
 
@@ -26,7 +26,7 @@ const getToken = () => {
   return authToken ? jwt_decode(authToken) : {}
 }
 
-const checkLogin = (token) => {
+const checkLogin = token => {
   const authToken = token || sessionStorage.getItem(TOKEN)
   if (isEmpty(authToken)) return <Redirect to={DEFAULT_LOGIN_PAGE} />
   return null
@@ -48,15 +48,12 @@ function pageReload() {
   }, 1000)
 }
 
-
 function DataPrint({ data }) {
   return (
     <pre style={{ textAlign: 'initial' }}>
-      <code>
-        {JSON.stringify(data, null, 4)}
-      </code>
+      <code>{JSON.stringify(data, null, 4)}</code>
     </pre>
-  );
+  )
 }
 
 // ({...state, [key]: obj[key]})
@@ -69,14 +66,8 @@ function extractObj(ary = [], obj = {}) {
 }
 
 const extractObj2 = (ary = [], payload = {}) => {
-  const reducer = (state, key) =>
-    Object.assign({}, state, payload[key] && { [key]: payload[key] })
+  const reducer = (state, key) => ({ ...state, ...(payload[key] && { [key]: payload[key] }) })
   return ary.reduce(reducer, {})
 }
 
-export {
-  isEmpty, defer,
-  fetching, extractObj,
-  getToken, checkLogin,
-  pageReload, DataPrint
-}
+export { isEmpty, defer, fetching, extractObj, getToken, checkLogin, pageReload, DataPrint }

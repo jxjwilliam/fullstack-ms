@@ -21,15 +21,9 @@ import {
   ExpandLess,
   ExpandMore,
   AvTimer,
-  StarBorder
+  StarBorder,
 } from '@material-ui/icons'
-import {
-  Album,
-  Blog,
-  Checkout,
-  Dashboard,
-  Pricing,
-} from './material-ui-templates'
+import { Album, Blog, Checkout, Dashboard, Pricing } from './material-ui-templates'
 import * as AG from './apollographql'
 import * as CSB from './codesandbox'
 import * as FU from './fileupload'
@@ -102,7 +96,7 @@ const mainList = [
         path: 'Carousel',
         icon: StarBorder,
         component: CSB.Carousel,
-      }
+      },
     ],
   },
   {
@@ -112,13 +106,13 @@ const mainList = [
         path: 'graphqlzero',
         title: 'Graphqlzero 🚀',
         icon: ContactSupport,
-        component: AG.Graphqlzero
+        component: AG.Graphqlzero,
       },
       {
         path: 'github',
         title: 'Github',
         icon: Description,
-        component: AG.Github
+        component: AG.Github,
       },
       {
         path: 'apollographql-demo-3',
@@ -152,7 +146,7 @@ const mainList = [
       {
         path: 'dropzone',
         icon: FilterVintage,
-      }
+      },
     ],
   },
   {
@@ -161,7 +155,7 @@ const mainList = [
       {
         path: 'timer',
         icon: AvTimer,
-        component: Timer
+        component: Timer,
       },
     ],
   },

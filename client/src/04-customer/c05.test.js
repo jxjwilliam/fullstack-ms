@@ -2,15 +2,17 @@ import React from 'react'
 import {
   DataUsage,
   FormatQuote,
-  Group, Help,
+  Group,
+  Help,
   MonetizationOn,
   MoveToInbox,
   OfflineBolt,
   Payment,
   People,
-  RateReview, SettingsInputSvideo
-} from "@material-ui/icons";
-import { base, navList, mainList } from "./routers";
+  RateReview,
+  SettingsInputSvideo,
+} from '@material-ui/icons'
+import { base, navList, mainList } from './routers'
 import { getPageLayout } from '../components'
 
 beforeEach(() => {
@@ -57,7 +59,7 @@ beforeEach(() => {
       icon: Help,
       // component: Helper,
     },
-  ];
+  ]
 })
 
 describe('routers', () => {
@@ -66,6 +68,4 @@ describe('routers', () => {
   })
 })
 
-afterEach(() => {
-})
-
+afterEach(() => {})

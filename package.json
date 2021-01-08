@@ -29,7 +29,8 @@
     "new-version": "lerna version --conventional-commits --yes",
     "commit": "git-cz",
     "diff": "lerna diff",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "fix": "eslint --fix client/src/02-core_business/**/*.js"
   },
   "dependencies": {
     "axios": "^0.19.2",

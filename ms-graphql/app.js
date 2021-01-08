@@ -1,6 +1,6 @@
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
-import { schema } from './src/data/schema'
+import { schema } from './src/schema'
 
 require('dotenv').config()
 

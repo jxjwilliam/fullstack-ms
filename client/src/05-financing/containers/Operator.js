@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import MaterialTable from 'material-table';
+import React, { Component } from 'react'
+import MaterialTable from 'material-table'
 import { fetching } from '../../helpers/utils'
 
 // 复核人Reviewer
@@ -17,33 +17,28 @@ export class InChargeSigned extends Component {
       { title: '开具日期', field: 'issue_date' },
       { title: '操作', field: '' },
     ],
-    data: [{
-      status: '',
-      mx_no: '',
-      issuer: '',
-      receiver: '',
-      amount: '',
-      acceptance_payment_date: '',
-      issue_type: '',
-      issue_date: ''
-    }],
-    title: '签收POC2'
+    data: [
+      {
+        status: '',
+        mx_no: '',
+        issuer: '',
+        receiver: '',
+        amount: '',
+        acceptance_payment_date: '',
+        issue_type: '',
+        issue_date: '',
+      },
+    ],
+    title: '签收POC2',
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }
 
@@ -61,23 +56,16 @@ export class InChargeAvailable extends Component {
       { title: '操作', field: '' },
     ],
     data: [],
-    title: '可用POC'
+    title: '可用POC',
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }
 
@@ -98,19 +86,12 @@ export class InChargeFinancing extends Component {
   }
 
   componentDidMount() {
-    fetching('/data/InChargeer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/InChargeer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }
 
@@ -123,18 +104,11 @@ export class InChargeAcceptance extends Component {
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }

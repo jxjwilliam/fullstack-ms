@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect, Link, NavLink } from 'react-router-dom'
-import {
-  Container,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-  Link as MuiLink,
-} from '@material-ui/core'
+import { Container, List, ListItem, ListItemIcon, ListItemText, Typography, Link as MuiLink } from '@material-ui/core'
 import { bars, Drawer1 } from '../index'
 import NavList from './Nav1'
 import Layout1 from './Layout1'
@@ -41,7 +33,7 @@ class CTemplate extends Component {
 }
 
 function getRouters(url, currentNav, mainList) {
-  const subAry = mainList.find((item) => item.nav === currentNav).main
+  const subAry = mainList.find(item => item.nav === currentNav).main
   const basePath = `${url}/${currentNav}`
   return [basePath, subAry]
 }
@@ -79,14 +71,10 @@ const renderMenu = (basePath, items = []) => {
 
 const renderContent = (basePath, items = [], redirect = {}) => (
   <Switch>
-    {!isEmpty(redirect) ? (
-      <Redirect exact from={redirect.from} to={redirect.to} />
-    ) : null}
-    ;
+    {!isEmpty(redirect) ? <Redirect exact from={redirect.from} to={redirect.to} /> : null};
     {items.map(({ path, component }) => {
       const url = `${basePath}/${path}`
-      if (component)
-        return <Route path={url} component={component} key={path} />
+      if (component) return <Route path={url} component={component} key={path} />
       return <Route path={url} render={FTemplate} key={path} />
     })}
   </Switch>
@@ -110,17 +98,17 @@ const getPageLayout = (navList, mainList, options) => {
     case 1:
       redirect.from = pathname
       url2 = navList[0].path
-      url3 = mainList.find((item) => item.nav === url2).main[0].path
+      url3 = mainList.find(item => item.nav === url2).main[0].path
       redirect.to = `${pathname}/${url2}/${url3}`
       break
     case 2:
       redirect.from = pathname
       url2 = ary[1]
-      url3 = mainList.find((item) => item.nav === url2).main[0].path
+      url3 = mainList.find(item => item.nav === url2).main[0].path
       redirect.to = `${pathname}/${url3}`
       break
     case 3:
-      [, url2, url3] = ary; // fetch ary[1,2]
+      ;[, url2, url3] = ary // fetch ary[1,2]
       break
     default:
       throw new Error('TODO: ')

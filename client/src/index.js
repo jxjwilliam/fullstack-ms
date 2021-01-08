@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <App />
     </Provider>,
-    rootElement
+    rootElement,
   )
 })
 

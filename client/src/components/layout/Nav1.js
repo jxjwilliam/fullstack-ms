@@ -1,12 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import {fade, makeStyles} from '@material-ui/core/styles'
+import { fade, makeStyles } from '@material-ui/core/styles'
 
 /**
  * TODO: Link -> NavLink
  */
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     displayDirection: 'row',
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   active: {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)'
+    boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
   },
 }))
 

@@ -1,20 +1,14 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  CssBaseline,
-  Drawer,
-  Divider,
-  IconButton,
-  Container,
-} from '@material-ui/core'
+import { CssBaseline, Drawer, Divider, IconButton, Container } from '@material-ui/core'
 import { ChevronLeft, ChevronRight } from '@material-ui/icons'
 import accordion from './Accordion1'
 import Title from './Title'
 
 const drawerWidth = 240
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
@@ -129,7 +123,7 @@ export default (menu, content) => ({ pathname, url }) => {
       <main className={classes.content} style={{ position: 'relative' }}>
         {/* <div className={classes.appBarSpacer}/> */}
         <Container maxWidth="lg" className={classes.container}>
-          <Title path={pathname} title={'TODO - Layout1'} />
+          <Title path={pathname} title="TODO - Layout1" />
           {content}
         </Container>
       </main>

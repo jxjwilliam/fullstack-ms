@@ -20,11 +20,7 @@ const Group1 = () => (
       <HomeIcon />
     </Link>
     <Drawer1 />
-    <menus.Menu1
-      routers={BusinessRouters}
-      Icon={BusinessIcon}
-      title="Business"
-    />
+    <menus.Menu1 routers={BusinessRouters} Icon={BusinessIcon} title="Business" />
     <Gitbook />
   </>
 )

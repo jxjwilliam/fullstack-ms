@@ -3,5 +3,5 @@ import Footer2 from './Footer2'
 
 export default {
   Footer1,
-  Footer2
+  Footer2,
 }

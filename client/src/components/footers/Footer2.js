@@ -1,12 +1,6 @@
-import React, {useState} from 'react';
-import {
-  CssBaseline,
-  Typography,
-  Container,
-  Tabs,
-  Tab
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react'
+import { CssBaseline, Typography, Container, Tabs, Tab } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,13 +16,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'flex-end',
   },
-}));
+}))
 
 export default function () {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const initialValues = ['Most popular ideas', 'Latest ideas', 'My ideas'];
-  const labels = initialValues.map(label => <Tab label={label} key={label}/>)
+  const initialValues = ['Most popular ideas', 'Latest ideas', 'My ideas']
+  const labels = initialValues.map(label => <Tab label={label} key={label} />)
 
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
@@ -50,11 +44,11 @@ export default function () {
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Tabs value={value} onChange={handleChange} aria-label={'simple tabs example'}>
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
             {labels}
           </Tabs>
         </Container>
       </footer>
     </div>
-  );
+  )
 }

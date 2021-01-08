@@ -1,10 +1,14 @@
 const express = require('express')
+
 const router = express.Router()
 
 // 路由表都放在这里，方便管理。
 
 const auth = require('./auth')
-const { routing, middleware: { notFound } } = require('./utils')
+const {
+  routing,
+  middleware: { notFound },
+} = require('./utils')
 const Account = require('../models/Account')
 const Role = require('../models/Role')
 
@@ -14,8 +18,15 @@ router.get('/', (req, res) => {
   const { locals } = res
   res.json({
     message: 'Welcome to the AUTH API!',
-    app, url, baseUrl, originalUrl, path, hostname, ip, xhr,
-    locals
+    app,
+    url,
+    baseUrl,
+    originalUrl,
+    path,
+    hostname,
+    ip,
+    xhr,
+    locals,
   })
 })
 
@@ -33,7 +44,6 @@ router.post('/register', isNotExist, hashPassword, signup)
  */
 const { isExist, verifyPassword, issueToken, signin } = auth
 router.post('/login', isExist, verifyPassword, issueToken, signin)
-
 
 router.post('/token', auth.refreshToken)
 

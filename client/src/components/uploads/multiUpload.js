@@ -36,13 +36,13 @@ class Upload extends Component {
     }
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { type = 'image', uploadName = '' } = this.props
     const formData = new FormData()
-    let files = e.currentTarget.files
-    let type2 = files[0].type
+    const { files } = e.currentTarget
+    const type2 = files[0].type
     let imgUrl = ''
-    let fileList = Array.from(files)
+    const fileList = Array.from(files)
     if (fileList.length > 4) {
       this.setState({
         open: true,
@@ -52,12 +52,8 @@ class Upload extends Component {
       return
     }
     if (type === 'image') {
-      const typeList = fileList.filter((item) => {
-        if (
-          type2 === 'image/png' ||
-          type2 === 'image/jpeg' ||
-          type2 === 'image/jpg'
-        ) {
+      const typeList = fileList.filter(item => {
+        if (type2 === 'image/png' || type2 === 'image/jpeg' || type2 === 'image/jpg') {
         } else {
           this.setState({
             open: true,
@@ -67,7 +63,7 @@ class Upload extends Component {
           return item
         }
       })
-      const sizeList = fileList.filter((item) => {
+      const sizeList = fileList.filter(item => {
         if (item.size / 1024 / 1024 > 10) {
           this.setState({
             open: true,
@@ -83,7 +79,7 @@ class Upload extends Component {
           imgUrl = URL.createObjectURL(files[0])
         }
         this.props.uploadChange({ fileList, uploadName })
-        for (var key in this.state.image) {
+        for (const key in this.state.image) {
           formData.append(key, fileList)
         }
 
@@ -101,24 +97,29 @@ class Upload extends Component {
       this.setState({ fileList })
     }
   }
-  //消息提示
+
+  // 消息提示
   handleClose = () => {
     this.setState({ open: false })
   }
-  //删除上传文件
+
+  // 删除上传文件
   handleUplaodClose = ({ target: index }) => {
-    let fileList = this.state.fileList
+    const { fileList } = this.state
     fileList.splice(index, 1)
     this.setState({ fileList, value: '' })
   }
-  //图片模态框
+
+  // 图片模态框
   handleClose2 = () => {
     this.setState({ open2: false })
   }
-  //查看实例
+
+  // 查看实例
   viewFile = ({ target: name }) => {
     this.setState({ open2: true })
   }
+
   render() {
     const { message, open, open2, value, imgUrl, fileList } = this.state
 
@@ -134,18 +135,12 @@ class Upload extends Component {
     const action = () => {
       if (msgClose) {
         return [
-          <IconButton
-            key="close"
-            aria-label="close"
-            color="inherit"
-            onClick={this.handleClose}
-          >
+          <IconButton key="close" aria-label="close" color="inherit" onClick={this.handleClose}>
             <CloseIcon />
           </IconButton>,
         ]
-      } else {
-        return []
       }
+      return []
     }
     return (
       // TODO：上传文件接收的文件类型？
@@ -163,11 +158,11 @@ class Upload extends Component {
             <input
               type="file"
               name="image"
-              multiple={'multiple'}
+              multiple="multiple"
               value={value}
               className="uploadFile"
               onChange={this.handleChange}
-            ></input>
+            />
             {name}
           </Button>
           {viewFile && (
@@ -180,18 +175,11 @@ class Upload extends Component {
         {fileName &&
           fileList.map((item, index) => {
             return (
-              <div
-                key={index}
-                style={{ display: 'flex', alignItems: 'center' }}
-              >
+              <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
                 <span title={item.name} className="fileName">
                   {item.name}
                 </span>
-                <p
-                  className="view"
-                  onClick={this.viewFile}
-                  style={{ margin: '0 10px' }}
-                >
+                <p className="view" onClick={this.viewFile} style={{ margin: '0 10px' }}>
                   {view}
                 </p>
 
@@ -226,12 +214,7 @@ class Upload extends Component {
           message={<span id="message-id">{message}</span>}
           action={action()}
         />
-        <Dialog
-          maxWidth={'lg'}
-          onClose={this.handleClose2}
-          aria-labelledby="customized-dialog-title"
-          open={open2}
-        >
+        <Dialog maxWidth="lg" onClose={this.handleClose2} aria-labelledby="customized-dialog-title" open={open2}>
           <MuiDialogTitle
             style={{
               display: 'flex',

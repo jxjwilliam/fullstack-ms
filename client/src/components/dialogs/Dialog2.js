@@ -1,21 +1,13 @@
-import React, {Component} from 'react';
-import {
-  Button,
-  Input,
-  Select,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '@material-ui/core'
-import {withStyles} from '@material-ui/styles';
-import {fetching} from '../../helpers/utils'
+import React, { Component } from 'react'
+import { Button, Input, Select, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
+import { fetching } from '../../helpers/utils'
 
 const styles = theme => ({
   select: {
     padding: 20,
-  }
-});
+  },
+})
 
 // 实现3级联动读取省市县地址
 class Dialog2 extends Component {
@@ -24,56 +16,55 @@ class Dialog2 extends Component {
     address: {
       province: '',
       city: '',
-      district: ''
+      district: '',
     },
     data: [],
     provinces: [],
     cities: [],
-    districts: []
+    districts: [],
   }
 
   async componentDidMount() {
-    const data = await fetching(`/data/address`);
+    const data = await fetching(`/data/address`)
     this.setState(() => {
-      const provinces = Object.keys(data);
-      return {data, provinces};
+      const provinces = Object.keys(data)
+      return { data, provinces }
     })
   }
 
   handleClickOpen = () => {
-    this.setState({open: true});
-  };
+    this.setState({ open: true })
+  }
 
   handleClose = () => {
-    this.setState({open: false});
-  };
+    this.setState({ open: false })
+  }
 
   handleChange = e => {
-    const selected = e.target.value;
-    const level = e.target.id;
+    const selected = e.target.value
+    const level = e.target.id
 
     if (level === 'province') {
-      const cities = Object.keys(this.state.data[selected]);
-      this.setState({address: {[level]: selected}, cities, districts: []});
-    }
-    else if (level === 'city') {
+      const cities = Object.keys(this.state.data[selected])
+      this.setState({ address: { [level]: selected }, cities, districts: [] })
+    } else if (level === 'city') {
       const districts = this.state.data[this.state.address.province][selected]
-      this.setState({address: {...this.state.address, [level]: selected}, districts});
-    }
-    else { //district
-      this.setState({address: {...this.state.address, [level]: selected}});
+      this.setState({ address: { ...this.state.address, [level]: selected }, districts })
+    } else {
+      // district
+      this.setState({ address: { ...this.state.address, [level]: selected } })
     }
   }
 
   handleSubmit = () => {
-    //const {address} = this.state;
+    // const {address} = this.state;
     // this.props.onCreate(address);
   }
 
   render() {
-    const {classes} = this.props;
-    const {province, city, district} = this.state.address;
-    const {open, provinces, cities, districts} = this.state;
+    const { classes } = this.props
+    const { province, city, district } = this.state.address
+    const { open, provinces, cities, districts } = this.state
     return (
       <div>
         <Button onClick={this.handleClickOpen}>地址级联表单处理</Button>
@@ -85,33 +76,45 @@ class Dialog2 extends Component {
                 native
                 value={province}
                 onChange={this.handleChange}
-                input={<Input id="province"/>}
+                input={<Input id="province" />}
                 className={classes.select}
               >
                 <option value="0">--- 请选择省份 ---</option>
-                {provinces.map(p => <option value={p} key={p}>{p}</option>)}
+                {provinces.map(p => (
+                  <option value={p} key={p}>
+                    {p}
+                  </option>
+                ))}
               </Select>
               <br />
               <Select
                 native
                 value={city}
                 onChange={this.handleChange}
-                input={<Input id="city"/>}
+                input={<Input id="city" />}
                 className={classes.select}
               >
                 <option value="0">--- 请选择城市 ---</option>
-                {cities.map(c => <option value={c} key={c}>{c}</option>)}
+                {cities.map(c => (
+                  <option value={c} key={c}>
+                    {c}
+                  </option>
+                ))}
               </Select>
-              <br/>
+              <br />
               <Select
                 native
                 value={district}
                 onChange={this.handleChange}
-                input={<Input id="district"/>}
+                input={<Input id="district" />}
                 className={classes.select}
               >
                 <option value="0">--- 请选择区/县 ---</option>
-                {districts.map(d => <option value={d} key={d}>{d}</option>)}
+                {districts.map(d => (
+                  <option value={d} key={d}>
+                    {d}
+                  </option>
+                ))}
               </Select>
             </form>
           </DialogContent>
@@ -129,4 +132,4 @@ class Dialog2 extends Component {
   }
 }
 
-export default withStyles(styles, {name: 'form2'})(Dialog2);
+export default withStyles(styles, { name: 'form2' })(Dialog2)

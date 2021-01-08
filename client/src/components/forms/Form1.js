@@ -1,35 +1,28 @@
-import React, {Component, useState} from 'react';
-import {
-  Button,
-  TextField,
-  Select,
-  FormControl,
-  MenuItem,
-  InputLabel,
-} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { Component, useState } from 'react'
+import { Button, TextField, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   form: {
-    width: 300
+    width: 300,
   },
   field: {
     width: 260,
     marginLeft: 20,
-  }
-}));
+  },
+}))
 
 export default function () {
-  const classes = useStyles();
+  const classes = useStyles()
   const [form, setForm] = useState({})
 
-  const handleChange = ({target: {id, value}}) => {
+  const handleChange = ({ target: { id, value } }) => {
     setForm({
       form: {
         ...state.form,
-        [id]: value
-      }
-    });
+        [id]: value,
+      },
+    })
   }
 
   return (
@@ -44,7 +37,7 @@ export default function () {
         margin="dense"
         className={classes.field}
       />
-      <br/>
+      <br />
       <TextField
         id="name"
         label="姓名"
@@ -53,7 +46,7 @@ export default function () {
         margin="normal"
         className={classes.field}
       />
-      <br/>
+      <br />
       <FormControl className={classes.field}>
         <InputLabel htmlFor="role">角色</InputLabel>
         <Select
@@ -64,11 +57,17 @@ export default function () {
             id: 'role',
           }}
         >
-          <MenuItem value=""><em>请选择</em></MenuItem>
-          {roles.map(r => <MenuItem value={r} key={r}>{r}</MenuItem>)}
+          <MenuItem value="">
+            <em>请选择</em>
+          </MenuItem>
+          {roles.map(r => (
+            <MenuItem value={r} key={r}>
+              {r}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-      <br/>
+      <br />
       <TextField
         multiline
         rows={4}

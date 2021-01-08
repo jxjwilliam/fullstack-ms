@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import MaterialTable from 'material-table';
+import React, { Component } from 'react'
+import MaterialTable from 'material-table'
 import { fetching } from '../../helpers/utils'
 
 // 复核人Reviewer
@@ -17,17 +17,19 @@ export class ReviewSigned extends Component {
       { title: '开具日期', field: 'issue_date' },
       { title: '操作', field: '' },
     ],
-    data: [{
-      status: '',
-      mx_no: '',
-      issuer: '',
-      receiver: '',
-      amount: '',
-      acceptance_payment_date: '',
-      issue_type: '',
-      issue_date: ''
-    }],
-    title: '签收POC1'
+    data: [
+      {
+        status: '',
+        mx_no: '',
+        issuer: '',
+        receiver: '',
+        amount: '',
+        acceptance_payment_date: '',
+        issue_type: '',
+        issue_date: '',
+      },
+    ],
+    title: '签收POC1',
   }
 
   componentDidMount() {
@@ -35,14 +37,8 @@ export class ReviewSigned extends Component {
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }
 
@@ -59,32 +55,27 @@ export class ReviewAvailable extends Component {
       { title: '开具日期', field: 'issue_date' },
       { title: '操作', field: '' },
     ],
-    data: [{
-      mx_no: '',
-      issuer: '',
-      receiver: '',
-      amount: '',
-      available_amount: '',
-      acceptance_payment_date: '',
-      issue_date: '',
-    }],
-    title: '可用POC'
+    data: [
+      {
+        mx_no: '',
+        issuer: '',
+        receiver: '',
+        amount: '',
+        available_amount: '',
+        acceptance_payment_date: '',
+        issue_date: '',
+      },
+    ],
+    title: '可用POC',
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }
 
@@ -106,19 +97,12 @@ export class ReviewFinancing extends Component {
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }
 
@@ -140,18 +124,11 @@ export class ReviewAcceptance extends Component {
   }
 
   componentDidMount() {
-    fetching('/data/reviewer1')
-      .then(data => this.setState({ data }))
+    fetching('/data/reviewer1').then(data => this.setState({ data }))
   }
 
   render() {
-    const { columns, data, title } = this.state;
-    return (
-      <MaterialTable
-        title={title}
-        columns={columns}
-        data={data}
-      />
-    )
+    const { columns, data, title } = this.state
+    return <MaterialTable title={title} columns={columns} data={data} />
   }
 }

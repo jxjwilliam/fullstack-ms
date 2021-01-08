@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Switch, Route, Redirect, Link, NavLink } from 'react-router-dom'
 import { Container, List, ListItem, ListItemIcon, ListItemText, Typography, Link as MuiLink } from '@material-ui/core'
 import { bars, Drawer1 } from '../index'
@@ -19,17 +19,6 @@ function FTemplate(props) {
       [{`${breadcrumbs} : `}], [{url}], [{pathname}]
     </h6>
   )
-}
-
-class CTemplate extends Component {
-  render() {
-    const {
-      match: { path, url },
-      location: { pathname },
-    } = this.props
-    const breadcrumbs = path.substr(1).split('/').join(' 👉🏻 ')
-    return <h6>{`${breadcrumbs} : `}</h6>
-  }
 }
 
 function getRouters(url, currentNav, mainList) {
@@ -92,7 +81,8 @@ const getPageLayout = (navList, mainList, options) => {
 
   const ary = pathname.substr(1).split('/')
   const aryLen = ary.length
-  let [redirect, url2, url3] = [{}, '', '']
+  let [url2, url3] = ['', '']
+  const redirect = {}
 
   switch (aryLen) {
     case 1:

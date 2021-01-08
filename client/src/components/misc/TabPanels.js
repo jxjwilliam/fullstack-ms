@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Tabs, Tab, Typography, Box, Paper } from '@material-ui/core'
 
@@ -19,12 +18,6 @@ function Panel(props) {
       <Box p={6}>{children}</Box>
     </Typography>
   )
-}
-
-Panel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
 }
 
 function a11yProps(index) {

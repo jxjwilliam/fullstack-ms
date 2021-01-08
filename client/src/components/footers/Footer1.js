@@ -23,6 +23,7 @@ export default function ({ services }) {
   function handleChange(event, newValue) {
     setValue(newValue)
   }
+  // eslint-disable-next-line no-param-reassign
   services =
     services ||
     [

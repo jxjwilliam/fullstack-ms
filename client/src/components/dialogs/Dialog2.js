@@ -5,7 +5,7 @@ import { fetching } from '../../helpers/utils'
 
 const styles = theme => ({
   select: {
-    padding: 20,
+    padding: theme.spacing(3),
   },
 })
 
@@ -44,15 +44,16 @@ class Dialog2 extends Component {
     const selected = e.target.value
     const level = e.target.id
 
+    const { data, address } = this.state
     if (level === 'province') {
-      const cities = Object.keys(this.state.data[selected])
+      const cities = Object.keys(data[selected])
       this.setState({ address: { [level]: selected }, cities, districts: [] })
     } else if (level === 'city') {
-      const districts = this.state.data[this.state.address.province][selected]
-      this.setState({ address: { ...this.state.address, [level]: selected }, districts })
+      const districts = data[address.province][selected]
+      this.setState({ address: { ...address, [level]: selected }, districts })
     } else {
       // district
-      this.setState({ address: { ...this.state.address, [level]: selected } })
+      this.setState({ address: { ...address, [level]: selected } })
     }
   }
 
@@ -63,7 +64,9 @@ class Dialog2 extends Component {
 
   render() {
     const { classes } = this.props
-    const { province, city, district } = this.state.address
+    const {
+      address: { province, city, district },
+    } = this.state
     const { open, provinces, cities, districts } = this.state
     return (
       <div>

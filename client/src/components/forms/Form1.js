@@ -19,7 +19,7 @@ export default function () {
   const handleChange = ({ target: { id, value } }) => {
     setForm({
       form: {
-        ...state.form,
+        ...form,
         [id]: value,
       },
     })

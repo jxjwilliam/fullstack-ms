@@ -77,10 +77,6 @@ export class Searchbox extends Component {
     this.emitChangeDebounced.cancel()
   }
 
-  render() {
-    return <input type="search" onChange={this.handleChange} placeholder="Search..." defaultValue={this.props.value} />
-  }
-
   handleChange(e) {
     // React pools events, so we read the value before debounce.
     // Alternately we could call `event.persist()` and pass the entire event.
@@ -89,6 +85,12 @@ export class Searchbox extends Component {
   }
 
   emitChange(value) {
-    this.props.onChange(value)
+    const { onChange } = this.props
+    onChange(value)
+  }
+
+  render() {
+    const { value } = this.props
+    return <input type="search" onChange={this.handleChange} placeholder="Search..." defaultValue={value} />
   }
 }

@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // TODO: base=match.url
-export default (menu, content) => ({ pathname, url }) => {
+export default (menu, content) => ({ pathname }) => {
   // const { location: { pathname }, match: { url, path } } = props
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)

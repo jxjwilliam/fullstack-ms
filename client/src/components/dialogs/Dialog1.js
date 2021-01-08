@@ -51,9 +51,10 @@ class Dialog1 extends Component {
   }
 
   handleChange = ({ target: { id, value } }) => {
+    const { form } = this.state
     this.setState({
       form: {
-        ...this.state.form,
+        ...form,
         [id]: value,
       },
     })
@@ -62,7 +63,8 @@ class Dialog1 extends Component {
   handleSubmit = () => {
     // TODO: validate
     const { form } = this.state
-    this.props.onCreate(form)
+    const { onCreate } = this.props
+    onCreate(form)
     this.setState({
       open: false,
       form: {

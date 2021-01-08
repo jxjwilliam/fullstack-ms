@@ -20,7 +20,7 @@ export default function ({ severity = 'error', message }) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
 
-  const handleClose = (event, reason) => {
+  const handleClose = () => {
     setOpen(false)
   }
 

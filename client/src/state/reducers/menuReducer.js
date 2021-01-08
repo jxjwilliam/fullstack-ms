@@ -1,7 +1,4 @@
-import {
-  GET_CORE_BUSINESS_SUPPLIER_LAYOUT,
-  GET_RISK_MANAGEMENT_LAYOUT,
-} from '../ActionTypes'
+import { GET_CORE_BUSINESS_SUPPLIER_LAYOUT, GET_RISK_MANAGEMENT_LAYOUT } from '../ActionTypes'
 
 export const menu1Reducer = (state = [], action) => {
   switch (action.type) {
@@ -21,4 +18,4 @@ export const menu2Reducer = (state = [], action) => {
   }
 }
 
-//TODO: each menu has a reducer. to swtich locale?
+// TODO: each menu has a reducer. to swtich locale?

@@ -48,29 +48,35 @@ const useStyles = theme => ({
 
 class SignIn extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  state = { login: { username: '', password: '', }, loading: false, done: false, }
+  state = { login: { username: '', password: '' }, loading: false, done: false }
 
   validateForm = () => {
-    const { login: { username, password }, } = this.state
+    const {
+      login: { username, password },
+    } = this.state
     return username.length > 0 && password.length > 0
   }
 
   // this.setState({[e.target.id]: e.target.value});
   // Material-UI <Select>'s `id` doesn't work: undefined
-  handleChange = ({target: {name, value}}) => {
-    this.setState({login: { ...this.state.login, [name]: value }})
+  handleChange = ({ target: { name, value } }) => {
+    this.setState(prevState => {
+      return { login: { ...prevState.login, [name]: value } }
+    })
   }
 
-  handleSubmit = (ev) => {
+  handleSubmit = ev => {
     ev.preventDefault()
     const { loginAction } = this.props
     const { login } = this.state
 
     // eslint-disable-next-line react/destructuring-assignment
     loginAction(login).then(() => {
-      this.setState({loading: true})
-      
-      const { auth: { loggedIn, token } } = this.props;
+      this.setState({ loading: true })
+
+      const {
+        auth: { loggedIn, token },
+      } = this.props
       if (loggedIn) {
         this.setState({ done: true, loading: false })
         sessionStorage.setItem(TOKEN, token)
@@ -83,7 +89,11 @@ class SignIn extends Component {
 
   render() {
     const { classes } = this.props
-    const { login: { username, password }, done, loading} = this.state
+    const {
+      login: { username, password },
+      done,
+      loading,
+    } = this.state
     if (loading) return <Loading />
     if (done) return <Redirect to={DEFAULT_HOME_PAGE} />
     return (
@@ -123,10 +133,7 @@ class SignIn extends Component {
               value={password}
               onChange={this.handleChange}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="记住我"
-            />
+            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="记住我" />
             <Button
               type="submit"
               fullWidth
@@ -147,7 +154,10 @@ class SignIn extends Component {
               </Grid>
               <Grid item>
                 <MuiLink component={Link} to={REGISTER_PAGE} variant="body2">
-                  还没有账号？注册～ <span role="img" aria-label="hat">🤠</span>
+                  还没有账号？注册～{' '}
+                  <span role="img" aria-label="hat">
+                    🤠
+                  </span>
                 </MuiLink>
               </Grid>
             </Grid>
@@ -160,5 +170,5 @@ class SignIn extends Component {
 
 export default compose(
   withStyles(useStyles, { name: 'login1' }),
-  connect((state) => ({ auth: state.auth }), { loginAction })
+  connect(state => ({ auth: state.auth }), { loginAction }),
 )(SignIn)

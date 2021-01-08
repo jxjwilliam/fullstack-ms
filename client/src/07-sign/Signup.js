@@ -1,18 +1,29 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
-  Avatar, Button, CssBaseline, FormControlLabel, TextField, Grid, Checkbox,
-  Link as MuiLink, Select, InputLabel, MenuItem, FormControl,
-  Typography, Container
-} from '@material-ui/core';
+  Avatar,
+  Button,
+  CssBaseline,
+  FormControlLabel,
+  TextField,
+  Grid,
+  Checkbox,
+  Link as MuiLink,
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Typography,
+  Container,
+} from '@material-ui/core'
 import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles';
-import {signupAction} from "../state/actions";
-import {DEFAULT_LOGIN_PAGE} from '../constants'
+import { makeStyles } from '@material-ui/core/styles'
+import { signupAction } from '../state/actions'
+import { DEFAULT_LOGIN_PAGE } from '../constants'
 
 // https://raw.githubusercontent.com/mui-org/material-ui/master/docs/src/pages/getting-started/templates/sign-up/SignUp.js
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -34,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-}));
+}))
 
-function SignUp (props) {
-  const classes = useStyles();
+function SignUp(props) {
+  const classes = useStyles()
   const [register, setRegister] = useState({
     username: '',
     phone: '',
@@ -51,11 +62,11 @@ function SignUp (props) {
   const [loading, setLoading] = useState(false)
 
   // Select can't capture `id`: undefined. Only `name` works.
-  const handleChange = ({target: { name, value}}) => {
-    setRegister({...register, [name]: value})
+  const handleChange = ({ target: { name, value } }) => {
+    setRegister({ ...register, [name]: value })
   }
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = ev => {
     setLoading(true)
     props.signupAction(register).then(() => {
       setLoading(false)
@@ -65,10 +76,14 @@ function SignUp (props) {
   }
 
   const roleList = ['member', 'admin', 'owner'].map(item => (
-    <MenuItem value={item} key={item}>{item}</MenuItem>
+    <MenuItem value={item} key={item}>
+      {item}
+    </MenuItem>
   ))
   const categoryList = ['local', 'wechat', 'gmail'].map(item => (
-    <MenuItem value={item} key={item}>{item}</MenuItem>
+    <MenuItem value={item} key={item}>
+      {item}
+    </MenuItem>
   ))
 
   return (
@@ -140,13 +155,7 @@ function SignUp (props) {
             <Grid item xs={12} sm={6}>
               <FormControl className={classes.formControl}>
                 <InputLabel id="role-label">Role</InputLabel>
-                <Select
-                  labelId='role-label'
-                  id={'role'}
-                  name={'role'}
-                  value={register.role}
-                  onChange={handleChange}
-                >
+                <Select labelId="role-label" id="role" name="role" value={register.role} onChange={handleChange}>
                   {roleList}
                 </Select>
               </FormControl>
@@ -155,9 +164,9 @@ function SignUp (props) {
               <FormControl className={classes.formControl}>
                 <InputLabel id="category-label">Category</InputLabel>
                 <Select
-                  labelId='category-label'
-                  id={'category'}
-                  name={'category'}
+                  labelId="category-label"
+                  id="category"
+                  name="category"
                   value={register.category}
                   onChange={handleChange}
                 >
@@ -166,10 +175,7 @@ function SignUp (props) {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraInfo" color="primary" />}
-                label="希望了解更多"
-              />
+              <FormControlLabel control={<Checkbox value="allowExtraInfo" color="primary" />} label="希望了解更多" />
             </Grid>
           </Grid>
           <Button
@@ -193,11 +199,7 @@ function SignUp (props) {
         </form>
       </div>
     </Container>
-  );
+  )
 }
 
-
-export default connect(
-  state => ({ register: state.register }),
-  { signupAction }
-  )(SignUp)
+export default connect(state => ({ register: state.register }), { signupAction })(SignUp)

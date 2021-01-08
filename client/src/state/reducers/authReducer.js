@@ -1,13 +1,6 @@
-import {
-  SIGNUP_SUCCESS,
-  SIGNUP_FAIL,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAIL,
-} from '../ActionTypes'
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL } from '../ActionTypes'
 
-const initLogin = { loggedIn: false, token: null,}
+const initLogin = { loggedIn: false, token: null }
 
 export const authReducer = (state = initLogin, action) => {
   switch (action.type) {

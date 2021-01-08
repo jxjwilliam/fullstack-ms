@@ -1,37 +1,26 @@
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { buildSchema } = require('graphql')
+import express from 'express'
+import { graphqlHTTP } from 'express-graphql'
+import { schema } from './src/data/schema'
 
 require('dotenv').config()
 
 const port = process.env.GRAPHQL_PORT
 
-// 使用 GraphQL Schema Language 创建一个 schema
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`)
-
-// root 提供所有 API 入口端点相应的解析器函数
-const root = {
-  hello: () => {
-    return 'Hello the World from express-graphql !'
-  },
-}
-
 const app = express()
+
+app.get('/', (req, res) => res.send('It works. You can use /graphql for more details.'))
+
+app.get('/express', (req, res) => res.send('/express works. You can use /graphql for more details.'))
 
 // GraphiQL is on http://localhost:8069/graphql
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: schema,
-    rootValue: root,
+    schema,
     graphiql: true,
   }),
 )
 
 app.listen(port, () => {
-  console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`)
+  console.log(`🚀 Running a GraphQL API server at localhost:${port}/graphql`)
 })

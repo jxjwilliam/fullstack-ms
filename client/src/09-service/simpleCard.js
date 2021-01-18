@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme =>
       width: '40%',
     },
     card: {
-      padding: '12px',
+      padding: theme.spacing(2),
     },
     avatar: {
       backgroundColor: red[500],
@@ -44,7 +44,7 @@ const SimpleCard = ({ data = {} }) => {
               <Skeleton animation="wave" variant="circle" width={40} height={40} />
             ) : (
               <Avatar aria-label="recipe" className={classes.avatar}>
-                R
+                R{' '}
               </Avatar>
             )
           }

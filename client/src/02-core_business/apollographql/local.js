@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache, gql } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { LaunchQuery, LaunchMutation } from './common'
+import { LaunchQuery } from './common'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:8081/graphql',

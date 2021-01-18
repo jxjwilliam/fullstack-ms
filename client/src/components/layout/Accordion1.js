@@ -61,7 +61,6 @@ const OperatorInfo = () => {
     category: organization = '微服务企业',
     role = '操作员',
     email: name = '微服务',
-    phone,
   } = getToken()
 
   const title = '操作员信息'
@@ -125,16 +124,6 @@ const HideInfo = () => {
 }
 
 // TODO: cache
-const showHide = prefix => {
-  const all3 = [OperatorInfo, HelperInfo, VersionInfo].map((Item, idx) => (
-    <ListItem key={idx}>
-      <Item />
-    </ListItem>
-  ))
-  return operator => {
-    return <>{all3}</>
-  }
-}
 
 export default {
   ShowInfo,

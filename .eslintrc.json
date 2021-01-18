@@ -43,6 +43,7 @@
     "node/no-unpublished-require": 0,
     "node/no-missing-import": 0,
     "node/no-unpublished-import": 0,
-    "node/no-extraneous-require": 0
+    "node/no-extraneous-require": 0,
+    "node/no-extraneous-import": 0
   }
 }

@@ -40,7 +40,7 @@ export default function LightBulb() {
   )
 }
 
-function LightbulbSvg(props) {
+function LightbulbSvg({ fillColor }) {
   return (
     /*
       Below is the markup for an SVG that is the shape
@@ -67,7 +67,7 @@ function LightbulbSvg(props) {
           <path
             d="M16.857,66.322 L39.142,66.322 C40.541,66.322 41.784,65.19 42.04,63.814 C44.63,49.959 55.886,41.575 55.886,27.887 C55.887,12.485 43.401,0 28,0 C12.599,0 0.113,12.485 0.113,27.887 C0.113,41.575 11.369,49.958 13.959,63.814 C14.216,65.19 15.458,66.322 16.857,66.322 Z"
             id="Shape"
-            fill={props.fillColor}
+            fill={fillColor}
           />
         </g>
       </g>

@@ -229,7 +229,7 @@ class Upload extends Component {
                         </IconButton> */}
           </MuiDialogTitle>
           <MuiDialogContent style={{ minWidth: '600px', minHeight: '400px' }}>
-            <img src={imgUrl} />
+            <img src={imgUrl} alt="upload" />
           </MuiDialogContent>
         </Dialog>
       </div>

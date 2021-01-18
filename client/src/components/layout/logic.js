@@ -93,6 +93,7 @@ const getPageLayout = (navList, mainList, options) => {
       break
     case 2:
       redirect.from = pathname
+      // eslint-disable-next-line prefer-destructuring
       url2 = ary[1]
       url3 = mainList.find(item => item.nav === url2).main[0].path
       redirect.to = `${pathname}/${url3}`

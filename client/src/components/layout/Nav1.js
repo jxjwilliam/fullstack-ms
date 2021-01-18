@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { List, ListItem, ListItemText } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 /**
  * TODO: Link -> NavLink

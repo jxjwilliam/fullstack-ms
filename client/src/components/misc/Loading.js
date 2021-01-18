@@ -21,8 +21,8 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: '50%',
     bottom: '50%',
-    left: 0,
-    right: 0,
+    left: theme.spacing(0),
+    right: theme.spacing(0),
     margin: 'auto',
   },
 }))

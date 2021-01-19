@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+
+const { Schema } = mongoose
 
 const RoleSchema = new Schema({
   name: {
@@ -10,8 +11,8 @@ const RoleSchema = new Schema({
   desc: String,
   timestamp: {
     type: Date,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 })
 
 module.exports = mongoose.model('Role', RoleSchema, 'roles')

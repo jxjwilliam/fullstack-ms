@@ -83,7 +83,6 @@ export default function () {
     try {
       const picture = e.currentTarget.files[0]
       if (picture) {
-        // eslint-disable-next-line node/no-unsupported-features/node-builtins
         const img = URL.createObjectURL(picture)
         setImgSrc(img)
         setViewImg(true)

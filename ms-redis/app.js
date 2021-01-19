@@ -1,15 +1,25 @@
 const express = require('express')
+const redis = require('redis')
+const { promisify } = require('util')
+
 require('dotenv').config()
 
 const port = process.env.REDIS_PORT
-
 const app = express()
+const client = redis.createClient()
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  next()
+})
+
 
 /**
  * github: https://jobs.github.com/positions
  */
 app.get('/api/jobs/github', (req, res) => {
-  const url = 'https://jobs.github.com/positions.json?search=node'
+
+
   res.json({})
 })
 
@@ -32,5 +42,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Redis Caching Server is listening at http://localhost:${port}`)
 })

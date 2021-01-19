@@ -30,10 +30,8 @@ class App extends PureComponent {
     return Object.entries(
       exercises.reduce((es, exercise) => {
         const { muscles } = exercise
-        es = { ...es, [muscles]: [...es[muscles], exercise] }
         // es[muscles] = [...es[muscles], exercise]
-
-        return es
+        return { ...es, [muscles]: [...es[muscles], exercise] }
       }, initExercises),
     )
   }

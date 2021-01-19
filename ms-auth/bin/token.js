@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 const expressJwt = require('express-jwt')
 
 const TOKEN_SECRET = require('crypto').randomBytes(64).toString('hex')
@@ -12,7 +10,7 @@ function signToken(tokenInfo) {
 
 // authenticateToken is a express-middleware.
 function authenticate(req, res, next) {
-  const authHeader = req.headers['authorization']
+  const authHeader = req.headers.authorization
   const token = authHeader && authHeader.split(' ')[1]
   if (token == null) return res.sendStatus(401) // if there isn't any token
 
@@ -24,27 +22,35 @@ function authenticate(req, res, next) {
 }
 
 function verifyToken(token) {
-  var decoded = jwt.verify(token, TOKEN_SECRET)
+  const decoded = jwt.verify(token, TOKEN_SECRET)
   console.log(decoded.username)
 }
 
 // a convenient way, same middleware better than `verifyToken`.
 // app.use(verifyExpressJwt)
 function verifyExpressJwt(token) {
-  expressJwt({
-    secret: TOKEN_SECRET, algorithms: ['HS256'],
-    getToken: (req) => {
-      const { headers: { authorization }, query: { token } } = req
-      if (authorization && authorization.split(' ')[0] === 'Bearer') {
-        return authorization.split(' ')[1];
-      } else if (token) {
-        return token;
+  expressJwt(
+    {
+      secret: TOKEN_SECRET,
+      algorithms: ['HS256'],
+      getToken: req => {
+        const {
+          headers: { authorization },
+          query: { token },
+        } = req
+        if (authorization && authorization.split(' ')[0] === 'Bearer') {
+          return authorization.split(' ')[1]
+        }
+        if (token) {
+          return token
+        }
+        return null
+      },
+    },
+    (err, req, res, next) => {
+      if (err.name === 'UnauthorizedError') {
+        res.status(401).send('invalid token')
       }
-      return null;
-    }
-  }, (err, req, res, next) => {
-    if (err.name === 'UnauthorizedError') {
-      res.status(401).send('invalid token');
-    }
-  })
+    },
+  )
 }

@@ -1,9 +1,9 @@
-import express from "express";
+import express from 'express'
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/", function (req, res) {
-  res.send("MS-DISCOVRY 环境变量，配置文件。");
-});
+router.get('/', function (req, res) {
+  res.send('MS-DISCOVRY 环境变量，配置文件。')
+})
 
-module.exports = router;
+module.exports = router

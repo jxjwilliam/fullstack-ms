@@ -1,14 +1,15 @@
 {
-	"packages": [
-		"client/",
-		"gateway/",
-		"ms-auth",
-		"ms-discovery",
-		"ms-dbms/",
-		"ms-mongo/",
-		"ms-graphql"
-	],
-	"npmClient": "yarn",
-	"useWorkspaces": true,
-	"version": "0.1.1"
+  "packages": [
+    "client",
+    "gateway",
+    "ms-auth",
+    "ms-discovery",
+    "ms-dbms",
+    "ms-mongo",
+    "ms-graphql",
+    "ms-redis"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "1.1.1"
 }

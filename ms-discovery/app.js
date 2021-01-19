@@ -35,5 +35,3 @@ const server = http.createServer(app)
 server.listen(port, () => {
   console.log(`MS-DISCOVERY 服务正运行在端口 ${port}!`)
 })
-
-module.exports = app

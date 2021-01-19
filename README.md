@@ -19,15 +19,16 @@ serveral backend micro-service apps, see [framework layout](etc/imgs/framework.p
 
 ---
 
-| microservice | function | note                              | memo                        |
-| ------------ | -------- | --------------------------------- | --------------------------- |
-| gateway      |          | BFF                               | proxy, cors                 |
-| ms-auth      |          | JWT authentication, authorization | login, general verification |
-| ms-dbms      |          | MySQL + Sequelize                 | multer                      |
-| ms-mongo     |          | MongoDB + Mongoose                | multer                      |
-| ms-discovery |          | zookeeper                         | service finder              |
-| ms-graphql   |          | Apollo GraphQL                    | other repo                  |
-| ms-gitbook   |          | gatsby + gitbook                  | other repo                  |
+| microservice | package-name | note                              | memo                        |
+| ------------ | ------------ | --------------------------------- | --------------------------- |
+| gateway      | ms-gateway   | BFF                               | proxy, cors                 |
+| ms-auth      | ms-auth      | JWT authentication, authorization | login, general verification |
+| ms-dbms      | ms-dbms      | MySQL + Sequelize                 | multer                      |
+| ms-mongo     | ms-nosql     | MongoDB + Mongoose                | multer                      |
+| ms-discovery | ms-discovery | zookeeper                         | service finder              |
+| ms-graphql   | ms-graphql   | Apollo GraphQL                    | other repo                  |
+| ms-redis     | ms-redis     | redis                             | 3rd rest-api                |
+| ms-gitbook   | ms-gitbook   | gatsby + gitbook                  | other repo                  |
 
 - Among all these microservices, there are 2 mandatory:
 
@@ -168,3 +169,12 @@ The following are some screenshots from the App:
       models/user.js
     ms-mongo/services/crud.js
 ```
+
+### Q/A
+
+---
+
+- yarn version issue: `eslint` conflicts with `yarn workspace ms-redis add cron`:
+  ```shell
+  $ yarn policies set-version 1.19.0
+  ```

@@ -18,7 +18,7 @@ const list = (req, res, next) => {
     .catch(next)
 }
 
-const get = (req, res, next) => res.json(req.seed)
+const get = (req, res) => res.json(req.seed)
 
 const post = (req, res, next) => {
   Seed.create(req.body)

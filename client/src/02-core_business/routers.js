@@ -18,8 +18,6 @@ import {
   FilterVintage,
   TrackChanges,
   PersonPin,
-  ExpandLess,
-  ExpandMore,
   AvTimer,
   StarBorder,
 } from '@material-ui/icons'

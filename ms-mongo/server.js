@@ -6,23 +6,23 @@ const port = normalizePort(app.get('port'))
 const server = http.createServer(app)
 
 server.listen(port)
-server.on('error', onError);
-server.on('listening', onListening);
+server.on('error', onError)
+server.on('listening', onListening)
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10)
 
   if (isNaN(port)) {
     // named pipe
-    return val;
+    return val
   }
 
   if (port >= 0) {
     // port number
-    return port;
+    return port
   }
 
-  return false;
+  return false
 }
 
 function onError(error) {

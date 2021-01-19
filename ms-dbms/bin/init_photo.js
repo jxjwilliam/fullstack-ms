@@ -1,10 +1,10 @@
-#! ../node_modules/.bin/babel-node
+const path = require('path')
 
-const path = require('path');
+const basename = path.resolve(path.join(__dirname, '..'))
 
-const basename = path.resolve(path.join(__dirname, '..'));
-const Photo = require(`${basename}/models/index`).Photo;
+// eslint-disable-next-line import/no-dynamic-require
+const { Photo } = require(`${basename}/models/index`)
 
-Photo.sync({force: true})
-  .then(() => console.log("审核表创建/更新成功"))
-  .catch(err => console.error(err));
+Photo.sync({ force: true })
+  .then(() => console.log('审核表创建/更新成功'))
+  .catch(err => console.error(err))

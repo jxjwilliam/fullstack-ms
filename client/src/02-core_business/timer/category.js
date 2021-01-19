@@ -41,7 +41,5 @@ function categoryIt3() {
   return Object.fromEntries(nm)
 }
 
-function categoryIt4() {}
-
 // console.log(categoryIt1(data))
 console.log(categoryIt3(data))

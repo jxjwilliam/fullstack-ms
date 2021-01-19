@@ -8,10 +8,9 @@ const cors = require('cors')
 const helmet = require('helmet')
 const expressJwt = require('express-jwt')
 
-const app = express()
-
 require('dotenv').config()
 
+const app = express()
 app.set('port', process.env.PORT)
 
 const jwtSecretSalt = process.env.SECRET
@@ -30,7 +29,7 @@ app.get('/', (req, res) => {
 })
 
 const apiProxy = httpProxy.createProxyServer()
-const { MS_AUTH, MS_DBMS, MS_DOC, MS_GRAPHQL, MS_DISCOVERY } = process.env
+const { MS_AUTH, MS_DBMS, MS_DOC, MS_GRAPHQL, MS_DISCOVERY, MS_REDIS } = process.env
 
 // 2. MS-AUTH
 app.all('/auth/*', (req, res) => {
@@ -65,9 +64,14 @@ app.all('/api/dbms/*', (req, res) => {
   apiProxy.web(req, res, { target: MS_DBMS })
 })
 
-app.all('/api/doc/*', (req, res) => {
+app.all(['/api/doc/*', '/api/mongo/*'], (req, res) => {
   console.log(`${req.url} redirects to ${MS_DOC}`)
   apiProxy.web(req, res, { target: MS_DOC })
+})
+
+app.all(['/api/jobs/*', '/api/redis/*'], (req, res) => {
+  console.log(`${req.url} redirects to ${MS_REDIS}`)
+  apiProxy.web(req, res, { target: MS_REDIS })
 })
 
 app.all('/graphql/*', (req, res) => {

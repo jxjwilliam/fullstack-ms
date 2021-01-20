@@ -12,13 +12,11 @@ const getMenu2 = payload => ({
 
 export const getMenu1Action = () => dispatch =>
   fetching(`/data/enterprise_supplier`)
-    .then(res => res.json())
     .then(data => dispatch(getMenu1(data)))
     .catch(e => console.log(e))
 
 export const getMenu2Action = () => dispatch =>
   fetching(`/data/risk_management`)
-    .then(res => res.json())
     .then(data => dispatch(getMenu2(data)))
     .catch(e => console.log(e))
 
@@ -34,7 +32,6 @@ const useType = (menu, payload) => {
 }
 const getMenu = menu => () => dispatch => {
   return fetching(menu)
-    .then(res => res.json())
     .then(data => dispatch(useType(menu, data)))
     .catch(err => console.log(err))
 }

@@ -1,3 +1,4 @@
+import { ContactsOutlined } from '@material-ui/icons'
 import { HEADERS, TOKEN } from '../constants'
 import { pageReload } from './utils'
 
@@ -10,7 +11,7 @@ import { pageReload } from './utils'
  * 5. backdoor: isFileOrProxy > 2 ?
  */
 export default function (url, opts = {}, isFileOrProxy) {
-  let [headers, body, method = 'GET'] = [{}, null]
+  let [headers, body, method] = [{}, null, 'GET']
 
   // 代理第三方服务，比如Java App，不需要验证
   if (isFileOrProxy >= 2) headers = { ...HEADERS, ...opts.headers }

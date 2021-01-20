@@ -31,7 +31,7 @@
     "discovery": "cd ms-discovery && yarn start",
     "debug:ms-auth": "concurrently \"yarn client\" \"yarn gateway\"",
     "prestart1": "node bin/update-config.js",
-    "start": "concurrently \"yarn client\" \"yarn gateway\" \"yarn auth\" \"yarn dbms\" \"yarn graphql\" \"yarn redis\"",
+    "start": "concurrently \"yarn client\" \"yarn gateway\" \"yarn auth\" \"yarn redis\"",
     "dev": "concurrently \"yarn client\" \"yarn gateway\" \"yarn auth\" \"yarn dbms\" \"yarn mongo\"",
     "test": "lerna run test",
     "new-version": "lerna version --conventional-commits --yes",

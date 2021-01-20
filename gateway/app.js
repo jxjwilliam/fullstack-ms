@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 })
 
 const apiProxy = httpProxy.createProxyServer()
-const { MS_AUTH, MS_DBMS, MS_DOC, MS_GRAPHQL, MS_DISCOVERY, MS_REDIS } = process.env
+const { MS_AUTH, MS_DBMS, MS_NOSQL, MS_GRAPHQL, MS_DISCOVERY, MS_REDIS } = process.env
 
 // 2. MS-AUTH
 app.all('/auth/*', (req, res) => {
@@ -45,7 +45,7 @@ app.all('/auth/*', (req, res) => {
  * { "name": "UnauthorizedError","message": "No authorization token was found","code": "credentials_required","status": 401}
  */
 // eslint-disable-next-line consistent-return
-app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }), (err, req, res) => {
+app.use(expressJwt({ secret: jwtSecretSalt, algorithms: ['HS256'] }), (err, req, res, next) => {
   if (err.name) {
     const { name, message, status, code } = err
     return res.status(status).json({ name, message, code, status })
@@ -64,9 +64,9 @@ app.all('/api/dbms/*', (req, res) => {
   apiProxy.web(req, res, { target: MS_DBMS })
 })
 
-app.all(['/api/doc/*', '/api/mongo/*'], (req, res) => {
-  console.log(`${req.url} redirects to ${MS_DOC}`)
-  apiProxy.web(req, res, { target: MS_DOC })
+app.all(['/api/mongo/*', '/api/nosql/*', '/api/doc/*'], (req, res) => {
+  console.log(`${req.url} redirects to ${MS_NOSQL}`)
+  apiProxy.web(req, res, { target: MS_NOSQL })
 })
 
 app.all(['/api/jobs/*', '/api/redis/*'], (req, res) => {

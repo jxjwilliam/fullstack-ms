@@ -5,8 +5,12 @@ const { promisify } = require('util')
 require('dotenv').config()
 
 const port = process.env.REDIS_PORT
+const github = process.env.REDIS_GITHUB
+const github_custom = process.env.REDIS_GITHUB_CUSTOM
+
 const app = express()
 const client = redis.createClient()
+const getAsync = promisify(client.get).bind(client);
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -17,10 +21,14 @@ app.use((req, res, next) => {
 /**
  * github: https://jobs.github.com/positions
  */
-app.get('/api/jobs/github', (req, res) => {
+app.get('/api/jobs/github', async (req, res) => {
+  const jobs = await getAsync(github)
+  res.send(jobs)
+})
 
-
-  res.json({})
+app.get('/api/jobs/github_custom', async (req, res) => {
+  const jobs = await getAsync(github_custom)
+  res.send(jobs)
 })
 
 /**

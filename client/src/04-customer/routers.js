@@ -30,6 +30,7 @@ import {
   BarChart,
 } from '@material-ui/icons'
 import { C1_1, C4_1 } from './containers'
+import { GitAll, GitCustom } from './jobs'
 
 const base = '客户信息'
 
@@ -120,7 +121,7 @@ const mainList = [
       {
         path: '主要财务资料',
         icon: ListAlt,
-        component: C1_1,
+        component: GitAll,
       },
     ],
   },
@@ -130,7 +131,7 @@ const mainList = [
       {
         path: '客户评级与限额',
         icon: AccountCircle,
-        component: C1_1,
+        component: GitCustom,
       },
     ],
   },

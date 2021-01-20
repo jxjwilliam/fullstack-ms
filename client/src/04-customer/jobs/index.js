@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Jobs from './jobs'
 import { fetching } from '../../helpers/utils'
+import Jobs from './jobs'
 
 const JOB = {
   'all': 'http://localhost:8076/api/jobs/github',
@@ -33,21 +33,17 @@ function fetchGit(url) {
 }
 
 // access ms-redis by proxy
-function fetchingGit(url) {
+function fetchingGit(url, title) {
   return () => {
     const [list, updateList] = useState([])
 
     useEffect(() => {
-      console.log(url)
-      fetching(url).then(data => {
-        console.log('?????????????????????', data)
-        updateList(data)
-      })
+      fetching(url).then(updateList)
     }, [])
 
     return (
       <div className="App">
-        <Jobs jobs={list} />
+        <Jobs jobs={list} title={title} />
       </div>
     )
   }
@@ -55,8 +51,8 @@ function fetchingGit(url) {
 
 // const GitAll = fetchGit(JOB.all)
 // const GitCustom = fetchGit(JOB.custom)
-const GitAll = fetchingGit(JOB.all1)
-const GitCustom = fetchingGit(JOB.custom1)
+const GitAll = fetchingGit(JOB.all1, 'github jobs')
+const GitCustom = fetchingGit(JOB.custom1, 'custom(senior,manager,lead,architect,director)')
 
 export {
   GitAll,

@@ -11,7 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({ job }) {
+export default function DialogSlide({ job, open, handleClose }) {
   const { id, type, url, created_at, company, company_url, location, title, description, how_to_apply, company_logo } = job
   return (
     <div>
@@ -23,16 +23,24 @@ export default function AlertDialogSlide({ job }) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">
+          <img className="detail" src={company_logo} width="100" height="60" />
+          {title} - {company}
+          {type} - {location}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            {description}
-          </DialogContentText>
+          <DialogContentText
+            id="alert-dialog-slide-description"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            OK
+            Close
           </Button>
+          <a href={url} target="_blank">
+            Apply
+          </a>
         </DialogActions>
       </Dialog>
     </div>

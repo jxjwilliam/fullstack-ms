@@ -6,7 +6,7 @@
 
 ### 📑 resources
 
-- [redis]()
+- [redis](https://www.youtube.com/watch?v=lauywdXKEXI&list=WL&index=10)
 - [npm redis](https://www.npmjs.com/package/redis)
 - [Redis Client](https://redis.io/clients#nodejs)
 

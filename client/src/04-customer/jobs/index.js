@@ -10,28 +10,6 @@ const JOB = {
 
 }
 
-// directly access ms-redis
-function fetchGit(url) {
-  return function () {
-    const [list, updateList] = useState([])
-
-    useEffect(() => {
-      async function getGihubJobs() {
-        const res = await fetch(url)
-        const json = await res.json()
-        updateList(json)
-      }
-      getGihubJobs()
-    }, [])
-
-    return (
-      <div className="App">
-        <Jobs jobs={list} />
-      </div>
-    )
-  }
-}
-
 // access ms-redis by proxy
 function fetchingGit(url, title) {
   return () => {

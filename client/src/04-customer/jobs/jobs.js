@@ -4,6 +4,7 @@ import MaterialTable from 'material-table'
 import Transitions from './dialog'
 
 // id, url, company_url, description, how_to_apply, company_logo
+// created_at.split(' ').slice(0, 3).join(' ')
 function Jobs({ jobs, title }) {
   const columns = [
     { title: 'title', field: 'title' },

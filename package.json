@@ -13,8 +13,7 @@
     "ms-redis"
   ],
   "author": "Best IT Consulting Ltd",
-  "license": "ISC",
-  "main": "index.js",
+  "license": "MIT",
   "keywords": [
     "Basic Implementation",
     "Microservice Templates"

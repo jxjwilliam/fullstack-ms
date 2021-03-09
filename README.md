@@ -1,4 +1,4 @@
-# Micro-service FullStack Framework
+# Microservices FullStack Framework
 
 ![Framework](etc/imgs/framework.png)
 
@@ -15,11 +15,11 @@ $ npx create-react-app client
 
 ## Backend
 
-serveral backend micro-service apps, see [framework layout](etc/imgs/framework.png)
+serveral backend microservices apps, see [framework layout](etc/imgs/framework.png)
 
 ---
 
-| microservice | function | note                              | memo                        |
+| microservices | function | note                              | memo                        |
 | ------------ | -------- | --------------------------------- | --------------------------- |
 | gateway      |          | BFF                               | proxy, cors                 |
 | ms-auth      |          | JWT authentication, authorization | login, general verification |
@@ -38,7 +38,7 @@ serveral backend micro-service apps, see [framework layout](etc/imgs/framework.p
 
   Others are all optional.
 
-- Use `express-generator` to generate backend microservice stub.
+- Use `express-generator` to generate backend microservices stub.
 - For convenient, it is recommend to globally install common dependencies, such as `eslint`, `sequelize-cli`.
 
 ```shell

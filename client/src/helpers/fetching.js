@@ -1,4 +1,3 @@
-import { ContactsOutlined } from '@material-ui/icons'
 import { HEADERS, TOKEN } from '../constants'
 import { pageReload } from './utils'
 

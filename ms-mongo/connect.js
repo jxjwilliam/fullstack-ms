@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
-const {DB_HOST, DB_PORT, DATABASE, MongoOptions} = require('./constants')
+const { DB_HOST, DB_PORT, DATABASE, MongoOptions } = require('./constants')
 
 mongoose.Promise = global.Promise
 
 // TODO: windows -> docker_mongo, host.docker.internal
 module.exports = async () => {
-
   const uri = `mongodb://${DB_HOST}:${DB_PORT}/${DATABASE}`
 
   try {

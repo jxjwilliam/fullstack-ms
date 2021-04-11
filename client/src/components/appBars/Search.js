@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { debounce } from 'lodash';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
+import React, { Component } from 'react'
+import { debounce } from 'lodash'
+import InputBase from '@material-ui/core/InputBase'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import SearchIcon from '@material-ui/icons/Search'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -44,10 +44,10 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-}));
+}))
 
 export default function () {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.search}>
@@ -63,39 +63,34 @@ export default function () {
         inputProps={{ 'aria-label': 'search' }}
       />
     </div>
-  );
+  )
 }
 
 // https://reactjs.org/docs/faq-functions.html#debounce
 export class Searchbox extends Component {
   constructor(props) {
-    super(props);
-    this.emitChangeDebounced = debounce(this.emitChange, 250);
+    super(props)
+    this.emitChangeDebounced = debounce(this.emitChange, 250)
   }
 
   componentWillUnmount() {
-    this.emitChangeDebounced.cancel();
-  }
-
-  render() {
-    return (
-      <input
-        type="search"
-        onChange={this.handleChange}
-        placeholder="Search..."
-        defaultValue={this.props.value}
-      />
-    );;
+    this.emitChangeDebounced.cancel()
   }
 
   handleChange(e) {
     // React pools events, so we read the value before debounce.
     // Alternately we could call `event.persist()` and pass the entire event.
     // For more info see reactjs.org/docs/events.html#event-pooling
-    this.emitChangeDebounced(e.target.value);
+    this.emitChangeDebounced(e.target.value)
   }
 
   emitChange(value) {
-    this.props.onChange(value);
+    const { onChange } = this.props
+    onChange(value)
+  }
+
+  render() {
+    const { value } = this.props
+    return <input type="search" onChange={this.handleChange} placeholder="Search..." defaultValue={value} />
   }
 }

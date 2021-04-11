@@ -20,9 +20,7 @@ const getService = async function (service) {
 
   const url = `${SOURCE_URL}${MS}/${service}`
   try {
-    const contents = await fetch(url, { method: 'GET' }).then(result =>
-      result.json()
-    )
+    const contents = await fetch(url, { method: 'GET' }).then(result => result.json())
 
     const fpath = path.join(msd, FILE)
 

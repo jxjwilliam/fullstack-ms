@@ -1,5 +1,5 @@
-export { default as  Album } from './Album'
+export { default as Album } from './Album'
 export { default as Blog } from './blog/Blog'
 export { default as Checkout } from './checkout/Checkout'
 export { default as Dashboard } from './dashboard/Dashboard'
-export { default as  Pricing } from './Pricing'
+export { default as Pricing } from './Pricing'

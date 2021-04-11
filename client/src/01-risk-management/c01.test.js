@@ -12,17 +12,15 @@ import {
   FilterVintage,
   Layers,
 } from '@material-ui/icons'
-import { base, navList, mainList } from './routers'
-import { getAllRouters, getPageLayout } from '../components'
+import { navList, mainList } from './routers'
 
 describe('routers', () => {
-  let baseUrl, func
-  let origin_routers = [],
-    routers = []
+  let [baseUrl, func, origin_routers] = [, , []]
+  const routers = []
 
   beforeEach(() => {
     baseUrl = '风险管理'
-    func = function () { }
+    func = function () {}
     origin_routers = [
       {
         path: `/${baseUrl}/系统管理`,
@@ -127,6 +125,4 @@ describe('routers', () => {
       expect(true).toBeTruthy()
     })
   })
-
-  afterEach(() => { })
 })

@@ -10,17 +10,12 @@ import {
   ListItemIcon,
   Divider,
 } from '@material-ui/core'
-import {
-  ExpandMore,
-  SupervisorAccount,
-  History,
-  Help,
-} from '@material-ui/icons'
+import { ExpandMore, SupervisorAccount, History, Help } from '@material-ui/icons'
 import { getToken } from '../../helpers/utils'
 import { Emails, Contacts } from '../../constants'
 import { version } from '../../../package.json'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
@@ -36,21 +31,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Accordion1({
-  title = '',
-  icon: Icon = History,
-  expaneded = true,
-  info = [],
-}) {
+function Accordion1({ title = '', icon: Icon = History, expaneded = true, info = [] }) {
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <Accordion defaultExpanded={expaneded}>
-        <AccordionSummary
-          expandIcon={<ExpandMore />}
-          aria-controls="accordion1-content"
-          id={title}
-        >
+        <AccordionSummary expandIcon={<ExpandMore />} aria-controls="accordion1-content" id={title}>
           <ListItemIcon>
             <Icon />
           </ListItemIcon>
@@ -64,35 +50,24 @@ function Accordion1({
   )
 }
 
-const Typography1 = (props) => {
+const Typography1 = props => {
   const classes = useStyles()
-  return (
-    <Typography
-      variant="body1"
-      gutterBottom
-      className={classes.wrap}
-      {...props}
-    />
-  )
+  return <Typography variant="body1" gutterBottom className={classes.wrap} {...props} />
 }
 
 const OperatorInfo = () => {
   const {
-    username:account='测试用户',
-    category:organization = '微服务企业',
+    username: account = '测试用户',
+    category: organization = '微服务企业',
     role = '操作员',
     email: name = '微服务',
-    phone
   } = getToken()
 
   const title = '操作员信息'
   const icon = SupervisorAccount
-  const aryInfo = [
-    `企业：${organization}`,
-    `账号：${account}`,
-    `名称：${name}`,
-    `角色：${role}`,
-  ].map((item) => <Typography1 key={item}>{item}</Typography1>)
+  const aryInfo = [`企业：${organization}`, `账号：${account}`, `名称：${name}`, `角色：${role}`].map(item => (
+    <Typography1 key={item}>{item}</Typography1>
+  ))
 
   return (
     <>
@@ -111,19 +86,15 @@ function HelperInfo() {
     `市场部: `,
     ` ☎ ${Contacts.business}`,
     ` 📧 ${Emails.admin}`,
-  ].map((item) => <Typography1 key={item}>{item}</Typography1>)
-  return (
-    <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
-  )
+  ].map(item => <Typography1 key={item}>{item}</Typography1>)
+  return <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
 }
 
 function VersionInfo() {
   const title = '发行版本'
   const icon = History
   const aryInfo = [`当前版本: `, `‍🚀 ${version}`]
-  return (
-    <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
-  )
+  return <Accordion1 title={title} icon={icon} expaneded={false} info={aryInfo} />
 }
 
 const ShowInfo = () => {
@@ -153,18 +124,6 @@ const HideInfo = () => {
 }
 
 // TODO: cache
-const showHide = (prefix) => {
-  const all3 = [OperatorInfo, HelperInfo, VersionInfo].map((Item, idx) => (
-    <ListItem key={idx}>
-      <Item />
-    </ListItem>
-  ))
-  return (operator) => {
-    return (
-      <>{all3}</>
-    )
-  }
-}
 
 export default {
   ShowInfo,

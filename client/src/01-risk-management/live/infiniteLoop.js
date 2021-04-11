@@ -9,11 +9,11 @@ import faker from 'faker'
 import { groupBy } from 'lodash'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
-import { Loading } from "../../components/misc";
+import { Loading } from '../../components/misc'
 
 // https://virtuoso.dev/material-ui-endless-scrolling/
 const getUser = () => {
-  let [firstName, lastName] = [faker.name.firstName(), faker.name.lastName()]
+  const [firstName, lastName] = [faker.name.firstName(), faker.name.lastName()]
   return {
     name: `${firstName} ${lastName}`,
     initials: `${firstName.substr(0, 1)}${lastName.substr(0, 1)}`,
@@ -29,14 +29,7 @@ const sortUser = (a, b) => {
 }
 
 const useGroupedUsers = count => {
-  const allUsers = useMemo(
-    () =>
-      new Array(count)
-        .fill(true)
-        .map(getUser)
-        .sort(sortUser),
-    [count]
-  )
+  const allUsers = useMemo(() => new Array(count).fill(true).map(getUser).sort(sortUser), [count])
 
   const loadedCount = useRef(0)
   const loadedUsers = useRef([])
@@ -56,14 +49,9 @@ const useGroupedUsers = count => {
         // the code below calculates the group counts
         // for the users loaded so far;
         // this should be performed on the server too
-        const groupedUsers = groupBy(
-          loadedUsers.current,
-          user => user.name[0]
-        )
+        const groupedUsers = groupBy(loadedUsers.current, user => user.name[0])
         groups.current = Object.keys(groupedUsers)
-        setGroupCounts(
-          Object.values(groupedUsers).map(users => users.length)
-        )
+        setGroupCounts(Object.values(groupedUsers).map(users => users.length))
 
         if (loadedCount.current === 500) {
           setEndReached(true)
@@ -112,29 +100,17 @@ const useStyles = makeStyles(theme => ({
 export default () => {
   const [isScrolling, setIsScrolling] = useState(false)
 
-  const {
-    loadMore,
-    endReached,
-    groupCounts,
-    users,
-    groups,
-  } = useGroupedUsers(500)
+  const { loadMore, endReached, groupCounts, users, groups } = useGroupedUsers(500)
 
   useEffect(loadMore, [])
   const classes = useStyles()
 
   return (
     <GroupedVirtuoso
-      FooterContainer={({ footerRef, children }) => (
-        <ListItem ref={footerRef}>{children}</ListItem>
-      )}
+      FooterContainer={({ footerRef, children }) => <ListItem ref={footerRef}>{children}</ListItem>}
       ListContainer={({ listRef, className, style, children }) => {
         return (
-          <List
-            ref={listRef}
-            style={style}
-            className={[className, classes.list].join(' ')}
-          >
+          <List ref={listRef} style={style} className={[className, classes.list].join(' ')}>
             {children}
           </List>
         )
@@ -150,7 +126,7 @@ export default () => {
         <ListSubheader
           {...props}
           className={[className, classes.header].join(' ')}
-          disableSticky={true}
+          disableSticky
           style={{ ...style, marginBottom: 0 }}
         >
           {children}
@@ -169,17 +145,12 @@ export default () => {
         <>
           <ListItemAvatar>
             {isScrolling ? (
-              <div className={classes.avatarPlaceholder}>
-                {users[index].initials}
-              </div>
+              <div className={classes.avatarPlaceholder}>{users[index].initials}</div>
             ) : (
-                <>
-                  <Avatar
-                    alt={`Avatar n°${index + 1}`}
-                    src={users[index].avatar}
-                  />
-                </>
-              )}
+              <>
+                <Avatar alt={`Avatar n°${index + 1}`} src={users[index].avatar} />
+              </>
+            )}
           </ListItemAvatar>
           <ListItemText
             primary={`${users[index].name}`}
@@ -192,8 +163,10 @@ export default () => {
         return endReached ? (
           <div>-- end --</div>
         ) : (
-            <div><Loading /></div>
-          )
+          <div>
+            <Loading />
+          </div>
+        )
       }}
     />
   )

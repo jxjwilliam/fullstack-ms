@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import * as menus from '../menus'
-import {SIGNOUT_PAGE} from '../../constants'
+import { SIGNOUT_PAGE } from '../../constants'
 
 const useStyles = makeStyles({
   grow: {
@@ -21,8 +21,8 @@ const routers = [
   },
   {
     title: 'Sign Out',
-    path: SIGNOUT_PAGE, //~: /signout
-  }
+    path: SIGNOUT_PAGE, // ~: /signout
+  },
 ]
 
 export default function () {

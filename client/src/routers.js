@@ -13,9 +13,12 @@ import {
   ExitToApp,
 } from '@material-ui/icons'
 import {
-  Menus, DEFAULT_HOME_PAGE,
-  DEFAULT_LOGIN_PAGE, DIALOG_LOGIN_PAGE,
-  REGISTER_PAGE, SIGNOUT_PAGE,
+  Menus,
+  DEFAULT_HOME_PAGE,
+  DEFAULT_LOGIN_PAGE,
+  DIALOG_LOGIN_PAGE,
+  REGISTER_PAGE,
+  SIGNOUT_PAGE,
 } from './constants'
 import Admin from './01-risk-management'
 import Company from './02-core_business'
@@ -30,7 +33,7 @@ import { C404 } from './containers'
 
 // TODO:
 const getRouters = () => {
-  const ary = Menus.find((menu) => menu.type === 'Business').list
+  const ary = Menus.find(menu => menu.type === 'Business').list
   ary.map(nav => ({
     path: `/$nav`,
     title: nav,
@@ -80,7 +83,7 @@ const BusinessRouters = [
 
 const GeneralRouters = [
   {
-    path: DEFAULT_HOME_PAGE, //~: /,
+    path: DEFAULT_HOME_PAGE, // ~: /,
     title: '首页',
     exact: true,
     icon: AppHome,
@@ -93,25 +96,25 @@ const GeneralRouters = [
     component: Service,
   },
   {
-    path: DEFAULT_LOGIN_PAGE, //~: /signin
+    path: DEFAULT_LOGIN_PAGE, // ~: /signin
     title: '登录',
     icon: VerifiedUser,
     component: SignIn,
   },
   {
-    path: DIALOG_LOGIN_PAGE, //~: /login
+    path: DIALOG_LOGIN_PAGE, // ~: /login
     title: '切换用户',
     icon: LockOpen,
     component: SignInSide,
   },
   {
-    path: SIGNOUT_PAGE, //~: /signout
+    path: SIGNOUT_PAGE, // ~: /signout
     title: '退出',
     icon: ExitToApp,
     component: SignOut,
   },
   {
-    path: REGISTER_PAGE, //~: /signup
+    path: REGISTER_PAGE, // ~: /signup
     title: '注册',
     icon: AccountBox,
     component: SignUp,

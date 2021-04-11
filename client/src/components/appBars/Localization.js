@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  ButtonGroup,
-  Grow,
-  Paper,
-  Popper,
-  MenuItem,
-  MenuList,
-  ClickAwayListener,
-} from '@material-ui/core'
+import { Button, ButtonGroup, Grow, Paper, Popper, MenuItem, MenuList, ClickAwayListener } from '@material-ui/core'
 
 import { Translate, ArrowDropDown } from '@material-ui/icons'
 import { LocaleContext, Languages } from '../../locales'
@@ -19,10 +10,10 @@ export default function () {
   const anchorRef = React.useRef(null)
 
   const handleOpen = () => {
-    setOpen((prevOpen) => !prevOpen)
+    setOpen(prevOpen => !prevOpen)
   }
 
-  const handleClose = (event) => {
+  const handleClose = event => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return
     }
@@ -39,30 +30,18 @@ export default function () {
     <LocaleContext.Consumer>
       {({ locale, changeLocale }) => (
         <>
-          <ButtonGroup
-            variant="contained"
-            color="primary"
-            ref={anchorRef}
-            aria-label="split button"
-          >
+          <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
             <Button startIcon={<Translate />} onClick={handleOpen}>
               {locale}
               <ArrowDropDown />
             </Button>
           </ButtonGroup>
-          <Popper
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            transition
-            disablePortal
-          >
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({ TransitionProps, placement }) => (
               <Grow
                 {...TransitionProps}
                 style={{
-                  transformOrigin:
-                    placement === 'bottom' ? 'center top' : 'center bottom',
+                  transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
                 }}
               >
                 <Paper>
@@ -72,9 +51,7 @@ export default function () {
                         <MenuItem
                           key={option}
                           selected={index === locale}
-                          onClick={() =>
-                            handleMenuItemClick(index, changeLocale)
-                          }
+                          onClick={() => handleMenuItemClick(index, changeLocale)}
                         >
                           {option} 🇨🇳 🇺🇸
                         </MenuItem>

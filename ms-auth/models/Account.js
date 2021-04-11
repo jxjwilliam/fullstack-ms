@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose')
+
+const { Schema } = mongoose
+const bcrypt = require('bcrypt')
 const validator = require('validator')
 const Role = require('./Role')
 const { RoleSchema, CategorySchema } = require('./common')
@@ -11,17 +12,17 @@ const AccountSchema = new Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   email: {
     type: String,
     required: true,
-    validate: [validator.isEmail, 'invalid email']
+    validate: [validator.isEmail, 'invalid email'],
   },
   phone: {
     type: String,
     required: true,
-    validate: [validator.isMobilePhone, 'invalid phone']
+    validate: [validator.isMobilePhone, 'invalid phone'],
   },
   password: {
     type: String,
@@ -41,27 +42,26 @@ const AccountSchema = new Schema({
   },
   isActive: {
     type: Boolean,
-    default: true
+    default: true,
   },
   timestamp: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
   },
-});
+})
 
 AccountSchema.index({ email: 1, phone: 1 }, { unique: true })
 
 // Only 1-time bcrypt.hash, otherwise error.
 AccountSchema.pre('save', function (next) {
-  const account = this;
+  const account = this
   console.log('Schema: ', account)
   bcrypt.hash(account.password, 10, function (err, hash) {
-    if (err) return next(err);
-    account.password = hash;
-    next();
+    if (err) return next(err)
+    account.password = hash
+    next()
   })
-});
-
+})
 
 // Account.authenticate
 // AccountSchema.statics.authenticate = function (username, password, callback) {
@@ -81,4 +81,4 @@ AccountSchema.pre('save', function (next) {
 //     });
 // };
 
-module.exports = mongoose.model('Account', AccountSchema, 'accounts');
+module.exports = mongoose.model('Account', AccountSchema, 'accounts')

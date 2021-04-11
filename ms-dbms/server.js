@@ -6,12 +6,12 @@ const port = normalizePort(app.get('port'))
 const server = http.createServer(app)
 
 server.listen(port)
-server.on('error', onError);
-server.on('listening', onListening);
+server.on('error', onError)
+server.on('listening', onListening)
 
 // 使用pm2 和如下处理，来避免服务crash。
 process.on('uncaughtException', function (err) {
-  console.error('ms-dbms uncaughtException异常: ' + err)
+  console.error(`ms-dbms uncaughtException异常: ${err}`)
 })
 
 process.on('unhandledRejection', function (reason, promise) {
@@ -19,19 +19,19 @@ process.on('unhandledRejection', function (reason, promise) {
 })
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10)
 
   if (isNaN(port)) {
     // named pipe
-    return val;
+    return val
   }
 
   if (port >= 0) {
     // port number
-    return port;
+    return port
   }
 
-  return false;
+  return false
 }
 
 function onError(error) {

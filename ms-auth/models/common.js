@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+
+const { Schema } = mongoose
 
 const RoleSchema = new Schema({
   name: {
     type: String,
     enum: ['member', 'owner', 'admin'],
-    default: 'member'
+    default: 'member',
   },
   desc: String,
 })
@@ -13,13 +14,13 @@ const RoleSchema = new Schema({
 const CategorySchema = new Schema({
   name: {
     type: String,
-    enum: ['local', 'wechat', 'gmail', 'others'], //可能从oAuth2 来。
-    default: 'local'
+    enum: ['local', 'wechat', 'gmail', 'others'], // 可能从oAuth2 来。
+    default: 'local',
   },
   desc: String,
 })
 
 module.exports = {
   RoleSchema,
-  CategorySchema
+  CategorySchema,
 }

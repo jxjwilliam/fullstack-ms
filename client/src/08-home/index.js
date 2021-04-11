@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ThemeProvider } from '@material-ui/styles'
 import { Container, CssBaseline } from '@material-ui/core'
 import { bars, footers } from '../components'
 import theme from './theme'
 import HomeDemo from './demo'
-import {checkLogin} from "../helpers/utils";
+import { checkLogin } from '../helpers/utils'
 
 function Home() {
   return (
@@ -21,13 +20,15 @@ function Home() {
   )
 }
 
-function HomeContainer({ auth: {token} }) {
+function HomeContainer({ auth: { token } }) {
   console.log('Home Token: ', token)
-  return checkLogin(token) || (
-    <ThemeProvider theme={theme}>
-      <Home />
-    </ThemeProvider>
+  return (
+    checkLogin(token) || (
+      <ThemeProvider theme={theme}>
+        <Home />
+      </ThemeProvider>
+    )
   )
 }
 
-export default connect((state) => ({ auth: state.auth }))(HomeContainer)
+export default connect(state => ({ auth: state.auth }))(HomeContainer)

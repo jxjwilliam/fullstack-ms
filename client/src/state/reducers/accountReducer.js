@@ -1,10 +1,4 @@
-import {
-  ADD_USER,
-  GET_USER,
-  GET_USERS,
-  UPDATE_USER,
-  DELETE_USER,
-} from '../ActionTypes'
+import { ADD_USER, GET_USER, GET_USERS, UPDATE_USER, DELETE_USER } from '../ActionTypes'
 
 export const userReducer = (state = [], action) => {
   switch (action.type) {

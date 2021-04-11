@@ -8,6 +8,7 @@ import { Provider } from './context'
 
 class App extends PureComponent {
   constructor(props) {
+    super(props)
     this.state = {
       exercises,
       exercise: {},
@@ -22,53 +23,51 @@ class App extends PureComponent {
         ...exercises,
         [category]: [],
       }),
-      {}
+      {},
     )
 
     const { exercises } = this.state
     return Object.entries(
-      exercises.reduce((exercises, exercise) => {
+      exercises.reduce((es, exercise) => {
         const { muscles } = exercise
-
-        exercises[muscles] = [...exercises[muscles], exercise]
-
-        return exercises
-      }, initExercises)
+        // es[muscles] = [...es[muscles], exercise]
+        return { ...es, [muscles]: [...es[muscles], exercise] }
+      }, initExercises),
     )
   }
 
-  handleCategorySelect = (category) =>
+  handleCategorySelect = category =>
     this.setState({
       category,
     })
 
-  handleExerciseSelect = (id) =>
+  handleExerciseSelect = id =>
     this.setState(({ exercises }) => ({
-      exercise: exercises.find((ex) => ex.id === id),
+      exercise: exercises.find(ex => ex.id === id),
       editMode: false,
     }))
 
-  handleExerciseCreate = (exercise) =>
+  handleExerciseCreate = exercise =>
     this.setState(({ exercises }) => ({
       exercises: [...exercises, exercise],
     }))
 
-  handleExerciseDelete = (id) =>
+  handleExerciseDelete = id =>
     this.setState(({ exercises, exercise, editMode }) => ({
-      exercises: exercises.filter((ex) => ex.id !== id),
+      exercises: exercises.filter(ex => ex.id !== id),
       editMode: exercise.id === id ? false : editMode,
       exercise: exercise.id === id ? {} : exercise,
     }))
 
-  handleExerciseSelectEdit = (id) =>
+  handleExerciseSelectEdit = id =>
     this.setState(({ exercises }) => ({
-      exercise: exercises.find((ex) => ex.id === id),
+      exercise: exercises.find(ex => ex.id === id),
       editMode: true,
     }))
 
-  handleExerciseEdit = (exercise) =>
+  handleExerciseEdit = exercise =>
     this.setState(({ exercises }) => ({
-      exercises: [...exercises.filter((ex) => ex.id !== exercise.id), exercise],
+      exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise],
       exercise,
     }))
 

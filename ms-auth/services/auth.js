@@ -1,9 +1,9 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const Account = require('../models/Account');
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const Account = require('../models/Account')
 const { ACCESS_SECRET, REFRESH_TOKEN } = require('../constants')
 
-let refreshTokenAry = [];
+let refreshTokenAry = []
 
 // ------------ 1. register ------------
 // email + phone => unique
@@ -15,16 +15,16 @@ function isNotExist(req, res, next) {
     if (err) res.json({ success: false, data: err.message })
     else if (account) res.sendStatus(409)
     else next()
-  });
+  })
 }
 
 function hashPassword(req, res, next) {
   const { password } = req.body
   // pre-save: account.password = bcrypt.hashSync(account.password, 10);
   bcrypt.hash(password, 10, (err, hashed) => {
-    if (err) return res.status(406).json({ success: false, data: "Bcrypt Hash Error" })
-    req.body.password = hashed;
-    next();
+    if (err) return res.status(406).json({ success: false, data: 'Bcrypt Hash Error' })
+    req.body.password = hashed
+    next()
   })
 }
 
@@ -33,13 +33,13 @@ function signup(req, res) {
   const account = new Account({
     ...others,
     role: { name: role, desc: 'role' },
-    category: { name: category, desc: 'category' }
-  });
+    category: { name: category, desc: 'category' },
+  })
   account.save(err => {
-    if (err) return res.json({ success: false, data: "DB Error" })
+    if (err) return res.json({ success: false, data: 'DB Error' })
     const { password, __v, isActive, ...info } = account.toObject()
     return res.json(info)
-  });
+  })
 }
 
 // ------------ 2. login ------------
@@ -54,32 +54,33 @@ function isExist(req, res, next) {
   Account.findOne({ username }, (err, account) => {
     if (err) res.json({ success: false, data: err.message })
     else if (account) {
-      const { timestamp, __v, isActive, desc, role, category, ...others } = account.toObject();
+      const { timestamp, __v, isActive, desc, role, category, ...others } = account.toObject()
       req.decoded = { ...others, role: role.name, category: category.name }
       next()
-    }
-    else res.sendStatus(404)
-  });
+    } else res.sendStatus(404)
+  })
 }
 
 function verifyPassword(req, res, next) {
   const { password } = req.body
-  const passwordIsValid = bcrypt.compareSync(password, req.decoded.password);
+  const passwordIsValid = bcrypt.compareSync(password, req.decoded.password)
   if (!passwordIsValid) {
-    return res.sendStatus(401);
+    return res.sendStatus(401)
   }
   next()
 }
 
 // for access and refresh token
 function generateToken(info, secret, expires_option) {
-  return jwt.sign(info, secret, expires_option); // 86400: expires in 24 hours, '15s'
+  return jwt.sign(info, secret, expires_option) // 86400: expires in 24 hours, '15s'
 }
 
 function issueToken(req, res, next) {
-  const { decoded: { password, ...others } } = req;
+  const {
+    decoded: { password, ...others },
+  } = req
 
-  req.accessToken = generateToken(others, ACCESS_SECRET, { expiresIn: '30m' }); // 86400: expires in 24 hours, '15s'
+  req.accessToken = generateToken(others, ACCESS_SECRET, { expiresIn: '30m' }) // 86400: expires in 24 hours, '15s'
   req.refreshToken = generateToken(others, REFRESH_TOKEN)
 
   next()
@@ -89,7 +90,7 @@ function issueToken(req, res, next) {
 function signin(req, res, next) {
   const { accessToken, refreshToken } = req
   refreshTokenAry.push(refreshToken)
-  if (accessToken) res.status(200).json({ token: accessToken, refreshToken });
+  if (accessToken) res.status(200).json({ token: accessToken, refreshToken })
   else next(new Error('account error'))
 }
 
@@ -98,9 +99,8 @@ function signin(req, res, next) {
 function signout(req, res) {
   const { refreshToken } = req
   refreshTokenAry = refreshTokenAry.filter(token => token !== refreshToken)
-  return res.sendStatus(204); //No Content
+  return res.sendStatus(204) // No Content
 }
-
 
 // ------------ 4. authenticate ------------
 /**
@@ -111,18 +111,16 @@ function signout(req, res) {
  */
 function authenticate(req, res, next) {
   // Bearer eyJhbGciOiJIUzI1N...
-  const authToken = req.headers["authorization"]
+  const authToken = req.headers.authorization
   const token = authToken && authToken.split(' ')[1]
   if (token) {
     jwt.verify(token, ACCESS_SECRET, (error, account) => {
-      if (error) return res.sendStatus(403);
-      else {
-        req.account = account;
-        next();
-      }
-    });
-  }
-  else return res.sendStatus(401);
+      if (error) return res.sendStatus(403)
+
+      req.account = account
+      next()
+    })
+  } else return res.sendStatus(401)
 }
 
 // ------------ 5. refresh token ------------
@@ -148,5 +146,5 @@ module.exports = {
   signin,
   signout,
   authenticate,
-  refreshToken
+  refreshToken,
 }

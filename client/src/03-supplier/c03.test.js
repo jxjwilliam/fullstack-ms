@@ -1,14 +1,17 @@
 import React from 'react'
 import {
-  ContactSupport, Description,
+  ContactSupport,
+  Description,
   FormatListNumberedRtl,
   FormatQuote,
   InsertChart,
   MoveToInbox,
   Payment,
-  People, SupervisedUserCircle, Textsms
-} from "@material-ui/icons";
-import { base, navList, mainList } from "./routers";
+  People,
+  SupervisedUserCircle,
+  Textsms,
+} from '@material-ui/icons'
+import { base, navList, mainList } from './routers'
 import { getPageLayout } from '../components'
 
 beforeEach(() => {
@@ -42,14 +45,14 @@ beforeEach(() => {
       title: '列表',
       icon: Textsms,
       // component: List,
-    }, {
+    },
+    {
       path: '帮助',
       title: '帮助',
       icon: Description,
       // component: Helper,
-    }
-
-  ];
+    },
+  ]
 })
 
 describe('routers', () => {
@@ -58,6 +61,4 @@ describe('routers', () => {
   })
 })
 
-afterEach(() => {
-})
-
+afterEach(() => {})

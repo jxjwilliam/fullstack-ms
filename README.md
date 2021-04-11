@@ -19,15 +19,16 @@ serveral backend microservices apps, see [framework layout](etc/imgs/framework.p
 
 ---
 
-| microservices | function | note                              | memo                        |
-| ------------ | -------- | --------------------------------- | --------------------------- |
-| gateway      |          | BFF                               | proxy, cors                 |
-| ms-auth      |          | JWT authentication, authorization | login, general verification |
-| ms-dbms      |          | MySQL + Sequelize                 | multer                      |
-| ms-mongo     |          | MongoDB + Mongoose                | multer                      |
-| ms-discovery |          | zookeeper                         | service finder              |
-| ms-graphql   |          | Apollo GraphQL                    | other repo                  |
-| ms-gitbook   |          | gatsby + gitbook                  | other repo                  |
+| microservice | package-name | note                              | memo                        |
+| ------------ | ------------ | --------------------------------- | --------------------------- |
+| gateway      | ms-gateway   | BFF                               | proxy, cors                 |
+| ms-auth      | ms-auth      | JWT authentication, authorization | login, general verification |
+| ms-dbms      | ms-dbms      | MySQL + Sequelize                 | multer                      |
+| ms-mongo     | ms-nosql     | MongoDB + Mongoose                | multer                      |
+| ms-discovery | ms-discovery | zookeeper                         | service finder              |
+| ms-graphql   | ms-graphql   | Apollo GraphQL                    | other repo                  |
+| ms-redis     | ms-redis     | redis                             | 3rd rest-api                |
+| ms-gitbook   | ms-gitbook   | gatsby + gitbook                  | other repo                  |
 
 - Among all these microservices, there are 2 mandatory:
 
@@ -46,14 +47,14 @@ $ yarn add sequelize-cli
 $ npx sequelize init
 ```
 
-### Persistant Data:
+### Persistant Data
 
 For data storage, there are 2 choices:
 
 - install and setup `MySQL` / `MongoDB` as dependencies, check individual `bin/` scripts.
 - use `docker` (I have an all-inclusive docker package)
 
-Besides DBMS/NoSQL data storage which needs to separately install and setup, a quick implementation is to use `SQLite`. (check the example from another repo https://github.com/jxjwilliam/ms-apollo-graphql.git).
+Besides DBMS/NoSQL data storage which needs to separately install and setup, a quick implementation is to use `SQLite`. (check the example from another repo [ms-apollo-graphql](https://github.com/jxjwilliam/ms-apollo-graphql.git)).
 
 ### 包管理
 
@@ -87,7 +88,7 @@ $ npx license (MIT)
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-## Demo Pages:
+## Demo Pages
 
 The following are some screenshots from the App:
 
@@ -149,8 +150,7 @@ The following are some screenshots from the App:
 
 ---
 
->
-
+```text
     client/src:
       helpers/fetching.js
       components/logic.js
@@ -168,5 +168,13 @@ The following are some screenshots from the App:
       controllers/user.js
       models/user.js
     ms-mongo/services/crud.js
+```
 
->
+### Q/A
+
+---
+
+- yarn version issue: `eslint` conflicts with `yarn workspace ms-redis add cron`:
+  ```shell
+  $ yarn policies set-version 1.19.0
+  ```

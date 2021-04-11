@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Tabs, Tab, Typography, Box, Paper } from '@material-ui/core'
 
@@ -21,12 +20,6 @@ function Panel(props) {
   )
 }
 
-Panel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-}
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -34,14 +27,13 @@ function a11yProps(index) {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
 }))
-
 
 export default function ({ ary = [] }) {
   const classes = useStyles()
@@ -52,9 +44,7 @@ export default function ({ ary = [] }) {
   }
 
   const tabs = (value, handleChange) => {
-    const tablist = ary.map((tab, idx) => (
-      <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />
-    ))
+    const tablist = ary.map((tab, idx) => <Tab label={tab} {...a11yProps({ idx })} key={`${tab}_${idx}`} />)
     return (
       <Paper className={classes.root}>
         <Tabs
@@ -72,13 +62,12 @@ export default function ({ ary = [] }) {
     )
   }
 
-  const panels = (item) => (
+  const panels = item =>
     ary.map((tab, idx) => (
       <Panel value={item} index={idx} key={`${tab}${idx}`}>
         {tab}
       </Panel>
     ))
-  )
 
   return (
     <>

@@ -1,15 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  IconButton,
-} from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, IconButton } from '@material-ui/core'
 import { Menu as MenuIcon } from '@material-ui/icons'
 
 import { BusinessRouters, GeneralRouters } from '../../routers'
@@ -33,17 +25,14 @@ export default function () {
     right: false,
   })
 
-  const toggleDrawer = (side, open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
     setState({ ...state, [side]: open })
   }
 
-  const sideList = (side) => (
+  const sideList = side => (
     <div
       className={classes.list}
       role="presentation"
@@ -71,14 +60,7 @@ export default function () {
       <Divider />
       <List>
         {GeneralRouters.map(({ icon: CompIcon, path, title }) => (
-          <ListItem
-            button
-            component={NavLink}
-            exact
-            to={path}
-            activeClassName={classes.active}
-            key={path}
-          >
+          <ListItem button component={NavLink} exact to={path} activeClassName={classes.active} key={path}>
             <ListItemIcon>
               <CompIcon />
             </ListItemIcon>
@@ -100,11 +82,7 @@ export default function () {
       >
         <MenuIcon />
       </IconButton>
-      <Drawer
-        anchor="right"
-        open={state.right}
-        onClose={toggleDrawer('right', false)}
-      >
+      <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
         {sideList('right')}
       </Drawer>
     </>

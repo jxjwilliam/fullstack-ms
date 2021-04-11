@@ -25,9 +25,9 @@ import { AccountCircle, Home as HomeIcon } from '@material-ui/icons'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Login from '../../07-sign/SigninSide'
-import {checkLogin, getToken, pageReload} from "../../helpers/utils";
+import { checkLogin, getToken, pageReload } from '../../helpers/utils'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
@@ -69,8 +69,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Bar2(props) {
-  const { children, auth: { token } } = props
-  let account = getToken().username || 'TODO-getToken.account'
+  const {
+    children,
+    auth: { token },
+  } = props
+  const account = getToken().username || 'TODO-getToken.account'
 
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
@@ -80,7 +83,7 @@ function Bar2(props) {
 
   const isMenuOpen = Boolean(anchorEl)
 
-  const handleProfileMenuOpen = (event) => {
+  const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget)
   }
 
@@ -140,21 +143,9 @@ function Bar2(props) {
           <DialogContentText>添加，修改用户账号</DialogContentText>
         </DialogContent>
         <form className={classes.form}>
-          <TextField
-            autoFocus
-            id="account"
-            label="账号"
-            fullWidth
-            margin="dense"
-            className={classes.field}
-          />
+          <TextField autoFocus id="account" label="账号" fullWidth margin="dense" className={classes.field} />
           <br />
-          <TextField
-            id="name"
-            label="姓名"
-            margin="normal"
-            className={classes.field}
-          />
+          <TextField id="name" label="姓名" margin="normal" className={classes.field} />
           <br />
           <FormControl className={classes.field}>
             <InputLabel htmlFor="role">角色</InputLabel>
@@ -165,14 +156,7 @@ function Bar2(props) {
             </Select>
           </FormControl>
           <br />
-          <TextField
-            multiline
-            rows={4}
-            id="description"
-            label="描述"
-            margin="normal"
-            className={classes.field}
-          />
+          <TextField multiline rows={4} id="description" label="描述" margin="normal" className={classes.field} />
         </form>
         <DialogActions>
           <Button onClick={handleClose1} color="secondary">
@@ -211,37 +195,39 @@ function Bar2(props) {
     </>
   )
 
-  return checkLogin(token) || (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <Link href="/" color="inherit" variant="h6">
-            <HomeIcon />
-          </Link>
-          {children}
-          <div className={classes.sectionDesktop}>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMenu}
-    </div>
+  return (
+    checkLogin(token) || (
+      <div className={classes.grow}>
+        <AppBar position="static">
+          <Toolbar>
+            <Link href="/" color="inherit" variant="h6">
+              <HomeIcon />
+            </Link>
+            {children}
+            <div className={classes.sectionDesktop}>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        {renderMenu}
+      </div>
+    )
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bar2)

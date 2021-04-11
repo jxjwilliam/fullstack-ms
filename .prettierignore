@@ -1,4 +1,8 @@
 .cache
+.history
+.idea
+.vscode
+.yarn
 public
 package.json
 package-lock.json

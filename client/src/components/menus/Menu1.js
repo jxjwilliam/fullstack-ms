@@ -1,17 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { fade, makeStyles } from '@material-ui/core/styles'
-import {
-  Menu,
-  MenuItem,
-  Fade,
-  Link as MuiLink,
-  Button,
-  IconButton,
-} from '@material-ui/core'
+import { Menu, MenuItem, Fade, Link as MuiLink, Button, IconButton } from '@material-ui/core'
 import { Menu as MenuIcon } from '@material-ui/icons'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   link: {
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -63,12 +56,7 @@ export default function ({ routers = [], Icon = MenuIcon, title = '' }) {
 
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={handleOpen}
-        color="primary"
-        startIcon={<Icon />}
-      >
+      <Button variant="contained" onClick={handleOpen} color="primary" startIcon={<Icon />}>
         {title}
       </Button>
       {renderMenu}

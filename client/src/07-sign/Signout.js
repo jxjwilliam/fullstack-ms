@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react'
-import {Redirect} from "react-router-dom";
+import React, { useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {DEFAULT_LOGIN_PAGE, TOKEN} from '../constants'
-import {logoutAction} from '../state/actions'
+import { DEFAULT_LOGIN_PAGE, TOKEN } from '../constants'
+import { logoutAction } from '../state/actions'
 
-function SignOut (props) {
+function SignOut(props) {
   useEffect(() => {
-    props.logoutAction()
+    props
+      .logoutAction()
       .then(() => sessionStorage.removeItem(TOKEN))
       .catch(e => console.error(e))
   }, [])

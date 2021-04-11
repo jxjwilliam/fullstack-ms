@@ -30,6 +30,7 @@ nohup.out
 .cache
 .storybook
 .eslintcache
+.yarn
 
 uploads
 client/public/_book/

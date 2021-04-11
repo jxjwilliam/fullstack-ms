@@ -31,7 +31,7 @@ class Footer extends Component {
           variant={isMobile ? 'scrollable' : 'standard'}
           centered={!isMobile}
         >
-          {this.muscles.map((group) => (
+          {this.muscles.map(group => (
             <Tab key={group} label={group || 'All'} />
           ))}
         </Tabs>

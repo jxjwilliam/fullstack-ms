@@ -2,36 +2,24 @@ const http = require('http')
 const debug = require('debug')('gateway:app')
 const app = require('./app')
 
-const port = normalizePort(app.get('port'))
-const server = http.createServer(app)
-
-server.listen(port)
-server.on('error', onError);
-server.on('listening', onListening);
-
-process.on('uncaughtException', err => {
-  console.error(`global exception: ${err}`)
-})
-
-process.on('unhandledRejection', (reason, promise) => {
-  console.log('Unhandled Rejection at:', promise, 'reason:', reason)
-})
-
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10)
 
-  if (isNaN(port)) {
+  if (Number.isNaN(port)) {
     // named pipe
-    return val;
+    return val
   }
 
   if (port >= 0) {
     // port number
-    return port;
+    return port
   }
 
-  return false;
+  return false
 }
+
+const port = normalizePort(app.get('port'))
+const server = http.createServer(app)
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -58,3 +46,15 @@ function onListening() {
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
   debug(`✈ BFF 服务正运行在端口 ${bind}`)
 }
+
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
+
+process.on('uncaughtException', err => {
+  console.error(`global exception: ${err}`)
+})
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason)
+})

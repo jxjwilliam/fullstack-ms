@@ -34,20 +34,7 @@ import {
   PersonPin,
   Description,
 } from '@material-ui/icons'
-import {
-  C2_1,
-  C2_2,
-  C2_3,
-  C5_2,
-  C6_2,
-  C6_3,
-  C6_4,
-  C7_1,
-  C7_2,
-  C7_3,
-  C7_4,
-  C9_1,
-} from './containers'
+import { C2_1, C2_2, C2_3, C5_2, C6_2, C6_3, C6_4, C7_1, C7_2, C7_3, C7_4, C9_1 } from './containers'
 import * as live from './live'
 import * as auth from './auth'
 
@@ -154,7 +141,7 @@ const mainList = [
       {
         path: 'Accounts',
         icon: LocalFlorist,
-        component: auth.Account
+        component: auth.Account,
       },
     ],
   },

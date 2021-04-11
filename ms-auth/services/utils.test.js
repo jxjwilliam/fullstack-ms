@@ -1,17 +1,15 @@
 const fetch = require('node-fetch')
-const expect = require('chai').expect
+const { expect } = require('chai')
 
 describe('crud', () => {
-
   describe('create', () => {
-    it('test status', (done) => {
-      fetch('https://jsonplaceholder.typicode.com/todos/1')
-        .then(res => {
-          // status=200, statusCode=undefined
-          expect(res.status).to.equal(200)
-          expect(res.statusText).to.equal('OK')
-          done()
-        })
+    it('test status', done => {
+      fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => {
+        // status=200, statusCode=undefined
+        expect(res.status).to.equal(200)
+        expect(res.statusText).to.equal('OK')
+        done()
+      })
     })
   })
 
@@ -32,5 +30,4 @@ describe('crud', () => {
       expect(1 + 1).to.equal(2)
     })
   })
-
 })

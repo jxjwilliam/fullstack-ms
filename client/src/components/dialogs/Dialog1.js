@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import {compose} from 'recompose';
-import {withStyles} from '@material-ui/styles';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { compose } from 'recompose'
+import { withStyles } from '@material-ui/styles'
 import {
   Button,
   TextField,
@@ -16,18 +16,18 @@ import {
   FormControl,
   MenuItem,
   InputLabel,
-} from '@material-ui/core';
-import {Add} from '@material-ui/icons';
+} from '@material-ui/core'
+import { Add } from '@material-ui/icons'
 
 const styles = {
   form: {
-    width: 300
+    width: 300,
   },
   field: {
     width: 260,
     marginLeft: 20,
-  }
-};
+  },
+}
 
 class Dialog1 extends Component {
   state = {
@@ -38,44 +38,50 @@ class Dialog1 extends Component {
       role: '',
       description: '',
     },
-    roles: []
+    roles: [],
   }
 
   async componentDidMount() {
-    const data = {}; //result.data;
-    this.setState(() => ({...data, roles: data.roles || []}))
+    const data = {} // result.data;
+    this.setState(() => ({ ...data, roles: data.roles || [] }))
   }
 
   handleToggle = () => {
-    this.setState(prevState => ({open: !prevState.open}));
-  };
+    this.setState(prevState => ({ open: !prevState.open }))
+  }
 
-  handleChange = ({target: {id, value}}) => {
+  handleChange = ({ target: { id, value } }) => {
+    const { form } = this.state
     this.setState({
       form: {
-        ...this.state.form,
-        [id]: value
-      }
-    });
+        ...form,
+        [id]: value,
+      },
+    })
   }
 
   handleSubmit = () => {
     // TODO: validate
-    const {form} = this.state;
-    this.props.onCreate(form);
+    const { form } = this.state
+    const { onCreate } = this.props
+    onCreate(form)
     this.setState({
       open: false,
       form: {
         name: '',
         account: '',
-        description: ''
-      }
+        description: '',
+      },
     })
   }
 
   render() {
-    const {form: {account, name, role, description}, open, roles} = this.state;
-    const {classes} = this.props;
+    const {
+      form: { account, name, role, description },
+      open,
+      roles,
+    } = this.state
+    const { classes } = this.props
     return (
       <div>
         <Fab color="primary" onClick={this.handleToggle}>
@@ -84,9 +90,7 @@ class Dialog1 extends Component {
         <Dialog open={open} onClose={this.handleToggle}>
           <DialogTitle id="form-dialog-title">创建用户表单</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              添加，修改用户账号
-            </DialogContentText>
+            <DialogContentText>添加，修改用户账号</DialogContentText>
           </DialogContent>
           <form className={classes.form}>
             <TextField
@@ -99,7 +103,7 @@ class Dialog1 extends Component {
               margin="dense"
               className={classes.field}
             />
-            <br/>
+            <br />
             <TextField
               id="name"
               label="姓名"
@@ -108,7 +112,7 @@ class Dialog1 extends Component {
               margin="normal"
               className={classes.field}
             />
-            <br/>
+            <br />
             <FormControl className={classes.field}>
               <InputLabel htmlFor="role">角色</InputLabel>
               <Select
@@ -119,11 +123,17 @@ class Dialog1 extends Component {
                   id: 'role',
                 }}
               >
-                <MenuItem value=""><em>请选择</em></MenuItem>
-                {roles.map(r => <MenuItem value={r} key={r}>{r}</MenuItem>)}
+                <MenuItem value="">
+                  <em>请选择</em>
+                </MenuItem>
+                {roles.map(r => (
+                  <MenuItem value={r} key={r}>
+                    {r}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
-            <br/>
+            <br />
             <TextField
               multiline
               rows={4}
@@ -145,7 +155,7 @@ class Dialog1 extends Component {
           </DialogActions>
         </Dialog>
       </div>
-    );
+    )
   }
 }
 
@@ -155,7 +165,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
 
-export default compose(
-  withStyles(styles, {name: 'form1'}),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Dialog1);
+export default compose(withStyles(styles, { name: 'form1' }), connect(mapStateToProps, mapDispatchToProps))(Dialog1)

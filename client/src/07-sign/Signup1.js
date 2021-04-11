@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import { compose } from 'recompose';
+import { bindActionCreators } from 'redux'
+import { compose } from 'recompose'
 import { Redirect } from 'react-router-dom'
 import {
   Avatar,
@@ -19,72 +19,70 @@ import {
   InputBase,
   Input,
   Select,
-} from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { signupAction } from '../state/actions'
-import { DEFAULT_LOGIN_PAGE } from '../constants';
+import { DEFAULT_LOGIN_PAGE } from '../constants'
 import { fetching } from '../helpers/utils'
 
-////////////////////////////////
+/// /////////////////////////////
 
 class CascadeAddress extends Component {
-
   state = {
     address: {
       province: '',
       city: '',
-      district: ''
+      district: '',
     },
     data: [],
     provinces: [],
     cities: [],
-    districts: []
-  };
+    districts: [],
+  }
 
   classes = {
     select: {
       padding: 20,
-    }
-  };
+    },
+  }
 
   async componentDidMount() {
-    const data = await fetching(`/data/address`);
+    const data = await fetching(`/data/address`)
     this.setState(() => {
-      const provinces = Object.keys(data);
-      return { data, provinces };
+      const provinces = Object.keys(data)
+      return { data, provinces }
     })
   }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+    this.setState({ open: true })
+  }
 
   handleClose = () => {
-    this.setState({ open: false });
-  };
+    this.setState({ open: false })
+  }
 
   handleChange = e => {
-    const selected = e.target.value;
-    const level = e.target.id;
-    const { data } = this.state;
+    const selected = e.target.value
+    const level = e.target.id
+    const { data } = this.state
 
     if (level === 'province') {
-      const cities = Object.keys(data[selected]);
-      this.setState({ address: { [level]: selected }, cities, districts: [] });
-    }
-    else if (level === 'city') {
+      const cities = Object.keys(data[selected])
+      this.setState({ address: { [level]: selected }, cities, districts: [] })
+    } else if (level === 'city') {
       const districts = data[this.state.address.province][selected]
-      this.setState({ address: { ...this.state.address, [level]: selected }, districts });
+      this.setState({ address: { ...this.state.address, [level]: selected }, districts })
+    } else {
+      // district
+      this.setState({ address: { ...this.state.address, [level]: selected } })
     }
-    else { //district
-      this.setState({ address: { ...this.state.address, [level]: selected } });
-    }
-  };
+  }
 
   render() {
-    const { province, city, district } = this.state.address;
-    const { open, provinces, cities, districts } = this.state;
+    const { province, city, district } = this.state.address
+    const { open, provinces, cities, districts } = this.state
 
     return (
       <>
@@ -97,19 +95,21 @@ class CascadeAddress extends Component {
             style={{ padding: 20 }}
           >
             <option value="0">--- 请选择省份 ---</option>
-            {provinces.map(p => <option value={p} key={p}>{p}</option>)}
+            {provinces.map(p => (
+              <option value={p} key={p}>
+                {p}
+              </option>
+            ))}
           </Select>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Select
-            native
-            value={city}
-            onChange={this.handleChange}
-            input={<Input id="city" />}
-            style={{ padding: 20 }}
-          >
+          <Select native value={city} onChange={this.handleChange} input={<Input id="city" />} style={{ padding: 20 }}>
             <option value="0">--- 请选择城市 ---</option>
-            {cities.map(c => <option value={c} key={c}>{c}</option>)}
+            {cities.map(c => (
+              <option value={c} key={c}>
+                {c}
+              </option>
+            ))}
           </Select>
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -121,7 +121,11 @@ class CascadeAddress extends Component {
             style={{ padding: 20 }}
           >
             <option value="0">--- 请选择区/县 ---</option>
-            {districts.map(d => <option value={d} key={d}>{d}</option>)}
+            {districts.map(d => (
+              <option value={d} key={d}>
+                {d}
+              </option>
+            ))}
           </Select>
         </Grid>
       </>
@@ -155,7 +159,7 @@ const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(6),
   },
-}));
+}))
 
 const BootstrapInput = withStyles(theme => ({
   root: {
@@ -189,7 +193,7 @@ const BootstrapInput = withStyles(theme => ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
   },
-}))(InputBase);
+}))(InputBase)
 
 class SignUp1 extends Component {
   state = {
@@ -207,77 +211,84 @@ class SignUp1 extends Component {
     roles: [],
     organizations: [],
     departments: [],
-    done: false
+    done: false,
   }
 
   async componentDidMount() {
-    this.loadResources('organizations');
+    this.loadResources('organizations')
   }
 
   validateForm = () => {
-    const { account, password } = this.state.register;
-    return account.length > 0 && password.length > 0;
+    const { account, password } = this.state.register
+    return account.length > 0 && password.length > 0
   }
 
   handleChange = e => {
-    const { target: { name, value } } = e;
+    const {
+      target: { name, value },
+    } = e
     if (name === 'organization_id') {
-      this.loadResources('departments');
+      this.loadResources('departments')
       this.loadResources('roles', `roles/${value}`)
     }
-    this.setState(preState => ({ register: { ...preState.register, [name]: value } }));
-  };
+    this.setState(preState => ({ register: { ...preState.register, [name]: value } }))
+  }
 
   handleSubmit = ev => {
-    ev.preventDefault();
-    this.props.signupAction(this.state.register)
-      .then(data => {
-        if (this.props.register.account) {
-          this.setState({ done: true });
-        }
-        else {
-          this.setState({ done: false });
-        }
-      })
-  };
+    ev.preventDefault()
+    this.props.signupAction(this.state.register).then(data => {
+      if (this.props.register.account) {
+        this.setState({ done: true })
+      } else {
+        this.setState({ done: false })
+      }
+    })
+  }
 
   loadResources = async (resource, url = resource) => {
     fetching(`/api/${url}`).then(data => this.setState({ [resource]: data }))
-  };
+  }
 
-  getList = (resources) => {
+  getList = resources => {
     if (Array.isArray(resources)) {
-      return resources.map(resource =>
-        <option key={resource.id} value={resource.id}>{resource.name}</option>)
+      return resources.map(resource => (
+        <option key={resource.id} value={resource.id}>
+          {resource.name}
+        </option>
+      ))
     }
-    else {
-      return (
-        <option key={resources.id} value={resources.id}>{resources.name}</option>
-      )
-
-    }
-  };
+    return (
+      <option key={resources.id} value={resources.id}>
+        {resources.name}
+      </option>
+    )
+  }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     const {
-      roles, departments, organizations, done,
-      register: { organization_id, department_id, role_id }
-    } = this.state;
+      roles,
+      departments,
+      organizations,
+      done,
+      register: { organization_id, department_id, role_id },
+    } = this.state
 
     if (done) {
       return <Redirect to={DEFAULT_LOGIN_PAGE} />
     }
 
-    let listRoles, listOrgs, listDepartments;
+    let listRoles
+    let listOrgs
+    let listDepartments
     if (Object.keys(roles).length > 0 || roles.length > 0) {
-      listRoles = this.getList(roles);
+      listRoles = this.getList(roles)
     }
     if (organizations.length > 0) {
-      listOrgs = this.getList(organizations);
+      listOrgs = this.getList(organizations)
     }
     if (departments.length > 0) {
-      listDepartments = this.getList(departments);
+      listDepartments = this.getList(departments)
     }
 
     return (
@@ -292,7 +303,6 @@ class SignUp1 extends Component {
           </Typography>
 
           <form className={`${classes.form}`} noValidate>
-
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -347,11 +357,7 @@ class SignUp1 extends Component {
 
               <Grid item xs={12} sm={4}>
                 <FormControl className={classes.margin}>
-                  <NativeSelect
-                    value={role_id}
-                    onChange={this.handleChange}
-                    input={<BootstrapInput name="role_id" />}
-                  >
+                  <NativeSelect value={role_id} onChange={this.handleChange} input={<BootstrapInput name="role_id" />}>
                     <option value=""> -请选择角色-</option>
                     {listRoles}
                   </NativeSelect>
@@ -430,18 +436,17 @@ class SignUp1 extends Component {
               </Grid>
             </Grid>
           </form>
-
         </div>
       </Container>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => ({ register: state.register });
+const mapStateToProps = state => ({ register: state.register })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signupAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ signupAction }, dispatch)
 
 export default compose(
   withStyles(useStyles, { name: 'signup1' }),
-  connect(mapStateToProps, mapDispatchToProps)
-)(SignUp1);
+  connect(mapStateToProps, mapDispatchToProps),
+)(SignUp1)

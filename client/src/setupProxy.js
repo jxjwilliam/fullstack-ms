@@ -10,13 +10,13 @@ const MS_BFF_PORT = process.env.BFF_PORT
 // TODO: built-client `build` put in Nginx/root or gateway ???
 const localMs = ['/auth']
 const authenticationMs = ['/api', '/data', '/graphql', '/discovery']
-const otherMs = ['/sms', ]
+const otherMs = ['/sms']
 
 module.exports = function (app) {
   app.use(
     createProxyMiddleware([...localMs, ...authenticationMs, ...otherMs], {
       target: `${URLS[0]}:${MS_BFF_PORT}/`,
       changeOrigin: true,
-    })
+    }),
   )
 }

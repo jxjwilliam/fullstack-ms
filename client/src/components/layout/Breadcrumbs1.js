@@ -8,7 +8,7 @@ import WhatshotIcon from '@material-ui/icons/Whatshot'
 import GrainIcon from '@material-ui/icons/Grain'
 
 // TODO: integrate with <Title/>
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   link: {
     display: 'flex',
     padding: theme.spacing(2),
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ({ path }) {
   const classes = useStyles()
-  const [n1, n2, n3] = path.split('/').filter((s) => !!s)
+  const [n1, n2, n3] = path.split('/').filter(s => !!s)
 
   return (
     <Breadcrumbs aria-label="breadcrumb">

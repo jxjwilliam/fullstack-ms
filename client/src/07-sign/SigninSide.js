@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
@@ -15,10 +15,10 @@ import {
 } from '@material-ui/core'
 import { LockOutlined as LockOutlinedIcon, LockOpen as LockOpenIcon } from '@material-ui/icons'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
+import { useForm, Controller } from 'react-hook-form'
 import { DEFAULT_HOME_PAGE, TOKEN, REGISTER_PAGE } from '../constants'
 import { loginAction } from '../state/actions'
-import { useForm, Controller } from 'react-hook-form'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,8 +27,7 @@ const useStyles = makeStyles(theme => ({
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -52,11 +51,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in-side/SignInSide.js
-function SignInSide (props) {
+function SignInSide(props) {
   const classes = useStyles()
   const [done, setDone] = useState(false)
-  const {register, handleSubmit, control} = useForm()
-  const mounted = useRef();
+  const { register, handleSubmit, control } = useForm()
+  const mounted = useRef()
 
   /**
    * The useRef creates an "instance variable" in functional component. It acts as a flag to indicate whether it is in mount or update phase without updating state.
@@ -64,10 +63,12 @@ function SignInSide (props) {
   useEffect(() => {
     if (!mounted.current) {
       // do componentDidMount logic
-      mounted.current = true;
+      mounted.current = true
     } else {
       // do componentDidUpdate logic
-      const { auth: { loggedIn, token } } = props;
+      const {
+        auth: { loggedIn, token },
+      } = props
       if (loggedIn) {
         setDone(true)
         sessionStorage.setItem(TOKEN, token)
@@ -83,7 +84,9 @@ function SignInSide (props) {
     props.loginAction(data)
   }
 
-  return  done ? <Redirect to={DEFAULT_HOME_PAGE} /> : (
+  return done ? (
+    <Redirect to={DEFAULT_HOME_PAGE} />
+  ) : (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -126,8 +129,9 @@ function SignInSide (props) {
             />
             <FormControlLabel
               control={
-                <Controller as={Checkbox} control={control} name="subscription" color={"primary"} defaultValue={false} />}
-              label={"Subscription"}
+                <Controller as={Checkbox} control={control} name="subscription" color="primary" defaultValue={false} />
+              }
+              label="Subscription"
             />
             <Button
               type="submit"
@@ -147,7 +151,10 @@ function SignInSide (props) {
               </Grid>
               <Grid item>
                 <MuiLink component={Link} to={REGISTER_PAGE} variant="body2">
-                  还没有账号？注册～<span role="img" aria-label="hat">🤠</span>
+                  还没有账号？注册～
+                  <span role="img" aria-label="hat">
+                    🤠
+                  </span>
                 </MuiLink>
               </Grid>
             </Grid>
@@ -158,4 +165,4 @@ function SignInSide (props) {
   )
 }
 
-export default connect((state) => ({ auth: state.auth }), { loginAction })(SignInSide)
+export default connect(state => ({ auth: state.auth }), { loginAction })(SignInSide)

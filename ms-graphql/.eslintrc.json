@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "import/prefer-default-export": 0,
+    "no-undef": 0
+  }
+}

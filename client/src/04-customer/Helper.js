@@ -25,15 +25,10 @@ const HelperInfo = [
 ]
 
 export const HelpMenu = () => {
-  const list = HelperInfo.map((item) => {
+  const list = HelperInfo.map(item => {
     const CompIcon = item.icon
     return (
-      <ListItem
-        button
-        component={Link}
-        to={`${PARENT_PATH}/${item.path}`}
-        key={item.path}
-      >
+      <ListItem button component={Link} to={`${PARENT_PATH}/${item.path}`} key={item.path}>
         <ListItemIcon>
           <CompIcon />
         </ListItemIcon>
@@ -47,12 +42,8 @@ export const HelpMenu = () => {
 
 export const HelpContent = () => (
   <Switch>
-    {HelperInfo.map((item) => (
-      <Route
-        path={`${PARENT_PATH}/${item.path}`}
-        render={() => <h2>{item.path}</h2>}
-        key={item.path}
-      />
+    {HelperInfo.map(item => (
+      <Route path={`${PARENT_PATH}/${item.path}`} render={() => <h2>{item.path}</h2>} key={item.path} />
     ))}
   </Switch>
 )

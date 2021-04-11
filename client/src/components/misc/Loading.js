@@ -1,6 +1,6 @@
 import React from 'react'
-import { makeStyles} from "@material-ui/core/styles";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 // loading.io
 const useStyles = makeStyles(theme => ({
@@ -21,10 +21,10 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: '50%',
     bottom: '50%',
-    left: 0,
-    right: 0,
+    left: theme.spacing(0),
+    right: theme.spacing(0),
     margin: 'auto',
-  }
+  },
 }))
 
 export default function () {
@@ -32,7 +32,7 @@ export default function () {
 
   return (
     <div className={classes.root}>
-      <CircularProgress color={'secondary'} className={classes.center} />
+      <CircularProgress color="secondary" className={classes.center} />
     </div>
   )
 }

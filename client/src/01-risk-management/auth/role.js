@@ -21,20 +21,12 @@ export default function () {
   }, [])
 
   const renderRole = roles => {
-    return (
-      <MaterialTable
-        title={'Roles'}
-        columns={columns}
-        data={roles}
-      />
-    )
+    return <MaterialTable title="Roles" columns={columns} data={roles} />
   }
 
   return (
     <>
-      <Fetcher action='/auth/role'>
-        {data => renderRole(data)}
-      </Fetcher>
+      <Fetcher action="/auth/role">{data => renderRole(data)}</Fetcher>
       {toast && <Toast message="Role List" />}
     </>
   )

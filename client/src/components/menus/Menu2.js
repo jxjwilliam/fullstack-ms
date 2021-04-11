@@ -4,7 +4,7 @@ import { Menu, MenuItem, Fade, Link, Button } from '@material-ui/core'
 import { Menu as MenuIcon } from '@material-ui/icons'
 
 // 09-service/index: menus
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   link: {
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.5),
@@ -34,13 +34,7 @@ export default function ({ routers = [], base, title, Icon = MenuIcon }) {
   }
 
   const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      keepMounted
-      open={open}
-      onClose={handleClose}
-      TransitionComponent={Fade}
-    >
+    <Menu anchorEl={anchorEl} keepMounted open={open} onClose={handleClose} TransitionComponent={Fade}>
       {routers.map(({ icon: CompIcon = MenuIcon, path }) => (
         <Link href={`${base}/${path}`} key={path} className={classes.link}>
           <MenuItem onClick={handleClose} className={classes.icon}>
@@ -54,12 +48,7 @@ export default function ({ routers = [], base, title, Icon = MenuIcon }) {
 
   return (
     <>
-      <Button
-        color="inherit"
-        className={classes.button}
-        startIcon={<Icon />}
-        onClick={handleOpen}
-      >
+      <Button color="inherit" className={classes.button} startIcon={<Icon />} onClick={handleOpen}>
         {title}
       </Button>
       {renderMenu}
